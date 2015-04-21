@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CRSModelStoreContainer">
+    <EntitySet Name="Company" EntityType="CRSModel.Store.Company" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CompanyHR" EntityType="CRSModel.Store.CompanyHR" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Course" EntityType="CRSModel.Store.Course" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CourseClass" EntityType="CRSModel.Store.CourseClass" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Participant" EntityType="CRSModel.Store.Participant" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Registration" EntityType="CRSModel.Store.Registration" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Staff" EntityType="CRSModel.Store.Staff" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="CRSModel.Store.User" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="CompanyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CompanyUEN" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="OrganizationSize" Type="int" Nullable="false" />
+    <Property Name="CompanyAddress" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PostalCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="CompanyHR">
+    <Key>
+      <PropertyRef Name="HRID" />
+    </Key>
+    <Property Name="HRID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="CompanyID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="FaxNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="CourseCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CourseTitle" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="ntext" />
+    <Property Name="Fee" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="Instructors" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="NumberOfDays" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseClass">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="CourseCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Participant">
+    <Key>
+      <PropertyRef Name="ParticipantID" />
+    </Key>
+    <Property Name="ParticipantID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="IDNumber" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CompanyID" Type="char" MaxLength="36" />
+    <Property Name="Salutation" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="FullName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Gender" Type="int" Nullable="false" />
+    <Property Name="Nationality" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ContactNumber" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DietaryRequirement" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmploymentStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="Department" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrganizationSize" Type="nvarchar" MaxLength="50" />
+    <Property Name="SalaryRange" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="RegistrationID" />
+    </Key>
+    <Property Name="RegistrationID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="ClassID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="ParticipantID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Sponsorship" Type="int" Nullable="false" />
+    <Property Name="DietaryRequirement" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrganizationSize" Type="int" />
+    <Property Name="BillingAddress" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="BillingPersonName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BillingAddressCountry" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BillingAddressPostalCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="StaffID" />
+    </Key>
+    <Property Name="StaffID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="LoginID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Role" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="LoginID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserType" Type="int" Nullable="false" />
+  </EntityType>
+</Schema>

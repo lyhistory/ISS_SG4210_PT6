@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CRS_DAL</RootNamespace>
     <AssemblyName>CRS_DAL</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,8 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,7 +47,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="EF\Company.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CompanyHR.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Course.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CourseClass.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CRS.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRS.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CRS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CRS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRS.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Participant.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Registration.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Staff.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\User.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +93,33 @@
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
       <Name>CRS_DM</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="EF\CRS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CRS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="EF\CRS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CRS.edmx</DependentUpon>
+      <LastGenOutput>CRS.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EF\CRS.edmx.diagram">
+      <DependentUpon>CRS.edmx</DependentUpon>
+    </None>
+    <None Include="EF\CRS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CRS.edmx</DependentUpon>
+      <LastGenOutput>CRS.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

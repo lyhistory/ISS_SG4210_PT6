@@ -3,3 +3,8 @@ D:\vmshareddisk\Personal\NUS\assignment\CRS\Bin\CRS_BDL.pdb
 D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_BL\obj\Debug\CRS_BL.csprojResolveAssemblyReference.cache
 D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_BL\obj\Debug\CRS_BDL.dll
 D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_BL\obj\Debug\CRS_BDL.pdb
+C:\Users\lyhis_000\Dropbox\NUS\Elective Course\NET-1\CA\ISS_SG4210_PT6\Bin\CRS_BDL.dll
+C:\Users\lyhis_000\Dropbox\NUS\Elective Course\NET-1\CA\ISS_SG4210_PT6\Bin\CRS_BDL.pdb
+C:\Users\lyhis_000\Dropbox\NUS\Elective Course\NET-1\CA\ISS_SG4210_PT6\CRS_BL\obj\Debug\CRS_BL.csprojResolveAssemblyReference.cache
+C:\Users\lyhis_000\Dropbox\NUS\Elective Course\NET-1\CA\ISS_SG4210_PT6\CRS_BL\obj\Debug\CRS_BDL.dll
+C:\Users\lyhis_000\Dropbox\NUS\Elective Course\NET-1\CA\ISS_SG4210_PT6\CRS_BL\obj\Debug\CRS_BDL.pdb
