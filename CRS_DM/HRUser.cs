@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace dm.crs.iss.nus
 {
-    public class Class1
+    public class HRUser
     {
+        public HRUser(string email, Company company)
+        {
+        }
     }
 }

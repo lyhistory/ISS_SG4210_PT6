@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace dm.crs.iss.nus
 {
-    public class Class1
+    public class SystemAdministrator: Administrator
     {
+
     }
 }

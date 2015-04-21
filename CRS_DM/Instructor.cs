@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace dm.crs.iss.nus
 {
-    public class Class1
+    public class Instructor:Staff
     {
+        public bool Login()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

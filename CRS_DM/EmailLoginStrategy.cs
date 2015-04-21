@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace dm.crs.iss.nus
 {
-    public class Class1
+    public class EmailLoginStrategy:LogingStrategy
     {
+        public EmailLoginStrategy(string email)
+        { }
+
+
     }
 }

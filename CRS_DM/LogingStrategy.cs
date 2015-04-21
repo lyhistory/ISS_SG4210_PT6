@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dm.crs.iss.nus
 {
-    public class Class1
+    public abstract class LogingStrategy
     {
     }
 }

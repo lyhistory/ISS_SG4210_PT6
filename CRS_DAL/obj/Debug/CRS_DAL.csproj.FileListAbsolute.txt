@@ -1,0 +1,5 @@
+D:\vmshareddisk\Personal\NUS\assignment\CRS\Bin\CRS_DAL.dll
+D:\vmshareddisk\Personal\NUS\assignment\CRS\Bin\CRS_DAL.pdb
+D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_DAL\obj\Debug\CRS_DAL.csprojResolveAssemblyReference.cache
+D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_DAL\obj\Debug\CRS_DAL.dll
+D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_DAL\obj\Debug\CRS_DAL.pdb

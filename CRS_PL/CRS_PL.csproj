@@ -248,9 +248,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CRS_BDL\CRS_BDL.csproj">
+    <ProjectReference Include="..\CRS_BL\CRS_BL.csproj">
       <Project>{1b5e7572-342b-4981-aa10-85709706f90c}</Project>
-      <Name>CRS_BDL</Name>
+      <Name>CRS_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\CRS_DM\CRS_DM.csproj">
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>

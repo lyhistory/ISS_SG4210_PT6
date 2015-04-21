@@ -7,7 +7,7 @@
     <ProjectGuid>{4AC31D05-3220-4E18-9A9D-60305331711E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CRS_DM</RootNamespace>
+    <RootNamespace>dm.crs.iss.nus</RootNamespace>
     <AssemblyName>CRS_DM</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,9 +40,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrator.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="CourseAdministrator.cs" />
+    <Compile Include="Course\Category.cs" />
+    <Compile Include="Course\Course.cs" />
+    <Compile Include="Course\CourseCalendar.cs" />
+    <Compile Include="Course\CourseClass.cs" />
+    <Compile Include="Course\CourseSchedule.cs" />
+    <Compile Include="EmailLoginStrategy.cs" />
+    <Compile Include="HRUser.cs" />
+    <Compile Include="IDLoginStrategy.cs" />
+    <Compile Include="IndividualUser.cs" />
+    <Compile Include="Instructor.cs" />
+    <Compile Include="LogingStrategy.cs" />
+    <Compile Include="NonLoginStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicUser.cs" />
+    <Compile Include="Registration\Bill.cs" />
+    <Compile Include="Registration\Participant.cs" />
+    <Compile Include="Registration\Registration.cs" />
+    <Compile Include="Staff.cs" />
+    <Compile Include="SystemAdministrator.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
