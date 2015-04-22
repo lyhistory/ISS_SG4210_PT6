@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Role\Administrator.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="LoginInfo.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Role\CourseAdminRole.cs" />
     <Compile Include="Course\Category.cs" />
@@ -59,7 +59,7 @@
     <Compile Include="NonLoginStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicUser.cs" />
-    <Compile Include="Registration\Bill.cs" />
+    <Compile Include="Registration\Billing.cs" />
     <Compile Include="Registration\Participant.cs" />
     <Compile Include="Registration\Registration.cs" />
     <Compile Include="Role\StaffRole.cs" />

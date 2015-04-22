@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm
 {
-    public interface User
+    public class User
     {
-        bool Login();
+        
     }
 }

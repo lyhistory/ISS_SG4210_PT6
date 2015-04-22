@@ -8,9 +8,21 @@ namespace nus.iss.crs.dm
 {
     public class EmailLoginStrategy:LogingStrategy
     {
-        public EmailLoginStrategy(string email)
-        { }
+        HRUser hr = null;
 
+        public EmailLoginStrategy(User user)
+        {
+            hr = (HRUser)user;
+        }
 
+        public string GetLoginID()
+        {
+            return hr.email;
+        }
+
+        public string GetPassword()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

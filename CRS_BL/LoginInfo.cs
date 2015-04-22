@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRS_BDL
+namespace nus.iss.crs.dm
 {
-    public class Class1
+    public class LoginInfo
     {
     }
 }

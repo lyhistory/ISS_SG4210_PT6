@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CR_PL.Models;
+using nus.iss.crs.dm;
+using nus.iss.crs.bl;
 
 namespace CR_PL.Controllers
 {
@@ -26,6 +28,17 @@ namespace CR_PL.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+        }
+
+        public ActionResult LoginCRS()
+        {
+            //1. retrieve data from view
+            //2. pass data to bl
+            User hr = new HRUser();
+            LoginManager loginManager = new LoginManager();
+            loginManager.Login(new EmailLoginStrategy(hr));
+
+            return View();
         }
 
         public ApplicationSignInManager SignInManager

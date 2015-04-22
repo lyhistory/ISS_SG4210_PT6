@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm
 {
-    public abstract class LogingStrategy
+    public interface LogingStrategy
     {
+        string GetLoginID();
+        string GetPassword();
     }
 }

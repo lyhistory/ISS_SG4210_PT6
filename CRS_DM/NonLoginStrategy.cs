@@ -8,5 +8,15 @@ namespace nus.iss.crs.dm
 {
     public class NonLoginStrategy:LogingStrategy
     {
+
+        public string GetLoginID()
+        {
+            return "";
+        }
+
+        public string GetPassword()
+        {
+            return "";
+        }
     }
 }

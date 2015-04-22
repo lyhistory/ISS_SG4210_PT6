@@ -41,13 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="ApplicationFacade.cs" />
+    <Compile Include="LoginInfo.cs" />
+    <Compile Include="LoginManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CRS_DAL\CRS_DAL.csproj">
       <Project>{de4b24ba-5dcd-4d45-8458-df0bd1b16e4a}</Project>
       <Name>CRS_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRS_DM\CRS_DM.csproj">
+      <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
+      <Name>CRS_DM</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

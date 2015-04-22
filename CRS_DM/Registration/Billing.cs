@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm.Registration
 {
-    public class Bill
+    public class Billing
     {
         public string PersonName { get; set; }
         public string Address { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm.Role
 {
-    public interface  StaffRole: User
+    public class  StaffRole:UserRole
     {
     }
 }
