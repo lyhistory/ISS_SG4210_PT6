@@ -291,4 +291,11 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  
+   <Target Name="AfterBuild">
+    <!-- Remove obj folder -->
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
+    <!-- Remove bin folder -->
+    <RemoveDir Directories="$(BaseOutputPath)" />
+  </Target>
 </Project>

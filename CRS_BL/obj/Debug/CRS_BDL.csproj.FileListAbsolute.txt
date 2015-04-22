@@ -1,5 +1,0 @@
-D:\vmshareddisk\Personal\NUS\assignment\CRS\Bin\CRS_BDL.dll
-D:\vmshareddisk\Personal\NUS\assignment\CRS\Bin\CRS_BDL.pdb
-D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_BDL\obj\Debug\CRS_BDL.csprojResolveAssemblyReference.cache
-D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_BDL\obj\Debug\CRS_BDL.dll
-D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_BDL\obj\Debug\CRS_BDL.pdb
