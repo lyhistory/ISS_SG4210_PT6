@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nus.iss.crs.dm.Course
+namespace nus.iss.crs.dm.Role
 {
-    public class CourseCalendar
+    public class Administrator:StaffRole
     {
-        private List<CourseClass> courseClass;
-        public DateTime date { get; set; }
-
-        public bool isHoliday()
+        public bool Login()
         {
             throw new NotImplementedException();
         }

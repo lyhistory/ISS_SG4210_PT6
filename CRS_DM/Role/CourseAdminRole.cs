@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nus.iss.crs.dm
+namespace nus.iss.crs.dm.Role
 {
-    public class HRUser
+    public class CourseAdminRole:Administrator
     {
-        public HRUser(string email, Company company)
-        {
-        }
     }
 }

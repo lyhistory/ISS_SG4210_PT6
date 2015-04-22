@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nus.iss.crs.dm
+namespace nus.iss.crs.dm.Role
 {
-    public class HRUser
+    public interface  StaffRole: User
     {
-        public HRUser(string email, Company company)
-        {
-        }
     }
 }

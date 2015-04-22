@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dm.crs.iss.nus.Registration
+namespace nus.iss.crs.dm.Registration
 {
     public class Participant
     {

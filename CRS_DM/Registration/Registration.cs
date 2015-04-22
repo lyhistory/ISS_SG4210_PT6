@@ -1,11 +1,11 @@
-﻿using dm.crs.iss.nus.Course;
+﻿using nus.iss.crs.dm.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dm.crs.iss.nus.Registration
+namespace nus.iss.crs.dm.Registration
 {
     public class Registration
     {

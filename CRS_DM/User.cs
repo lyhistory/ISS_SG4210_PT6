@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dm.crs.iss.nus
+namespace nus.iss.crs.dm
 {
     public interface User
     {

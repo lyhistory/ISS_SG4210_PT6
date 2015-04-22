@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dm.crs.iss.nus
+namespace nus.iss.crs.dm
 {
-    public class Instructor:Staff
+    public class Instructor
     {
         public bool Login()
         {

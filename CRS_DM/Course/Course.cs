@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dm.crs.iss.nus.Course
+namespace nus.iss.crs.dm.Course
 {
     public class Course
     {
