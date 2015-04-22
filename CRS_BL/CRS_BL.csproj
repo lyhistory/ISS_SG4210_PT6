@@ -44,12 +44,6 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CRS_DAL\CRS_DAL.csproj">
-      <Project>{de4b24ba-5dcd-4d45-8458-df0bd1b16e4a}</Project>
-      <Name>CRS_DAL</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
