@@ -95,7 +95,9 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="EF\CRS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CRS.edmx</DependentUpon>
