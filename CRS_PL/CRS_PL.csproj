@@ -11,7 +11,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>nus.iss.crs.pl</RootNamespace>
+    <RootNamespace>CR_PL</RootNamespace>
     <AssemblyName>CR_PL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -25,7 +25,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\CRS.WebBin\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -181,6 +181,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -239,6 +240,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Log\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -251,6 +253,10 @@
     <ProjectReference Include="..\CRS_BL\CRS_BL.csproj">
       <Project>{1b5e7572-342b-4981-aa10-85709706f90c}</Project>
       <Name>CRS_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRS_COMMON\CRS_COMMON.csproj">
+      <Project>{ebb99bd3-a506-4fc6-ae03-d1da6876e3cc}</Project>
+      <Name>CRS_COMMON</Name>
     </ProjectReference>
     <ProjectReference Include="..\CRS_DM\CRS_DM.csproj">
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>

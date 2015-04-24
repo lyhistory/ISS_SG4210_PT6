@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS_DAL", "CRS_DAL\CRS_DAL.csproj", "{DE4B24BA-5DCD-4D45-8458-DF0BD1B16E4A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS_DM", "CRS_DM\CRS_DM.csproj", "{4AC31D05-3220-4E18-9A9D-60305331711E}"
@@ -10,6 +8,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS_BL", "CRS_BL\CRS_BL.csproj", "{1B5E7572-342B-4981-AA10-85709706F90C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS_PL", "CRS_PL\CRS_PL.csproj", "{48DEE220-D581-4463-84F3-99137E2490BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRS_COMMON", "CRS_COMMON\CRS_COMMON.csproj", "{EBB99BD3-A506-4FC6-AE03-D1DA6876E3CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +33,10 @@ Global
 		{48DEE220-D581-4463-84F3-99137E2490BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48DEE220-D581-4463-84F3-99137E2490BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48DEE220-D581-4463-84F3-99137E2490BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBB99BD3-A506-4FC6-AE03-D1DA6876E3CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBB99BD3-A506-4FC6-AE03-D1DA6876E3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBB99BD3-A506-4FC6-AE03-D1DA6876E3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBB99BD3-A506-4FC6-AE03-D1DA6876E3CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

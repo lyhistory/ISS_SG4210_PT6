@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRS_COMMON.Logs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace CR_PL.Controllers
 {
     public class HomeController : Controller
     {
+        private static LogHelper _log = LogHelper.GetLogger(typeof(HomeController));
+
         public ActionResult Index()
         {
             return View();
@@ -15,6 +18,7 @@ namespace CR_PL.Controllers
 
         public ActionResult About()
         {
+            _log.Debug("test about");
             ViewBag.Message = "Your application description page.";
 
             return View();

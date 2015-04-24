@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-
+/*
+ * AUTHOR:LIU YUE
+ * */
 namespace CRS_COMMON.Logs
 {
-
     public class LogHelper
     {
         private ILog logger;

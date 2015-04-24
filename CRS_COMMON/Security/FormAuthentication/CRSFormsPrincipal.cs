@@ -5,7 +5,9 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
-
+/*
+ * AUTHOR:LIU YUE
+ * */
 namespace CRS_COMMON.Security.FormAuthentication
 {
     public class CRSFormsPrincipal<T> : IPrincipal where T : class,new()
