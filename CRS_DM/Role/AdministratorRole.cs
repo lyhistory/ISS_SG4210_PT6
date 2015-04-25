@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nus.iss.crs.dm
+namespace nus.iss.crs.dm.Role
 {
-    public class IndividualUser:User
+    public class AdministratorRole:StaffRole
     {
-
-        public IndividualUser(string userID)
-        { }
-
         public bool Login()
         {
             throw new NotImplementedException();

@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Role\Administrator.cs" />
+    <Compile Include="Role\AdministratorRole.cs" />
     <Compile Include="LoginInfo.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Role\CourseAdminRole.cs" />
@@ -53,7 +53,6 @@
     <Compile Include="EmailLoginStrategy.cs" />
     <Compile Include="HRUser.cs" />
     <Compile Include="IDLoginStrategy.cs" />
-    <Compile Include="IndividualUser.cs" />
     <Compile Include="Instructor.cs" />
     <Compile Include="LogingStrategy.cs" />
     <Compile Include="NonLoginStrategy.cs" />

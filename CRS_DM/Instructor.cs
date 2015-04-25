@@ -8,9 +8,6 @@ namespace nus.iss.crs.dm
 {
     public class Instructor
     {
-        public bool Login()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

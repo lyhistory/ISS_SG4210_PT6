@@ -8,10 +8,10 @@ namespace nus.iss.crs.dm
 {
     public class IDLoginStrategy:LogingStrategy
     {
-        IndividualUser indiv = null;
+        User user;
         public IDLoginStrategy(User user)
         {
-            indiv = (IndividualUser)user;
+            this.user = user;
         }
 
         public string GetLoginID()

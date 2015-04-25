@@ -25,8 +25,9 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>Bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -274,10 +275,4 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
-  <Target Name="AfterBuild">
-    <!-- Remove obj folder -->
-    <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
-    <!-- Remove bin folder -->
-    <RemoveDir Directories="$(BaseOutputPath)" />
-  </Target>
 </Project>

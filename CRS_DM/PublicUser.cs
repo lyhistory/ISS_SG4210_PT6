@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm
 {
-    class PublicUser
+    class PublicUser:User
     {
     }
 }
