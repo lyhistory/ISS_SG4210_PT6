@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm.Role
 {
-    public class SystemAdminRole: AdministratorRole
+    public class SystemAdminRole: AdminRole
     {
 
     }
