@@ -16,12 +16,12 @@ namespace nus.iss.crs.dm
 
         public string GetLoginID()
         {
-            throw new NotImplementedException();
+            return "";
         }
 
         public string GetPassword()
         {
-            throw new NotImplementedException();
+            return "";
         }
     }
 }

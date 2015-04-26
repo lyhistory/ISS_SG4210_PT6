@@ -54,6 +54,7 @@
     <Compile Include="Session\SessionFactory.cs" />
     <Compile Include="Session\SessionImpl.cs" />
     <Compile Include="Session\SessionManager.cs" />
+    <Compile Include="UserExt.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="UserRegistrationManager.cs" />
   </ItemGroup>

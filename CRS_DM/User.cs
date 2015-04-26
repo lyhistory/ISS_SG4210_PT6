@@ -9,9 +9,11 @@ namespace nus.iss.crs.dm
 {
     public class User
     {
-        public UserRole GetRole()
+        protected UserRole role = null;
+        public virtual UserRole GetRole()
         {
-            return null;
+            return role;
         }
+         
     }
 }

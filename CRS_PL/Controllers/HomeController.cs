@@ -1,4 +1,7 @@
 ﻿using CRS_COMMON.Logs;
+using nus.iss.crs.bl;
+using nus.iss.crs.bl.Session;
+using nus.iss.crs.dm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,21 @@ namespace CR_PL.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            TestBL();
+
+            return View();
+        }
+
+        public ActionResult TestBL()
+        {
+            nus.iss.crs.dm.User loginUser = new nus.iss.crs.dm.User();
+            ISession session = SessionFactory.CreateSession();
+            session.Login(new IDLoginStrategy(loginUser));
+
+            User validUser = session.GetCurrentUser();
+            validUser.GetRole();           
+            
 
             return View();
         }

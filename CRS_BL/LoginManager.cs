@@ -20,7 +20,8 @@ namespace nus.iss.crs.bl
 
             //call dal
             //dal.login(logininfo)
-            User user = new HRUser();//retrieve from DAL
+            User user = new UserExt();
+
             return user;
         }
     }
