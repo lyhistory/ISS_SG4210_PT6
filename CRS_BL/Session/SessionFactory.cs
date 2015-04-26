@@ -10,8 +10,8 @@ namespace nus.iss.crs.bl.Session
     {
         public static ISession CreateSession()
         {
-            ISession session =  new SessionImpl();
-            SessionManager.SingltonManager().AddSession(session);
+            ISession session =  new SessionImplement();
+            SessionManager.SingletonManager().AddSession(session);
             return session;
         }
     }

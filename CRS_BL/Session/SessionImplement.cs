@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.bl.Session
 {
-    public class SessionImpl:ISession
+    public class SessionImplement:ISession
     {
-        Guid sessionID = Guid.NewGuid();
-
+        string sessionID;
+        DateTime lastUpdateTime;
         User currentUser;
-        internal SessionImpl() { }
 
-        public CourseManager CreateCourseManager()
-        {    
-            return new CourseManager(this);
+        internal SessionImplement() 
+        {
+            
         }
 
         public void Release()
@@ -38,8 +37,9 @@ namespace nus.iss.crs.bl.Session
         public bool Login(dm.LogingStrategy strategy)
         {
             //throw new NotImplementedException();
-            LoginManager manager = new LoginManager();
-           currentUser= manager.Login(strategy);
+            LoginManager loginManager = new LoginManager();
+            currentUser = loginManager.Login(strategy);
+
            if (currentUser == null)
                return false;
            else
@@ -49,6 +49,22 @@ namespace nus.iss.crs.bl.Session
         public bool IsValid()
         {
             throw new NotImplementedException();
+        }
+
+        public string getSessionID() 
+        {
+            Guid sessionID = new Guid();
+            sessionID = Guid.NewGuid();
+            return sessionID.ToString();
+        }
+
+        public CourseManager CreateCourseManager()
+        {
+            return new CourseManager(this);
+        }
+
+        public UserManager CreateUserManager() {
+            return new UserManager();
         }
     }
 }

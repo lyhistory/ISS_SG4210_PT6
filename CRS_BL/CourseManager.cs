@@ -12,27 +12,27 @@ namespace nus.iss.crs.bl
         internal CourseManager()
         {}
 
-         internal CourseManager(ISession session)
-         {
-             if (session.GetCurrentUser().GetRole() == null)
-             {
-                 throw new Exception("No permisison");
-             }
-         }
+        internal CourseManager(ISession session)
+        {
+            //only course admin can do  
+            if (session.GetCurrentUser().GetRole() == null)
+            {
+                throw new Exception("No permisison");
+            }
+        }
 
+        public Course CreateCourse()
+        {
+            Course course = new Course();
+            //course.
+            return course;
+        }
 
-         public Course CreateCourse()
-         {
-             Course course = new Course();
-             //course.
-             return course;
-         }
-
-         public bool Save(Course course)
-         {
-            //call dal to save
-             return true;
-         }
+        public bool SaveCourse(Course course)
+        {
+        //call dal to save
+            return true;
+        }
 
     }
 }

@@ -16,5 +16,14 @@ namespace nus.iss.crs.bl
             UserExt ext = new UserExt(user);
             ext.AssignRole(role);
         }
+
+        public bool createPublicUser(User user,ISession session) 
+        {
+            //public user
+
+            //internal user need to check operator permission
+            session.GetCurrentUser();
+            return false;
+        }
     }
 }

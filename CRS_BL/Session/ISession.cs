@@ -9,12 +9,11 @@ namespace nus.iss.crs.bl
 {
     public interface ISession
     {
-         CourseManager CreateCourseManager();
-
-
-         void Release();
-         User GetCurrentUser();
-         bool Login(LogingStrategy strategy);
-         bool IsValid();
+        void Release();
+        bool IsValid();
+        bool Login(LogingStrategy strategy);
+        
+        User GetCurrentUser();
+        CourseManager CreateCourseManager();
     }
 }

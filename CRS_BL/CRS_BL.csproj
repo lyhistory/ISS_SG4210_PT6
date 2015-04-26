@@ -55,7 +55,7 @@
     <Compile Include="ReportManager.cs" />
     <Compile Include="Session\ISession.cs" />
     <Compile Include="Session\SessionFactory.cs" />
-    <Compile Include="Session\SessionImpl.cs" />
+    <Compile Include="Session\SessionImplement.cs" />
     <Compile Include="Session\SessionManager.cs" />
     <Compile Include="UserExt.cs" />
     <Compile Include="UserManager.cs" />

@@ -17,7 +17,6 @@ namespace nus.iss.crs.bl
             user = new User();
         }
 
-
         public UserExt(User user)
         {
             this.user = user;
