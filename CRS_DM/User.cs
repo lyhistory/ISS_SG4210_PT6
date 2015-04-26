@@ -10,6 +10,15 @@ namespace nus.iss.crs.dm
     public class User
     {
         protected UserRole role = null;
+                
+        public string UserID { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+
+        public User()
+        { }
+
+                
         public virtual UserRole GetRole()
         {
             return role;

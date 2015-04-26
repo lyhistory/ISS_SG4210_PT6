@@ -12,6 +12,7 @@ namespace nus.iss.crs.dm
         { }
         public HRUser(string email, Company company)
         {
+            this.Email = email;
         }
 
         public string email { get; set; }
