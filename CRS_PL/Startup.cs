@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(CR_PL.Startup))]
-namespace CR_PL
+[assembly: OwinStartupAttribute(typeof(nus.iss.crs.pl.Startup))]
+namespace nus.iss.crs.pl
 {
     public partial class Startup
     {

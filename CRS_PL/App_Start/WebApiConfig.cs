@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace CR_PL
+namespace nus.iss.crs.pl
 {
     public static class WebApiConfig
     {

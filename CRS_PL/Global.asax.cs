@@ -9,7 +9,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace CR_PL
+namespace nus.iss.crs.pl
 {
     public class MvcApplication : System.Web.HttpApplication
     {

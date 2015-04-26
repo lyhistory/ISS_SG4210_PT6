@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace CR_PL
+namespace nus.iss.crs.pl
 {
     public class RouteConfig
     {

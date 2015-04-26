@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 
-namespace CR_PL
+namespace nus.iss.crs.pl
 {
     public partial class Startup
     {

@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
-namespace CR_PL
+namespace nus.iss.crs.pl
 {
     //public class EmailService : IIdentityMessageService
     //{

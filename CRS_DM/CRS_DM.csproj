@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Role\AdministratorRole.cs" />
+    <Compile Include="Role\AdminRole.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Role\CourseAdminRole.cs" />
     <Compile Include="Course\Category.cs" />
@@ -60,6 +60,7 @@
     <Compile Include="Registration\Billing.cs" />
     <Compile Include="Registration\Participant.cs" />
     <Compile Include="Registration\Registration.cs" />
+    <Compile Include="Role\PublicUserRole.cs" />
     <Compile Include="Role\StaffRole.cs" />
     <Compile Include="Role\SystemAdminRole.cs" />
     <Compile Include="User.cs" />

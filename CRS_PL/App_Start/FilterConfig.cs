@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace CR_PL
+namespace nus.iss.crs.pl
 {
     public class FilterConfig
     {

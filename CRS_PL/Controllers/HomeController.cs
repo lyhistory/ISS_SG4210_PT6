@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CR_PL.Controllers
+namespace nus.iss.crs.pl.Controllers
 {
     public class HomeController : Controller
     {
