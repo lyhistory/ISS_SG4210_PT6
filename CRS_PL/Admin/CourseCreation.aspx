@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CourseCreation.aspx.cs" Inherits="nus.iss.crs.pl.WebForm.CourseCreation" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CourseCreation.aspx.cs" Inherits="nus.iss.crs.pl.Admin.CourseCreation" %>
 
 <!DOCTYPE html>
 

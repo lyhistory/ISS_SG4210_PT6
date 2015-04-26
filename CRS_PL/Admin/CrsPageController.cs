@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nus.iss.crs.pl.WebForm
+namespace nus.iss.crs.pl.Admin
 {
     public class CrsPageController : System.Web.UI.Page
     {

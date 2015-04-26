@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace nus.iss.crs.pl.WebForm
+namespace nus.iss.crs.pl.Admin
 {
     public partial class CourseCreation : CrsPageController
     {
