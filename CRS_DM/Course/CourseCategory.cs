@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm.Course
 {
-    public class Category
+    public class CourseCategory
     {
         private List<Course> courseList;
 
-        public Category(string ID, string categoryName, string categoryDescrition)
+        public CourseCategory(string ID, string categoryName, string categoryDescrition)
         { }
     }
 }

@@ -45,7 +45,7 @@
     <Compile Include="Role\AdminRole.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Role\CourseAdminRole.cs" />
-    <Compile Include="Course\Category.cs" />
+    <Compile Include="Course\CourseCategory.cs" />
     <Compile Include="Course\Course.cs" />
     <Compile Include="Course\CourseCalendar.cs" />
     <Compile Include="Course\CourseClass.cs" />
@@ -53,7 +53,7 @@
     <Compile Include="EmailLoginStrategy.cs" />
     <Compile Include="HRUser.cs" />
     <Compile Include="IDLoginStrategy.cs" />
-    <Compile Include="Instructor.cs" />
+    <Compile Include="CourseInstructor.cs" />
     <Compile Include="LogingStrategy.cs" />
     <Compile Include="NonLoginStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
