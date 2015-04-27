@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CourseStatus.cs" />
     <Compile Include="Role\AdminRole.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Role\CourseAdminRole.cs" />

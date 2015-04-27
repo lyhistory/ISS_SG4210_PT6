@@ -16,6 +16,14 @@ namespace nus.iss.crs.dm.Course
         public int Duration { get; set; }
 
         public Category category { get; set; }
+        public CourseStatus Status { get; set; }
 
+        public bool IsValid()
+        {
+            if (Duration< 1 || Duration > 6)
+                return false;
+            else
+                return false;
+        }
     }
 }

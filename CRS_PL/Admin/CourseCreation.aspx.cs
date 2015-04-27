@@ -28,7 +28,22 @@ namespace nus.iss.crs.pl.Admin
             CourseManager manager = session.CreateCourseManager();
             Course course = manager.CreateCourse();
             course.category = new Category("ID", "Category Name", "Description");
-        } 
 
+            course.Code = "123456";
+            course.CourseTitle = "title";
+            course.Description = "description";
+            course.Duration = 3;
+            course.Fee = "2000";
+            course.instructor = new dm.Instructor();
+
+            if (course.IsValid())
+            {
+                manager.SaveCourse(course);
+            }
+            else 
+            {
+                //TODO
+            }
+        }
     }
 }
