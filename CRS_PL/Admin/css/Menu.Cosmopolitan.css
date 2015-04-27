@@ -1,0 +1,51 @@
+/* <Root items> */
+.RadMenu_Cosmopolitan .rmGroup .rmItem
+{
+    min-width:180px;
+}
+.RadMenu_Cosmopolitan .rmItem a.rmLink
+{
+    font:13px Arial;
+	margin-right:1px;
+	margin-bottom:1px;
+	padding:0;
+	color:#FFF;
+	cursor:pointer;
+	text-decoration:none;
+	background:#E15E32;
+}
+.RadMenu_Cosmopolitan .rmItem a.rmLink:hover
+{
+    background:#A82743;
+}
+.RadMenu_Cosmopolitan .rmItem a.rmSelected
+{
+    background:#A82743;
+}
+.RadMenu_Cosmopolitan .rmItem a.rmFocused, .RadMenu_Cosmopolitan .rmItem a.rmExpanded
+{
+    background:#A82743;
+}
+.RadMenu_Cosmopolitan a.rmLink .rmText
+{
+    margin:0;
+    display:block;
+	padding:15px 20px;
+}
+.RadMenu_Cosmopolitan a.rmLink .rmExpandDown
+{
+    margin-right:15px;
+    background:url(Menu/arrow-bottom.gif) no-repeat right center;
+}
+.RadMenu_Cosmopolitan a.rmLink .rmExpandRight
+{
+    margin-right:15px;
+    background:url(Menu/arrow-right.gif) no-repeat right center;
+}
+.RadMenu_Cosmopolitan a.rmLink .rmExpandLeft
+{
+    margin-left:15px;
+    background:url(Menu/arrow-left.gif) no-repeat left center;
+}
+
+

@@ -1,0 +1,92 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="nus.iss.crs.pl.Admin.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+	<meta name="title" content="CRS">
+	<meta name="author" content="LAN">
+	<meta name="version" content="1">
+	<meta name="description" content="1">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Course Registration System</title>    <link href="~/Admin/css/TreeView.Cosmopolitan.css" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="standard">
+	<form id="form1" runat="server">
+		<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+		<div id="PublicWrapper" class="width900 float-center  line-height-normal font-size-medium">
+			<div runat="server" id="placeholder_Header1" class="sf_cols placeholder_1">
+				<div runat="server" style="float: left; width: 100%; margin: 0; " class="sf_colsOut">
+					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
+						<asp:contentplaceholder id="placeholder_HeadContent1" runat="server" />
+					</div>
+				</div>
+			</div>
+			<div runat="server" id="placeholder_Header2" class="sf_cols placeholder_11">
+				<div runat="server" style="float: left; width: 100%; margin: 0; " class="sf_colsOut">
+					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
+						<asp:contentplaceholder id="placeholder_HeadContent2" runat="server" />
+					</div>
+				</div>
+			</div>
+			<div runat="server" id="placeholder_Cententer" class="sf_cols placeholder_8">
+				<div runat="server" style="float: left; width: 33%; margin: 0; " class="sf_colsOut">
+					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
+                        
+                <div id="treeview-holder">
+                        <div id="treeviewcontrol" class="RadTreeView RadTreeView_Default">
+	                        <ul class="rtUL rtLines">
+		                        <li class="rtLI rtFirst"><div class="rtTop">
+			                        <span class="rtSp"></span><span class="rtIn">Home</span>
+		                        </div></li><li class="rtLI"><div class="rtMid">
+			                        <span class="rtSp"></span><span class="rtMinus"></span><span class="rtIn">Course Admin</span>
+		                        </div><ul class="rtUL">
+			                        <li class="rtLI"><div class="rtTop">
+				                        <span class="rtSp"></span><span class="rtIn">View Course</span>
+			                        </div></li><li class="rtLI"><div class="rtMid rtSelected">
+				                        <span class="rtSp"></span><span class="rtIn">Create Course</span>
+			                        </div></li><li class="rtLI rtLast"><div class="rtBot">
+				                        <span class="rtSp"></span><span class="rtIn">Blogs</span>
+			                        </div></li>
+		                        </ul></li><li class="rtLI"><div class="rtMid">
+			                        <span class="rtSp"></span><span class="rtIn">Class Admin</span>
+		                        </div>
+                                    <ul class="rtUL">
+			                        <li class="rtLI"><div class="rtTop">
+				                        <span class="rtSp"></span><span class="rtIn">View Classes</span>
+			                        </div></li><li class="rtLI"><div class="rtMid rtSelected">
+				                        <span class="rtSp"></span><span class="rtIn">Create Class</span>
+			                        </div></li>
+		                        </ul>
+		                                  </li><li class="rtLI"><div class="rtMid">
+			                        <span class="rtSp"></span><span class="rtIn">Registration Management</span>
+		                        </div></li><li class="rtLI rtLast"><div class="rtBot">
+			                        <span class="rtSp"></span><span class="rtIn">Report</span>
+		                        </div></li>
+	                        </ul><input id="treeviewcontrol_ClientState" name="treeviewcontrol_ClientState" type="hidden" />
+                        </div>
+        
+                    </div>
+						<asp:contentplaceholder id="placeholder_LeftMenu" runat="server" />
+					</div>
+
+				</div>
+				<div runat="server" style="float: left; width: 67%; margin: 0; " class="sf_colsOut">
+					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
+						<asp:contentplaceholder id="placeholder_MainContent" runat="server" />
+					</div>
+				</div>
+			</div>
+			<div runat="server" id="placeholder_Footer" class="sf_cols placeholder_10">
+				<div runat="server" style="float: left; width: 100%; margin: 0; " class="sf_colsOut">
+					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
+						<asp:contentplaceholder id="placeholder_FooterContent" runat="server" />
+					</div>
+				</div>
+			</div>
+	</div>
+	</form>
+</body>
+</html>
+ 

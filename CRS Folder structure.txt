@@ -2,5 +2,5 @@
 ..\CRS\CRS_BL
 ..\CRS\CRS_DAL
 ..\CRS\CRS_DM
+..\CRS\CRS_COMMON
 ..\CRS.Bin
-..\CRS.WebBin

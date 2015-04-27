@@ -1,0 +1,15 @@
+.RadSiteMap_Cosmopolitan
+{
+    font:16px Arial, sans-serif;
+}
+.RadSiteMap_Cosmopolitan .rsmItem .rsmLink
+{   
+    color:#333;
+    text-decoration:underline;
+}
+.RadSiteMap_Cosmopolitan .rsmItem .rsmLink:hover
+{
+    text-decoration:none;
+}
+
+

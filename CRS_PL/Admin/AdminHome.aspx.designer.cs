@@ -10,6 +10,6 @@
 namespace nus.iss.crs.pl.Admin {
     
     
-    public partial class CourseCreation {
+    public partial class AdminHome {
     }
 }

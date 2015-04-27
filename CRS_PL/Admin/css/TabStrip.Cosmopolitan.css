@@ -1,0 +1,67 @@
+.RadTabStrip_Cosmopolitan .rtsUL
+{
+    width:100%;
+    border-bottom:5px solid #A82743;
+}
+.RadTabStripVertical.RadTabStrip_Cosmopolitan .rtsUL
+{
+    border:none;
+}
+.RadTabStripVertical.RadTabStrip_Cosmopolitan .rtsLI
+{
+    min-width:180px;
+}
+.RadTabStrip_Cosmopolitan .rtsLI a.rtsLink
+{
+    font:13px Arial;
+	margin-right:1px;
+	margin-bottom:1px;
+	padding:0;
+	color:#FFF;
+	cursor:pointer;
+	text-align:left;
+	text-decoration:none;
+	background:#E15E32;
+}
+.RadTabStrip_Cosmopolitan .rtsLevel1 .rtsLI a.rtsLink
+{
+    font-size:12px;
+}
+.RadTabStrip_Cosmopolitan .rtsLast a.rtsLink
+{
+    margin-right:0;
+}
+.RadTabStripVertical.RadTabStrip_Cosmopolitan .rtsLast a.rtsLink
+{
+    margin-right:1px;
+}
+.RadTabStrip_Cosmopolitan .rtsLI a.rtsLink:hover
+{
+    background:#A82743;
+}
+.RadTabStrip_Cosmopolitan .rtsLI a.rtsSelected:hover
+{
+    background:#A82743;
+}
+.RadTabStrip_Cosmopolitan .rtsLI a.rtsSelected
+{
+    margin-bottom:0;
+    padding-bottom:1px;
+    background:#A82743;
+}
+.RadTabStripVertical.RadTabStrip_Cosmopolitan .rtsLI a.rtsSelected
+{
+    margin-bottom:1px;
+    padding-bottom:0;
+    background:#A82743;
+}
+.RadTabStrip_Cosmopolitan a.rtsLink .rtsTxt
+{
+    margin:0;
+    display:block;
+	padding:15px 20px;
+}
+.RadTabStrip_Cosmopolitan a.rtsLink .rtsOut, .RadTabStrip_Cosmopolitan a.rtsLink .rtsIn
+{
+    padding:0;
+}

@@ -163,6 +163,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdminHome.aspx.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminHome.aspx.designer.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminMenu.aspx.cs">
+      <DependentUpon>AdminMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminMenu.aspx.designer.cs">
+      <DependentUpon>AdminMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ClassCreation.aspx.cs">
+      <DependentUpon>ClassCreation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ClassCreation.aspx.designer.cs">
+      <DependentUpon>ClassCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -187,6 +215,34 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AdminHome.aspx" />
+    <Content Include="Admin\AdminMenu.aspx" />
+    <Content Include="Admin\ClassCreation.aspx" />
+    <Content Include="Admin\css\main.css" />
+    <Content Include="Admin\css\Menu.Cosmopolitan.css" />
+    <Content Include="Admin\css\menu\arrow-bottom.gif" />
+    <Content Include="Admin\css\menu\arrow-left.gif" />
+    <Content Include="Admin\css\menu\arrow-right.gif" />
+    <Content Include="Admin\css\SiteMap.Cosmopolitan.css" />
+    <Content Include="Admin\css\sitemap\Standart.gif" />
+    <Content Include="Admin\css\TabStrip.Cosmopolitan.css" />
+    <Content Include="Admin\css\TreeView.Cosmopolitan.css" />
+    <Content Include="Admin\css\treeview\BottomLine.png" />
+    <Content Include="Admin\css\treeview\BottomLine_rtl.png" />
+    <Content Include="Admin\css\treeview\FirstNodeSpan.png" />
+    <Content Include="Admin\css\treeview\FirstNodeSpan_rtl.png" />
+    <Content Include="Admin\css\treeview\LoadingIcon.gif" />
+    <Content Include="Admin\css\treeview\MiddleLine.png" />
+    <Content Include="Admin\css\treeview\MiddleLine_rtl.png" />
+    <Content Include="Admin\css\treeview\NodeSpan.png" />
+    <Content Include="Admin\css\treeview\NodeSpan_rtl.png" />
+    <Content Include="Admin\css\treeview\PlusMinus.png" />
+    <Content Include="Admin\css\treeview\SingleLine.png" />
+    <Content Include="Admin\css\treeview\SingleLine_rtl.png" />
+    <Content Include="Admin\css\treeview\Standart.gif" />
+    <Content Include="Admin\css\treeview\TopLine.png" />
+    <Content Include="Admin\css\treeview\TopLine_rtl.png" />
+    <Content Include="Admin\css\treeview\TriState.png" />
     <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -197,6 +253,10 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Admin\CourseCreation.aspx" />
+    <Content Include="Admin\Site.Master" />
+    <Content Include="Admin\css\menu\Thumbs.db" />
+    <Content Include="Admin\css\sitemap\Thumbs.db" />
+    <Content Include="Admin\css\treeview\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

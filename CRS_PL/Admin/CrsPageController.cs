@@ -8,5 +8,9 @@ namespace nus.iss.crs.pl.Admin
 {
     public class CrsPageController : System.Web.UI.Page
     {
+        protected virtual void Page_Load(object sender, EventArgs e)
+        {
+ 
+        }
     }
 }
