@@ -12,7 +12,8 @@ namespace nus.iss.crs.bl
         void Release();
         bool IsValid();
         bool Login(LogingStrategy strategy);
-        
+        DateTime getLastUpdateTime();
+
         User GetCurrentUser();
         CourseManager CreateCourseManager();
     }
