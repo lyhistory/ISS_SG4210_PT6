@@ -163,6 +163,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ActionTarget.cs" />
+    <Compile Include="Admin\AdminAction.cs" />
     <Compile Include="Admin\AdminHome.aspx.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,13 +179,28 @@
     <Compile Include="Admin\AdminMenu.aspx.designer.cs">
       <DependentUpon>AdminMenu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ClassCreation.aspx.cs">
-      <DependentUpon>ClassCreation.aspx</DependentUpon>
+    <Compile Include="Admin\CreateClass.aspx.cs">
+      <DependentUpon>CreateClass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ClassCreation.aspx.designer.cs">
-      <DependentUpon>ClassCreation.aspx</DependentUpon>
+    <Compile Include="Admin\CreateClass.aspx.designer.cs">
+      <DependentUpon>CreateClass.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\EditCourse.aspx.cs">
+      <DependentUpon>EditCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditCourse.aspx.designer.cs">
+      <DependentUpon>EditCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ListCourse.aspx.cs">
+      <DependentUpon>ListCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ListCourse.aspx.designer.cs">
+      <DependentUpon>ListCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NavigationManager.cs" />
     <Compile Include="Admin\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -203,21 +220,22 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Admin\CourseCreation.aspx.cs">
-      <DependentUpon>CourseCreation.aspx</DependentUpon>
+    <Compile Include="Admin\CreateCourse.aspx.cs">
+      <DependentUpon>CreateCourse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\CourseCreation.aspx.designer.cs">
-      <DependentUpon>CourseCreation.aspx</DependentUpon>
+    <Compile Include="Admin\CreateCourse.aspx.designer.cs">
+      <DependentUpon>CreateCourse.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CrsPageController.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="TestData\ModelData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AdminHome.aspx" />
     <Content Include="Admin\AdminMenu.aspx" />
-    <Content Include="Admin\ClassCreation.aspx" />
+    <Content Include="Admin\CreateClass.aspx" />
     <Content Include="Admin\css\main.css" />
     <Content Include="Admin\css\Menu.Cosmopolitan.css" />
     <Content Include="Admin\css\menu\arrow-bottom.gif" />
@@ -227,6 +245,7 @@
     <Content Include="Admin\css\sitemap\Standart.gif" />
     <Content Include="Admin\css\TabStrip.Cosmopolitan.css" />
     <Content Include="Admin\css\TreeView.Cosmopolitan.css" />
+    <Content Include="Admin\css\treeview.css" />
     <Content Include="Admin\css\treeview\BottomLine.png" />
     <Content Include="Admin\css\treeview\BottomLine_rtl.png" />
     <Content Include="Admin\css\treeview\FirstNodeSpan.png" />
@@ -243,6 +262,8 @@
     <Content Include="Admin\css\treeview\TopLine.png" />
     <Content Include="Admin\css\treeview\TopLine_rtl.png" />
     <Content Include="Admin\css\treeview\TriState.png" />
+    <Content Include="Admin\EditCourse.aspx" />
+    <Content Include="Admin\ListCourse.aspx" />
     <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -250,9 +271,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-treeview.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Admin\CourseCreation.aspx" />
+    <Content Include="Admin\CreateCourse.aspx" />
     <Content Include="Admin\Site.Master" />
     <Content Include="Admin\css\menu\Thumbs.db" />
     <Content Include="Admin\css\sitemap\Thumbs.db" />
@@ -287,6 +309,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Log\" />
     <Folder Include="Models\" />

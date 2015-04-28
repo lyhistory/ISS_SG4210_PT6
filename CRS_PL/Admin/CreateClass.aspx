@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Site.Master" AutoEventWireup="true" CodeBehind="ClassCreation.aspx.cs" Inherits="nus.iss.crs.pl.Admin.ClassCreation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Site.Master" AutoEventWireup="true" CodeBehind="CreateClass.aspx.cs" Inherits="nus.iss.crs.pl.Admin.ClassCreation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="placeholder_HeadContent1" runat="server">

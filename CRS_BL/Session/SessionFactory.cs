@@ -11,7 +11,7 @@ namespace nus.iss.crs.bl.Session
         public static ISession CreateSession()
         {
             ISession session =  new SessionImplement();
-            SessionManager.SingletonManager().AddSession(session);
+            SessionManager.GetSessionManager().AddSession(session);
             return session;
         }
     }

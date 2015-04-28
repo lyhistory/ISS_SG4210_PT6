@@ -9,18 +9,25 @@ namespace nus.iss.crs.bl.Session
 {
     public class SessionImplement:ISession
     {
-        string sessionID;
-        DateTime lastUpdateTime;
+        public string sessionID;
+        public DateTime lastUpdateTime;
         User currentUser;
 
         internal SessionImplement() 
         {
-            
+            sessionID = Guid.NewGuid().ToString();
+            lastUpdateTime = DateTime.Now;
+            currentUser = null;
         }
 
-        public void Release()
+        public string GetSessionID()
         {
-            throw new NotImplementedException();
+            return sessionID;
+        }
+
+        public DateTime GetLastUpdateTime() 
+        {
+            return lastUpdateTime;
         }
 
         public dm.User GetCurrentUser()
@@ -32,7 +39,6 @@ namespace nus.iss.crs.bl.Session
         {
             throw new NotImplementedException();
         }
-
 
         public bool Login(dm.LogingStrategy strategy)
         {
@@ -51,11 +57,9 @@ namespace nus.iss.crs.bl.Session
             throw new NotImplementedException();
         }
 
-        public string getSessionID() 
+        public void Release()
         {
-            Guid sessionID = new Guid();
-            sessionID = Guid.NewGuid();
-            return sessionID.ToString();
+            throw new NotImplementedException();
         }
 
         public CourseManager CreateCourseManager()

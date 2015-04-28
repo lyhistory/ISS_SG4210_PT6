@@ -19,11 +19,42 @@ namespace nus.iss.crs.bl
 
         public bool createPublicUser(User user,ISession session) 
         {
-            //public user
+            //Individul user,course admin,system admin
 
             //internal user need to check operator permission
-            session.GetCurrentUser();
+            if (session.GetCurrentUser().GetRole() == null) 
+            {
+                throw new Exception("No Permission.");
+            }
             return false;
+        }
+
+        public bool createHRUser(User user, ISession session)
+        {
+            //HR user,email address as user Id
+            if (session.GetCurrentUser().GetRole() == null) 
+            {
+                throw new Exception("No Permission.");
+            }
+
+            return false;
+        }
+
+        public bool registerCompanyInformation(Company company)
+        {
+            return false;
+        }
+
+        public Company GetCompanyByID(string companyID)
+        {
+            Company company = new Company();
+            return company;
+        }
+
+        public List<Company> GetCompanyList()
+        {
+            List<Company> companyList = new List<Company>();
+            return companyList;
         }
     }
 }
