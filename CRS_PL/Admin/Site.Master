@@ -8,7 +8,22 @@
 	<meta name="version" content="1">
 	<meta name="description" content="1">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Course Registration System</title>    <link href="~/Admin/css/TreeView.Cosmopolitan.css" type="text/css" />
+    <title>Course Registration System</title>
+    <link href="~/Content/bootstrap.css" type="text/css"  rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" type="text/css"  rel="stylesheet" />
+    <link href="~/Admin/css/treeview.css" type="text/css"  rel="stylesheet" />
+      
+     <script src="~/Scripts/jquery-1.10.2.min.js" language="javascript" type="text/javascript" ></script>
+        <script language="javascript"  type="text/javascript">
+
+        $('.tree-toggle').click(function () {
+            $(this).parent().children('ul.tree').toggle(200);
+        });
+        $(function () {
+            $('.tree-toggle').parent().children('ul.tree').toggle(200);
+        })
+
+    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -32,43 +47,70 @@
 			</div>
 			<div runat="server" id="placeholder_Cententer" class="sf_cols placeholder_8">
 				<div runat="server" style="float: left; width: 33%; margin: 0; " class="sf_colsOut">
-					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
-                        
-                <div id="treeview-holder">
-                        <div id="treeviewcontrol" class="RadTreeView RadTreeView_Default">
-	                        <ul class="rtUL rtLines">
-		                        <li class="rtLI rtFirst"><div class="rtTop">
-			                        <span class="rtSp"></span><span class="rtIn">Home</span>
-		                        </div></li><li class="rtLI"><div class="rtMid">
-			                        <span class="rtSp"></span><span class="rtMinus"></span><span class="rtIn">Course Admin</span>
-		                        </div><ul class="rtUL">
-			                        <li class="rtLI"><div class="rtTop">
-				                        <span class="rtSp"></span><span class="rtIn">View Course</span>
-			                        </div></li><li class="rtLI"><div class="rtMid rtSelected">
-				                        <span class="rtSp"></span><span class="rtIn">Create Course</span>
-			                        </div></li><li class="rtLI rtLast"><div class="rtBot">
-				                        <span class="rtSp"></span><span class="rtIn">Blogs</span>
-			                        </div></li>
-		                        </ul></li><li class="rtLI"><div class="rtMid">
-			                        <span class="rtSp"></span><span class="rtIn">Class Admin</span>
-		                        </div>
-                                    <ul class="rtUL">
-			                        <li class="rtLI"><div class="rtTop">
-				                        <span class="rtSp"></span><span class="rtIn">View Classes</span>
-			                        </div></li><li class="rtLI"><div class="rtMid rtSelected">
-				                        <span class="rtSp"></span><span class="rtIn">Create Class</span>
-			                        </div></li>
-		                        </ul>
-		                                  </li><li class="rtLI"><div class="rtMid">
-			                        <span class="rtSp"></span><span class="rtIn">Registration Management</span>
-		                        </div></li><li class="rtLI rtLast"><div class="rtBot">
-			                        <span class="rtSp"></span><span class="rtIn">Report</span>
-		                        </div></li>
-	                        </ul><input id="treeviewcontrol_ClientState" name="treeviewcontrol_ClientState" type="hidden" />
-                        </div>
-        
-                    </div>
-						<asp:contentplaceholder id="placeholder_LeftMenu" runat="server" />
+					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  > 
+
+
+                        <div class="container"> 
+                              <div class="row">
+                                  <div class="col-md-3">
+                                      <div class="well">
+                                          <div>
+                                              <ul class="nav">
+                                                  <li>
+                                                      Course Admin
+                                                      <ul class="nav tree">
+                                                          <li><a href="#">View Course</a>
+                                                          </li>
+                                                          <li><a href="#">Create Course</a>
+                                                          </li>
+                                                      </ul>
+                                                  </li>
+                                                  <li>
+                                                      Class Admin
+                                                    <ul class="nav tree">
+                                                      <li><a href="#">View Class</a>
+                                                      </li>
+                                                      <li><a href="#">Create Class</a>
+                                                      </li>
+                                                    </ul>
+                                                  </li>
+                                                  <li>
+                                                      Registration Management
+                                                    <ul class="nav tree">
+                                                      <li><a href="#">Overview</a>
+                                                      </li>
+                                                      <li><a href="#">CSS</a>
+                                                      </li>
+                                                      <%--<li>
+                                                        <label label-default="" class="tree-toggle nav-header">Media Queries</label>
+                                                        <ul class="nav tree">
+                                                          <li><a href="#">Text</a>
+                                                          </li>
+                                                          <li><a href="#">Images</a>
+                                                          </li>
+                                                          <li>
+                                                            <label label-default="" class="tree-toggle nav-header">Mobile</label>
+                                                            <ul class="nav tree">
+                                                              <li><a href="#">iPhone</a>
+                                                              </li>
+                                                              <li><a href="#">Samsung</a>
+                                                              </li>
+                                                            </ul>
+                                                          </li>
+                                                        </ul>
+                                                      </li>--%>
+                                                    </ul>
+                                                  </li>
+                                                  <li>
+                                                      Report                                                     
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+						<%--<asp:contentplaceholder id="placeholder_LeftMenu" runat="server" />--%>
 					</div>
 
 				</div>
