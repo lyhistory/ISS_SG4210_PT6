@@ -32,7 +32,7 @@ namespace nus.iss.crs.pl.TestData
         public List<CourseCategory> GetCategories()
         {
             List<CourseCategory> categories = new List<CourseCategory>();
-            CourseCategory category = new CourseCategory("ABC", "A B C", "AAA BBB CCC");
+            CourseCategory category = new CourseCategory("ABC", "A B C", "1AA BBB CCC");
             categories.Add(category);
 
             category = new CourseCategory("ABC", "A B C", "AAA BBB CCC");

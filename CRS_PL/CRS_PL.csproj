@@ -163,6 +163,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ActionTarget.cs" />
+    <Compile Include="Admin\AdminAction.cs" />
     <Compile Include="Admin\AdminHome.aspx.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -198,6 +200,7 @@
     <Compile Include="Admin\ListCourse.aspx.designer.cs">
       <DependentUpon>ListCourse.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\NavigationManager.cs" />
     <Compile Include="Admin\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

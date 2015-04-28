@@ -1,5 +1,7 @@
 ﻿using nus.iss.crs.bl;
+using nus.iss.crs.dm;
 using nus.iss.crs.dm.Course;
+using nus.iss.crs.pl.TestData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +11,34 @@ using System.Web.UI.WebControls;
 
 namespace nus.iss.crs.pl.Admin
 {
-    public partial class CourseCreation : CrsPageController
+    public partial class CreateCourse : CrsPageController
     {
 
-        protected  override void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
-            
+            base.Page_Load(sender, e);
+            if (this.IsPostBack)
+                return;
+            ModelData testData = new ModelData();
+            foreach (CourseCategory category in testData.GetCategories())
+            {
+                ListItem item = new ListItem(category.Name, category.ID);
+                categoryList.Items.Add(item);
+            }
+
+            foreach (CourseInstructor instructor in testData.GetInstructors())
+            {
+                ListItem item = new ListItem(instructor.Name);
+                instructorList.Items.Add(item);
+            }
+
         }
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            ISession session = (ISession) Session["BLSession"];
-            if (session == null || !session.IsValid())
-            {
-                //redirect to login page
-            }
+            currentAction = (AdminAction)CourseAdminAction.Save;
 
-            CourseManager manager = session.CreateCourseManager();
+            //CourseManager manager = BLSession.CreateCourseManager();
             Course course = new Course();
             course.Category = new CourseCategory("ID", "Category Name", "Description");
 
@@ -38,12 +51,22 @@ namespace nus.iss.crs.pl.Admin
 
             if (course.IsValid())
             {
-                manager.SaveCourse(course);
+                //manager.SaveCourse(course);
             }
             else 
             {
                 //TODO
             }
+
+            //nus.iss.crs.pl.ActionTarget.CourseAdminAction
+
+            NextPage(true);
+            
+        }
+
+        protected void SaveAndNext_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

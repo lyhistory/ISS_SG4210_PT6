@@ -8,9 +8,27 @@ namespace nus.iss.crs.dm.Course
 {
     public class CourseCategory
     {
-        private List<Course> courseList;
+        protected List<Course> courseList;
 
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        
         public CourseCategory(string ID, string categoryName, string categoryDescrition)
-        { }
+        {
+            this.ID = ID;
+            this.Name = categoryName;
+            this.Description = categoryDescrition; 
+        }
+
+        public virtual List<Course> GetCourses()
+        {
+            return courseList;
+        }
+
+        
+
+
+        
     }
 }
