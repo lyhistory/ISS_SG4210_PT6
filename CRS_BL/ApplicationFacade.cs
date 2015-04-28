@@ -9,10 +9,10 @@ namespace nus.iss.crs.bl
 {
     public class ApplicationFacade
     {
-        LoginManager lgManager = new LoginManager ();
+        LoginManager loginManager = new LoginManager ();
         public User login(LogingStrategy strategy)
         {
-            return lgManager.Login(strategy); 
+            return loginManager.Login(strategy); 
         }
     }
 }

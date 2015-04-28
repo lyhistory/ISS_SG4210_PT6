@@ -11,32 +11,32 @@ namespace nus.iss.crs.bl.Session
     {
         public static List<ISession> sessionList = new List<ISession>();
 
-        private const int SESSION_TIME = 1800000;   //timeout half an hour 30 * 60 * 1000
+        private const int SESSION_TIME = 1800;   //timeout half an hour 30 * 60s
         private static Thread autoDestoryTimeoutSessionThread;
         private static SessionManager theOnlySessionManager = null;
 
         private SessionManager() { }
 
-        public static SessionManager getSessionManager()
+        public static SessionManager GetSessionManager()
         {
             if (SessionManager.theOnlySessionManager == null)
                 SessionManager.theOnlySessionManager = new SessionManager();
             return SessionManager.theOnlySessionManager;
         }
 
-        public void addSession(ISession session)
+        public void AddSession(ISession session)
         {
             // start a new thread to monitor & destory session if it is timeout
             if (autoDestoryTimeoutSessionThread == null)
             {
-                autoDestoryTimeoutSessionThread = new Thread(destoryTimeoutSession);
+                autoDestoryTimeoutSessionThread = new Thread(DestoryTimeoutSession);
                 autoDestoryTimeoutSessionThread.Start();
             }
 
             sessionList.Add(session);
         }
 
-        private static void destoryTimeoutSession() 
+        private static void DestoryTimeoutSession() 
         {
             while (true) 
             {
@@ -44,11 +44,19 @@ namespace nus.iss.crs.bl.Session
                 Thread.Sleep(60000);
 
                 DateTime now = DateTime.Now;
-                //var timeoutSessions = sessionList.Where(session => (now - session.).Seconds > SESSION_TIME)
+
+                var timeoutSessions = (from session in sessionList
+                                       where ((now - session.GetLastUpdateTime()).Seconds > SESSION_TIME)
+                                       select session).ToArray();
+                
+                foreach (var session in timeoutSessions)
+                {
+                    sessionList.Remove(session);
+                }
             }
         }
 
-        public ISession getSession(string sessionName) 
+        public ISession GetSession(string sessionName) 
         {
             ISession session = new SessionImplement();
 

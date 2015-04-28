@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm.Course;
+﻿using nus.iss.crs.dm;
+using nus.iss.crs.dm.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,7 @@ namespace nus.iss.crs.bl
 {
     public class CourseManager
     {
-        internal CourseManager()
-        {}
+        internal CourseManager() {}
 
         internal CourseManager(ISession session)
         {
@@ -34,5 +34,21 @@ namespace nus.iss.crs.bl
             return true;
         }
 
+        public void EditCourse(Course course)
+        {
+            //include disable & enable course    
+        }
+
+        public List<CourseClass> GetCourseClassList(Course course,DateTime dateFrom,DateTime dateTo)
+        {
+            List<CourseClass> courseClassList = new List<CourseClass>();
+            return courseClassList;
+        }
+
+        public List<CourseInstructor> GetInstructorList()
+        {
+            List<CourseInstructor> courseInstructorList = new List<CourseInstructor>();
+            return courseInstructorList;
+        }
     }
 }

@@ -9,25 +9,25 @@ namespace nus.iss.crs.bl.Session
 {
     public class SessionImplement:ISession
     {
-        public string sessionID { get; set; }
+        public string sessionID;
         public DateTime lastUpdateTime;
         User currentUser;
 
         internal SessionImplement() 
         {
-            //sessionID = Guid.NewGuid().ToString();
+            sessionID = Guid.NewGuid().ToString();
             lastUpdateTime = DateTime.Now;
             currentUser = null;
         }
 
-        public void SetSession() 
+        public string GetSessionID()
         {
-            
+            return sessionID;
         }
 
-        public DateTime getLastUpdateTime() 
+        public DateTime GetLastUpdateTime() 
         {
-            return DateTime.Now;
+            return lastUpdateTime;
         }
 
         public dm.User GetCurrentUser()

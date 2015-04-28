@@ -11,16 +11,8 @@ namespace nus.iss.crs.bl.Session
         public static ISession CreateSession()
         {
             ISession session =  new SessionImplement();
-            SessionManager.getSessionManager().addSession(session);
+            SessionManager.GetSessionManager().AddSession(session);
             return session;
-        }
-
-        public static void RemoveSession(string sessionName) 
-        {
-            if (sessionName == null) 
-            {
-                return;
-            }
         }
     }
 }
