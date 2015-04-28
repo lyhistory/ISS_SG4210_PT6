@@ -36,8 +36,9 @@
                     </asp:DropDownList></asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server">
+            <asp:TableCell><asp:Button  runat="server" ID="Submit" Text ="Save" OnClick="Submit_Click" /></asp:TableCell> 
         </asp:TableRow>
     </asp:Table>
-    <asp:Button  runat="server" ID="Submit" Text ="Submit" OnClick="Submit_Click" />
+    
 </asp:Content>
  

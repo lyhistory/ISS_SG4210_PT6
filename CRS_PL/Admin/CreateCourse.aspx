@@ -4,7 +4,7 @@
 <asp:Content ID="MainContent" runat="server" ContentPlaceHolderID="placeholder_MainContent">
     <h3>Course Creation </h3>
     
-    <asp:Table ID="Table1" runat="server" Height="41px" Width="335px">
+    <asp:Table ID="Table1" runat="server" Height="41px" Width="493px">
         <asp:TableRow runat="server">
             <asp:TableCell>Category</asp:TableCell>
             <asp:TableCell>
@@ -38,7 +38,11 @@
                     </asp:DropDownList></asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server">
+            <asp:TableCell ColumnSpan ="2" HorizontalAlign="Center">  
+                <asp:Button  runat="server" ID="Save" Text ="Save" OnClick="Submit_Click" />  
+                <asp:Button  runat="server" ID="SaveAndNext" Text ="Save and Create Next" OnClick="Submit_Click" /> 
+            </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    <asp:Button  runat="server" ID="Submit" Text ="Submit" OnClick="Submit_Click" />
+   
 </asp:Content>

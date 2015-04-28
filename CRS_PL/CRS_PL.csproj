@@ -184,6 +184,20 @@
     <Compile Include="Admin\CreateClass.aspx.designer.cs">
       <DependentUpon>CreateClass.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\EditCourse.aspx.cs">
+      <DependentUpon>EditCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditCourse.aspx.designer.cs">
+      <DependentUpon>EditCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ListCourse.aspx.cs">
+      <DependentUpon>ListCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ListCourse.aspx.designer.cs">
+      <DependentUpon>ListCourse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -213,6 +227,7 @@
     <Compile Include="Admin\CrsPageController.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="TestData\ModelData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AdminHome.aspx" />
@@ -244,6 +259,8 @@
     <Content Include="Admin\css\treeview\TopLine.png" />
     <Content Include="Admin\css\treeview\TopLine_rtl.png" />
     <Content Include="Admin\css\treeview\TriState.png" />
+    <Content Include="Admin\EditCourse.aspx" />
+    <Content Include="Admin\ListCourse.aspx" />
     <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -289,6 +306,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Log\" />
     <Folder Include="Models\" />
