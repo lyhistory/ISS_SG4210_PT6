@@ -8,9 +8,6 @@ namespace nus.iss.crs.dm.Role
 {
     public class AdminRole:StaffRole
     {
-        public bool Login()
-        {
-            throw new NotImplementedException();
-        }
+         
     }
 }
