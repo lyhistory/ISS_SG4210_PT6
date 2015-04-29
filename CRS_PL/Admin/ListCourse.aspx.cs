@@ -14,7 +14,7 @@ namespace nus.iss.crs.pl.Admin
 
         }
 
-        public override void RegistraterActionTarget()
+        public override void RegistraterAction()
         {
             //throw new NotImplementedException();
         }
