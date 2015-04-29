@@ -9,8 +9,9 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using CRS_COMMON;
-using CRS_COMMON.Security.FormAuthentication;
+
 using nus.iss.crs.dm;
+using nus.iss.crs.pl.AppCode.FormAuthentication;
 namespace nus.iss.crs.pl
 {
     public class MvcApplication : System.Web.HttpApplication

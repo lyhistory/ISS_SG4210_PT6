@@ -1,9 +1,9 @@
 ﻿using CRS_COMMON.Logs;
-using CRS_COMMON.Security.FormAuthentication;
 using nus.iss.crs.bl;
 using nus.iss.crs.bl.Session;
 using nus.iss.crs.dm;
 using nus.iss.crs.pl.AppCode.Filter;
+using nus.iss.crs.pl.AppCode.FormAuthentication;
 using nus.iss.crs.pl.AppCode.Session;
 using System;
 using System.Collections.Generic;
@@ -47,7 +47,8 @@ namespace nus.iss.crs.pl.Controllers
         public JsonResult PostLogon(string loginID,string password)
         {
 
-            nus.iss.crs.dm.User loginUser = new nus.iss.crs.dm.User() {UserID="test",Password="1111",Email="",RoleName="HR" };
+            nus.iss.crs.dm.User loginUser = new nus.iss.crs.dm.User() {UserID="test",Password="1111",Email="", RoleName="HR" };
+            loginUser.GetRole();
             SessionHelper.SetSession(loginUser);
             CRSFormsAuthentication<User>.SetAuthCookie(loginUser.UserID, loginUser, true);
 
