@@ -68,5 +68,10 @@ namespace nus.iss.crs.pl.Admin
         {
 
         }
+
+        public override void RegistraterActionTarget()
+        {
+            RegistraterActionTarget1((AdminAction)CourseAdminAction.Save, typeof(ListCourse));
+        }
     }
 }
