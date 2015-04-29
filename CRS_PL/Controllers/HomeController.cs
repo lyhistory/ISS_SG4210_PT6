@@ -37,8 +37,9 @@ namespace nus.iss.crs.pl.Controllers
             return View();
         }
 
-        public ActionResult Logon()
+        public ActionResult Logon(string message="")
         {
+            ViewBag.Message = message;
             ViewBag.isLogon = SessionHelper.Current == null ? false : true;
             return View();
         }

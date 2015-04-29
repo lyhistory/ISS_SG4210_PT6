@@ -44,7 +44,7 @@ namespace nus.iss.crs.pl.Controllers
                 return Json(new { SessionLost = true, Message = "Session Lost" }, JsonRequestBehavior.AllowGet);
             }
 
-            return RedirectToAction("Login", "Home", new { Message = "Session Lost" });
+            return RedirectToAction("logon", "home", new { Message = "Session Lost" });
         }
 	}
 }

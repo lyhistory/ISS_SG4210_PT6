@@ -19,6 +19,7 @@
         });
     </script>
 }
+<div>@ViewBag.Message</div>
 @if(ViewBag.isLogon)
 {
     <span>welcome</span>
@@ -27,8 +28,8 @@ else
 {
 <div>
     <form>
-        <input type="text" name="loginID" />
-        <input type="password" name="password" />
+        <input type="text" name="loginID" id="loginID"/>
+        <input type="password" name="password" name="password"/>
         <input type="button" id="Logon" value="Submit" />
     </form>
 </div>
