@@ -29,6 +29,27 @@ namespace nus.iss.crs.pl.Admin
             return manager;
         }
 
+
+        public void RegisterActionTarget(Page actionContainer,AdminAction action, Type target)
+        {
+            RegisterActionTarget(actionContainer, action, target, null);
+        }
+
+        public void RegisterActionTarget(Page actionContainer, AdminAction action,Type successTarget, Type failedTarget)
+        {
+            ActionTarget actionTarget = new ActionTarget(actionContainer.GetType(), action, successTarget);
+            if (mappingTable.Keys.Contains(actionTarget.GetActionID()))
+            {
+                return;
+            }
+
+            if (failedTarget != null)
+            {
+                actionTarget.FailedTarget = failedTarget;
+            }
+            mappingTable[actionTarget.GetActionID()] = actionTarget;
+        }
+
         public ActionTarget Navigate(Page actionContainer, AdminAction action)
         {
             string key = ActionTarget.BuildActionID(actionContainer.GetType(), action);
