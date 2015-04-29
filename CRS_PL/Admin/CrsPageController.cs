@@ -21,16 +21,16 @@ namespace nus.iss.crs.pl.Admin
         {
             if (IsPostBack)
                 return;
-            RegistraterActionTarget();
+            RegistraterAction();
         }
 
-        public abstract void RegistraterActionTarget();
+        public abstract void RegistraterAction();
 
-        protected void RegistraterActionTarget1(AdminAction action, Type target)
+        protected void RegistraterActionTarget(AdminAction action, Type target)
         {
-            RegistraterActionTarget1(action, target, null);
+            RegistraterActionTarget(action, target, null);
         }
-        protected void RegistraterActionTarget1(AdminAction action, Type successTarget, Type failedTarget)
+        protected void RegistraterActionTarget(AdminAction action, Type successTarget, Type failedTarget)
         {
             navManager.RegisterActionTarget(this, action, successTarget, failedTarget);
         }
