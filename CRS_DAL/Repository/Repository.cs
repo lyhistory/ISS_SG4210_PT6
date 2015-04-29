@@ -22,12 +22,12 @@ namespace CRS_DAL.Repository
             get { return dbSet; }
         }
 
-        private CRSEntities requestboxContext;
+        private CRSEntities crsContext;
 
-        public RepositoryBase(CRSEntities requestboxContext)
+        public RepositoryBase(CRSEntities crsContext)
         {
-            this.requestboxContext = requestboxContext;
-            this.dbSet = requestboxContext.Set<TEntity>();
+            this.crsContext = crsContext;
+            this.dbSet = crsContext.Set<TEntity>();
         }
 
         public IQueryable<TEntity> GetAll()
@@ -65,7 +65,7 @@ namespace CRS_DAL.Repository
             if (!isDisposed)
             {
                 if (isManuallyDisposing)
-                    requestboxContext.Dispose();
+                    crsContext.Dispose();
             }
 
             isDisposed = true;
