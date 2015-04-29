@@ -4,7 +4,11 @@
     <p>
         Executive Education Programmes
     </p>
-    <asp:Table ID="Table1" runat="server" GridLines="Both">
+     <div>
+        <asp:PlaceHolder runat="server" ID="PlaceHolder1" />
+      </div>
+
+   <%-- <asp:Table ID="Table1" runat="server" GridLines="Both">
         <asp:TableRow runat="server">
             <asp:TableHeaderCell ColumnSpan="2">Programe </asp:TableHeaderCell>
             
@@ -32,6 +36,6 @@
         <asp:TableRow runat="server">
         </asp:TableRow>
     </asp:Table>
-    
+    --%>
 </asp:Content>
 

@@ -8,7 +8,7 @@ namespace nus.iss.crs.dm.Course
 {
     public class CourseCategory
     {
-        protected List<Course> courseList;
+        protected List<Course> courseList = new List<Course>();
 
         public string ID { get; set; }
         public string Name { get; set; }
@@ -26,9 +26,9 @@ namespace nus.iss.crs.dm.Course
             return courseList;
         }
 
-        
-
-
-        
+        public void AddCourse(Course course)
+        {
+            courseList.Add(course);
+        }
     }
 }
