@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Logon";
+}
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#Logon').click(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '/home/postlogon',
+                    data: { loginID: $('#loginID').val(), password: $('#password').val() }
+                }).done(function (data) {
+                    if (data.Code == 1)
+                        window.location.reload();
+                    else
+                        alert("logon failed");
+                });
+            });
+        });
+    </script>
+}
+@if(ViewBag.isLogon)
+{
+    <span>welcome</span>
+}
+else
+{
+<div>
+    <form>
+        <input type="text" name="loginID" />
+        <input type="password" name="password" />
+        <input type="button" id="Logon" value="Submit" />
+    </form>
+</div>
+}

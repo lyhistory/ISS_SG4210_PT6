@@ -8,7 +8,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
-
+using CRS_COMMON;
+using CRS_COMMON.Security.FormAuthentication;
+using nus.iss.crs.dm;
 namespace nus.iss.crs.pl
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -20,6 +22,15 @@ namespace nus.iss.crs.pl
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Application_PostAuthenticateRequest(object sender, System.EventArgs e)
+        {
+            var formsIndentity = HttpContext.Current.User.Identity as FormsIdentity;
+            if (formsIndentity != null && formsIndentity.IsAuthenticated && formsIndentity.AuthenticationType.Equals("Forms"))
+            {
+                HttpContext.Current.User = CRSFormsAuthentication<User>.ParsePrincipal(HttpContext.Current.Request);
+            }
         }
     }
 }

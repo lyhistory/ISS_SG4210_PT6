@@ -1,7 +1,10 @@
 ﻿using CRS_COMMON.Logs;
+using CRS_COMMON.Security.FormAuthentication;
 using nus.iss.crs.bl;
 using nus.iss.crs.bl.Session;
 using nus.iss.crs.dm;
+using nus.iss.crs.pl.AppCode.Filter;
+using nus.iss.crs.pl.AppCode.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +21,7 @@ namespace nus.iss.crs.pl.Controllers
         {
             return View();
         }
-
+        [CRSAuthorize(Roles = "HR")]
         public ActionResult About()
         {
             _log.Debug("test about");
@@ -26,26 +29,40 @@ namespace nus.iss.crs.pl.Controllers
 
             return View();
         }
-
+        [CRSAuthorize(Roles="Individual")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            TestBL();
-
             return View();
         }
 
-        public ActionResult TestBL()
+        public ActionResult Logon()
         {
-            nus.iss.crs.dm.User loginUser = new nus.iss.crs.dm.User();
-            ISession session = SessionFactory.CreateSession();
-            session.Login(new IDLoginStrategy(loginUser));
+            ViewBag.isLogon = SessionHelper.Current == null ? false : true;
+            return View();
+        }
+        [HttpPost]
+        public JsonResult PostLogon(string loginID,string password)
+        {
 
-            User validUser = session.GetCurrentUser();
-            validUser.GetRole();           
+            nus.iss.crs.dm.User loginUser = new nus.iss.crs.dm.User() {UserID="test",Password="1111",Email="",RoleName="HR" };
+            SessionHelper.SetSession(loginUser);
+            CRSFormsAuthentication<User>.SetAuthCookie(loginUser.UserID, loginUser, true);
+
+            //ISession session = SessionFactory.CreateSession();
+            //session.Login(new IDLoginStrategy(loginUser));
+
+            //User validUser = session.GetCurrentUser();
+            //validUser.GetRole();           
             
 
+            return Json(new{Code=1});
+        }
+
+
+        public ActionResult Unauthorized()
+        {
             return View();
         }
     }
