@@ -10,7 +10,11 @@ namespace nus.iss.crs.pl.Admin
     { 
         Save,
         Edit,
-        Delete
+        Delete,
+        List,
+        View,
+        Detail,
+        Update
     }
 
     public enum CourseAdminAction
