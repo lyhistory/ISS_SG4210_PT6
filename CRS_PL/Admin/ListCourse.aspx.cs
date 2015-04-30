@@ -20,9 +20,9 @@ namespace nus.iss.crs.pl.Admin
 
         private void TestData()
         {
-            ModelData testData = new ModelData();
-
-            foreach (CourseCategory category in testData.CreateCategoryList())
+            ModelData testData = ModelData.GetInstance();
+            testData.AddCourse4Categories();
+            foreach (CourseCategory category in testData.GetCategories())
             {
                 CategoryCourseList table = (CategoryCourseList)Page.LoadControl("./Ctrl/CategoryCourseList.ascx");
 

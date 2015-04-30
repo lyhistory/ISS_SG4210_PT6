@@ -11,6 +11,19 @@ namespace nus.iss.crs.pl.TestData
     public class ModelData
     {
         private Random r = new Random();
+        private List<CourseCategory> categories = new List<CourseCategory>();
+        private List<Course> courses = new List<Course>();
+
+        private static ModelData instance = null;
+        private ModelData()
+        { }
+
+        public static ModelData GetInstance()
+        {
+            if (instance == null)
+                instance = new ModelData();
+            return instance;
+        } 
 
         public List<CourseInstructor> GetInstructors()
         {
@@ -33,31 +46,45 @@ namespace nus.iss.crs.pl.TestData
 
         public List<CourseCategory> GetCategories()
         {
-            List<CourseCategory> categories = new List<CourseCategory>();
-            CourseCategory category = new CourseCategory("ABC", "A B C", "1AA BBB CCC");
-            categories.Add(category);
+            if (categories != null && categories.Count > 0)
+                return categories;
 
-            category = new CourseCategory("ABC", "A B C", "AAA BBB CCC");
-            categories.Add(category);
-
-
-            category = new CourseCategory("XYZ", "X Y Z", "XXX YYY ZZZ");
-            categories.Add(category);
-
-
-            category = new CourseCategory("MN", "M N", "MM NN");
-            categories.Add(category);
-
-
-            category = new CourseCategory("OPQ", "O P Q", "OOO PPP QQQ");
-            categories.Add(category);
-
-            Course course = new Course();
-
+            categories = CreateCategoryList();             
             return categories;
         }
 
-        public List<CourseCategory> CreateCategoryList()
+        public void AddCourse4Categories()
+        {
+            if (courses.Count > 0)
+                return;
+
+            CreateCourseList();
+        }
+
+        public Course CreateCourse(CourseCategory category,
+           string code, string title, string desc, int duration, string fee)
+        {
+            Course course = new Course();
+            course.Category = category;
+            course.Code = code;
+            course.CourseTitle = title;
+            course.Description = desc;
+            course.Duration = duration;
+            course.Fee = fee;
+
+            CourseInstructor instructor = GetInstructors()[r.Next(3)];
+            course.Instructor = instructor;
+
+            category.AddCourse(course);
+            return course;
+        }
+
+        public void AddCategoryCourse(CourseCategory category,Course course)
+        {
+            category.AddCourse(course);
+        }
+
+        private List<CourseCategory> CreateCategoryList()
         {
             List<CourseCategory> categories = new List<CourseCategory>();
 
@@ -77,32 +104,21 @@ namespace nus.iss.crs.pl.TestData
             return categories;
         }
 
-        public CourseCategory CreateCategory(string ID,string name,string description)
+        private CourseCategory CreateCategory(string ID,string name,string description)
         {
-            CourseCategory category = new CourseCategory(ID, name, description);
-
-            category.AddCourse(CreateCourse(category, "code1", "title1", "desc1", 3, "1000"));
-            category.AddCourse(CreateCourse(category, "code2", "title2", "desc2", 5, "1000"));
-            category.AddCourse(CreateCourse(category, "code3", "title3", "desc3", 5, "1000"));
-            category.AddCourse(CreateCourse(category, "code4", "title4", "desc4", 5, "1000"));
-
+            CourseCategory category = new CourseCategory(ID, name, description); 
             return category;
         }
 
-        public Course CreateCourse(CourseCategory category,
-            string code, string title, string desc, int duration,string fee)
-        {
-            Course course = new Course();
-            course.Category = category;
-            course.Code = code;
-            course.CourseTitle = title;
-            course.Description = desc;
-            course.Duration = duration;
-            course.Fee = fee;
-
-            CourseInstructor instructor = GetInstructors()[r.Next(3)];
-            course.Instructor =instructor;
-            return course;
-        }
+        private void CreateCourseList()
+        {            
+            foreach(CourseCategory category in GetCategories())
+            {
+                courses.Add(CreateCourse(category, "code1", "title1", "desc1", 3, "1000"));
+                courses.Add(CreateCourse(category, "code2", "title2", "desc2", 4, "2000"));
+                courses.Add(CreateCourse(category, "code3", "title3", "desc3", 5, "3000"));
+                courses.Add(CreateCourse(category, "code4", "title4", "desc4", 3, "1000"));
+            }
+        } 
     }
 }

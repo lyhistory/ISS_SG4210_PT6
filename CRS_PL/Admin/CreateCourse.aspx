@@ -14,23 +14,23 @@
         </tr>
         <tr>
             <td>Code</td>
-            <td><asp:TextBox ID="TextBox100" runat="server"></asp:TextBox></td>
+            <td><asp:TextBox ID="codeID" runat="server"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Title</td>
-            <td><asp:TextBox ID="TextBox2" runat="server"></asp:TextBox></td>
+            <td><asp:TextBox ID="titleID" runat="server"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Description</td>
-            <td><asp:TextBox ID="TextBox3" runat="server"></asp:TextBox></td>
+            <td><asp:TextBox ID="descriptionID" runat="server"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Duration</td>
-            <td><asp:TextBox ID="TextBox4" runat="server"></asp:TextBox></td>
+            <td><asp:TextBox ID="durationID" runat="server"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Fee</td>
-            <td><asp:TextBox ID="TextBox5" runat="server"></asp:TextBox></td>
+            <td><asp:TextBox ID="feeID" runat="server"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Instructor</td>

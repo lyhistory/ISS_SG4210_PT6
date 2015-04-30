@@ -22,49 +22,49 @@ namespace nus.iss.crs.pl.Admin {
         protected global::System.Web.UI.WebControls.DropDownList categoryList;
         
         /// <summary>
-        /// TextBox100 control.
+        /// codeID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox100;
+        protected global::System.Web.UI.WebControls.TextBox codeID;
         
         /// <summary>
-        /// TextBox2 control.
+        /// titleID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox titleID;
         
         /// <summary>
-        /// TextBox3 control.
+        /// descriptionID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox descriptionID;
         
         /// <summary>
-        /// TextBox4 control.
+        /// durationID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox durationID;
         
         /// <summary>
-        /// TextBox5 control.
+        /// feeID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox feeID;
         
         /// <summary>
         /// instructorList control.

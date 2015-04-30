@@ -13,13 +13,13 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class CreateCourse : CrsPageController
     {
-
+        ModelData testData = ModelData.GetInstance();
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
             if (this.IsPostBack)
                 return;
-            ModelData testData = new ModelData();
+            
             foreach (CourseCategory category in testData.GetCategories())
             {
                 ListItem item = new ListItem(category.Name, category.ID);
@@ -39,19 +39,44 @@ namespace nus.iss.crs.pl.Admin
             currentAction = (AdminAction)CourseAdminAction.Save;
 
             //CourseManager manager = BLSession.CreateCourseManager();
-            Course course = new Course();
-            course.Category = new CourseCategory("ID", "Category Name", "Description");
 
-            course.Code = "123456";
-            course.CourseTitle = "title";
-            course.Description = "description";
-            course.Duration = 3;
-            course.Fee = "2000";
-            course.Instructor = new dm.CourseInstructor("abc");
+            ListItem itemCategory = categoryList.SelectedItem;            
+            CourseCategory selectedCategory = null;
+
+            foreach(CourseCategory category in testData.GetCategories())
+            {
+                if (category.ID == itemCategory.Value)
+                {
+                    selectedCategory = category;
+                    break;
+                }
+            }
+
+            ListItem itemInstructor= instructorList.SelectedItem;
+            CourseInstructor selectedInstructor = null;
+            foreach (CourseInstructor  instructor in testData.GetInstructors())
+            {
+                if (instructor.Name == itemInstructor.Value)
+                {
+                    selectedInstructor = instructor;
+                    break;
+                }
+            }
+
+            Course course = new Course();
+            course.Category = selectedCategory;
+
+            course.Code = codeID.Text;
+            course.CourseTitle = titleID.Text;
+            course.Description = descriptionID.Text;
+            course.Duration = int.Parse(durationID.Text);
+            course.Fee = feeID.Text;
+            course.Instructor = selectedInstructor;
 
             if (course.IsValid())
-            {
+            { 
                 //manager.SaveCourse(course);
+                selectedCategory.AddCourse(course);
             }
             else 
             {
