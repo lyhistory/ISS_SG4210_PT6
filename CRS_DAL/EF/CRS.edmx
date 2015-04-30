@@ -4,11 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CRSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CRSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CRSModelStoreContainer">
           <EntitySet Name="Company" EntityType="CRSModel.Store.Company" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CompanyHR" EntityType="CRSModel.Store.CompanyHR" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Course" EntityType="CRSModel.Store.Course" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CourseCategory" EntityType="CRSModel.Store.CourseCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CourseClass" EntityType="CRSModel.Store.CourseClass" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Participant" EntityType="CRSModel.Store.Participant" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Registration" EntityType="CRSModel.Store.Registration" store:Type="Tables" Schema="dbo" />
@@ -51,6 +52,15 @@
           <Property Name="Fee" Type="numeric" Precision="10" Scale="2" />
           <Property Name="Instructors" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="NumberOfDays" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="char" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="CourseCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryDesc" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="CourseClass">
           <Key>
@@ -116,8 +126,7 @@
           <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="UserType" Type="int" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -130,6 +139,7 @@
           <EntitySet Name="Registrations" EntityType="CRSModel.Registration" />
           <EntitySet Name="Staffs" EntityType="CRSModel.Staff" />
           <EntitySet Name="Users" EntityType="CRSModel.User" />
+          <EntitySet Name="CourseCategories" EntityType="CRSModel.CourseCategory" />
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -167,6 +177,7 @@
           <Property Name="Fee" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Instructors" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="NumberOfDays" Type="Int32" Nullable="false" />
+          <Property Type="String" Name="CategoryID" MaxLength="36" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="CourseClass">
           <Key>
@@ -232,6 +243,14 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="UserType" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="CourseCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Type="String" Name="CategoryID" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="CategoryName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CategoryDesc" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -268,6 +287,7 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="CRSModel.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
                 <ScalarProperty Name="CourseTitle" ColumnName="CourseTitle" />
@@ -344,6 +364,15 @@
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseCategories">
+            <EntityTypeMapping TypeName="CRSModel.CourseCategory">
+              <MappingFragment StoreEntitySet="CourseCategory">
+                <ScalarProperty Name="CategoryDesc" ColumnName="CategoryDesc" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

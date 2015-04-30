@@ -13,6 +13,7 @@
         <EntityTypeShape EntityType="CRSModel.Registration" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CRSModel.Staff" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CRSModel.User" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRSModel.CourseCategory" Width="1.5" PointX="5.802139394824458" PointY="27.738606778783076" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
