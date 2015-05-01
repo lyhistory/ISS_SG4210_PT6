@@ -22,66 +22,66 @@ namespace nus.iss.crs.pl.Admin.Ctrl {
         protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
-        /// categoryID control.
+        /// courseID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label categoryID;
+        protected global::System.Web.UI.WebControls.Label courseID;
         
         /// <summary>
-        /// courseRowID control.
+        /// courseTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow courseRowID;
+        protected global::System.Web.UI.WebControls.Label courseTitle;
         
         /// <summary>
-        /// codeID control.
+        /// classRowID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label codeID;
+        protected global::System.Web.UI.WebControls.TableRow classRowID;
         
         /// <summary>
-        /// nameID control.
+        /// classID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nameID;
+        protected global::System.Web.UI.WebControls.Label classID;
         
         /// <summary>
-        /// durationID control.
+        /// sizeID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label durationID;
+        protected global::System.Web.UI.WebControls.Label sizeID;
         
         /// <summary>
-        /// instructorID control.
+        /// startDateID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label instructorID;
+        protected global::System.Web.UI.WebControls.Label startDateID;
         
         /// <summary>
-        /// feeID control.
+        /// endDateID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label feeID;
+        protected global::System.Web.UI.WebControls.Label endDateID;
     }
 }

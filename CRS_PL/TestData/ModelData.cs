@@ -119,6 +119,56 @@ namespace nus.iss.crs.pl.TestData
                 courses.Add(CreateCourse(category, "code3", "title3", "desc3", 5, "3000"));
                 courses.Add(CreateCourse(category, "code4", "title4", "desc4", 3, "1000"));
             }
+        }
+
+
+
+        List<CourseClass> courseClasses = new List<CourseClass> ();
+        public void AddCourseClasses()
+        {
+            if (courseClasses.Count > 0)
+                return;
+
+            courseClasses = CreateClasses();
+            
         } 
+        
+        public List<Course> GetCourses()
+        {
+            return courses;
+        }
+
+        private List<CourseClass> CreateClasses()
+        {
+            List<CourseClass> courseClassList = new List<CourseClass> ();
+            foreach(CourseCategory  category in GetCategories())
+            {
+                foreach(Course course in category.GetCourses())
+                {
+                    if(course.Status != CourseStatus.Disabled)
+                    {
+                        for (int i = 1; i < 6; i++)
+                        {
+                            int startDate = r.Next(i*30);
+                            CourseClass cls = CreateClass(course, startDate, startDate + 7, (ClassStatus)(Enum.GetValues(typeof(ClassStatus)).GetValue(r.Next(4))));
+                            courseClassList.Add(cls);
+                        }
+                    }
+
+                }
+            }
+            
+            return courseClassList;
+        }
+
+        private CourseClass CreateClass(Course course, int startDate, int endDate, ClassStatus status)
+        { 
+            CourseClass cls = new CourseClass(course);
+            cls.StartDate = DateTime.Now.AddDays(startDate);
+            cls.EndDate = DateTime.Now.AddDays(endDate);
+            cls.Status = ClassStatus.New;
+
+            return cls;
+        }
     }
 }
