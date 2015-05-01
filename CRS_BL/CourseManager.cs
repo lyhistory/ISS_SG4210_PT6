@@ -30,7 +30,7 @@ namespace nus.iss.crs.bl
 
         public bool SaveCourse(Course course)
         {
-        //call dal to save
+            //call dal to save
             return true;
         }
 
@@ -49,6 +49,34 @@ namespace nus.iss.crs.bl
         {
             List<CourseInstructor> courseInstructorList = new List<CourseInstructor>();
             return courseInstructorList;
+        }
+
+        //List upcoming course within half years
+        public List<Course> GetUpcomingCourseList(DateTime dateFrom,DateTime dateTo)
+        {
+            List<Course> courseList = new List<Course>();
+            return courseList;
+        }
+
+        //List course category
+        public List<CourseCategory> GetCourseCategoryList() 
+        {
+            List<CourseCategory> courseCategoryList = new List<CourseCategory>();
+            return courseCategoryList;
+        }
+
+        //show list of courses in a particular category
+        public List<Course> GetCourseListByCategory(CourseCategory courseCategory)
+        {
+            List<Course> courseList = new List<Course>();
+            return courseList;
+        }
+
+        //show course detail by clicking course title
+        public Course GetCourseDetailByTitle(string courseTitle)
+        {
+            Course course = new Course();
+            return course;
         }
     }
 }
