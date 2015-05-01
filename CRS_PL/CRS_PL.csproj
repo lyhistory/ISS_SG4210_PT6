@@ -186,12 +186,33 @@
     <Compile Include="Admin\CreateClass.aspx.designer.cs">
       <DependentUpon>CreateClass.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Ctrl\CalendarClassList.ascx.cs">
+      <DependentUpon>CalendarClassList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Ctrl\CalendarClassList.ascx.designer.cs">
+      <DependentUpon>CalendarClassList.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Ctrl\CategoryCourseList.ascx.cs">
       <DependentUpon>CategoryCourseList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Ctrl\CategoryCourseList.ascx.designer.cs">
       <DependentUpon>CategoryCourseList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Ctrl\CourseClassList.ascx.cs">
+      <DependentUpon>CourseClassList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Ctrl\CourseClassList.ascx.designer.cs">
+      <DependentUpon>CourseClassList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EditClass.aspx.cs">
+      <DependentUpon>EditClass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditClass.aspx.designer.cs">
+      <DependentUpon>EditClass.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\EditCourse.aspx.cs">
       <DependentUpon>EditCourse.aspx</DependentUpon>
@@ -200,12 +221,26 @@
     <Compile Include="Admin\EditCourse.aspx.designer.cs">
       <DependentUpon>EditCourse.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ListClassInCourse.aspx.cs">
+      <DependentUpon>ListClassInCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ListClassInCourse.aspx.designer.cs">
+      <DependentUpon>ListClassInCourse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ListCourse.aspx.cs">
       <DependentUpon>ListCourse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\ListCourse.aspx.designer.cs">
       <DependentUpon>ListCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ListClassInCalendar.aspx.cs">
+      <DependentUpon>ListClassInCalendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ListClassInCalendar.aspx.designer.cs">
+      <DependentUpon>ListClassInCalendar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NavigationManager.cs" />
     <Compile Include="Admin\Site.Master.cs">
@@ -276,9 +311,14 @@
     <Content Include="Admin\css\treeview\TopLine.png" />
     <Content Include="Admin\css\treeview\TopLine_rtl.png" />
     <Content Include="Admin\css\treeview\TriState.png" />
+    <Content Include="Admin\Ctrl\CalendarClassList.ascx" />
     <Content Include="Admin\Ctrl\CategoryCourseList.ascx" />
+    <Content Include="Admin\Ctrl\CourseClassList.ascx" />
+    <Content Include="Admin\EditClass.aspx" />
     <Content Include="Admin\EditCourse.aspx" />
+    <Content Include="Admin\ListClassInCourse.aspx" />
     <Content Include="Admin\ListCourse.aspx" />
+    <Content Include="Admin\ListClassInCalendar.aspx" />
     <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
