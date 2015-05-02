@@ -2,6 +2,7 @@
 using nus.iss.crs.bl;
 using nus.iss.crs.bl.Session;
 using nus.iss.crs.dm;
+using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.AppCode.Filter;
 using nus.iss.crs.pl.AppCode.FormAuthentication;
 using nus.iss.crs.pl.AppCode.Session;
@@ -19,7 +20,16 @@ namespace nus.iss.crs.pl.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            ISession session = SessionFactory.CreateSession();
+            LogingStrategy loginStrategy = new NonLoginStrategy();
+
+            session.Login(loginStrategy);
+
+            CourseManager manager = session.CreateCourseManager();
+            List<CourseCategory> categoryList = manager.GetCourseCategoryList(DateTime.Now,DateTime.Now.AddMonths(5),true);
+            //List<CourseClass> courseClassList=manager.GetCourseClassList();
+
+            return View(categoryList);
         }
         [CRSAuthorize(Roles = "HR")]
         public ActionResult About()

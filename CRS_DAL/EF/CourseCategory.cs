@@ -12,14 +12,10 @@ namespace CRS_DAL.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class CourseClass
+    public partial class CourseCategory
     {
-        public string ClassID { get; set; }
-        public string CourseCode { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public string ClassCode { get; set; }
-        public Nullable<int> Status { get; set; }
-        public Nullable<int> Size { get; set; }
+        public string CategoryID { get; set; }
+        public string CategoryName { get; set; }
+        public string CategoryDesc { get; set; }
     }
 }

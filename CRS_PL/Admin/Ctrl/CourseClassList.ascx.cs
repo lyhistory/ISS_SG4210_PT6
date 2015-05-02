@@ -25,7 +25,7 @@ namespace nus.iss.crs.pl.Admin.Ctrl
 
             TableRow courseRow = new TableRow();
             TableCell classID = new TableCell();
-            classID.Text = cls.ClassID;
+            classID.Text = cls.ClassCode;
             courseRow.Cells.Add(classID);
 
             TableCell sizeID = new TableCell();

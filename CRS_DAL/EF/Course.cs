@@ -21,5 +21,7 @@ namespace CRS_DAL.EF
         public Nullable<decimal> Fee { get; set; }
         public string Instructors { get; set; }
         public int NumberOfDays { get; set; }
+        public string CategoryID { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }

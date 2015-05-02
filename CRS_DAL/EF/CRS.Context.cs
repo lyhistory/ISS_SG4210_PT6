@@ -28,6 +28,7 @@ namespace CRS_DAL.EF
         public DbSet<Company> Companies { get; set; }
         public DbSet<CompanyHR> CompanyHRs { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseCategory> CourseCategories { get; set; }
         public DbSet<CourseClass> CourseClasses { get; set; }
         public DbSet<Participant> Participants { get; set; }
         public DbSet<Registration> Registrations { get; set; }

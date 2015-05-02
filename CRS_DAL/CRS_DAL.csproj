@@ -56,6 +56,9 @@
     <Compile Include="EF\Course.cs">
       <DependentUpon>CRS.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\CourseCategory.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\CourseClass.cs">
       <DependentUpon>CRS.tt</DependentUpon>
     </Compile>
@@ -86,22 +89,22 @@
     <Compile Include="EF\User.cs">
       <DependentUpon>CRS.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelMapper\CourseClassMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Service\CourseService.cs" />
     <Compile Include="Service\UserService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="EF\CRS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CRS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
+    <EntityDeploy Include="EF\CRS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CRS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="EF\CRS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CRS.edmx</DependentUpon>
@@ -119,6 +122,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRS_DM\CRS_DM.csproj">
+      <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
+      <Name>CRS_DM</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

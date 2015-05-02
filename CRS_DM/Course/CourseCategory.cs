@@ -30,5 +30,10 @@ namespace nus.iss.crs.dm.Course
         {
             courseList.Add(course);
         }
+
+        public void AddCourses(List<Course> courses)
+        {
+            courseList.AddRange(courses);
+        }
     }
 }

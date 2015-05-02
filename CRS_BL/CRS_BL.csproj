@@ -44,6 +44,7 @@
     <Compile Include="ApplicationFacade.cs" />
     <Compile Include="ClassManager.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="CourseExt.cs" />
     <Compile Include="CourseManager.cs" />
     <Compile Include="CourseRegistrationManager.cs" />
     <Compile Include="LoginInfo.cs">

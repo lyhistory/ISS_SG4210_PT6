@@ -31,5 +31,23 @@ namespace nus.iss.crs.dm.Course
 
             return true;
         }
+
+        protected List<CourseClass> _CourseClasses = new List<CourseClass>();
+        public  List<CourseClass> GetClassList()
+        {
+            return _CourseClasses;
+        }
+
+        public void AddClass(CourseClass cls)
+        {
+            _CourseClasses.Add(cls);
+        }
+
+        public void AddClassList(List<CourseClass> classes)
+        {
+            _CourseClasses.AddRange(classes);
+        }
+
+
     }
 }

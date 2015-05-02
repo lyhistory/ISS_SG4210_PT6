@@ -13,6 +13,7 @@ namespace CRS_DAL.Repository
     public interface IUnitOfWork : IDisposable
     {
         UserService UserService { get; }
+        CourseService CourseService { get; }
         void Commit();
     }
 
@@ -22,6 +23,7 @@ namespace CRS_DAL.Repository
         private CRSEntities crsContext;
 
         private UserService userService;
+        private CourseService cousrseService;
 
         public UserService UserService
         {
@@ -31,6 +33,19 @@ namespace CRS_DAL.Repository
                     userService = new UserService(new RepositoryBase<User>(crsContext));
 
                 return userService;
+            }
+
+        }
+        public CourseService CourseService
+        {
+            get
+            {
+                if (cousrseService == null)
+                    cousrseService = new CourseService(new RepositoryBase<Course>(crsContext),
+                        new RepositoryBase<CourseCategory>(crsContext),
+                        new RepositoryBase<CourseClass>(crsContext));
+
+                return cousrseService;
             }
 
         }
