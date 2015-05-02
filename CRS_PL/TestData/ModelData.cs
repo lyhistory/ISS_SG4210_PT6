@@ -167,6 +167,7 @@ namespace nus.iss.crs.pl.TestData
             cls.StartDate = DateTime.Now.AddDays(startDate);
             cls.EndDate = DateTime.Now.AddDays(endDate);
             cls.Status = ClassStatus.New;
+            cls.Size = 39;
 
             return cls;
         }

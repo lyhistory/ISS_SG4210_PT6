@@ -8,6 +8,15 @@ namespace nus.iss.crs.dm.Registration
 {
     public class Participant
     {
+        public Participant()
+        {
+ 
+        }
+        public Participant(User user)
+        {
+ 
+        }
+
         public string IDNo { get; set; }
         public string EmploymentStatus { get; set; }
         public string CompanyID { get; set; }
