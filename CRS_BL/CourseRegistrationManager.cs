@@ -49,13 +49,37 @@ namespace nus.iss.crs.bl
         }
 
         //Create new employee
-        public bool createEmployee(Participant employee)
+        public Participant CreateEmployee()
         {
             //save
+            Participant employee = new Participant();
+            return employee;
+        }
+
+        public bool SaveEmployee(Participant employee)
+        {
             return false;
         }
 
         //View course details
+
+
+        public List<Registration> GetRegistrationList(CourseClass cls)
+        {
+            return null;
+        }
+
+        public List<Registration> GetRegistrationList(User user)
+        {
+            return null;
+        }
+
+        public List<Registration> GetRegistrationList(Company company)
+        {
+            return null;
+        }
+
+
 
     }
 }

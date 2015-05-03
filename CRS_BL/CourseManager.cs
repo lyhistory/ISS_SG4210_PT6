@@ -22,15 +22,49 @@ namespace nus.iss.crs.bl
             //}
         }
 
+
+        //List course category
+        public List<CourseCategory> GetCourseCategoryList()
+        {
+            List<CourseCategory> courseCategoryList = uow.CourseService.GetCourseCategoryList();
+            return courseCategoryList;
+        }
+
+        /// <summary>
+        /// retrieve all the categoreis with its course and related class
+        /// </summary>
+        /// <param name="includeAllKids"></param>
+        /// <returns></returns>
+        public List<CourseCategory> GetCourseCategoryList(bool includeAllKids)
+        {
+            return GetCourseCategoryList(DateTime.MinValue, DateTime.MaxValue, includeAllKids);
+        } 
+
+        public List<CourseCategory> GetCourseCategoryList(DateTime dateFrom, DateTime dateTo, bool includeAllKids)
+        {
+            List<CourseCategory> courseCategoryList = uow.CourseService.GetCourseCategoryList();
+            if (includeAllKids)
+            {
+                foreach (CourseCategory category in courseCategoryList)
+                {
+                    category.AddCourses(GetCourseListByCategory(category, dateFrom, dateTo, includeAllKids));
+                }
+
+            }
+            return courseCategoryList;
+        }
+
         public Course CreateCourse()
         {
             Course course = new Course();
+            
             //course.
             return course;
         }
 
         public bool SaveCourse(Course course)
         {
+            //data validation
             //call dal to save
             return true;
         }
@@ -40,13 +74,33 @@ namespace nus.iss.crs.bl
             //include disable & enable course    
         }
 
+        //show list of courses in a particular category
+        public List<Course> GetCourseListByCategory(CourseCategory courseCategory)
+        {
+            List<Course> courseList = uow.CourseService.GetCourseListByCategory(courseCategory.ID);
+            return courseList;
+        }
+
+        public List<Course> GetCourseListByCategory(CourseCategory courseCategory, DateTime dateFrom, DateTime dateTo, bool includeClass)
+        {
+            List<Course> courseList = uow.CourseService.GetCourseListByCategory(courseCategory.ID);
+            if (includeClass)
+            {
+                foreach (Course course in courseList)
+                {
+                    course.AddClassList(GetCourseClassList(course, dateFrom, dateTo));
+                }
+            }
+            return courseList;
+        } 
+
         public List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo, ClassStatus status)
         {
             List<CourseClass> courseClassList = uow.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo, (int)status);
             return courseClassList;
         }
 
-        public List<CourseClass> RetrieveClassList(Course course, DateTime dateFrom, DateTime dateTo)
+        public List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo)
         {
              return uow.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo);             
         }
@@ -62,56 +116,14 @@ namespace nus.iss.crs.bl
         {
             List<Course> courseList = new List<Course>();
             return courseList;
-        }
-
-        //List course category
-        public List<CourseCategory> GetCourseCategoryList() 
-        {
-            List<CourseCategory> courseCategoryList = uow.CourseService.GetCourseCategoryList();
-            return courseCategoryList;
-        }
-
-        public List<CourseCategory> GetCourseCategoryList(DateTime dateFrom, DateTime dateTo, bool includeAllKids)
-        {
-            List<CourseCategory> courseCategoryList = uow.CourseService.GetCourseCategoryList();
-            if (includeAllKids)
-            {
-                foreach (CourseCategory category in courseCategoryList)
-                {
-                    category.AddCourses(GetCourseListByCategory(category, dateFrom, dateTo, includeAllKids));                     
-                }
-
-            }
-            return courseCategoryList;
-        }
-
-
-
-        //show list of courses in a particular category
-        public List<Course> GetCourseListByCategory(CourseCategory courseCategory)
-        {
-            List<Course> courseList = uow.CourseService.GetCourseListByCategory(courseCategory.ID);
-            return courseList;
-        }
-
-        public List<Course> GetCourseListByCategory(CourseCategory courseCategory,DateTime dateFrom, DateTime dateTo,bool includeClass)
-        {
-            List<Course> courseList = uow.CourseService.GetCourseListByCategory(courseCategory.ID);
-            if (includeClass)
-            {
-                foreach (Course course in courseList)
-                {
-                    course.AddClassList(RetrieveClassList(course, dateFrom, dateTo));
-                }
-            }
-            return courseList;
         } 
  
-        //show course detail by clicking course title
-        public Course GetCourseDetailByTitle(string courseTitle)
+        //show course detail by clicking course code
+        public Course GetCourse(string code)
         {
             Course course = new Course();
             return course;
         }
+         
     }
 }

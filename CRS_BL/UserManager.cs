@@ -10,37 +10,50 @@ namespace nus.iss.crs.bl
 {
     public class UserManager
     {
+        private ISession _Session;
 
-        void AssignRole(User user, UserRole role)
+        public UserManager(ISession session)
+        {
+            _Session = session;
+        }
+
+        private void AssignRole(User user, UserRole role)
         {
             UserExt ext = new UserExt(user);
             ext.AssignRole(role);
         }
 
-        public bool createPublicUser(User user,ISession session) 
+        public User CreateUser()
+        {
+            ///
+            return new User();
+        }
+        
+
+        public User CreateHRUser()
+        {
+            ///
+            return new HRUser();
+        }
+
+        public bool SaveUser(User user) 
         {
             //Individul user,course admin,system admin
 
             //internal user need to check operator permission
-            if (session.GetCurrentUser().GetRole() == null) 
+            if (_Session.GetCurrentUser().GetRole() == null) 
             {
                 throw new Exception("No Permission.");
             }
             return false;
         }
 
-        public bool createHRUser(User user, ISession session)
+        public Company CreateCompany()
         {
-            //HR user,email address as user Id
-            if (session.GetCurrentUser().GetRole() == null) 
-            {
-                throw new Exception("No Permission.");
-            }
-
-            return false;
+            return new Company();
         }
 
-        public bool registerCompanyInformation(Company company)
+        public bool SaveCompanyInformation(Company company)
         {
             return false;
         }
@@ -55,6 +68,38 @@ namespace nus.iss.crs.bl
         {
             List<Company> companyList = new List<Company>();
             return companyList;
+        }
+
+
+        public User GetUser(string userid)
+        {
+
+            User u = new User();
+            //u.GetRole
+
+            return new User();//retrieve user from db, assign role 
+        }
+
+        public List<User> GetUserList()
+        {
+            List<User> userList = new List<User>();
+            return userList; 
+        }
+
+        /// <summary>
+        /// update, disable/enable, reset password
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public bool EditUser(User user)
+        {
+            return false;
+        }
+
+        public string GenerateRandomPassword()
+        {
+            string password = Guid.NewGuid().ToString();
+            return password;
         }
     }
 }

@@ -20,8 +20,8 @@ namespace nus.iss.crs.bl
 
             //call dal
             //dal.login(logininfo)
-            User user = new UserExt();
-
+            UserExt user = new UserExt();
+            //user.AssignRole();//retrieve role from db
             return user;
         }
     }

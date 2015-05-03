@@ -68,7 +68,7 @@ namespace nus.iss.crs.bl.Session
         }
 
         public UserManager CreateUserManager() {
-            return new UserManager();
+            return new UserManager(this);
         }
     }
 }

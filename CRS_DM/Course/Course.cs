@@ -12,6 +12,8 @@ namespace nus.iss.crs.dm.Course
         public string CourseTitle { get; set; }
         public string Description { get; set; }
         public string Fee { get; set; }
+        public string ClassTime { get; set; }
+        
         public CourseInstructor Instructor { get; set; }
         public int Duration { get; set; }
 

@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Bin\</OutputPath>
+    <OutputPath>..\..\CRS.Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -53,13 +53,16 @@
     <Compile Include="LoginManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportManager.cs" />
+    <Compile Include="Search\ISearch.cs" />
+    <Compile Include="Search\SearchCriterionItem.cs" />
+    <Compile Include="Search\SearchCriterion.cs" />
+    <Compile Include="Search\SearchEngine.cs" />
     <Compile Include="Session\ISession.cs" />
     <Compile Include="Session\SessionFactory.cs" />
     <Compile Include="Session\SessionImplement.cs" />
     <Compile Include="Session\SessionManager.cs" />
     <Compile Include="UserExt.cs" />
     <Compile Include="UserManager.cs" />
-    <Compile Include="UserRegistrationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CRS_DAL\CRS_DAL.csproj">
@@ -71,6 +74,7 @@
       <Name>CRS_DM</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

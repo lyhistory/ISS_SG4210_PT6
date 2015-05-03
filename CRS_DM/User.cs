@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm
 {
-    public class User
+    public class User 
     {
         protected UserRole role = null;
                 
