@@ -51,6 +51,11 @@ namespace nus.iss.crs.bl
             return false;
         }
 
+        public CourseClass GetCourseClass(string classID)
+        {
+            return null;
+        }
+
         public List<Participant> GetCourseClassParticipantList(CourseClass courseClass)
         {
             List<Participant> participantList = new List<Participant>();

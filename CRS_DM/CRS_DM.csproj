@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attendance.cs" />
+    <Compile Include="AttendanceStatus.cs" />
     <Compile Include="Course\ClassStatus.cs" />
     <Compile Include="Course\CourseStatus.cs" />
+    <Compile Include="RegistrationStatus.cs" />
     <Compile Include="Role\AdminRole.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Role\CourseAdminRole.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="Role\SystemAdminRole.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Role\UserRole.cs" />
+    <Compile Include="ParticipantAttendance.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

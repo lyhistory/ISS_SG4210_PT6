@@ -8,6 +8,7 @@ namespace nus.iss.crs.dm
 {
     public class CourseInstructor
     {
+        public string ID { get; set; }
         public string Name {get;set;}
         public CourseInstructor(string name)
         {

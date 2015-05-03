@@ -80,6 +80,33 @@ namespace nus.iss.crs.bl
         }
 
 
+        /// <summary>
+        /// Edit, Cancel
+        /// </summary>
+        /// <param name="registration"></param>
+        /// <returns></returns>
+        public bool EditRegistration(Registration registration)
+        {
+               
+            return false;
+        }
+
+        public bool SaveRegistration(Registration registration)
+        {
+            return false;
+        }
+
+        public bool MoveRegistration(Registration registration)
+        {
+            return false;
+        }
+
+
+        public Registration GetRegistration(string RegID)
+        {
+            return null;
+        }
+
 
     }
 }
