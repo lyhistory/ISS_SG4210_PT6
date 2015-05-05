@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="Attendance.cs" />
     <Compile Include="AttendanceStatus.cs" />
+    <Compile Include="CourseSearchValueObject.cs" />
     <Compile Include="Course\ClassStatus.cs" />
     <Compile Include="Course\CourseStatus.cs" />
+    <Compile Include="ParticipantSearchValueObject.cs" />
     <Compile Include="RegistrationStatus.cs" />
     <Compile Include="Role\AdminRole.cs" />
     <Compile Include="Company.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Role\PublicUserRole.cs" />
     <Compile Include="Role\StaffRole.cs" />
     <Compile Include="Role\SystemAdminRole.cs" />
+    <Compile Include="SearchValueObject.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Role\UserRole.cs" />
     <Compile Include="ParticipantAttendance.cs" />
