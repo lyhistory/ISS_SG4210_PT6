@@ -21,7 +21,6 @@ namespace nus.iss.crs.bl
         /// <typeparam name="T"></typeparam>
         /// <param name="criteion"></param>
         /// <returns></returns>
-
         public List<T> Search<T>(Search.SearchCriterion criteion)
         {
             throw new NotImplementedException();

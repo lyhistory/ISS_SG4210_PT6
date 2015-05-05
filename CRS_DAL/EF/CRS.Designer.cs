@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\vmshareddisk\Personal\NUS\assignment\CRS\CRS_DAL\EF\CRS.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Dancing\iss_sg4210_pt6\CRS_DAL\EF\CRS.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
