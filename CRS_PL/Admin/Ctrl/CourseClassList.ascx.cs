@@ -15,12 +15,12 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             courseID.Text = course.Code;
             courseTitle.Text = course.CourseTitle;
 
-            //foreach (Course course in course)
+            foreach (CourseClass cls in course.GetClassList())
             {
-                //Table1.Rows.Add(CreateCourseRow(course));
+                Table1.Rows.Add(CreateClassRow(cls));
             }
         }
-        public TableRow CreateCourseRow(CourseClass cls)
+        public TableRow CreateClassRow(CourseClass cls)
         {
 
             TableRow courseRow = new TableRow();
@@ -38,9 +38,7 @@ namespace nus.iss.crs.pl.Admin.Ctrl
 
             TableCell endDateID = new TableCell();
             endDateID.Text = cls.EndDate.ToString();
-            courseRow.Cells.Add(endDateID);
-
-            
+            courseRow.Cells.Add(endDateID);            
 
             TableCell editID = new TableCell();
             HyperLink h = new HyperLink();

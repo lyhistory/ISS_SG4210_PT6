@@ -135,6 +135,8 @@ namespace nus.iss.crs.pl.TestData
         
         public List<Course> GetCourses()
         {
+            if (courses.Count < 1)
+                CreateCourseList();
             return courses;
         }
 
