@@ -12,12 +12,15 @@ namespace CRS_DAL.Service
 {
     public class CourseService
     {
+        IUnitOfWork unitOfWork;
+
         IRepository<Course> CourseRepository;
         IRepository<CourseCategory> CourseCategoryRepository;
         IRepository<CourseClass> CourseClassRepository;
 
-        public CourseService(IRepository<Course> courseRepository, IRepository<CourseCategory> courseCategoryRepository, IRepository<CourseClass> courseClassRepository)
+        public CourseService(IUnitOfWork uow,IRepository<Course> courseRepository, IRepository<CourseCategory> courseCategoryRepository, IRepository<CourseClass> courseClassRepository)
         {
+            this.unitOfWork = uow;
             this.CourseCategoryRepository = courseCategoryRepository;
             this.CourseClassRepository = courseClassRepository;
             this.CourseRepository = courseRepository;
@@ -89,6 +92,85 @@ namespace CRS_DAL.Service
                         Instructor = new dm.CourseInstructor(x.Instructors),
                         Status = (dm.Course.CourseStatus)x.Status
                     }).ToList();
+        }
+
+        public dm.Course.Course GetCourseByCode(string code)
+        {
+            if (!string.IsNullOrEmpty(code))
+            {
+               Course _course= this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(code));
+               CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
+
+               dm.Course.Course course = new dm.Course.Course()
+                            {
+                                CourseTitle = _course.CourseTitle,
+                                Code = _course.CourseCode,
+                                Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
+                                Description = _course.Description,
+                                Duration = _course.NumberOfDays,
+                                Fee = _course.Fee.HasValue ? _course.Fee.Value.ToString() : "0",
+                                Instructor = new dm.CourseInstructor(_course.Instructors),
+                                Status = (dm.Course.CourseStatus)_course.Status
+
+                            };
+                return course;
+            }
+            return null;
+        }
+
+        public dm.Course.Course CreateCourse(dm.Course.Course course)
+        {
+            try
+            {
+                Course _course = new Course()
+                {
+                    CourseTitle = course.CourseTitle,
+                    CourseCode = course.Code,
+                    CategoryID = course.Category.ID,
+                    Description = course.Description,
+                    NumberOfDays = course.Duration,
+                    Fee = int.Parse(course.Fee),
+                    Instructors = course.Instructor.Name,
+                    Status = (int)course.Status
+                };
+                this.CourseRepository.Add(_course);
+                
+                return course;
+            }
+            catch (Exception ex)
+            {
+                //log
+            }
+            return null;
+        }
+
+        public dm.Course.Course EditCourse(dm.Course.Course course)
+        {
+            try
+            {
+                if (course.IsValid())
+                {
+                    Course _course = this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(course.Code));
+                    if (_course != null)
+                    {
+                        _course.CourseTitle = course.CourseTitle;
+                        _course.CourseCode = course.Code;
+                        _course.CategoryID = course.Category.ID;
+                        _course.Description = course.Description;
+                        _course.NumberOfDays = course.Duration;
+                        _course.Fee = int.Parse(course.Fee);
+                        _course.Instructors = course.Instructor.Name;
+                        _course.Status = (int)course.Status;
+                    }
+                    this.unitOfWork.Commit();
+                    return course;
+                }
+            }
+            catch (Exception ex)
+            {
+                //log
+            }
+            return null;
         }
     }
 }

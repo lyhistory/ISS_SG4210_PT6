@@ -54,24 +54,19 @@ namespace nus.iss.crs.bl
             return courseCategoryList;
         }
 
-        public Course CreateCourse()
+        public Course CreateCourse(Course course)
         {
-            Course course = new Course();
-            
-            //course.
-            return course;
+            if (course.IsValid())
+            {
+                return uow.CourseService.CreateCourse(course);
+            }
+            return null;
         }
 
-        public bool SaveCourse(Course course)
-        {
-            //data validation
-            //call dal to save
-            return true;
-        }
 
-        public void EditCourse(Course course)
+        public Course EditCourse(Course course)
         {
-            //include disable & enable course    
+            return uow.CourseService.EditCourse(course);   
         }
 
         //show list of courses in a particular category
@@ -112,14 +107,14 @@ namespace nus.iss.crs.bl
         }
 
         //List upcoming course within half years
-        public List<Course> GetUpcomingCourseList(DateTime dateFrom,DateTime dateTo)
-        {
-            List<Course> courseList = new List<Course>();
-            return courseList;
-        } 
+        //public List<Course> GetUpcomingCourseList(DateTime dateFrom,DateTime dateTo)
+        //{
+        //    List<Course> courseList = new List<Course>();
+        //    return courseList;
+        //} 
  
         //show course detail by clicking course code
-        public Course GetCourse(string code)
+        public Course GetCourseByCode(string code)
         {
             Course course = new Course();
             return course;

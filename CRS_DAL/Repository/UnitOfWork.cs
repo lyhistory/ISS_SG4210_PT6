@@ -30,7 +30,7 @@ namespace CRS_DAL.Repository
             get
             {
                 if (userService == null)
-                    userService = new UserService(new RepositoryBase<User>(crsContext));
+                    userService = new UserService(this,new RepositoryBase<User>(crsContext));
 
                 return userService;
             }
@@ -41,7 +41,7 @@ namespace CRS_DAL.Repository
             get
             {
                 if (cousrseService == null)
-                    cousrseService = new CourseService(new RepositoryBase<Course>(crsContext),
+                    cousrseService = new CourseService(this,new RepositoryBase<Course>(crsContext),
                         new RepositoryBase<CourseCategory>(crsContext),
                         new RepositoryBase<CourseClass>(crsContext));
 

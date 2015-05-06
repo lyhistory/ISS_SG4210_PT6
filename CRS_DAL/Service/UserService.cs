@@ -10,10 +10,12 @@ namespace CRS_DAL.Service
 {
     public class UserService
     {
+        IUnitOfWork unitOfWork;
         IRepository<User> userRepository;
 
-        public UserService(IRepository<User> userRepository)
+        public UserService(IUnitOfWork uow,IRepository<User> userRepository)
         {
+            this.unitOfWork = uow;
             this.userRepository = userRepository;
         }
 
@@ -25,7 +27,10 @@ namespace CRS_DAL.Service
         public void Add(User user)
         {
             if (!ExistsInInstance(user.LoginID))
+            {
                 userRepository.Add(user);
+                this.unitOfWork.Commit();
+            }
             else
                 throw new Exception(string.Format("user with LoginID={0} already exists"));
         }
