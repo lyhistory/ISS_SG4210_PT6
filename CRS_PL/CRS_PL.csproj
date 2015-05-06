@@ -215,6 +215,13 @@
     <Compile Include="Admin\EditCourse.aspx.designer.cs">
       <DependentUpon>EditCourse.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\EditCourseRegistration.aspx.cs">
+      <DependentUpon>EditCourseRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditCourseRegistration.aspx.designer.cs">
+      <DependentUpon>EditCourseRegistration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ListClassInCourse.aspx.cs">
       <DependentUpon>ListClassInCourse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -235,6 +242,13 @@
     </Compile>
     <Compile Include="Admin\ListClassInCalendar.aspx.designer.cs">
       <DependentUpon>ListClassInCalendar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ListCourseRegistraton.aspx.cs">
+      <DependentUpon>ListCourseRegistraton.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ListCourseRegistraton.aspx.designer.cs">
+      <DependentUpon>ListCourseRegistraton.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NavigationManager.cs" />
     <Compile Include="Admin\Site.Master.cs">
@@ -310,9 +324,11 @@
     <Content Include="Admin\Ctrl\CourseClassList.ascx" />
     <Content Include="Admin\EditClass.aspx" />
     <Content Include="Admin\EditCourse.aspx" />
+    <Content Include="Admin\EditCourseRegistration.aspx" />
     <Content Include="Admin\ListClassInCourse.aspx" />
     <Content Include="Admin\ListCourse.aspx" />
     <Content Include="Admin\ListClassInCalendar.aspx" />
+    <Content Include="Admin\ListCourseRegistraton.aspx" />
     <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

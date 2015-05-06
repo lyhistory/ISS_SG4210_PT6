@@ -23,4 +23,11 @@ namespace nus.iss.crs.pl.Admin
         Edit = AdminAction.Edit,
         Delete = AdminAction.Delete
     }
+
+    public enum ClassAdminAction
+    {
+        Save = AdminAction.Save,
+        Edit = AdminAction.Edit,
+        Delete = AdminAction.Delete
+    }
 }

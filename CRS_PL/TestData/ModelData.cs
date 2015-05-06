@@ -67,6 +67,17 @@ namespace nus.iss.crs.pl.TestData
             
         }
 
+        public Course GetCourse(string courseCode)
+        {
+            foreach (Course course in GetCourses())
+            {
+                if (course.Code == courseCode)
+                    return course;
+            }
+
+            return null;
+        }
+
         public void AddCourse4Categories()
         {
             if (courses.Count > 0)
@@ -128,10 +139,10 @@ namespace nus.iss.crs.pl.TestData
         {            
             foreach(CourseCategory category in GetCategories())
             {
-                courses.Add(CreateCourse(category, "code1", "title1", "desc1", 3, "1000"));
-                courses.Add(CreateCourse(category, "code2", "title2", "desc2", 4, "2000"));
-                courses.Add(CreateCourse(category, "code3", "title3", "desc3", 5, "3000"));
-                courses.Add(CreateCourse(category, "code4", "title4", "desc4", 3, "1000"));
+                courses.Add(CreateCourse(category, "coursecode1", "title1", "desc1", 3, "1000"));
+                courses.Add(CreateCourse(category, "coursecode2", "title2", "desc2", 4, "2000"));
+                courses.Add(CreateCourse(category, "coursecode3", "title3", "desc3", 5, "3000"));
+                courses.Add(CreateCourse(category, "coursecode4", "title4", "desc4", 3, "1000"));
             }
         }
 
@@ -180,7 +191,7 @@ namespace nus.iss.crs.pl.TestData
         private CourseClass CreateClass(Course course,int i, int startDate, int endDate, ClassStatus status)
         { 
             CourseClass cls = new CourseClass(course);
-            cls.ClassCode ="class code" +  r.Next(i);
+            cls.ClassCode ="classcode" +  r.Next(i);
             cls.StartDate = DateTime.Now.AddDays(startDate);
             cls.EndDate = DateTime.Now.AddDays(endDate);
             cls.Status = ClassStatus.New;
