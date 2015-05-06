@@ -56,6 +56,17 @@ namespace nus.iss.crs.pl.TestData
             return categories;
         }
 
+        public CourseCategory GetCategory(string categoryID)
+        {
+            foreach (CourseCategory category in GetCategories())
+            {
+                if (categoryID == category.ID)
+                    return category;
+            }
+            return null;
+            
+        }
+
         public void AddCourse4Categories()
         {
             if (courses.Count > 0)

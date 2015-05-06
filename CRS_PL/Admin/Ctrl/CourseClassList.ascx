@@ -1,11 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CourseClassList.ascx.cs" Inherits="nus.iss.crs.pl.Admin.Ctrl.CourseClassList" %>
 <asp:Table ID="Table1" runat="server" GridLines="Both">
         <asp:TableRow runat="server">
-            <asp:TableHeaderCell ColumnSpan="1">Class ID </asp:TableHeaderCell>            
-            <asp:TableHeaderCell>Size</asp:TableHeaderCell>
-            <asp:TableHeaderCell>Start Date</asp:TableHeaderCell>
-            <asp:TableHeaderCell>End Date</asp:TableHeaderCell>
-            <asp:TableHeaderCell ColumnSpan ="4">Operation</asp:TableHeaderCell>
+            <asp:TableHeaderCell ColumnSpan="1" Wrap="false" Width="300">Class ID </asp:TableHeaderCell>            
+            <asp:TableHeaderCell Wrap="false" Width="50">Size</asp:TableHeaderCell>
+            <asp:TableHeaderCell Wrap="false" Width="500">Start Date</asp:TableHeaderCell>
+            <asp:TableHeaderCell Wrap="false" Width="500">End Date</asp:TableHeaderCell>
+            <asp:TableHeaderCell ColumnSpan ="4" Width="300">Operation</asp:TableHeaderCell>
         </asp:TableRow>
         <asp:TableRow runat="server">
             <asp:TableCell   >

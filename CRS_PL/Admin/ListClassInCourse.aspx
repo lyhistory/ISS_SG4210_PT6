@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="placeholder_MainContent" runat="server">
     <asp:Label ID="categoryID" Text="Course Category" runat ="server"></asp:Label>
-    <asp:DropDownList ID="categoryListID" runat ="server" OnSelectedIndexChanged="categoryListID_SelectedIndexChanged"> </asp:DropDownList>
+    <asp:DropDownList ID="categoryListID" runat ="server" OnSelectedIndexChanged="categoryListID_SelectedIndexChanged" AutoPostBack="True" > </asp:DropDownList>
       <div>
         <asp:PlaceHolder runat="server" ID="PlaceHolder1" />
       </div>
