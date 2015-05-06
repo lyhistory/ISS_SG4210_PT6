@@ -49,7 +49,10 @@ namespace nus.iss.crs.pl.TestData
             if (categories != null && categories.Count > 0)
                 return categories;
 
-            categories = CreateCategoryList();             
+            categories = CreateCategoryList();
+
+            AddCourse4Categories();
+
             return categories;
         }
 
@@ -152,7 +155,7 @@ namespace nus.iss.crs.pl.TestData
                         for (int i = 1; i < 6; i++)
                         {
                             int startDate = r.Next(i*30);
-                            CourseClass cls = CreateClass(course, startDate, startDate + 7, (ClassStatus)(Enum.GetValues(typeof(ClassStatus)).GetValue(r.Next(4))));
+                            CourseClass cls = CreateClass(course,i, startDate, startDate + 7, (ClassStatus)(Enum.GetValues(typeof(ClassStatus)).GetValue(r.Next(4))));
                             courseClassList.Add(cls);
                         }
                     }
@@ -163,14 +166,14 @@ namespace nus.iss.crs.pl.TestData
             return courseClassList;
         }
 
-        private CourseClass CreateClass(Course course, int startDate, int endDate, ClassStatus status)
+        private CourseClass CreateClass(Course course,int i, int startDate, int endDate, ClassStatus status)
         { 
             CourseClass cls = new CourseClass(course);
+            cls.ClassCode ="class code" +  r.Next(i);
             cls.StartDate = DateTime.Now.AddDays(startDate);
             cls.EndDate = DateTime.Now.AddDays(endDate);
             cls.Status = ClassStatus.New;
             cls.Size = 39;
-
             return cls;
         }
     }

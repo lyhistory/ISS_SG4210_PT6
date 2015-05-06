@@ -13,6 +13,12 @@ namespace nus.iss.crs.dm.Course
         public CourseClass(Course course)
         {
             this.course = course;
+            course.AddClass(this); 
+        }
+
+        public Course GetCourse()
+        {
+            return course;
         }
 
         public DateTime StartDate { get; set; }

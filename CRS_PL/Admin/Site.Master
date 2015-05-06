@@ -102,6 +102,15 @@
                                                     </ul>
                                                   </li>
                                                   <li>
+                                                      User Management
+                                                    <ul class="nav tree">
+                                                      <li><a href="#">View User</a>
+                                                      </li>
+                                                      <li><a href="#">Course Administrator</a>
+                                                      </li> 
+                                                    </ul>
+                                                  </li>
+                                                  <li>
                                                       Report                                                     
                                                   </li>
                                               </ul>

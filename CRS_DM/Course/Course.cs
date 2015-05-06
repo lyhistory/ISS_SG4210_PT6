@@ -40,16 +40,25 @@ namespace nus.iss.crs.dm.Course
             return _CourseClasses;
         }
 
+        
+        /// <summary>
+        /// one class belong to one course, not allow to add a class with different course
+        /// </summary>
+        /// <param name="cls"></param>
+ 
         public void AddClass(CourseClass cls)
         {
+            if (_CourseClasses.Contains(cls))
+                return;
+            if (cls.GetCourse() != this)
+                return;
             _CourseClasses.Add(cls);
         }
 
         public void AddClassList(List<CourseClass> classes)
         {
-            _CourseClasses.AddRange(classes);
+            foreach (CourseClass cls in classes)
+                AddClass(cls);             
         }
-
-
     }
 }

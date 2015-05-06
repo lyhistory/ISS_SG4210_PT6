@@ -38,5 +38,12 @@ namespace nus.iss.crs.pl.Admin
         {
             
         }
+
+        protected void categoryListID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //load and display course and course class
+
+            //TestData();
+        }
     }
 }
