@@ -40,7 +40,7 @@ namespace nus.iss.crs.bl.Session
             throw new NotImplementedException();
         }
 
-        public bool Login(dm.LogingStrategy strategy)
+        public bool Login(LogingStrategy strategy)
         {
             //throw new NotImplementedException();
             LoginManager loginManager = new LoginManager();
@@ -66,6 +66,11 @@ namespace nus.iss.crs.bl.Session
         {
             return new CourseManager(this);
         }
+
+        //public CourseRegistrationManager CreateCourseRegistrationManager()
+        //{
+        //    return new CourseRegistrationManager(this);
+        //}
 
         public UserManager CreateUserManager() {
             return new UserManager(this);

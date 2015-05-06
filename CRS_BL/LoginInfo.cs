@@ -10,6 +10,7 @@ namespace nus.iss.crs.bl
     {
         public string loginId { get; set; }
         public string password { get; set; }
+        //for what purpose?
         public string ipAddress { get; set; }
     }
 }

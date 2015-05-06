@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm;
+﻿using CRS_DAL.Repository;
+using nus.iss.crs.dm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,17 @@ namespace nus.iss.crs.bl
         public LoginManager()
         {}
     
-        public User Login(LogingStrategy strategy)
+        public User Login(LogingStrategy loginStrategy)
         {
-            LoginInfo info = new LoginInfo();
-            info.loginId = strategy.GetLoginID();
-            info.password = strategy.GetPassword();           
+            LoginInfo loginInfo = new LoginInfo();
+            loginInfo.loginId = loginStrategy.GetLoginID();
+            loginInfo.password = loginStrategy.GetPassword();
+            
 
             //call dal
             //dal.login(logininfo)
+            UnitOfWork unitOfWork = new UnitOfWork();
+            //User currentUser = unitOfWork.UserService.GetByLoginID(loginInfo.loginId);
             UserExt user = new UserExt();
             //user.AssignRole();//retrieve role from db
             return user;

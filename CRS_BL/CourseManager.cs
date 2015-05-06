@@ -11,22 +11,26 @@ namespace nus.iss.crs.bl
 {
     public class CourseManager
     {
+        static UnitOfWork unitOfWork = new UnitOfWork();
+
         internal CourseManager() {}
-        static UnitOfWork uow = new UnitOfWork();
+
+        /// <summary>
+        /// detect user type 
+        /// </summary>
+        /// <param name="session"></param>
         internal CourseManager(ISession session)
         {
-            //only course admin can do  
-            //if (session.GetCurrentUser().GetRole() == null)
-            //{
-            //    throw new Exception("No permisison");
-            //}
+            if (session.GetCurrentUser().GetRole() == null)
+            {
+                throw new Exception("No permisison");
+            }
         }
-
 
         //List course category
         public List<CourseCategory> GetCourseCategoryList()
         {
-            List<CourseCategory> courseCategoryList = uow.CourseService.GetCourseCategoryList();
+            List<CourseCategory> courseCategoryList = unitOfWork.CourseService.GetCourseCategoryList();
             return courseCategoryList;
         }
 
@@ -42,7 +46,7 @@ namespace nus.iss.crs.bl
 
         public List<CourseCategory> GetCourseCategoryList(DateTime dateFrom, DateTime dateTo, bool includeAllKids)
         {
-            List<CourseCategory> courseCategoryList = uow.CourseService.GetCourseCategoryList();
+            List<CourseCategory> courseCategoryList = unitOfWork.CourseService.GetCourseCategoryList();
             if (includeAllKids)
             {
                 foreach (CourseCategory category in courseCategoryList)
@@ -58,7 +62,7 @@ namespace nus.iss.crs.bl
         {
             if (course.IsValid())
             {
-                return uow.CourseService.CreateCourse(course);
+                return unitOfWork.CourseService.CreateCourse(course);
             }
             return null;
         }
@@ -66,19 +70,19 @@ namespace nus.iss.crs.bl
 
         public Course EditCourse(Course course)
         {
-            return uow.CourseService.EditCourse(course);   
+            return unitOfWork.CourseService.EditCourse(course);   
         }
 
         //show list of courses in a particular category
         public List<Course> GetCourseListByCategory(CourseCategory courseCategory)
         {
-            List<Course> courseList = uow.CourseService.GetCourseListByCategory(courseCategory.ID);
+            List<Course> courseList = unitOfWork.CourseService.GetCourseListByCategory(courseCategory.ID);
             return courseList;
         }
 
         public List<Course> GetCourseListByCategory(CourseCategory courseCategory, DateTime dateFrom, DateTime dateTo, bool includeClass)
         {
-            List<Course> courseList = uow.CourseService.GetCourseListByCategory(courseCategory.ID);
+            List<Course> courseList = unitOfWork.CourseService.GetCourseListByCategory(courseCategory.ID);
             if (includeClass)
             {
                 foreach (Course course in courseList)
@@ -91,13 +95,13 @@ namespace nus.iss.crs.bl
 
         public List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo, ClassStatus status)
         {
-            List<CourseClass> courseClassList = uow.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo, (int)status);
+            List<CourseClass> courseClassList = unitOfWork.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo, (int)status);
             return courseClassList;
         }
 
         public List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo)
         {
-             return uow.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo);             
+             return unitOfWork.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo);             
         }
 
         public List<CourseInstructor> GetInstructorList()
