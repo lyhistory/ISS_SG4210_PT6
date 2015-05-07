@@ -64,13 +64,19 @@ namespace nus.iss.crs.bl
             {
                 return unitOfWork.CourseService.CreateCourse(course);
             }
+
             return null;
         }
 
 
         public Course EditCourse(Course course)
         {
-            return unitOfWork.CourseService.EditCourse(course);   
+            if (course.IsValid())
+            {
+                return unitOfWork.CourseService.EditCourse(course);   
+            }
+
+            return null;
         }
 
         //show list of courses in a particular category
@@ -107,6 +113,8 @@ namespace nus.iss.crs.bl
         public List<CourseInstructor> GetInstructorList()
         {
             List<CourseInstructor> courseInstructorList = new List<CourseInstructor>();
+            //courseInstructorList = unitOfWork.CourseService.
+
             return courseInstructorList;
         }
 
@@ -121,6 +129,8 @@ namespace nus.iss.crs.bl
         public Course GetCourseByCode(string code)
         {
             Course course = new Course();
+            course = unitOfWork.CourseService.GetCourseByCode(code);
+
             return course;
         }
          
