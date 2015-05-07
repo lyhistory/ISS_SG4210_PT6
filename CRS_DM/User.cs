@@ -11,9 +11,10 @@ namespace nus.iss.crs.dm
     {
         protected UserRole role = null;
                 
-        public string UserID { get; set; }
+        public string UserID { get; set; }  //GUID
+        public string LoginID { get; set; }
         public string Password { get; set; }
-        public string Email { get; set; }
+        public string Email { get; set; }   // NO USE???
 
         public string RoleName { get; set; }
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using dm = nus.iss.crs.dm;
 namespace CRS_DAL.Service
 {
     public class UserService
@@ -19,16 +19,35 @@ namespace CRS_DAL.Service
             this.userRepository = userRepository;
         }
 
-        public User GetByLoginID(string loginID)
+        public dm.User GetByLoginID(string loginID)
         {
-            return userRepository.GetSingle(g => g.LoginID == loginID);
-        }
-
-        public void Add(User user)
-        {
-            if (!ExistsInInstance(user.LoginID))
+            var _user = userRepository.GetSingleOrDefault(g => g.LoginID == loginID);
+            if (_user != null)
             {
-                userRepository.Add(user);
+                return new dm.User()
+                {
+                    UserID = _user.UserID,
+                    LoginID=_user.LoginID,
+                    Password = _user.Password,
+                    RoleName = _user.UserType.Equals("2") ? "HR" : "User"
+                };
+            }
+            return null;
+        }
+        
+        public void Add(dm.User user)
+        {
+            if (!ExistsInInstance(user.UserID))
+            {
+
+                userRepository.Add(new User()
+                {
+                    UserID = Guid.NewGuid().ToString(),
+                    LoginID=user.LoginID,
+                    Password=user.Password,
+                    UserType=user.RoleName.Equals("HR") ? 2 : 1
+                });
+
                 this.unitOfWork.Commit();
             }
             else
