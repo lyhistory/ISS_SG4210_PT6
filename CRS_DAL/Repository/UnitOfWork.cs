@@ -30,7 +30,8 @@ namespace CRS_DAL.Repository
             get
             {
                 if (userService == null)
-                    userService = new UserService(this,new RepositoryBase<User>(crsContext));
+                    userService = new UserService(this,new RepositoryBase<User>(crsContext),new RepositoryBase<Staff>(crsContext),
+                new RepositoryBase<Company>(crsContext),new RepositoryBase<CompanyHR>(crsContext));
 
                 return userService;
             }

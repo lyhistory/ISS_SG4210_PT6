@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm;
+﻿using CRS_DAL.Repository;
+using nus.iss.crs.dm;
 using nus.iss.crs.dm.Role;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace nus.iss.crs.bl
     public class UserManager
     {
         private ISession _Session;
-
+        static UnitOfWork unitOfWork = new UnitOfWork();
         public UserManager(ISession session)
         {
             _Session = session;
@@ -23,67 +24,53 @@ namespace nus.iss.crs.bl
             ext.AssignRole(role);
         }
 
-        public User CreateUser()
+        public bool CreateIndIndividualUser(User user)
         {
-            ///
-            return new User();
-        }
-        
-
-        public User CreateHRUser()
-        {
-            ///
-            return new HRUser();
+            user.Password = GenerateRandomPassword();
+            return unitOfWork.UserService.CreateIndIndividualUser(user);
         }
 
-        public bool SaveUser(User user) 
+        public bool CreateStaff(User user)
         {
-            //Individul user,course admin,system admin
-
-            //internal user need to check operator permission
-            if (_Session.GetCurrentUser().GetRole() == null) 
-            {
-                throw new Exception("No Permission.");
-            }
-            return false;
+            return unitOfWork.UserService.CreateStaff(user);
         }
 
-        public Company CreateCompany()
+        public bool CreateHRUser(User user,Company company)
         {
-            return new Company();
+            user.Password = GenerateRandomPassword();
+            return unitOfWork.UserService.CreateHRUser(user,company);
         }
 
-        public bool SaveCompanyInformation(Company company)
+        public bool CreateCompany(Company company)
         {
-            return false;
+            return unitOfWork.UserService.CreateCompany(company);
         }
 
-        public Company GetCompanyByID(string companyID)
+        public Company GetCompanyByID(string companyUEN)
         {
-            Company company = new Company();
-            return company;
+            return unitOfWork.UserService.GetCompanyByID(companyUEN);
         }
 
         public List<Company> GetCompanyList()
         {
-            List<Company> companyList = new List<Company>();
-            return companyList;
+            return unitOfWork.UserService.GetCompanyList();
         }
 
 
-        public User GetUser(string userid)
+        public User LoginUser(string loginID,string password,string userType)
         {
+            return unitOfWork.UserService.LoginUser(loginID, password,
+                userType.Equals("HR", StringComparison.OrdinalIgnoreCase) ? 2 : 1);
+        }
 
-            User u = new User();
-            //u.GetRole
-
-            return new User();//retrieve user from db, assign role 
+        public User LoginStaff(string loginID, string password)
+        {
+            return unitOfWork.UserService.LoginStaff(loginID, password);
         }
 
         public List<User> GetUserList()
         {
-            List<User> userList = new List<User>();
-            return userList; 
+            return unitOfWork.UserService.GetUserList(); 
         }
 
         /// <summary>
@@ -93,7 +80,7 @@ namespace nus.iss.crs.bl
         /// <returns></returns>
         public bool EditUser(User user)
         {
-            return false;
+            return unitOfWork.UserService.EditUser(user);
         }
 
         public string GenerateRandomPassword()
