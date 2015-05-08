@@ -130,29 +130,29 @@ namespace CRS_DAL.Service
             if (_courseClass != null)
             {
                 IQueryable<Registration> _registrationlist = this.RegistrationRepository.GetWhere(x => x.ClassID.Equals(_courseClass.ClassID));
-                IQueryable<Participant> _paticipantlistall = this.ParticipantRepository.GetAll();
+                IQueryable<Participant> _participantlistall = this.ParticipantRepository.GetAll();
 
-                List<Participant> _paticipantlist = _paticipantlistall.Join(_registrationlist, p => p.ParticipantID, r => r.ParticipantID, (p, r) => p).ToList();
+                List<Participant> _participantlist = _participantlistall.Join(_registrationlist, p => p.ParticipantID, r => r.ParticipantID, (p, r) => p).ToList();
 
-                return (from _paticipant in _paticipantlist
+                return (from _participant in _participantlist
                         select new dm.Registration.Participant()
                         {
-                            IDNumber = _paticipant.IDNumber,
-                            EmploymentStatus =_paticipant.EmploymentStatus,
-                            CompanyID =_paticipant.CompanyID,
-                            CompanyName =_paticipant.CompanyName,
-                            Salutation = _paticipant.Salutation,
-                            JobTitle =_paticipant.JobTitle,
-                            Department=_paticipant.Department,
-                            FullName =_paticipant.FullName,
-                            OrganizationSize =_paticipant.OrganizationSize,
-                            Gender =_paticipant.Gender==1 ? "Male" : "Female",
-                            SalaryRange =_paticipant.SalaryRange,
-                            Nationality =_paticipant.Nationality,
-                            DOB =_paticipant.DateOfBirth,
-                            EMail =_paticipant.Email,
-                            ContactNumber=_paticipant.ContactNumber,
-                            DietaryRequirement =_paticipant.DietaryRequirement
+                            IDNumber = _participant.IDNumber,
+                            EmploymentStatus =_participant.EmploymentStatus,
+                            CompanyID =_participant.CompanyID,
+                            CompanyName =_participant.CompanyName,
+                            Salutation = _participant.Salutation,
+                            JobTitle =_participant.JobTitle,
+                            Department=_participant.Department,
+                            FullName =_participant.FullName,
+                            OrganizationSize =_participant.OrganizationSize,
+                            Gender =_participant.Gender==1 ? "Male" : "Female",
+                            SalaryRange =_participant.SalaryRange,
+                            Nationality =_participant.Nationality,
+                            DOB =_participant.DateOfBirth,
+                            EMail =_participant.Email,
+                            ContactNumber=_participant.ContactNumber,
+                            DietaryRequirement =_participant.DietaryRequirement
                         }).ToList();
             }
             return null;

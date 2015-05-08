@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm;
+﻿using CRS_DAL.Repository;
+using nus.iss.crs.dm;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.dm.Registration;
 using System;
@@ -11,6 +12,8 @@ namespace nus.iss.crs.bl
 {
     class CourseRegistrationManager
     {
+        static UnitOfWork unitOfWork = new UnitOfWork();
+
         internal CourseRegistrationManager() { }
         internal CourseRegistrationManager(ISession session)
         {
@@ -35,30 +38,21 @@ namespace nus.iss.crs.bl
         //}
 
         //get employee list by HR
-        public List<Participant> GetEmployeeList(string companyID) 
+        public List<Participant> GetEmployeeListByCompanyID(string companyID) 
         {
-            List<Participant> participantList = new List<Participant>();
-            return participantList;
+            return unitOfWork.CourseRegistrationService.GetEmployeeListByCompanyID(companyID);
         }
         
         //Populate employee details by ID Number
-        public Participant GetEmployeeDetail(string idNumber)
+        public Participant GetEmployeeByIDNumber(string idNumber)
         {
-            Participant employee = new Participant();
-            return employee;
+            return unitOfWork.CourseRegistrationService.GetEmployeeByIDNumber(idNumber);
         }
 
         //Create new employee
-        public Participant CreateEmployee()
+        public bool CreateEmployee(Participant participant)
         {
-            //save
-            Participant employee = new Participant();
-            return employee;
-        }
-
-        public bool SaveEmployee(Participant employee)
-        {
-            return false;
+            return unitOfWork.CourseRegistrationService.CreateEmployee(participant);
         }
 
         //View course details
@@ -91,12 +85,7 @@ namespace nus.iss.crs.bl
             return false;
         }
 
-        public bool SaveRegistration(Registration registration)
-        {
-            return false;
-        }
-
-        public bool MoveRegistration(Registration registration)
+        public bool DeleteRegistration(Registration registration)
         {
             return false;
         }

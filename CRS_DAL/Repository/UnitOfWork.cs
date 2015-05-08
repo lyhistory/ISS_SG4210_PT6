@@ -15,6 +15,7 @@ namespace CRS_DAL.Repository
         UserService UserService { get; }
         CourseService CourseService { get; }
         ClassService ClassService { get; }
+        CourseRegistrationService CourseRegistrationService { get; }
         void Commit();
     }
 
@@ -26,6 +27,7 @@ namespace CRS_DAL.Repository
         private UserService userService;
         private CourseService cousrseService;
         private ClassService classService;
+        private CourseRegistrationService courseRegistrationService;
 
         public UserService UserService
         {
@@ -62,6 +64,20 @@ namespace CRS_DAL.Repository
                         new RepositoryBase<Participant>(crsContext),new RepositoryBase<Registration>(crsContext));
 
                 return classService;
+            }
+
+        }
+
+        public CourseRegistrationService CourseRegistrationService
+        {
+            get
+            {
+                if (courseRegistrationService == null)
+                    courseRegistrationService = new CourseRegistrationService(this, new RepositoryBase<CourseClass>(crsContext),
+                        new RepositoryBase<Course>(crsContext), new RepositoryBase<CourseCategory>(crsContext),
+                        new RepositoryBase<Participant>(crsContext), new RepositoryBase<Registration>(crsContext));
+
+                return courseRegistrationService;
             }
 
         }
