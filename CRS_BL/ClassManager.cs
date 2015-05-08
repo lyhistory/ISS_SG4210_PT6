@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm.Course;
+﻿using CRS_DAL.Repository;
+using nus.iss.crs.dm.Course;
 using nus.iss.crs.dm.Registration;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace nus.iss.crs.bl
 {
     class ClassManager
     {
+        static UnitOfWork unitOfWork = new UnitOfWork();
+
         internal ClassManager() { }
         internal ClassManager(ISession session) 
         {
@@ -19,47 +22,46 @@ namespace nus.iss.crs.bl
             }
         }
 
-        public CourseClass CreateCourseClass(Course course)
+        public bool CreateCourseClass(CourseClass courseClass)
         {
-            CourseClass courseClass = new CourseClass(course);
-            return courseClass;
+            if (courseClass.GetCourse() != null)
+            {
+                return unitOfWork.ClassService.CreateCourseClass(courseClass);
+            }
+            return false;
         }
 
         public bool CloseCourseClass(CourseClass courseClass)
         {
-            return false;
+            courseClass.Status = ClassStatus.Close;
+            return unitOfWork.ClassService.ChangeCourseClassStatus(courseClass);
         }
 
         public bool ConfirmCourseClass(CourseClass courseClass)
         {
-            return false;
+            courseClass.Status = ClassStatus.Confirmed;
+            return unitOfWork.ClassService.ChangeCourseClassStatus(courseClass);
         }
 
         public bool CancelCourseClass(CourseClass courseClass)
         {
-            return false;
+            courseClass.Status = ClassStatus.Canceled;
+            return unitOfWork.ClassService.ChangeCourseClassStatus(courseClass);
         }
 
-        public bool AdjustCourseClassSchedule(DateTime startDate)
-        {   
-
-            return false;
-        }
-
-        public bool GetCourseClassStatus(CourseClass courseClass)
+        public bool AdjustCourseClassSchedule(CourseClass courseClass,DateTime startDate,DateTime endDate)
         {
-            return false;
+            return unitOfWork.ClassService.EditCourseClassDate(courseClass, startDate, endDate);
         }
 
-        public CourseClass GetCourseClass(string classID)
+        public CourseClass GetCourseClassByCode(string classCode)
         {
-            return null;
+            return unitOfWork.ClassService.GetCourseClassByCode(classCode);
         }
 
         public List<Participant> GetCourseClassParticipantList(CourseClass courseClass)
         {
-            List<Participant> participantList = new List<Participant>();
-            return participantList;
+            return unitOfWork.ClassService.GetCourseClassParticipantList(courseClass);
         }
     }
 }

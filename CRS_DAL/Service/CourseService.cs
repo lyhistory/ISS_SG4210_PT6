@@ -124,6 +124,7 @@ namespace CRS_DAL.Service
             {
                 Course _course = new Course()
                 {
+                    CourseID = Guid.NewGuid().ToString(),
                     CourseTitle = course.CourseTitle,
                     CourseCode = course.Code,
                     CategoryID = course.Category.ID,
@@ -134,7 +135,7 @@ namespace CRS_DAL.Service
                     Status = (int)course.Status
                 };
                 this.CourseRepository.Add(_course);
-                
+                this.unitOfWork.Commit();
                 return course;
             }
             catch (Exception ex)
