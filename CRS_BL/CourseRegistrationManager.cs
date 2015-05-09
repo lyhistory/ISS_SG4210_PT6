@@ -60,17 +60,17 @@ namespace nus.iss.crs.bl
 
         public List<Registration> GetRegistrationList(CourseClass cls)
         {
-            return null;
+            return unitOfWork.CourseRegistrationService.GetRegistrationList(cls);
         }
 
         public List<Registration> GetRegistrationList(User user)
         {
-            return null;
+            return unitOfWork.CourseRegistrationService.GetRegistrationList(user);
         }
 
         public List<Registration> GetRegistrationList(Company company)
         {
-            return null;
+            return unitOfWork.CourseRegistrationService.GetRegistrationList(company);
         }
 
 
@@ -81,19 +81,18 @@ namespace nus.iss.crs.bl
         /// <returns></returns>
         public bool EditRegistration(Registration registration)
         {
-               
-            return false;
+            return unitOfWork.CourseRegistrationService.EditRegistration(registration);
         }
 
         public bool DeleteRegistration(Registration registration)
         {
-            return false;
+            return unitOfWork.CourseRegistrationService.DeleteRegistration(registration);
         }
 
 
         public Registration GetRegistration(string RegID)
         {
-            return null;
+            return unitOfWork.CourseRegistrationService.GetRegistration(RegID);
         }
 
 

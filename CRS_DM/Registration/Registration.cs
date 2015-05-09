@@ -9,9 +9,9 @@ namespace nus.iss.crs.dm.Registration
 {
     public class Registration
     {
-        private string RegID;
+        public string RegID;
 
-        private RegistrationStatus status = RegistrationStatus.Valid;
+        public RegistrationStatus status = RegistrationStatus.Valid;
 
         private CourseClass cls;
         private Participant participant;
@@ -26,6 +26,7 @@ namespace nus.iss.crs.dm.Registration
 
         public string Sponsorship { get; set; }
         public string DietaryRequirement { get; set; }
+        public int OrganizationSize { get; set; }
 
     }
 }
