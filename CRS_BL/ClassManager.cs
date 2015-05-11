@@ -63,5 +63,14 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.ClassService.GetCourseClassParticipantList(courseClass);
         }
+
+        public DateTime AutoGenerateCourseClassEndDate(Course course, DateTime startDate)
+        {
+            DateTime endDate = DateTime.Now;
+            int duration = course.Duration;
+
+
+            return endDate;
+        }
     }
 }
