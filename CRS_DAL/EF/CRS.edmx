@@ -11,6 +11,12 @@
           <EntitySet Name="Course" EntityType="CRSModel.Store.Course" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CourseCategory" EntityType="CRSModel.Store.CourseCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CourseClass" EntityType="CRSModel.Store.CourseClass" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Instructor" EntityType="CRSModel.Store.Instructor" store:Type="Tables" store:Schema="dbo" store:Name="Instructor">
+            <DefiningQuery>SELECT 
+      [Instructor].[InstructorID] AS [InstructorID], 
+      [Instructor].[InstructorName] AS [InstructorName]
+      FROM [dbo].[Instructor] AS [Instructor]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Participant" EntityType="CRSModel.Store.Participant" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Registration" EntityType="CRSModel.Store.Registration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Staff" EntityType="CRSModel.Store.Staff" store:Type="Tables" Schema="dbo" />
@@ -39,7 +45,6 @@
           <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
           <Property Name="FaxNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -49,18 +54,18 @@
           <Property Name="CourseCode" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CourseTitle" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="ntext" />
-          <Property Name="Fee" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="Instructors" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Fee" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="InstructorID" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="NumberOfDays" Type="int" Nullable="false" />
-          <Property Name="CategoryID" Type="char" MaxLength="36" />
-          <Property Name="Status" Type="int" />
+          <Property Name="CategoryID" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseCategory">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
           <Property Name="CategoryID" Type="char" Nullable="false" MaxLength="36" />
-          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CategoryDesc" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="CourseClass">
@@ -72,8 +77,19 @@
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="ClassCode" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Status" Type="int" />
-          <Property Name="Size" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="InstructorID" />
+            <PropertyRef Name="InstructorName" />
+          </Key>
+          <Property Name="InstructorID" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="InstructorName" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Participant">
           <Key>
@@ -111,7 +127,7 @@
           <Property Name="BillingPersonName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="BillingAddressCountry" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="BillingAddressPostalCode" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Status" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -142,6 +158,7 @@
           <EntitySet Name="Courses" EntityType="CRSModel.Course" />
           <EntitySet Name="CourseCategories" EntityType="CRSModel.CourseCategory" />
           <EntitySet Name="CourseClasses" EntityType="CRSModel.CourseClass" />
+          <EntitySet Name="Instructors" EntityType="CRSModel.Instructor" />
           <EntitySet Name="Participants" EntityType="CRSModel.Participant" />
           <EntitySet Name="Registrations" EntityType="CRSModel.Registration" />
           <EntitySet Name="Staffs" EntityType="CRSModel.Staff" />
@@ -170,7 +187,6 @@
           <Property Name="ContactNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="JobTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="FaxNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -180,18 +196,18 @@
           <Property Name="CourseCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CourseTitle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Fee" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="Instructors" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Fee" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="InstructorID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
           <Property Name="NumberOfDays" Type="Int32" Nullable="false" />
-          <Property Name="CategoryID" Type="String" MaxLength="36" Unicode="false" FixedLength="true" />
-          <Property Name="Status" Type="Int32" />
+          <Property Name="CategoryID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseCategory">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
           <Property Name="CategoryID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
-          <Property Name="CategoryName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CategoryDesc" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="CourseClass">
@@ -203,8 +219,16 @@
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ClassCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="Size" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="InstructorID" />
+            <PropertyRef Name="InstructorName" />
+          </Key>
+          <Property Name="InstructorID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
+          <Property Name="InstructorName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Participant">
           <Key>
@@ -242,7 +266,7 @@
           <Property Name="BillingPersonName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="BillingAddressCountry" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="BillingAddressPostalCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Status" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -291,7 +315,6 @@
                 <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -303,7 +326,7 @@
                 <ScalarProperty Name="CourseTitle" ColumnName="CourseTitle" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Fee" ColumnName="Fee" />
-                <ScalarProperty Name="Instructors" ColumnName="Instructors" />
+                <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
                 <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -329,6 +352,14 @@
                 <ScalarProperty Name="ClassCode" ColumnName="ClassCode" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructors">
+            <EntityTypeMapping TypeName="CRSModel.Instructor">
+              <MappingFragment StoreEntitySet="Instructor">
+                <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
+                <ScalarProperty Name="InstructorName" ColumnName="InstructorName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

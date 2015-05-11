@@ -18,10 +18,12 @@ namespace CRS_DAL.Service
         IRepository<CourseCategory> CourseCategoryRepository;
         IRepository<Participant> ParticipantRepository;
         IRepository<Registration> RegistrationRepository;
+        IRepository<Instructor> InstructorRepository;
 
         public CourseRegistrationService(IUnitOfWork unitOfWork, IRepository<CourseClass> courseClassRepository,
             IRepository<Course> courseRepository,IRepository<CourseCategory> courseCategoryRepository,
-            IRepository<Participant> participantRepository,IRepository<Registration> registrationRepository)
+            IRepository<Participant> participantRepository,IRepository<Registration> registrationRepository,
+            IRepository<Instructor> instructorRepository)
         {
             this.unitOfWork = unitOfWork;
             this.CourseClassRepository = courseClassRepository;
@@ -29,6 +31,7 @@ namespace CRS_DAL.Service
             this.CourseCategoryRepository = courseCategoryRepository;
             this.ParticipantRepository = participantRepository;
             this.RegistrationRepository = registrationRepository;
+            this.InstructorRepository = instructorRepository;
         }
 
         public List<dm.Registration.Participant> GetEmployeeListByCompanyID(string companyID)
@@ -151,7 +154,7 @@ namespace CRS_DAL.Service
                             )
                         {
                             RegID=_registration.RegistrationID,
-                            status =_registration.Status.HasValue ? (dm.RegistrationStatus)_registration.Status.Value : dm.RegistrationStatus.Cancel,
+                            status =(dm.RegistrationStatus)_registration.Status,
                             billingInfo =new dm.Registration.Billing(){
                                 PersonName =_registration.BillingPersonName,
                                 Address =_registration.BillingAddress,
@@ -200,7 +203,7 @@ namespace CRS_DAL.Service
                             )
                         {
                             RegID = _registration.RegistrationID,
-                            status = _registration.Status.HasValue ? (dm.RegistrationStatus)_registration.Status.Value : dm.RegistrationStatus.Cancel,
+                            status = (dm.RegistrationStatus)_registration.Status,
                             billingInfo = new dm.Registration.Billing()
                             {
                                 PersonName = _registration.BillingPersonName,
@@ -250,7 +253,7 @@ namespace CRS_DAL.Service
                             )
                         {
                             RegID = _registration.RegistrationID,
-                            status = _registration.Status.HasValue ? (dm.RegistrationStatus)_registration.Status.Value : dm.RegistrationStatus.Cancel,
+                            status = (dm.RegistrationStatus)_registration.Status,
                             billingInfo = new dm.Registration.Billing()
                             {
                                 PersonName = _registration.BillingPersonName,
@@ -332,7 +335,7 @@ namespace CRS_DAL.Service
                             )
                         {
                             RegID = _registration.RegistrationID,
-                            status = _registration.Status.HasValue ? (dm.RegistrationStatus)_registration.Status.Value : dm.RegistrationStatus.Cancel,
+                            status = (dm.RegistrationStatus)_registration.Status,
                             billingInfo = new dm.Registration.Billing()
                             {
                                 PersonName = _registration.BillingPersonName,
@@ -365,30 +368,33 @@ namespace CRS_DAL.Service
                 Course _course = this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(_courseClass.CourseCode));
                 if (_course != null)
                 {
-
-                    CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
-                    if (_category != null)
+                    Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
+                    if (_instructor != null)
                     {
-                        return new dm.Course.CourseClass(
-                                new dm.Course.Course()
-                                {
-                                    CourseTitle = _course.CourseTitle,
-                                    Code = _course.CourseCode,
-                                    Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
-                                    Description = _course.Description,
-                                    Duration = _course.NumberOfDays,
-                                    Fee = _course.Fee.HasValue ? _course.Fee.Value.ToString() : "0",
-                                    Instructor = new dm.CourseInstructor(_course.Instructors),
-                                    Status = (dm.Course.CourseStatus)_course.Status
-                                }
-                            )
+                        CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
+                        if (_category != null)
                         {
-                            StartDate = _courseClass.StartDate,
-                            EndDate = _courseClass.EndDate,
-                            ClassCode = _courseClass.ClassCode,
-                            Size = _courseClass.Size.HasValue ? _courseClass.Size.Value : 0,
-                            Status = (dm.Course.ClassStatus)_courseClass.Status
-                        };
+                            return new dm.Course.CourseClass(
+                                    new dm.Course.Course()
+                                    {
+                                        CourseTitle = _course.CourseTitle,
+                                        Code = _course.CourseCode,
+                                        Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
+                                        Description = _course.Description,
+                                        Duration = _course.NumberOfDays,
+                                        Fee = _course.Fee.ToString(),
+                                        Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
+                                        Status = (dm.Course.CourseStatus)_course.Status
+                                    }
+                                )
+                            {
+                                StartDate = _courseClass.StartDate,
+                                EndDate = _courseClass.EndDate,
+                                ClassCode = _courseClass.ClassCode,
+                                Size = _courseClass.Size,
+                                Status = (dm.Course.ClassStatus)_courseClass.Status
+                            };
+                        }
                     }
                 }
             }

@@ -17,13 +17,15 @@ namespace CRS_DAL.Service
         IRepository<Course> CourseRepository;
         IRepository<CourseCategory> CourseCategoryRepository;
         IRepository<CourseClass> CourseClassRepository;
+        IRepository<Instructor> InstructorRepository;
 
-        public CourseService(IUnitOfWork uow,IRepository<Course> courseRepository, IRepository<CourseCategory> courseCategoryRepository, IRepository<CourseClass> courseClassRepository)
+        public CourseService(IUnitOfWork uow, IRepository<Course> courseRepository, IRepository<CourseCategory> courseCategoryRepository, IRepository<CourseClass> courseClassRepository, IRepository<Instructor> instructorRepository)
         {
             this.unitOfWork = uow;
             this.CourseCategoryRepository = courseCategoryRepository;
             this.CourseClassRepository = courseClassRepository;
             this.CourseRepository = courseRepository;
+            this.InstructorRepository = instructorRepository;
         }
 
         public List<dm.Course.CourseClass> GetCourseClassList(string courseCode, DateTime dateFrom, DateTime dateTo,int status=-1)
@@ -35,6 +37,7 @@ namespace CRS_DAL.Service
                     && (x.StartDate==null||x.EndDate==null||x.StartDate >= dateFrom && x.EndDate <= dateTo)
                     && (status<0||x.Status==status)).ToList();
                 Course _course = this.CourseRepository.GetWhere(x => x.CourseCode.Equals(courseCode)).FirstOrDefault();
+                Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
                 CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
 
                 return (from x in _list
@@ -46,8 +49,8 @@ namespace CRS_DAL.Service
                                 Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
                                 Description = _course.Description,
                                 Duration = _course.NumberOfDays,
-                                Fee = _course.Fee.HasValue ? _course.Fee.Value.ToString() : "0",
-                                Instructor = new dm.CourseInstructor(_course.Instructors),
+                                Fee = _course.Fee.ToString(),
+                                Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
                                 Status = (dm.Course.CourseStatus)_course.Status
 
                             })
@@ -56,7 +59,7 @@ namespace CRS_DAL.Service
                             StartDate = x.StartDate,
                             EndDate = x.EndDate,
                             Status = (dm.Course.ClassStatus)x.Status,
-                            Size = x.Size.Value
+                            Size = x.Size
                         }).ToList()
                         ;
             }
@@ -78,19 +81,20 @@ namespace CRS_DAL.Service
         public List<dm.Course.Course> GetCourseListByCategory(string courseCategoryID)
         {
             CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(courseCategoryID)).FirstOrDefault();
-            var _list = this.CourseRepository.GetWhere(x => x.CategoryID.Equals(courseCategoryID)).ToList();
-
-            return (from x in _list
+            var _courselist = this.CourseRepository.GetWhere(x => x.CategoryID.Equals(courseCategoryID)).ToList();
+            var _instructorlist = this.InstructorRepository.GetAll();
+            return (from _course in _courselist
+                    join _instructor in _instructorlist on _course.InstructorID equals _instructor.InstructorID
                     select new dm.Course.Course()
                     {
-                        CourseTitle = x.CourseTitle,
-                        Code = x.CourseCode,
+                        CourseTitle = _course.CourseTitle,
+                        Code = _course.CourseCode,
                         Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
-                        Description = x.Description,
-                        Duration = x.NumberOfDays,
-                        Fee = x.Fee.HasValue ? x.Fee.Value.ToString() : "0",
-                        Instructor = new dm.CourseInstructor(x.Instructors),
-                        Status = (dm.Course.CourseStatus)x.Status
+                        Description = _course.Description,
+                        Duration = _course.NumberOfDays,
+                        Fee = _course.Fee.ToString(),
+                        Instructor = new dm.CourseInstructor(_instructor.InstructorID,_instructor.InstructorName),
+                        Status = (dm.Course.CourseStatus)_course.Status
                     }).ToList();
         }
 
@@ -99,6 +103,7 @@ namespace CRS_DAL.Service
             if (!string.IsNullOrEmpty(code))
             {
                Course _course= this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(code));
+               Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
                CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
 
                dm.Course.Course course = new dm.Course.Course()
@@ -108,8 +113,8 @@ namespace CRS_DAL.Service
                                 Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
                                 Description = _course.Description,
                                 Duration = _course.NumberOfDays,
-                                Fee = _course.Fee.HasValue ? _course.Fee.Value.ToString() : "0",
-                                Instructor = new dm.CourseInstructor(_course.Instructors),
+                                Fee = _course.Fee.ToString(),
+                                Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
                                 Status = (dm.Course.CourseStatus)_course.Status
 
                             };
@@ -122,21 +127,28 @@ namespace CRS_DAL.Service
         {
             try
             {
-                Course _course = new Course()
+                if (course.Instructor != null && !string.IsNullOrEmpty(course.Instructor.Name))
                 {
-                    CourseID = Guid.NewGuid().ToString(),
-                    CourseTitle = course.CourseTitle,
-                    CourseCode = course.Code,
-                    CategoryID = course.Category.ID,
-                    Description = course.Description,
-                    NumberOfDays = course.Duration,
-                    Fee = int.Parse(course.Fee),
-                    Instructors = course.Instructor.Name,
-                    Status = (int)course.Status
-                };
-                this.CourseRepository.Add(_course);
-                this.unitOfWork.Commit();
-                return course;
+                    Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(course.Instructor.ID));
+                    if (_instructor != null)
+                    {
+                        Course _course = new Course()
+                        {
+                            CourseID = Guid.NewGuid().ToString(),
+                            CourseTitle = course.CourseTitle,
+                            CourseCode = course.Code,
+                            CategoryID = course.Category.ID,
+                            Description = course.Description,
+                            NumberOfDays = course.Duration,
+                            Fee = int.Parse(course.Fee),
+                            InstructorID = _instructor.InstructorID,
+                            Status = (int)course.Status
+                        };
+                        this.CourseRepository.Add(_course);
+                        this.unitOfWork.Commit();
+                        return course;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -151,20 +163,27 @@ namespace CRS_DAL.Service
             {
                 if (course.IsValid())
                 {
-                    Course _course = this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(course.Code));
-                    if (_course != null)
+                    if (course.Instructor != null && !string.IsNullOrEmpty(course.Instructor.Name))
                     {
-                        _course.CourseTitle = course.CourseTitle;
-                        _course.CourseCode = course.Code;
-                        _course.CategoryID = course.Category.ID;
-                        _course.Description = course.Description;
-                        _course.NumberOfDays = course.Duration;
-                        _course.Fee = int.Parse(course.Fee);
-                        _course.Instructors = course.Instructor.Name;
-                        _course.Status = (int)course.Status;
+                        Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(course.Instructor.ID));
+                        if (_instructor != null)
+                        {
+                            Course _course = this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(course.Code));
+                            if (_course != null)
+                            {
+                                _course.CourseTitle = course.CourseTitle;
+                                _course.CourseCode = course.Code;
+                                _course.CategoryID = course.Category.ID;
+                                _course.Description = course.Description;
+                                _course.NumberOfDays = course.Duration;
+                                _course.Fee = int.Parse(course.Fee);
+                                _course.InstructorID = course.Instructor.ID;
+                                _course.Status = (int)course.Status;
+                            }
+                            this.unitOfWork.Commit();
+                            return course;
+                        }
                     }
-                    this.unitOfWork.Commit();
-                    return course;
                 }
             }
             catch (Exception ex)

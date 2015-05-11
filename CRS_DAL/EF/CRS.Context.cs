@@ -30,6 +30,7 @@ namespace CRS_DAL.EF
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseCategory> CourseCategories { get; set; }
         public DbSet<CourseClass> CourseClasses { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Participant> Participants { get; set; }
         public DbSet<Registration> Registrations { get; set; }
         public DbSet<Staff> Staffs { get; set; }

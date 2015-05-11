@@ -24,6 +24,6 @@ namespace CRS_DAL.EF
         public string BillingPersonName { get; set; }
         public string BillingAddressCountry { get; set; }
         public string BillingAddressPostalCode { get; set; }
-        public Nullable<int> Status { get; set; }
+        public int Status { get; set; }
     }
 }

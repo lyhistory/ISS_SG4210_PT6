@@ -48,7 +48,8 @@ namespace CRS_DAL.Repository
                 if (cousrseService == null)
                     cousrseService = new CourseService(this,new RepositoryBase<Course>(crsContext),
                         new RepositoryBase<CourseCategory>(crsContext),
-                        new RepositoryBase<CourseClass>(crsContext));
+                        new RepositoryBase<CourseClass>(crsContext),
+                        new RepositoryBase<Instructor>(crsContext));
 
                 return cousrseService;
             }
@@ -61,7 +62,8 @@ namespace CRS_DAL.Repository
                 if (classService == null)
                     classService = new ClassService(this, new RepositoryBase<CourseClass>(crsContext),
                         new RepositoryBase<Course>(crsContext),new RepositoryBase<CourseCategory>(crsContext),
-                        new RepositoryBase<Participant>(crsContext),new RepositoryBase<Registration>(crsContext));
+                        new RepositoryBase<Participant>(crsContext), new RepositoryBase<Registration>(crsContext),
+                        new RepositoryBase<Instructor>(crsContext));
 
                 return classService;
             }
@@ -75,7 +77,8 @@ namespace CRS_DAL.Repository
                 if (courseRegistrationService == null)
                     courseRegistrationService = new CourseRegistrationService(this, new RepositoryBase<CourseClass>(crsContext),
                         new RepositoryBase<Course>(crsContext), new RepositoryBase<CourseCategory>(crsContext),
-                        new RepositoryBase<Participant>(crsContext), new RepositoryBase<Registration>(crsContext));
+                        new RepositoryBase<Participant>(crsContext), new RepositoryBase<Registration>(crsContext),
+                        new RepositoryBase<Instructor>(crsContext));
 
                 return courseRegistrationService;
             }

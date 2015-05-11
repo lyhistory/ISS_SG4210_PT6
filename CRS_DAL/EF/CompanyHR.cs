@@ -21,6 +21,5 @@ namespace CRS_DAL.EF
         public string ContactNumber { get; set; }
         public string JobTitle { get; set; }
         public string FaxNumber { get; set; }
-        public string EmailAddress { get; set; }
     }
 }

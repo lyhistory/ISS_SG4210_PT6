@@ -19,7 +19,7 @@ namespace CRS_DAL.EF
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public string ClassCode { get; set; }
-        public Nullable<int> Status { get; set; }
-        public Nullable<int> Size { get; set; }
+        public int Status { get; set; }
+        public int Size { get; set; }
     }
 }

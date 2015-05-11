@@ -77,6 +77,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CRS.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EF\Instructor.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Participant.cs">
       <DependentUpon>CRS.tt</DependentUpon>
     </Compile>
