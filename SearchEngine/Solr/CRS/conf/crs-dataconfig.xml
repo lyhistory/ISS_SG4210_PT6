@@ -1,0 +1,48 @@
+<dataConfig>
+	<dataSource type="JdbcDataSource" 
+		driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		url="jdbc:sqlserver://localhost:1433;databaseName=ISS_SG4210_PT6" 
+		user="sa" 
+		password="password"
+		name="crs-ds"
+		batchSize="100"
+		autoCommit="true"/>
+	<document name="courseIndexData">
+		<entity 
+			name="course_entity" dataSource="crs-ds" onError="skip" pk="crs_id"			
+			query="SELECT  'COURSE' AS doc_type, 
+					CourseID as crs_id
+					, CourseCode as coursecode
+					,CourseTitle as coursetitle
+					,[Description] as coursedesc
+					,Instructors as instructors       
+					,b.CategoryName as categoryname				  
+					FROM Course a
+					inner join CourseCategory b on a.CategoryID = b.CategoryID
+					where a.Status = 0" >
+				  
+			<field column="crs_id" name="crs_id"/>  
+			<field column="coursecode" name="coursecode"/>  
+			<field column="coursetitle" name="coursetitle"/>  
+			<field column="coursedesc" name="coursedesc"/> 
+			<field column="instructors" name="instructors"/> 
+			<field column="categoryname" name="categoryname"/>
+			<field column="doc_type" name="doc_type"/>  
+		</entity>		
+		<entity 
+			name="registration_entity" dataSource="crs-ds" onError="skip" pk="crs_id"
+			query="SELECT 'PARTICIPANT' AS doc_type 
+					,ParticipantID as crs_id
+					,IDNumber as idnumber
+					,FullName as fullname
+					,CompanyName as companyname
+					FROM Participant a" >
+				  
+			<field column="crs_id" name="crs_id"/>  
+			<field column="idnumber" name="idnumber"/>  
+			<field column="fullname" name="fullname"/>  
+			<field column="companyname" name="companyname"/>
+			<field column="doc_type" name="doc_type"/>
+		</entity>              
+	</document>
+</dataConfig>

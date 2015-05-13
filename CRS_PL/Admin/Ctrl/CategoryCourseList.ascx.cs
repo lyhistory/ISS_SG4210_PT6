@@ -52,10 +52,11 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             courseRow.Cells.Add(editID);
 
             TableCell deleteID = new TableCell();
-            h = new HyperLink();
-            h.Text = "Delete";
-            h.NavigateUrl = "";
-            deleteID.Controls.Add(h);
+            LinkButton lb = new LinkButton();
+            lb.Text = "Delete";
+            
+            lb.OnClientClick = "";
+            deleteID.Controls.Add(lb);
             courseRow.Cells.Add(deleteID);
 
             TableCell updateID = new TableCell();
@@ -72,6 +73,11 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             view.Controls.Add(h);
             courseRow.Cells.Add(view);
             return courseRow;
+        }
+
+        void lb_Click(Course course)
+        {
+            
         }
 
         public CourseCategory Category { get; set; }
