@@ -66,11 +66,26 @@ namespace nus.iss.crs.bl
 
         public DateTime AutoGenerateCourseClassEndDate(Course course, DateTime startDate)
         {
-            DateTime endDate = DateTime.Now;
+            DateTime endDate = new DateTime();
+            DateTime tempDate = new DateTime();
             int duration = course.Duration;
 
-
+            tempDate = startDate;
+            while(duration-- > 0)
+            {
+                tempDate = tempDate.AddDays(1);
+                while(tempDate.DayOfWeek == DayOfWeek.Saturday || tempDate.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    tempDate = tempDate.AddDays(1);
+                }
+            }
             return endDate;
+        }
+
+        public List<DateTime> SingaporeHolidaySchedule()
+        {
+            List<DateTime> _holidays = new List<DateTime>();
+            return _holidays;
         }
     }
 }
