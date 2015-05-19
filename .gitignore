@@ -2,5 +2,6 @@ bin
 obj
 Log
 TestResults
+Web.config
 CRS.v11.suo
 *.suo

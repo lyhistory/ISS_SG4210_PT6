@@ -21,10 +21,10 @@ namespace nus.iss.crs.bl
         /// <param name="session"></param>
         internal CourseManager(ISession session)
         {
-            if (session.GetCurrentUser().GetRole() == null)
-            {
-                throw new Exception("No permisison");
-            }
+            //if (session.GetCurrentUser().GetRole() == null)
+            //{
+            //    throw new Exception("No permisison");
+            //}
         }
 
         //List course category

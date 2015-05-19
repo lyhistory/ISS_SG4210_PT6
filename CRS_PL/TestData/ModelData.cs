@@ -29,16 +29,16 @@ namespace nus.iss.crs.pl.TestData
         {
             List<CourseInstructor> instructors = new List<CourseInstructor>();
 
-            CourseInstructor instructor = new CourseInstructor("Super Hero");
+            CourseInstructor instructor = new CourseInstructor("1","Super Hero");
             instructors.Add(instructor);
 
-            instructor = new CourseInstructor("Super Man");
+            instructor = new CourseInstructor("2","Super Man");
             instructors.Add(instructor);
 
-            instructor = new CourseInstructor("Green Man");
+            instructor = new CourseInstructor("3","Green Man");
             instructors.Add(instructor);
 
-            instructor = new CourseInstructor("Iron Man");
+            instructor = new CourseInstructor("4","Iron Man");
             instructors.Add(instructor);
 
             return instructors;

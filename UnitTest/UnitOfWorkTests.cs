@@ -14,8 +14,9 @@ namespace UnitTest
         public void TestUserRepository()
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-
-            Assert.AreEqual(unitOfWork.UserService.GetByLoginID("G123456").UserType, 1);
+            
+            var user=unitOfWork.UserService.GetByLoginID("G123456");
+            Assert.AreEqual(user.RoleName, "User");
         }
     }
 }
