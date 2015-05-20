@@ -573,6 +573,6 @@
 		<lst name="defaults">
 		  <str name="config">crs-dataconfig.xml</str>
 		</lst>
-	  </requestHandler>
+	</requestHandler>
 	  
 </config>
