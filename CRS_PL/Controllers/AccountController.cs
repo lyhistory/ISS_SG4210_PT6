@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace nus.iss.crs.pl.Controllers
 {
-    public class AccountController: BaseController
+    public class AccountController: AuthController
     {
         //Account Center
         public ActionResult Index()

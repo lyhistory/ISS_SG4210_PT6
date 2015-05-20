@@ -1,45 +1,46 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Layout = null;
 }
 @model List<nus.iss.crs.dm.Course.CourseCategory>
 <div>
-    @foreach(var courseCategory in Model)
-    { 
-    <table border="1">
-        <thead>
-            <th>Category Name</th>
-            <th>Duration</th>
-            @for(int i=0;i<6;++i)
-            { 
-                <th>@DateTime.Now.AddMonths(i).Month</th>
-            }
-        </thead>
-        <tbody>
-            <tr><td colspan="8">@courseCategory.Name</td></tr>
-            @foreach(var course in courseCategory.GetCourses())
-            { 
-                
-            <tr>
-                <td>@course.CourseTitle</td>
-                <td>@course.Duration</td>
-                @foreach(var courseClass in course.GetClassList())
-                { 
-                   for(int i=0;i<6;++i)
-                   {
-                       if(courseClass.StartDate.Month==DateTime.Now.AddMonths(i).Month)
-                       {
-                           <td>@courseClass.StartDate.Day</td>
-                       }
-                       else
-                       {
-                           <td>&nbsp;</td>
-                       }
-                   }
+    @foreach (var courseCategory in Model)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Duration</th>
+                    @for (int i = 0; i < 6; ++i)
+                    {
+                        <th>@DateTime.Now.AddMonths(i).Month</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="8">@courseCategory.Name</td></tr>
+                @foreach (var course in courseCategory.GetCourses())
+                {
+
+                    <tr>
+                        <td>@course.CourseTitle</td>
+                        <td>@course.Duration</td>
+                        @foreach (var courseClass in course.GetClassList())
+                        {
+                            for (int i = 0; i < 6; ++i)
+                            {
+                                if (courseClass.StartDate.Month == DateTime.Now.AddMonths(i).Month)
+                                {
+                                    <td>@courseClass.StartDate.Day</td>
+                                }
+                                else
+                                {
+                                    <td>&nbsp;</td>
+                                }
+                            }
+                        }
+                    </tr>
                 }
-            </tr>
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     }
 </div>

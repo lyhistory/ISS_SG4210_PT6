@@ -18,12 +18,10 @@ namespace nus.iss.crs.pl.Controllers
             bool afterLogin = false;
             User session = SessionHelper.Current;
 
-            if (session == null)
+            if (session != null)
             {
-                filterContext.Result = Kickout(filterContext.HttpContext.Request.IsAjaxRequest());
-            }
-            else
                 afterLogin = true;
+            }
 
             ViewBag.AfterLogin = afterLogin;
 

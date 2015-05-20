@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace nus.iss.crs.pl.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private static LogHelper _log = LogHelper.GetLogger(typeof(HomeController));
 

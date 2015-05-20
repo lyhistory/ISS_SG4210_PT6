@@ -19,12 +19,15 @@ namespace nus.iss.crs.pl
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquerytmpl").Include(
+                        "~/Scripts/jquery.tmpl*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Content/bootstrap-3.3.4-dist/js/bootstrap.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include( 
+                      "~/Content/bootstrap-3.3.4-dist/css/bootstrap.css",
+                      "~/Content/bootstrap-3.3.4-dist/css/bootstrap-theme.css",
                       "~/Content/site.css"));
         }
     }
