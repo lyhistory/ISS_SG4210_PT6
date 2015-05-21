@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Newton
+using Newtonsoft.Json;
 
 namespace nus.iss.crs.bl
 {
@@ -24,20 +27,39 @@ namespace nus.iss.crs.bl
         /// <typeparam name="T"></typeparam>
         /// <param name="criteion"></param>
         /// <returns></returns>
-        public List<T> Search<T>(Search.SearchCriterion criteion)
+        public async Task<T> Search<T>(string token,Search.SearchCriterion criteion)
         {
             try 
             {
-                string searchUrl = "http://localhost:8983/solr/CRS/select?wt=json&indent=true&q=name:" + criteion;
-                //HttpRequestMessage reuestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(relativeUrl, UriKind.Relative));
-                //reqMsg.Headers.UserAgent.TryParseAdd("MSIClient");
-                //HttpResponseMessage resMsg = await client.SendAsync(reqMsg);
+                HttpClient client = new HttpClient();
+                string searchUrl = "http://localhost:8983/solr/CRS/select?wt=json&indent=true&q=" + token +":" + criteion;
+                HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(searchUrl, UriKind.Relative));
+                //requestMessage.Headers.UserAgent.TryParseAdd("MSIClient");
+                HttpResponseMessage resultMessage = await client.SendAsync(requestMessage);
+                resultMessage.EnsureSuccessStatusCode();
+                
+                if (resultMessage.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    string result = await resultMessage.Content.ReadAsStringAsync();
+
+                    List<T> resultList = JsonConvert.DeserializeObject<List<T>>(result);
+                    
+                }
+                else
+                {
+
+                }
+
+                
             }
             catch(Exception ex)
             {
                 Console.WriteLine("Search error:" + ex);
             }
-            throw new NotImplementedException();
+
+            return default(T);
         }
+
+
     }
 }
