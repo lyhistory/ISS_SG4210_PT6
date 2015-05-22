@@ -2,45 +2,96 @@
     ViewBag.Title = "Home Page";
 }
 @model List<nus.iss.crs.dm.Course.CourseCategory>
-<div>
-    @foreach (var courseCategory in Model)
-    {
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Category Name</th>
-                    <th>Duration</th>
-                    @for (int i = 0; i < 6; ++i)
-                    {
-                        <th>@DateTime.Now.AddMonths(i).Month</th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td colspan="8">@courseCategory.Name</td></tr>
-                @foreach (var course in courseCategory.GetCourses())
-                {
+<div class="container">
+    <h1 class="page-header">Course Catalogue</h1>
+    <form class="form-inline" style="padding:10px;">
+      <div class="form-group">
+        <input type="search" id="txtSearch" class="search"/>
+    
+    </div>
+    <input type="button" id="btnSearch" class="class="btn btn-default"" value="Search"/>
+    </form>
 
-                    <tr>
-                        <td>@course.CourseTitle</td>
-                        <td>@course.Duration</td>
-                        @foreach (var courseClass in course.GetClassList())
-                        {
-                            for (int i = 0; i < 6; ++i)
-                            {
-                                if (courseClass.StartDate.Month == DateTime.Now.AddMonths(i).Month)
-                                {
-                                    <td>@courseClass.StartDate.Day</td>
-                                }
-                                else
-                                {
-                                    <td>&nbsp;</td>
-                                }
-                            }
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+    <div id="CourseCatalogListContainer">
+
+    </div>
 </div>
+@section scripts{
+    <script type="text/x-jquery-tmpl" id="courseCatalogListTmpl">
+        {{each Data}}
+            <table class="table table-bordered">
+                    <thead>
+                        <tr style="background-color:blue;color:white;font-weight:bold;">
+                            <th>Programme</th>
+                            <th>Duration</th>
+                            <th colspan="6">Schedule(Month)</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    <tr style="background-color:orange;">
+                        <td colspan="2">${Name}</td>
+                        {{each(i,month) getMonths()}}
+                                <td>${@DateTime.Now.Month+month}</td>
+                        {{/each}}
+                    </tr>
+                    {{each CourseList}}
+                        <tr>
+                            <td style="width:56%;"><a href="#" data-tag="CourseDetail" data-code="${Code}">${CourseTitle}</a></td>
+                            <td style="width:8%;">${Duration}</td>
+                            {{each CourseClasses}}
+                                {{each(i,month) getMonths()}}
+                                    {{if StartMonth==(@DateTime.Now.Month+month)}}
+                                        <td style="width:6%;">${StartDay}</td>
+                                    {{else}}
+                                        <td style="width:6%;">&nbsp;</td>
+                                    {{/if}}
+                                {{/each}}
+                            {{/each}}
+                        </tr>
+                       {{/each}}
+                </tbody>
+                </table>
+{{/each}}
+    </script>
+    <script type="text/javascript">
+        function getMonths() {
+            return [0, 1, 2, 3, 4, 5];
+        }
+        function GetCourseCategoryList(txtSearch) {
+            $.ajax({
+                type: 'post',
+                url: '/home/GetCourseCategoryList',
+                data: { searchText: txtSearch }
+            }).done(function (data) {
+                debugger;
+                if (data.Data != null) {
+                    $("#CourseCatalogListContainer").html($("#courseCatalogListTmpl").tmpl(data));
+                } else {
+                    $("#CourseCatalogListContainer").html("<p>No Data.</p>");
+                }
+            });
+        }
+        $(function () {
+            GetCourseCategoryList();
+
+            $('#btnSearch').click(function () {
+                var txtSearch = $("#txtSearch").val();
+                if (txtSearch != "") {
+                    GetCourseCategoryList(txtSearch);
+                } else {
+                    alert("please input something!");
+                }
+            });
+            $('#CourseCatalogListContainer').on('click','a[data-tag=CourseDetail]', function (evt) {
+                evt.preventDefault();
+                var code = $(this).attr('data-code');
+                if (code != '') {
+                    window.location.href = "/home/coursedetail?code=" + code;
+                } else {
+                    alert('something wrong,contact developer');
+                }
+            });
+
+        });
+    </script>
+}

@@ -35,6 +35,7 @@ namespace nus.iss.crs.dm.Course
         }
 
         protected List<CourseClass> _CourseClasses = new List<CourseClass>();
+        public List<CourseClass> CourseClasses { get { return _CourseClasses; } }
         public  List<CourseClass> GetClassList()
         {
             return _CourseClasses;
@@ -50,7 +51,7 @@ namespace nus.iss.crs.dm.Course
         {
             if (_CourseClasses.Contains(cls))
                 return;
-            if (cls.GetCourse() != this)
+            if (!cls.GetCourse().Code.Equals(this.Code))
                 return;
             _CourseClasses.Add(cls);
         }

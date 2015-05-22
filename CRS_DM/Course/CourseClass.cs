@@ -27,5 +27,21 @@ namespace nus.iss.crs.dm.Course
         public string ClassCode { get; set; }
         public int Size { get; set; }
         public ClassStatus Status { get; set; }
+
+        //for template
+        public int StartMonth
+        {
+            get
+            {
+                return StartDate.Month;
+            }
+        }
+        public int StartDay
+        {
+            get
+            {
+                return StartDate.Day;
+            }
+        }
     }
 }

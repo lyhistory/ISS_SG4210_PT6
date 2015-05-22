@@ -13,6 +13,7 @@ namespace nus.iss.crs.dm.Course
         public string ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public List<Course> CourseList { get { return courseList; } } // for template
         
         public CourseCategory(string ID, string categoryName, string categoryDescrition)
         {

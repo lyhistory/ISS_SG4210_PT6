@@ -26,11 +26,18 @@
 }
 else
 {
-<div>
+<div class="container center-block">
+    <h1 class="page-header">LOGIN FORM</h1>
     <form>
-        <input type="text" name="loginID" id="loginID"/>
-        <input type="password" name="password" name="password"/>
-        <input type="button" id="Logon" value="Submit" />
-    </form>
+      <div class="form-group">
+        <label for="loginID">LoginID</label>
+        <input type="text" class="form-control" id="loginID" name="loginID" placeholder="Login ID">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+      </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
 </div>
 }

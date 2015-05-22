@@ -20,17 +20,29 @@ namespace nus.iss.crs.pl.Controllers
 
         public ActionResult Index()
         {
-            ISession session = SessionFactory.CreateSession();
-            LogingStrategy loginStrategy = new NonLoginStrategy();
+            //ISession session = SessionFactory.CreateSession();
+            //LogingStrategy loginStrategy = new NonLoginStrategy();
 
-            session.Login(loginStrategy);
+            //session.Login(loginStrategy);
 
-            CourseManager manager = session.CreateCourseManager();
-            List<CourseCategory> categoryList = manager.GetCourseCategoryList(DateTime.Now,DateTime.Now.AddMonths(5),true);
-            //List<CourseClass> courseClassList=manager.GetCourseClassList();
+            //CourseManager manager = session.CreateCourseManager();
+            List<CourseCategory> categoryList = CourseManager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
 
             return View(categoryList);
         }
+
+        public JsonResult GetCourseCategoryList(string searchText = "")
+        {
+            List<CourseCategory> categoryList = CourseManager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
+            return Json(new { Data = categoryList });
+        }
+
+        public ActionResult CourseDetail(string code)
+        {
+            var model = CourseManager.GetCourseByCode(code);
+            return View(model);
+        }
+
         [CRSAuthorize(Roles = "HR")]
         public ActionResult About()
         {
