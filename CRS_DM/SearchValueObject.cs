@@ -10,5 +10,10 @@ namespace nus.iss.crs.dm
     {
         public string doc_type { get; set; }
         public string crs_id { get; set; }
+        public string coursecode { get; set; }
+        public string categoryname { get; set; }
+        public string coursedesc { get; set; }
+        public string instructors { get; set; }
+        public string coursetitle { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace nus.iss.crs.bl
 {
     public interface ISearch
     {
-        List<T> Search<T>(SearchCriterion criteion);
+        Task<List<BaseSearchValueObject>> Search(SearchCriterion criteion);
 
     }
 }

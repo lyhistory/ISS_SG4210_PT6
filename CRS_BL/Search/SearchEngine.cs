@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using nus.iss.crs.bl.Search;
+using nus.iss.crs.dm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,14 @@ namespace nus.iss.crs.bl
 {
     internal class SearchEngine : ISearch
     {
-        SearchEngine()
+        internal SearchEngine()
         {
             
+        }
+
+        public async Task<List<BaseSearchValueObject>> Search(SearchCriterion criteion)
+        {
+            return null;
         }
         /// <summary>
         /// Search Registration by name, id number, company,
@@ -26,7 +33,7 @@ namespace nus.iss.crs.bl
         /// <typeparam name="T"></typeparam>
         /// <param name="criteion"></param>
         /// <returns></returns>
-        public async Task<T> Search<T>(string token,Search.SearchCriterion criteion)
+        public async Task<BaseSearchValueObject> Search(string token, Search.SearchCriterion criteion)
         {
             try 
             {
@@ -41,7 +48,7 @@ namespace nus.iss.crs.bl
                 {
                     string result = await resultMessage.Content.ReadAsStringAsync();
 
-                    List<T> resultList = JsonConvert.DeserializeObject<List<T>>(result);
+                    List<BaseSearchValueObject> resultList = JsonConvert.DeserializeObject<List<BaseSearchValueObject>>(result);
                     
                 }
                 else
@@ -56,7 +63,7 @@ namespace nus.iss.crs.bl
                 Console.WriteLine("Search error:" + ex);
             }
 
-            return default(T);
+            return null;
         }
 
 
