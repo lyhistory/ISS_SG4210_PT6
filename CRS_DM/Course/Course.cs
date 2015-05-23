@@ -36,6 +36,25 @@ namespace nus.iss.crs.dm.Course
 
         protected List<CourseClass> _CourseClasses = new List<CourseClass>();
         public List<CourseClass> CourseClasses { get { return _CourseClasses; } }
+        public Dictionary<string, string> MonthCourseClass
+        {
+            get
+            {
+                Dictionary<string, string> _groupbyMonth = new Dictionary<string, string>();
+                foreach (var item in GetClassList())
+                {
+                    if (_groupbyMonth.ContainsKey(item.StartMonth.ToString()))
+                    {
+                        _groupbyMonth[item.StartMonth.ToString()] += "," + item.StartDay;
+                    }
+                    else
+                    {
+                        _groupbyMonth[item.StartMonth.ToString()] = item.StartDay.ToString();
+                    }
+                }
+                return _groupbyMonth;
+            }
+        }
         public  List<CourseClass> GetClassList()
         {
             return _CourseClasses;

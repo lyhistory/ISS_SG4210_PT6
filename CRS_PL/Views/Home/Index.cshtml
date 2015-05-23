@@ -38,10 +38,10 @@
                         <tr>
                             <td style="width:56%;"><a href="#" data-tag="CourseDetail" data-code="${Code}">${CourseTitle}</a></td>
                             <td style="width:8%;">${Duration}</td>
-                            {{each CourseClasses}}
+                            {{each(_month, _displayday) MonthCourseClass}}
                                 {{each(i,month) getMonths()}}
-                                    {{if StartMonth==(@DateTime.Now.Month+month)}}
-                                        <td style="width:6%;">${StartDay}</td>
+                                    {{if _month==(@DateTime.Now.Month+month)}}
+                                        <td style="width:6%;">${_displayday}</td>
                                     {{else}}
                                         <td style="width:6%;">&nbsp;</td>
                                     {{/if}}

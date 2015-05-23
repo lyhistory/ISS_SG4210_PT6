@@ -43,5 +43,7 @@ namespace nus.iss.crs.dm.Course
                 return StartDate.Day;
             }
         }
+
+        public string DisplayStartDay { get; set; }
     }
 }

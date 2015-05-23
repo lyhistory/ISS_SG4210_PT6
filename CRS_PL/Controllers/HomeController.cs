@@ -26,14 +26,32 @@ namespace nus.iss.crs.pl.Controllers
             //session.Login(loginStrategy);
 
             //CourseManager manager = session.CreateCourseManager();
-            List<CourseCategory> categoryList = CourseManager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
+            //List<CourseCategory> categoryList = CourseManager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
 
-            return View(categoryList);
+            return View();
         }
 
         public JsonResult GetCourseCategoryList(string searchText = "")
         {
             List<CourseCategory> categoryList = CourseManager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
+            //foreach (var category in categoryList)
+            //{
+            //    var courselist=category.CourseList;
+            //    foreach (var course in courselist)
+            //    {
+            //        var courseClasses=course.CourseClasses;
+
+                    
+            //        foreach (var item in courseClasses)
+            //        {
+            //            if (_groupbyMonth.ContainsKey(item.StartMonth.ToString()))
+            //            {
+            //                item.DisplayStartDay = _groupbyMonth[item.StartMonth.ToString()];
+            //            }
+            //        }
+            //    }
+            //}
+
             return Json(new { Data = categoryList });
         }
 
