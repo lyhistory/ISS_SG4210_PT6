@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using nus.iss.crs.dm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,35 +9,39 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.bl.Search
 {
-    public abstract class Converter<T> : JsonConverter
+    public class Response
     {
-        protected abstract T Create(Type objectType,JObject jObject);
+        public int numFound { get; set; }
+        public int start { get; set; }
+        public List<BaseSearchValueObject> baseSearchValueObject { get; set; }
+    }
+
+    public class ResponseConverter : JsonConverter
+    {
+        //protected abstract T Create(Type objectType,JObject jObject);
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(T).IsAssignableFrom(objectType);
+            return typeof(BaseSearchValueObject).IsAssignableFrom(objectType);
         }
 
         public override object ReadJson(JsonReader reader,
                                         Type objectType,
-                                         object existingValue,
-                                         JsonSerializer serializer)
+                                        object existingValue,
+                                        JsonSerializer serializer)
         {
             // Load JObject from stream
             JObject jObject = JObject.Load(reader);
-
-            // Create target object based on JObject
-            T target = Create(objectType, jObject);
+            BaseSearchValueObject baseSearchValueObject = new BaseSearchValueObject();
+            var properties = jObject.Properties().ToList();
 
             // Populate the object properties
-            serializer.Populate(jObject.CreateReader(), target);
+            serializer.Populate(jObject.CreateReader(), baseSearchValueObject);
 
-            return target;
+            return baseSearchValueObject;
         }
 
-        public override void WriteJson(JsonWriter writer,
-                                       object value,
-                                       JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer,object value,JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }

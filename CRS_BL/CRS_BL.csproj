@@ -63,7 +63,6 @@
     <Compile Include="ReportManager.cs" />
     <Compile Include="Search\Converter.cs" />
     <Compile Include="Search\ISearch.cs" />
-    <Compile Include="Search\PersonConverter.cs" />
     <Compile Include="Search\SearchCriterionItem.cs" />
     <Compile Include="Search\SearchCriterion.cs" />
     <Compile Include="Search\SearchEngine.cs" />
