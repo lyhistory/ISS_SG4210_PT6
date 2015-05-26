@@ -70,7 +70,7 @@
     <Compile Include="Role\PublicUserRole.cs" />
     <Compile Include="Role\StaffRole.cs" />
     <Compile Include="Role\SystemAdminRole.cs" />
-    <Compile Include="SearchValueObject.cs" />
+    <Compile Include="BaseSearchValueObject.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Role\UserRole.cs" />
     <Compile Include="ParticipantAttendance.cs" />

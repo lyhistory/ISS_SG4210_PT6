@@ -61,7 +61,9 @@
     <Compile Include="LoginManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportManager.cs" />
-    <Compile Include="Search\Converter.cs" />
+    <Compile Include="Search\SolrDocumentDetailConverter.cs" />
+    <Compile Include="Search\SolrResponseConverter.cs" />
+    <Compile Include="Search\SolrRootObjectConverter.cs" />
     <Compile Include="Search\ISearch.cs" />
     <Compile Include="Search\SearchCriterionItem.cs" />
     <Compile Include="Search\SearchCriterion.cs" />
