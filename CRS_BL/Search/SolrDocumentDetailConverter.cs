@@ -23,27 +23,27 @@ namespace nus.iss.crs.bl.Search
             JObject jObject = JObject.Load(reader);
             BaseSearchValueObject baseSearchValueObject = new BaseSearchValueObject();
 
-            PropertyInfo[] properties = baseSearchValueObject.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (PropertyInfo p in properties)
-            {
-                object v = jObject[p.Name];
-                if (v != null)
-                {
-                    Type type = p.PropertyType;
-                    if (type == typeof(BaseSearchValueObject))
-                    {
-                        BaseSearchValueObject dynamicFields = new BaseSearchValueObject();
-                        JArray jOpts = (JArray)jObject[p.Name];
+            //PropertyInfo[] properties = baseSearchValueObject.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            //foreach (PropertyInfo p in properties)
+            //{
+            //    object v = jObject[p.Name];
+            //    if (v != null)
+            //    {
+            //        Type type = p.PropertyType;
+            //        if (type == typeof(BaseSearchValueObject))
+            //        {
+            //            BaseSearchValueObject dynamicFields = new BaseSearchValueObject();
+            //            JArray jOpts = (JArray)jObject[p.Name];
 
-                        if (jOpts.Count > 0)
-                        {
-                            dynamicFields = JsonConvert.DeserializeObject<BaseSearchValueObject>(jOpts.ToString());
-                            p.SetValue(baseSearchValueObject, dynamicFields, null);
-                        }
-                    }
-                }
-            }
-
+            //            if (jOpts.Count > 0)
+            //            {
+            //                dynamicFields = JsonConvert.DeserializeObject<BaseSearchValueObject>(jOpts.ToString());
+            //                p.SetValue(baseSearchValueObject, dynamicFields, null);
+            //            }
+            //        }
+            //    }
+            //}
+            baseSearchValueObject = JsonConvert.DeserializeObject<BaseSearchValueObject>(jObject.ToString());
             return baseSearchValueObject;
         }
 
