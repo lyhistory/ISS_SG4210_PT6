@@ -34,23 +34,6 @@ namespace nus.iss.crs.pl.Controllers
         public JsonResult GetCourseCategoryList(string searchText = "")
         {
             List<CourseCategory> categoryList = CourseManager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
-            //foreach (var category in categoryList)
-            //{
-            //    var courselist=category.CourseList;
-            //    foreach (var course in courselist)
-            //    {
-            //        var courseClasses=course.CourseClasses;
-
-                    
-            //        foreach (var item in courseClasses)
-            //        {
-            //            if (_groupbyMonth.ContainsKey(item.StartMonth.ToString()))
-            //            {
-            //                item.DisplayStartDay = _groupbyMonth[item.StartMonth.ToString()];
-            //            }
-            //        }
-            //    }
-            //}
 
             return Json(new { Data = categoryList });
         }
@@ -59,6 +42,10 @@ namespace nus.iss.crs.pl.Controllers
         {
             var model = CourseManager.GetCourseByCode(code);
             return View(model);
+        }
+
+        public ActionResult CourseClassRegistration(){
+            return View();
         }
 
         [CRSAuthorize(Roles = "HR")]
@@ -77,31 +64,68 @@ namespace nus.iss.crs.pl.Controllers
             return View();
         }
 
+        #region Login&Register
         public ActionResult Logon(string message="")
         {
             ViewBag.Message = message;
-            ViewBag.isLogon = SessionHelper.Current == null ? false : true;
+
+            if (SessionHelper.Current != null)
+            {
+                ViewBag.isLogon = true;
+                string redirectUrl = Request.UrlReferrer.AbsoluteUri;
+                if (redirectUrl.ToLower().Contains("home/courseclassregistration"))
+                {
+                    HttpContext.Response.SetCookie(new HttpCookie("redirectUrl", redirectUrl));
+                }
+            }
+            else
+            {
+                ViewBag.isLogon = false;
+            }
+
             return View();
         }
         [HttpPost]
-        public JsonResult PostLogon(string loginID,string password)
+        public JsonResult PostLogon(string loginID,string password,string loginType)
         {
-
-            nus.iss.crs.dm.User loginUser = new nus.iss.crs.dm.User() {UserID="test",Password="1111",Email="", RoleName="HR" };
-            loginUser.GetRole();
-            SessionHelper.SetSession(loginUser);
-            CRSFormsAuthentication<User>.SetAuthCookie(loginUser.UserID, loginUser, true);
-
-            //ISession session = SessionFactory.CreateSession();
-            //session.Login(new IDLoginStrategy(loginUser));
-
-            //User validUser = session.GetCurrentUser();
-            //validUser.GetRole();           
+            bool result = false;
+            if (loginType.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                //do staff login
+            }
+            else
+            {
+                //do user login
+                nus.iss.crs.dm.User loginUser = new nus.iss.crs.dm.User() { UserID = "test", Password = "1111", Email = "", RoleName = "HR" };
+                loginUser.GetRole();
+                if (loginUser != null)
+                {
+                    SessionHelper.SetSession(loginUser);
+                    CRSFormsAuthentication<User>.SetAuthCookie(loginUser.UserID, loginUser, true);
+                    result = true;
+                }
+            }
+            if (result)
+            {
+                var cookie = HttpContext.Request.Cookies["redirectUrl"];
+                if (cookie != null)
+                {
+                    string redirectUrl = cookie.Value;
+                    if (string.IsNullOrEmpty(redirectUrl))
+                    {
+                        return Json(new { Code = 1, redirectUrl = redirectUrl });
+                    }
+                }
+            }
+            else
+            {
+                return Json(new { Code = -1 });
+            }    
             
 
             return Json(new{Code=1});
         }
-
+        #endregion
 
         public ActionResult Unauthorized()
         {

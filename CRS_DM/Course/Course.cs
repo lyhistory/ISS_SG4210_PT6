@@ -35,7 +35,7 @@ namespace nus.iss.crs.dm.Course
         }
 
         protected List<CourseClass> _CourseClasses = new List<CourseClass>();
-        public List<CourseClass> CourseClasses { get { return _CourseClasses; } }
+        public List<CourseClass> CourseClasses { get { return _CourseClasses; } set { _CourseClasses = value; } }
         public Dictionary<string, string> MonthCourseClass
         {
             get

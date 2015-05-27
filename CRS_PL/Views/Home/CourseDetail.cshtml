@@ -3,7 +3,49 @@
 }
 @model nus.iss.crs.dm.Course.Course
 
-<div class="container">
+<div class="container-fluid">
     <h1 class="page-header">@Model.CourseTitle</h1>
 
+    <div class="row">
+        <div class="col-md-8">
+            <p>Instructor: @Model.Instructor.Name</p>
+            <p>Duration: @Model.Duration</p>
+            <p>Fee: @Model.Fee</p>
+            <h2>Course Overview</h2>
+            <p class="lead">
+                @Model.Description
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>Upcoming Classes</p>
+            <div class="row">
+                <div class="col-md-6">
+                    Schedule
+                </div>
+                <div class="col-md-6">
+                    Duration
+                </div>
+            </div>
+            @if (Model.CourseClasses.Count > 0)
+            { 
+                foreach (var item in Model.CourseClasses)
+                {
+                    <div class="row">
+                        <div class="col-md-6">
+                            @item.StartDate
+                            to
+                            @item.EndDate
+                        </div>
+                        <div class="col-md-6">
+                            @Model.Duration
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class ="row"><div class="col-md-12">No Data Yet.</div></div>
+            }
+        </div>
+    </div>
 </div>

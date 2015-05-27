@@ -103,6 +103,7 @@ namespace CRS_DAL.Service
             if (!string.IsNullOrEmpty(code))
             {
                Course _course= this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(code));
+               List<CourseClass> _courseClasslist=this.CourseClassRepository.GetWhere(x=>x.CourseCode.Equals(code)).ToList();
                Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
                CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
 
@@ -116,8 +117,17 @@ namespace CRS_DAL.Service
                                 Fee = _course.Fee.ToString(),
                                 Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
                                 Status = (dm.Course.CourseStatus)_course.Status
-
                             };
+               course.CourseClasses = (from x in _courseClasslist
+                                       select new dm.Course.CourseClass(course)
+                                       {
+                                           ClassCode = x.ClassCode,
+                                           StartDate = x.StartDate,
+                                           EndDate = x.EndDate,
+                                           Status = (dm.Course.ClassStatus)x.Status,
+                                           Size = x.Size
+                                       }
+                                                ).ToList();
                 return course;
             }
             return null;

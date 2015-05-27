@@ -394,6 +394,7 @@
     <Content Include="Views\Home\Logon.cshtml" />
     <Content Include="Views\Home\Unauthorized.cshtml" />
     <Content Include="Views\Home\CourseDetail.cshtml" />
+    <Content Include="Views\Home\CourseClassRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
