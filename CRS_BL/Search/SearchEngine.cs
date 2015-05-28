@@ -17,10 +17,10 @@ namespace nus.iss.crs.bl
             
         }
 
-        public async Task<List<BaseSearchValueObject>> Search(SearchCriterion criteion)
-        {
-            return null;
-        }
+        //public async Task<List<BaseSearchValueObject>> Search(SearchCriterion criteion)
+        //{
+        //    return null;
+        //}
         /// <summary>
         /// Search Registration by name, id number, company,
         /// Search user
@@ -33,14 +33,13 @@ namespace nus.iss.crs.bl
         /// <typeparam name="T"></typeparam>
         /// <param name="criteion"></param>
         /// <returns></returns>
-        public async Task<BaseSearchValueObject> Search(string token, Search.SearchCriterion criteion)
+        public async Task<BaseSearchValueObject> Search(string token, SearchCriterion criteion)
         {
             try 
             {
                 HttpClient client = new HttpClient();
                 string searchUrl = "http://localhost:8983/solr/CRS/select?wt=json&indent=true&q=" + token +":" + criteion;
                 HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(searchUrl, UriKind.Relative));
-                //requestMessage.Headers.UserAgent.TryParseAdd("MSIClient");
                 HttpResponseMessage resultMessage = await client.SendAsync(requestMessage);
                 resultMessage.EnsureSuccessStatusCode();
                 
@@ -49,14 +48,12 @@ namespace nus.iss.crs.bl
                     string result = await resultMessage.Content.ReadAsStringAsync();
 
                     List<BaseSearchValueObject> resultList = JsonConvert.DeserializeObject<List<BaseSearchValueObject>>(result);
-                    
                 }
                 else
                 {
 
                 }
 
-                
             }
             catch(Exception ex)
             {
