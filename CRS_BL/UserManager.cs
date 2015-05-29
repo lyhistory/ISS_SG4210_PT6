@@ -24,51 +24,50 @@ namespace nus.iss.crs.bl
             ext.AssignRole(role);
         }
 
-        public bool CreateIndIndividualUser(User user)
+        public static bool CreateIndIndividualUser(User user)
         {
             user.Password = GenerateRandomPassword();
             return unitOfWork.UserService.CreateIndIndividualUser(user);
         }
 
-        public bool CreateStaff(User user)
+        public static bool CreateStaff(User user)
         {
             return unitOfWork.UserService.CreateStaff(user);
         }
 
-        public bool CreateHRUser(User user,Company company)
+        public static bool CreateHRUser(User user, Company company)
         {
             user.Password = GenerateRandomPassword();
             return unitOfWork.UserService.CreateHRUser(user,company);
         }
 
-        public bool CreateCompany(Company company)
+        public static bool CreateCompany(Company company)
         {
             return unitOfWork.UserService.CreateCompany(company);
         }
 
-        public Company GetCompanyByID(string companyUEN)
+        public static Company GetCompanyByID(string companyUEN)
         {
             return unitOfWork.UserService.GetCompanyByID(companyUEN);
         }
 
-        public List<Company> GetCompanyList()
+        public static List<Company> GetCompanyList()
         {
             return unitOfWork.UserService.GetCompanyList();
         }
 
 
-        public User LoginUser(string loginID,string password,string userType)
+        public static User LoginUser(string loginID, string password)
         {
-            return unitOfWork.UserService.LoginUser(loginID, password,
-                userType.Equals("HR", StringComparison.OrdinalIgnoreCase) ? 2 : 1);
+            return unitOfWork.UserService.LoginUser(loginID, password);
         }
 
-        public User LoginStaff(string loginID, string password)
+        public static User LoginStaff(string loginID, string password)
         {
             return unitOfWork.UserService.LoginStaff(loginID, password);
         }
 
-        public List<User> GetUserList()
+        public static List<User> GetUserList()
         {
             return unitOfWork.UserService.GetUserList(); 
         }
@@ -78,12 +77,12 @@ namespace nus.iss.crs.bl
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool EditUser(User user)
+        public static bool EditUser(User user)
         {
             return unitOfWork.UserService.EditUser(user);
         }
 
-        public string GenerateRandomPassword()
+        public static string GenerateRandomPassword()
         {
             string password = Guid.NewGuid().ToString();
             return password;

@@ -37,7 +37,7 @@ namespace CRS_DAL.Service
                     && (x.StartDate==null||x.EndDate==null||x.StartDate >= dateFrom && x.EndDate <= dateTo)
                     && (status<0||x.Status==status)).ToList();
                 Course _course = this.CourseRepository.GetWhere(x => x.CourseCode.Equals(courseCode)).FirstOrDefault();
-                Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
+                Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
                 CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
 
                 return (from x in _list
@@ -102,9 +102,9 @@ namespace CRS_DAL.Service
         {
             if (!string.IsNullOrEmpty(code))
             {
-               Course _course= this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(code));
+               Course _course= this.CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(code));
                List<CourseClass> _courseClasslist=this.CourseClassRepository.GetWhere(x=>x.CourseCode.Equals(code)).ToList();
-               Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
+               Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
                CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
 
                dm.Course.Course course = new dm.Course.Course()
@@ -139,7 +139,7 @@ namespace CRS_DAL.Service
             {
                 if (course.Instructor != null && !string.IsNullOrEmpty(course.Instructor.Name))
                 {
-                    Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(course.Instructor.ID));
+                    Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(course.Instructor.ID));
                     if (_instructor != null)
                     {
                         Course _course = new Course()
@@ -175,10 +175,10 @@ namespace CRS_DAL.Service
                 {
                     if (course.Instructor != null && !string.IsNullOrEmpty(course.Instructor.Name))
                     {
-                        Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(course.Instructor.ID));
+                        Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(course.Instructor.ID));
                         if (_instructor != null)
                         {
-                            Course _course = this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(course.Code));
+                            Course _course = this.CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(course.Code));
                             if (_course != null)
                             {
                                 _course.CourseTitle = course.CourseTitle;

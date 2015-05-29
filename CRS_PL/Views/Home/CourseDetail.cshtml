@@ -2,7 +2,28 @@
     ViewBag.Title = "About";
 }
 @model nus.iss.crs.dm.Course.Course
+@section scripts{
+    <script type="text/javascript">
+    $(function () {
 
+        $("#btnRegister").click(function () {
+            if (global.isLogin == 'False') {
+                if (confirm("Continue without Login?") == true) {
+                    window.location.href = "/CourseRegister/IndividualReigster?code=@Model.Code";
+                } else {
+                    window.location.href = "/home/logon?toPage=?code=@Model.Code";
+                }
+            } else {
+                if (global.userType == 'HR') {
+                    window.location.href = "/CourseRegister/HRRegister?code=@Model.Code";
+                } else {
+                    window.location.href = "/CourseRegister/IndividualReigster?code=@Model.Code";
+                }
+            }
+        });
+    });
+    </script>
+}
 <div class="container-fluid">
     <h1 class="page-header">@Model.CourseTitle</h1>
 
@@ -27,24 +48,29 @@
                 </div>
             </div>
             @if (Model.CourseClasses.Count > 0)
-            { 
+            {
                 foreach (var item in Model.CourseClasses)
                 {
                     <div class="row">
                         <div class="col-md-6">
-                            @item.StartDate
+                            @item.StartDate.ToString("MMM dd, yyyy")
                             to
-                            @item.EndDate
+                            @item.EndDate.ToString("MMM dd, yyyy")
                         </div>
                         <div class="col-md-6">
                             @Model.Duration
                         </div>
                     </div>
                 }
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="button" value="REGISTER" id="btnRegister"/>
+                    </div>
+                </div>
             }
             else
             {
-                <div class ="row"><div class="col-md-12">No Data Yet.</div></div>
+                <div class="row"><div class="col-md-12">No Data Yet.</div></div>
             }
         </div>
     </div>

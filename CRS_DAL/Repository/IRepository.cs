@@ -13,8 +13,8 @@ namespace CRS_DAL.Repository
     {
         IQueryable<TEntity> GetAll();
         IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> predicate);
-        TEntity GetSingle(Expression<Func<TEntity, bool>> predicate);
-        TEntity GetSingleOrDefault(Expression<Func<TEntity, bool>> predicate);
+        TEntity GetFirst(Expression<Func<TEntity, bool>> predicate);
+        TEntity GetFirstOrDefault(Expression<Func<TEntity, bool>> predicate);
 
         void Add(TEntity entity);
         void Delete(TEntity entity);

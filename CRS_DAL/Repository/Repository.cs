@@ -40,14 +40,14 @@ namespace CRS_DAL.Repository
             return dbSet.Where(predicate);
         }
 
-        public TEntity GetSingle(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate)
+        public TEntity GetFirst(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate)
         {
-            return dbSet.Single(predicate);
+            return dbSet.First(predicate);
         }
 
-        public TEntity GetSingleOrDefault(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate)
+        public TEntity GetFirstOrDefault(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate)
         {
-            return dbSet.SingleOrDefault(predicate);
+            return dbSet.FirstOrDefault(predicate);
         }
 
         public void Add(TEntity entity)

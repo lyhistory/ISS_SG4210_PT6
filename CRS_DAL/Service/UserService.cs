@@ -27,7 +27,7 @@ namespace CRS_DAL.Service
 
         public dm.User GetByLoginID(string loginID)
         {
-            var _user = userRepository.GetSingleOrDefault(g => g.LoginID == loginID);
+            var _user = userRepository.GetFirstOrDefault(g => g.LoginID == loginID);
             if (_user != null)
             {
                 return new dm.User()
@@ -99,7 +99,7 @@ namespace CRS_DAL.Service
                     }
                     else
                     {
-                        _company = companyRepository.GetSingleOrDefault(x => x.CompanyUEN.Equals(company.CompanyUEN));
+                        _company = companyRepository.GetFirstOrDefault(x => x.CompanyUEN.Equals(company.CompanyUEN));
                     }
 
                     //INSERT TABLE COMPANYHR
@@ -183,7 +183,7 @@ namespace CRS_DAL.Service
 
         public dm.Company GetCompanyByID(string companyUEN)
         {
-            var _company=companyRepository.GetSingleOrDefault(x => x.CompanyUEN.Equals(companyUEN));
+            var _company=companyRepository.GetFirstOrDefault(x => x.CompanyUEN.Equals(companyUEN));
             return new dm.Company()
             {
                 CompanyID = _company.CompanyID,
@@ -211,9 +211,9 @@ namespace CRS_DAL.Service
                     }).ToList();
         }
 
-        public dm.User LoginUser(string loginID, string password, int userType)
+        public dm.User LoginUser(string loginID, string password)
         {
-            var _user = userRepository.GetSingleOrDefault(x => x.LoginID.Equals(loginID) && x.Password.Equals(password) && x.UserType == userType);
+            var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginID) && x.Password.Equals(password));
             return new dm.User()
             {
                 UserID=_user.UserID,
@@ -225,7 +225,7 @@ namespace CRS_DAL.Service
 
         public dm.User LoginStaff(string loginID, string password)
         {
-            var _staff = staffRepository.GetSingleOrDefault(x => x.LoginID.Equals(loginID) && x.Password.Equals(password));
+            var _staff = staffRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginID) && x.Password.Equals(password));
             return new dm.User()
             {
                 UserID = _staff.StaffID,
@@ -255,7 +255,7 @@ namespace CRS_DAL.Service
             {
                 int usertype = user.RoleName.Equals("HR", StringComparison.OrdinalIgnoreCase) ? 2 : 1;
 
-                var _user = userRepository.GetSingleOrDefault(x => x.LoginID.Equals(user.LoginID) && x.Password.Equals(user.Password)
+                var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(user.LoginID) && x.Password.Equals(user.Password)
                     && x.UserType == usertype);
                 _user.Password = user.Password;
                 unitOfWork.Commit();
@@ -274,19 +274,19 @@ namespace CRS_DAL.Service
 
         public bool ExistsStaff(string loginID)
         {
-            return staffRepository.GetSingleOrDefault(g => g.LoginID.Equals(loginID)) != null;
+            return staffRepository.GetFirstOrDefault(g => g.LoginID.Equals(loginID)) != null;
         }
 
         public bool ExistsCompany(string companyUEN)
         {
-            return companyRepository.GetSingleOrDefault(g => g.CompanyUEN.Equals(companyUEN))!=null;
+            return companyRepository.GetFirstOrDefault(g => g.CompanyUEN.Equals(companyUEN))!=null;
         }
         public bool ExistsCompanyHR(string email, string companyUEN)
         {
-            var company = companyRepository.GetSingleOrDefault(g => g.CompanyUEN.Equals(companyUEN));
+            var company = companyRepository.GetFirstOrDefault(g => g.CompanyUEN.Equals(companyUEN));
             if (company != null)
             {
-                return companyHRRepository.GetSingleOrDefault(g => g.Email.Equals(email)&&g.CompanyID.Equals(company.CompanyID))!=null;
+                return companyHRRepository.GetFirstOrDefault(g => g.Email.Equals(email)&&g.CompanyID.Equals(company.CompanyID))!=null;
             }
             return false;
         }

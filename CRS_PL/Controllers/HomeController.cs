@@ -44,9 +44,6 @@ namespace nus.iss.crs.pl.Controllers
             return View(model);
         }
 
-        public ActionResult CourseClassRegistration(){
-            return View();
-        }
 
         [CRSAuthorize(Roles = "HR")]
         public ActionResult About()
@@ -65,22 +62,13 @@ namespace nus.iss.crs.pl.Controllers
         }
 
         #region Login&Register
-        public ActionResult Logon(string message="")
+        public ActionResult Logon(string message="",string toPage="")
         {
             ViewBag.Message = message;
 
-            if (SessionHelper.Current != null)
+            if (toPage.Contains("?code="))
             {
-                ViewBag.isLogon = true;
-                string redirectUrl = Request.UrlReferrer.AbsoluteUri;
-                if (redirectUrl.ToLower().Contains("home/courseclassregistration"))
-                {
-                    HttpContext.Response.SetCookie(new HttpCookie("redirectUrl", redirectUrl));
-                }
-            }
-            else
-            {
-                ViewBag.isLogon = false;
+                HttpContext.Response.SetCookie(new HttpCookie("toPage", toPage));
             }
 
             return View();
@@ -89,31 +77,34 @@ namespace nus.iss.crs.pl.Controllers
         public JsonResult PostLogon(string loginID,string password,string loginType)
         {
             bool result = false;
+            string userType = string.Empty;
             if (loginType.Equals("staff", StringComparison.OrdinalIgnoreCase))
             {
-                //do staff login
+                //do staff login,redirect to back office
             }
             else
             {
                 //do user login
-                nus.iss.crs.dm.User loginUser = new nus.iss.crs.dm.User() { UserID = "test", Password = "1111", Email = "", RoleName = "HR" };
-                loginUser.GetRole();
+
+                nus.iss.crs.dm.User loginUser = UserManager.LoginUser(loginID, password); //new nus.iss.crs.dm.User() { UserID = "test", Password = "1111", Email = "", RoleName = "HR" };
                 if (loginUser != null)
                 {
                     SessionHelper.SetSession(loginUser);
                     CRSFormsAuthentication<User>.SetAuthCookie(loginUser.UserID, loginUser, true);
+                    userType = loginUser.RoleName;
                     result = true;
                 }
             }
             if (result)
             {
-                var cookie = HttpContext.Request.Cookies["redirectUrl"];
+                var cookie = HttpContext.Request.Cookies["toPage"];
                 if (cookie != null)
                 {
-                    string redirectUrl = cookie.Value;
-                    if (string.IsNullOrEmpty(redirectUrl))
+                    string toPage = cookie.Value;
+                    if (!string.IsNullOrEmpty(toPage) && toPage.Contains("?code="))
                     {
-                        return Json(new { Code = 1, redirectUrl = redirectUrl });
+                        string redirectUrl = userType.ToUpper().Equals("HR") ? "/CourseRegister/HRRegister" : "/CourseRegister/IndividualReigster";
+                        return Json(new { Code = 1, redirectUrl = string.Format("{0}{1}",redirectUrl,toPage)});
                     }
                 }
             }
@@ -124,6 +115,11 @@ namespace nus.iss.crs.pl.Controllers
             
 
             return Json(new{Code=1});
+        }
+
+        public ViewResult Register()
+        {
+            return View();
         }
         #endregion
 

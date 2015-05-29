@@ -64,7 +64,7 @@ namespace CRS_DAL.Service
 
         public dm.Registration.Participant GetEmployeeByIDNumber(string idNumber)
         {
-            Participant _participant = this.ParticipantRepository.GetSingleOrDefault(x => x.IDNumber.Equals(idNumber));
+            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(idNumber));
             if (_participant != null)
             {
                 return new dm.Registration.Participant()
@@ -124,7 +124,7 @@ namespace CRS_DAL.Service
 
         public List<dm.Registration.Registration> GetRegistrationList(dm.Course.CourseClass courseClass)
         {
-            CourseClass _courseClass = this.CourseClassRepository.GetSingleOrDefault(x => x.ClassCode.Equals(courseClass.ClassCode));
+            CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(courseClass.ClassCode));
             if (_courseClass != null)
             {
                 List<Registration> _registrationlist = this.RegistrationRepository.GetWhere(x => x.ClassID.Equals(_courseClass.ClassID)).ToList();
@@ -171,7 +171,7 @@ namespace CRS_DAL.Service
 
         public List<dm.Registration.Registration> GetRegistrationList(dm.User user)
         {
-            Participant _participant = this.ParticipantRepository.GetSingleOrDefault(x => x.IDNumber.Equals(user.LoginID)&&string.IsNullOrEmpty(x.CompanyID));
+            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(user.LoginID)&&string.IsNullOrEmpty(x.CompanyID));
             
             if (_participant != null)
             {
@@ -273,7 +273,7 @@ namespace CRS_DAL.Service
         {
             try
             {
-                Registration _registration = this.RegistrationRepository.GetSingleOrDefault(x => x.RegistrationID.Equals(registration.RegID));
+                Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.RegistrationID.Equals(registration.RegID));
                 _registration.Sponsorship = registration.Sponsorship.Equals("Self",StringComparison.OrdinalIgnoreCase) ? 1 : 2;
                 _registration.Status = (int)registration.status;
                 _registration.BillingAddress = registration.billingInfo.Address;
@@ -293,7 +293,7 @@ namespace CRS_DAL.Service
         {
             try
             {
-                Registration _registration = this.RegistrationRepository.GetSingleOrDefault(x => x.RegistrationID.Equals(registration.RegID));
+                Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.RegistrationID.Equals(registration.RegID));
 
                 this.RegistrationRepository.Delete(_registration);
 
@@ -307,8 +307,8 @@ namespace CRS_DAL.Service
 
         public dm.Registration.Registration GetRegistration(string RegID)
         {
-            Registration _registration = this.RegistrationRepository.GetSingleOrDefault(x => x.RegistrationID.Equals(RegID));
-            Participant _participant = this.ParticipantRepository.GetSingleOrDefault(x => x.ParticipantID.Equals(_registration.ParticipantID));
+            Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.RegistrationID.Equals(RegID));
+            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(_registration.ParticipantID));
             if (_registration != null)
             {
                 return new dm.Registration.Registration(
@@ -354,21 +354,21 @@ namespace CRS_DAL.Service
         #region Helper
         public dm.Course.CourseClass GetCourseClassByClassID(string classID)
         {
-            CourseClass _courseClass = this.CourseClassRepository.GetSingleOrDefault(x => x.ClassID.Equals(classID));
+            CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassID.Equals(classID));
 
             return GetCourseClassByCode(_courseClass.ClassCode);
         }
 
         public dm.Course.CourseClass GetCourseClassByCode(string classCode)
         {
-            CourseClass _courseClass = this.CourseClassRepository.GetSingleOrDefault(x => x.ClassCode.Equals(classCode));
+            CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(classCode));
 
             if (_courseClass != null)
             {
-                Course _course = this.CourseRepository.GetSingleOrDefault(x => x.CourseCode.Equals(_courseClass.CourseCode));
+                Course _course = this.CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(_courseClass.CourseCode));
                 if (_course != null)
                 {
-                    Instructor _instructor = this.InstructorRepository.GetSingleOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
+                    Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
                     if (_instructor != null)
                     {
                         CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();

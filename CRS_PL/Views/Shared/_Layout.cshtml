@@ -8,6 +8,12 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+<script type="text/javascript">
+    var global = {
+        isLogin: '@ViewBag.AfterLogin',
+        userType: '@ViewBag.UserType'
+    };
+</script>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
