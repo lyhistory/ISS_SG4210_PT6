@@ -219,7 +219,8 @@ namespace CRS_DAL.Service
                 UserID=_user.UserID,
                 LoginID=_user.LoginID,
                 Password=_user.Password,
-                RoleName = _user.UserType == 2 ? "HR" : "Individual"
+                RoleName = _user.UserType == 2 ? "HR" : "Individual",
+                Status=_user.Status
             };
         }
 
@@ -258,6 +259,22 @@ namespace CRS_DAL.Service
                 var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(user.LoginID) && x.Password.Equals(user.Password)
                     && x.UserType == usertype);
                 _user.Password = user.Password;
+                unitOfWork.Commit();
+                return true;
+            }
+            catch
+            {
+            }
+            return false;
+        }
+
+        public bool ResetPassword(string loginId,string oldpassword,string newpassword)
+        {
+            try
+            {
+                var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginId) && x.Password.Equals(oldpassword));
+                _user.Password = newpassword;
+                _user.Status = 1;
                 unitOfWork.Commit();
                 return true;
             }

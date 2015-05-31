@@ -78,6 +78,7 @@ namespace nus.iss.crs.pl.Controllers
         {
             bool result = false;
             string userType = string.Empty;
+            int userStatus = 0;
             if (loginType.Equals("staff", StringComparison.OrdinalIgnoreCase))
             {
                 //do staff login,redirect to back office
@@ -92,19 +93,30 @@ namespace nus.iss.crs.pl.Controllers
                     SessionHelper.SetSession(loginUser);
                     CRSFormsAuthentication<User>.SetAuthCookie(loginUser.UserID, loginUser, true);
                     userType = loginUser.RoleName;
+                    userStatus = loginUser.Status;
                     result = true;
                 }
             }
             if (result)
             {
-                var cookie = HttpContext.Request.Cookies["toPage"];
-                if (cookie != null)
+                if (!string.IsNullOrEmpty(userType))
                 {
-                    string toPage = cookie.Value;
-                    if (!string.IsNullOrEmpty(toPage) && toPage.Contains("?code="))
+                    if (userStatus == 0)
                     {
-                        string redirectUrl = userType.ToUpper().Equals("HR") ? "/CourseRegister/HRRegister" : "/CourseRegister/IndividualReigster";
-                        return Json(new { Code = 1, redirectUrl = string.Format("{0}{1}",redirectUrl,toPage)});
+                        return Json(new { Code = 1, redirectUrl = "/Account/ResetPassword" });
+                    }
+                    else
+                    {
+                        var cookie = HttpContext.Request.Cookies["toPage"];
+                        if (cookie != null)
+                        {
+                            string toPage = cookie.Value;
+                            if (!string.IsNullOrEmpty(toPage) && toPage.Contains("?code="))
+                            {
+                                string redirectUrl = userType.ToUpper().Equals("HR") ? "/CourseRegister/HRRegister" : "/CourseRegister/IndividualReigster";
+                                return Json(new { Code = 1, redirectUrl = string.Format("{0}{1}", redirectUrl, toPage) });
+                            }
+                        }
                     }
                 }
             }

@@ -4,24 +4,24 @@
 @model nus.iss.crs.dm.Course.Course
 @section scripts{
     <script type="text/javascript">
-    $(function () {
+        $(function () {
 
-        $("#btnRegister").click(function () {
-            if (global.isLogin == 'False') {
-                if (confirm("Continue without Login?") == true) {
-                    window.location.href = "/CourseRegister/IndividualReigster?code=@Model.Code";
+            $("#btnRegister").click(function () {
+                if (global.isLogin == 'False') {
+                    if (confirm("Continue without Login?") == true) {
+                        window.location.href = "/CourseRegister/IndividualReigster?code=@Model.Code";
+                    } else {
+                        window.location.href = "/home/logon?toPage=?code=@Model.Code";
+                    }
                 } else {
-                    window.location.href = "/home/logon?toPage=?code=@Model.Code";
+                    if (global.userType == 'HR') {
+                        window.location.href = "/CourseRegister/HRRegister?code=@Model.Code";
+                    } else {
+                        window.location.href = "/CourseRegister/IndividualReigster?code=@Model.Code";
+                    }
                 }
-            } else {
-                if (global.userType == 'HR') {
-                    window.location.href = "/CourseRegister/HRRegister?code=@Model.Code";
-                } else {
-                    window.location.href = "/CourseRegister/IndividualReigster?code=@Model.Code";
-                }
-            }
+            });
         });
-    });
     </script>
 }
 <div class="container-fluid">
@@ -38,13 +38,13 @@
             </p>
         </div>
         <div class="col-md-4">
-            <p>Upcoming Classes</p>
+            <h3>Upcoming Classes</h3>
             <div class="row">
-                <div class="col-md-6">
-                    Schedule
+                <div class="col-md-8">
+                    <strong>Schedule</strong>
                 </div>
-                <div class="col-md-6">
-                    Duration
+                <div class="col-md-4">
+                    <strong>Duration</strong>
                 </div>
             </div>
             @if (Model.CourseClasses.Count > 0)
@@ -52,19 +52,19 @@
                 foreach (var item in Model.CourseClasses)
                 {
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             @item.StartDate.ToString("MMM dd, yyyy")
                             to
                             @item.EndDate.ToString("MMM dd, yyyy")
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             @Model.Duration
                         </div>
                     </div>
                 }
                 <div class="row">
                     <div class="col-md-12">
-                        <input type="button" value="REGISTER" id="btnRegister"/>
+                        <input type="button" value="REGISTER" id="btnRegister" class="btn btn-default" />
                     </div>
                 </div>
             }

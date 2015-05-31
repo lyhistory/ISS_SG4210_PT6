@@ -398,6 +398,7 @@
     <Content Include="Views\CourseRegister\HRRegister.cshtml" />
     <Content Include="Views\CourseRegister\IndividualReigster.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

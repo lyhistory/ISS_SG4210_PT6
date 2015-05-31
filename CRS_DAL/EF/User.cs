@@ -18,5 +18,6 @@ namespace CRS_DAL.EF
         public string LoginID { get; set; }
         public string Password { get; set; }
         public int UserType { get; set; }
+        public int Status { get; set; }
     }
 }

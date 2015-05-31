@@ -15,7 +15,7 @@ namespace nus.iss.crs.dm
         public string UserID { get; set; }  //GUID
         public string LoginID { get; set; }
         public string Password { get; set; }
-
+        public int Status { get; set; }
         //for hr
         public string Name { get; set; }
         public string Email { get; set; }
