@@ -1,0 +1,133 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CRS_SL.CancelActivity"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:local="clr-namespace:CRS_SL"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:nicdc="clr-namespace:nus.iss.crs.dm.Course;assembly=CRS_DM"
+ xmlns:p="http://tempuri.org/"
+ xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="courseClass" Type="InArgument(nicdc:CourseClass)" />
+    <x:Property Name="status" Type="OutArgument(x:String)" />
+    <x:Property Name="message" Type="OutArgument(x:String)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap2010:WorkflowViewState.IdRef>CRS_SL.CancelActivity_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>nus.iss.crs.dm.Course</x:String>
+      <x:String>System.ServiceModel.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System.Web.DynamicData</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Web.Entity</AssemblyReference>
+      <AssemblyReference>System.Web.ApplicationServices</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Channels</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>CRS_DM</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Activities.Presentation</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>CRS_SL</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Cancel" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="p1:CorrelationHandle" x:Name="__ReferenceID0" Name="__handle1" />
+      <Variable x:TypeArguments="p1:CorrelationHandle" Name="courseClassHandle" />
+    </Sequence.Variables>
+    <p1:InitializeCorrelation sap2010:WorkflowViewState.IdRef="InitializeCorrelation_1">
+      <p1:InitializeCorrelation.Correlation>
+        <InArgument x:TypeArguments="p1:CorrelationHandle">
+          <mca:CSharpValue x:TypeArguments="p1:CorrelationHandle">courseClassHandle</mca:CSharpValue>
+        </InArgument>
+      </p1:InitializeCorrelation.Correlation>
+      <InArgument x:TypeArguments="x:String" x:Key="key1">
+        <mca:CSharpValue x:TypeArguments="x:String">courseClass.ClassCode</mca:CSharpValue>
+      </InArgument>
+    </p1:InitializeCorrelation>
+    <p1:Receive x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="Receive_2" OperationName="CancelCourseClass" ServiceContractName="p:IService">
+      <p1:Receive.CorrelatesWith>
+        <InArgument x:TypeArguments="p1:CorrelationHandle">
+          <mca:CSharpValue x:TypeArguments="p1:CorrelationHandle">courseClassHandle</mca:CSharpValue>
+        </InArgument>
+      </p1:Receive.CorrelatesWith>
+      <p1:Receive.CorrelationInitializers>
+        <p1:RequestReplyCorrelationInitializer>
+          <p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+            <InArgument x:TypeArguments="p1:CorrelationHandle">
+              <VariableValue x:TypeArguments="p1:CorrelationHandle" Variable="{x:Reference __ReferenceID0}" />
+            </InArgument>
+          </p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+        </p1:RequestReplyCorrelationInitializer>
+      </p1:Receive.CorrelationInitializers>
+      <p1:ReceiveParametersContent>
+        <OutArgument x:TypeArguments="nicdc:CourseClass" x:Key="courseClass">
+          <mca:CSharpReference x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpReference>
+        </OutArgument>
+      </p1:ReceiveParametersContent>
+    </p1:Receive>
+    <local:UpadateCancelStatus Text="{x:Null}" message="{x:Null}" status="{x:Null}" sap2010:WorkflowViewState.IdRef="UpadateCancelStatus_2">
+      <local:UpadateCancelStatus.courseClass>
+        <InArgument x:TypeArguments="nicdc:CourseClass">
+          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
+        </InArgument>
+      </local:UpadateCancelStatus.courseClass>
+    </local:UpadateCancelStatus>
+    <p1:SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceive" sap2010:WorkflowViewState.IdRef="SendReply_2">
+      <p1:SendParametersContent>
+        <InArgument x:TypeArguments="x:String" x:Key="status">
+          <mca:CSharpValue x:TypeArguments="x:String">status</mca:CSharpValue>
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="message">
+          <mca:CSharpValue x:TypeArguments="x:String">message</mca:CSharpValue>
+        </InArgument>
+      </p1:SendParametersContent>
+    </p1:SendReply>
+    <sads:DebugSymbol.Symbol>d0ZEOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDYW5jZWxBY3Rpdml0eS54YW1sDT4DdA4CAQFDBUwgAgEmTQVhEgIBGGIFaCECARFpBXIUAgECSglKXAIBLUYLRmYCASdQC1BmAgEgXgteZQIBGlcPV28CARllC2VdAgESbAtsTwIBCW8Lb1ACAQM=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="InitializeCorrelation_1" sap:VirtualizedContainerService.HintSize="255,97" />
+      <sap2010:ViewStateData Id="Receive_2" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="UpadateCancelStatus_2" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="SendReply_2" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="277,535">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CRS_SL.CancelActivity_1" sap:VirtualizedContainerService.HintSize="317,615" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

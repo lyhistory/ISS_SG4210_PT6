@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm.Course
 {
+    [DataContract]
     public class CourseClass
     {
         private Course course;
@@ -21,11 +23,19 @@ namespace nus.iss.crs.dm.Course
             return course;
         }
 
+        [DataMember]
         public DateTime StartDate { get; set; }
+
+        [DataMember]
         public DateTime EndDate { get; set; }
 
+        [DataMember]
         public string ClassCode { get; set; }
+
+        [DataMember]
         public int Size { get; set; }
+
+        [DataMember]
         public ClassStatus Status { get; set; }
 
         //for template

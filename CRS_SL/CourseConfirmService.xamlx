@@ -1,0 +1,369 @@
+﻿<WorkflowService mc:Ignorable="sap sap2010 sads" p1:TextExpression.Namespaces="{x:Reference __ReferenceID6}" p1:TextExpression.References="{x:Reference __ReferenceID7}" ConfigurationName="Service1" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="Service1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:c="clr-namespace:CRS_SL;assembly=CRS_SL"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:nicdc="clr-namespace:nus.iss.crs.dm.Course;assembly=CRS_DM"
+ xmlns:p="http://tempuri.org/"
+ xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p1:Sequence DisplayName="Course Confirmation Service" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <p1:TextExpression.Namespaces>
+      <sco:Collection x:TypeArguments="x:String" x:Name="__ReferenceID6">
+        <x:String>System</x:String>
+        <x:String>System.Collections.Generic</x:String>
+        <x:String>System.Data</x:String>
+        <x:String>System.Linq</x:String>
+        <x:String>System.Text</x:String>
+        <x:String>nus.iss.crs.dm.Course</x:String>
+        <x:String>System.ServiceModel.Activities</x:String>
+      </sco:Collection>
+    </p1:TextExpression.Namespaces>
+    <p1:TextExpression.References>
+      <sco:Collection x:TypeArguments="p1:AssemblyReference" x:Name="__ReferenceID7">
+        <p1:AssemblyReference>Microsoft.CSharp</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.DynamicData</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Drawing</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.Entity</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.ApplicationServices</p1:AssemblyReference>
+        <p1:AssemblyReference>System</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Activities</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Core</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Data</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Data.Entity</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Runtime.Serialization</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Activities</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Channels</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xaml</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xml</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xml.Linq</p1:AssemblyReference>
+        <p1:AssemblyReference>CRS_DM</p1:AssemblyReference>
+        <p1:AssemblyReference>PresentationFramework</p1:AssemblyReference>
+        <p1:AssemblyReference>PresentationCore</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Activities.Presentation</p1:AssemblyReference>
+        <p1:AssemblyReference>WindowsBase</p1:AssemblyReference>
+        <p1:AssemblyReference>mscorlib</p1:AssemblyReference>
+        <p1:AssemblyReference>CRS_SL</p1:AssemblyReference>
+      </sco:Collection>
+    </p1:TextExpression.References>
+    <p1:Sequence.Variables>
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="handle" />
+      <p1:Variable x:TypeArguments="x:Int32" Name="data" />
+      <p1:Variable x:TypeArguments="nicdc:CourseClass" Name="courseClass" />
+      <p1:Variable x:TypeArguments="x:Int32" Name="classSize" />
+      <p1:Variable x:TypeArguments="x:String" Name="status" />
+      <p1:Variable x:TypeArguments="x:String" Name="message" />
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="courseClassHandle" />
+    </p1:Sequence.Variables>
+    <Receive x:Name="__ReferenceID0" CanCreateInstance="True" DisplayName="ReceiveRequest" sap2010:WorkflowViewState.IdRef="Receive_1" OperationName="RequestConfirmation" ServiceContractName="p:IService">
+      <Receive.CorrelationInitializers>
+        <RequestReplyCorrelationInitializer>
+          <RequestReplyCorrelationInitializer.CorrelationHandle>
+            <p1:InArgument x:TypeArguments="CorrelationHandle">
+              <mca:CSharpValue x:TypeArguments="CorrelationHandle">handle</mca:CSharpValue>
+            </p1:InArgument>
+          </RequestReplyCorrelationInitializer.CorrelationHandle>
+        </RequestReplyCorrelationInitializer>
+      </Receive.CorrelationInitializers>
+      <ReceiveParametersContent>
+        <p1:OutArgument x:TypeArguments="x:Int32" x:Key="courseSize">
+          <mca:CSharpReference x:TypeArguments="x:Int32">classSize</mca:CSharpReference>
+        </p1:OutArgument>
+      </ReceiveParametersContent>
+    </Receive>
+    <SendReply Request="{x:Reference __ReferenceID0}" DisplayName="SendResponse" sap2010:WorkflowViewState.IdRef="SendReply_1">
+      <SendParametersContent>
+        <p1:InArgument x:TypeArguments="x:String" x:Key="status">received</p1:InArgument>
+        <p1:InArgument x:TypeArguments="x:String" x:Key="message">request received</p1:InArgument>
+      </SendParametersContent>
+    </SendReply>
+    <p1:Flowchart sap2010:WorkflowViewState.IdRef="Flowchart_1" StartNode="{x:Reference __ReferenceID5}">
+      <p1:FlowDecision x:Name="__ReferenceID5" DisplayName="No Intervention" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+        <p1:FlowDecision.Condition>
+          <mca:CSharpValue x:TypeArguments="x:Boolean">classSize &lt; 5 || classSize &gt; 10</mca:CSharpValue>
+        </p1:FlowDecision.Condition>
+        <p1:FlowDecision.True>
+          <p1:FlowDecision x:Name="__ReferenceID2" DisplayName="Confirmation" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+            <p1:FlowDecision.Condition>
+              <mca:CSharpValue x:TypeArguments="x:Boolean">classSize &gt; 10</mca:CSharpValue>
+            </p1:FlowDecision.Condition>
+            <p1:FlowDecision.True>
+              <p1:FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+                <c:ConfirmActivity message="{x:Null}" status="{x:Null}" DisplayName="Confirm Activity" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="CRS_SL.ConfirmActivity_1">
+                  <sap2010:WorkflowViewState.ViewStateManager>
+                    <sap2010:ViewStateManager>
+                      <sap2010:ViewStateData Id="InitializeCorrelation_1" sap2010:WorkflowViewState.IdRef="ViewStateData_1" />
+                      <sap2010:ViewStateData Id="Receive_1" sap2010:WorkflowViewState.IdRef="ViewStateData_2" />
+                      <sap2010:ViewStateData Id="UpdateConfirmStatus_1" sap2010:WorkflowViewState.IdRef="ViewStateData_3" />
+                      <sap2010:ViewStateData Id="NotifyByEmail_1" sap2010:WorkflowViewState.IdRef="ViewStateData_4" />
+                      <sap2010:ViewStateData Id="SendReply_1" sap2010:WorkflowViewState.IdRef="ViewStateData_5" />
+                      <sap2010:ViewStateData Id="Receive_2" sap2010:WorkflowViewState.IdRef="ViewStateData_6" />
+                      <sap2010:ViewStateData Id="Assign_1" sap2010:WorkflowViewState.IdRef="ViewStateData_7" />
+                      <sap2010:ViewStateData Id="Assign_2" sap2010:WorkflowViewState.IdRef="ViewStateData_8" />
+                      <sap2010:ViewStateData Id="SendReply_2" sap2010:WorkflowViewState.IdRef="ViewStateData_9" />
+                      <sap2010:ViewStateData Id="Sequence_2" sap2010:WorkflowViewState.IdRef="ViewStateData_10" />
+                      <sap2010:ViewStateData Id="Sequence_1" sap2010:WorkflowViewState.IdRef="ViewStateData_11" />
+                      <sap2010:ViewStateData Id="CRS_SL.ConfirmActivity_1" sap2010:WorkflowViewState.IdRef="ViewStateData_12" />
+                    </sap2010:ViewStateManager>
+                  </sap2010:WorkflowViewState.ViewStateManager>
+                  <c:ConfirmActivity.courseClass>
+                    <p1:InArgument x:TypeArguments="nicdc:CourseClass">
+                      <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
+                    </p1:InArgument>
+                  </c:ConfirmActivity.courseClass>
+                </c:ConfirmActivity>
+              </p1:FlowStep>
+            </p1:FlowDecision.True>
+            <p1:FlowDecision.False>
+              <p1:FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+                <c:CancelActivity message="{x:Null}" status="{x:Null}" DisplayName="Cancel Activity" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="CRS_SL.CancelActivity_1">
+                  <sap2010:WorkflowViewState.ViewStateManager>
+                    <sap2010:ViewStateManager>
+                      <sap2010:ViewStateData Id="InitializeCorrelation_1" sap2010:WorkflowViewState.IdRef="ViewStateData_13" />
+                      <sap2010:ViewStateData Id="Receive_2" sap2010:WorkflowViewState.IdRef="ViewStateData_14" />
+                      <sap2010:ViewStateData Id="UpadateCancelStatus_2" sap2010:WorkflowViewState.IdRef="ViewStateData_15" />
+                      <sap2010:ViewStateData Id="SendReply_2" sap2010:WorkflowViewState.IdRef="ViewStateData_16" />
+                      <sap2010:ViewStateData Id="Sequence_2" sap2010:WorkflowViewState.IdRef="ViewStateData_17" />
+                      <sap2010:ViewStateData Id="CRS_SL.CancelActivity_1" sap2010:WorkflowViewState.IdRef="ViewStateData_18" />
+                    </sap2010:ViewStateManager>
+                  </sap2010:WorkflowViewState.ViewStateManager>
+                  <c:CancelActivity.courseClass>
+                    <p1:InArgument x:TypeArguments="nicdc:CourseClass">
+                      <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
+                    </p1:InArgument>
+                  </c:CancelActivity.courseClass>
+                </c:CancelActivity>
+              </p1:FlowStep>
+            </p1:FlowDecision.False>
+          </p1:FlowDecision>
+        </p1:FlowDecision.True>
+        <p1:FlowDecision.False>
+          <p1:FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+            <p1:Pick DisplayName="Course Administrator Pick" sap2010:WorkflowViewState.IdRef="Pick_1">
+              <p1:PickBranch DisplayName="Confirm Branch" sap2010:WorkflowViewState.IdRef="PickBranch_1">
+                <p1:PickBranch.Trigger>
+                  <c:ConfirmActivity message="{x:Null}" status="{x:Null}" DisplayName="Confirm Activity" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="CRS_SL.ConfirmActivity_1">
+                    <sap2010:WorkflowViewState.ViewStateManager>
+                      <sap2010:ViewStateManager>
+                        <sap2010:ViewStateData Id="InitializeCorrelation_1" sap2010:WorkflowViewState.IdRef="ViewStateData_19" />
+                        <sap2010:ViewStateData Id="Receive_1" sap2010:WorkflowViewState.IdRef="ViewStateData_20" />
+                        <sap2010:ViewStateData Id="UpdateConfirmStatus_1" sap2010:WorkflowViewState.IdRef="ViewStateData_21" />
+                        <sap2010:ViewStateData Id="NotifyByEmail_1" sap2010:WorkflowViewState.IdRef="ViewStateData_22" />
+                        <sap2010:ViewStateData Id="SendReply_1" sap2010:WorkflowViewState.IdRef="ViewStateData_23" />
+                        <sap2010:ViewStateData Id="Receive_2" sap2010:WorkflowViewState.IdRef="ViewStateData_24" />
+                        <sap2010:ViewStateData Id="Assign_1" sap2010:WorkflowViewState.IdRef="ViewStateData_25" />
+                        <sap2010:ViewStateData Id="Assign_2" sap2010:WorkflowViewState.IdRef="ViewStateData_26" />
+                        <sap2010:ViewStateData Id="SendReply_2" sap2010:WorkflowViewState.IdRef="ViewStateData_27" />
+                        <sap2010:ViewStateData Id="Sequence_2" sap2010:WorkflowViewState.IdRef="ViewStateData_28" />
+                        <sap2010:ViewStateData Id="Sequence_1" sap2010:WorkflowViewState.IdRef="ViewStateData_29" />
+                        <sap2010:ViewStateData Id="CRS_SL.ConfirmActivity_1" sap2010:WorkflowViewState.IdRef="ViewStateData_30" />
+                      </sap2010:ViewStateManager>
+                    </sap2010:WorkflowViewState.ViewStateManager>
+                    <c:ConfirmActivity.courseClass>
+                      <p1:InArgument x:TypeArguments="nicdc:CourseClass">
+                        <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
+                      </p1:InArgument>
+                    </c:ConfirmActivity.courseClass>
+                  </c:ConfirmActivity>
+                </p1:PickBranch.Trigger>
+              </p1:PickBranch>
+              <p1:PickBranch DisplayName="Cancel Branch" sap2010:WorkflowViewState.IdRef="PickBranch_2">
+                <p1:PickBranch.Trigger>
+                  <c:CancelActivity message="{x:Null}" status="{x:Null}" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="CRS_SL.CancelActivity_1">
+                    <sap2010:WorkflowViewState.ViewStateManager>
+                      <sap2010:ViewStateManager>
+                        <sap2010:ViewStateData Id="InitializeCorrelation_1" sap2010:WorkflowViewState.IdRef="ViewStateData_31" />
+                        <sap2010:ViewStateData Id="Receive_2" sap2010:WorkflowViewState.IdRef="ViewStateData_32" />
+                        <sap2010:ViewStateData Id="UpadateCancelStatus_2" sap2010:WorkflowViewState.IdRef="ViewStateData_33" />
+                        <sap2010:ViewStateData Id="SendReply_2" sap2010:WorkflowViewState.IdRef="ViewStateData_34" />
+                        <sap2010:ViewStateData Id="Sequence_2" sap2010:WorkflowViewState.IdRef="ViewStateData_35" />
+                        <sap2010:ViewStateData Id="CRS_SL.CancelActivity_1" sap2010:WorkflowViewState.IdRef="ViewStateData_36" />
+                      </sap2010:ViewStateManager>
+                    </sap2010:WorkflowViewState.ViewStateManager>
+                    <c:CancelActivity.courseClass>
+                      <p1:InArgument x:TypeArguments="nicdc:CourseClass">
+                        <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
+                      </p1:InArgument>
+                    </c:CancelActivity.courseClass>
+                  </c:CancelActivity>
+                </p1:PickBranch.Trigger>
+              </p1:PickBranch>
+            </p1:Pick>
+          </p1:FlowStep>
+        </p1:FlowDecision.False>
+      </p1:FlowDecision>
+      <x:Reference>__ReferenceID1</x:Reference>
+      <x:Reference>__ReferenceID2</x:Reference>
+      <x:Reference>__ReferenceID3</x:Reference>
+      <x:Reference>__ReferenceID4</x:Reference>
+    </p1:Flowchart>
+    <sads:DebugSymbol.Symbol>d01EOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDb3Vyc2VDb25maXJtU2VydmljZS54YW1seBUQA9EBEQEBQgVRDwFNUgVXEQE6WAXPARQBAk4LTlkBVkcPR1wBTlRCVEoBPFVDVVMBO1sLW28BMpYBDccBFwEdYA9gXwEVfxGPASQBDGQReiUBA5cBD7EBHwEosgEPxgEfAR6MAReMAWkBDXcXd2kBBJkBE68BJwEptAETxAEmAR+sARmsAWsBKsEBGcEBawEg</sads:DebugSymbol.Symbol>
+  </p1:Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="634,86" />
+      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="634,86" />
+      <sap2010:ViewStateData Id="ViewStateData_1" sap:VirtualizedContainerService.HintSize="277,97" />
+      <sap2010:ViewStateData Id="ViewStateData_2" sap:VirtualizedContainerService.HintSize="277,86" />
+      <sap2010:ViewStateData Id="ViewStateData_3" sap:VirtualizedContainerService.HintSize="277,22" />
+      <sap2010:ViewStateData Id="ViewStateData_4" sap:VirtualizedContainerService.HintSize="277,22" />
+      <sap2010:ViewStateData Id="ViewStateData_5" sap:VirtualizedContainerService.HintSize="277,86" />
+      <sap2010:ViewStateData Id="ViewStateData_6" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_7" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="ViewStateData_8" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="ViewStateData_9" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_10" sap:VirtualizedContainerService.HintSize="277,540">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ViewStateData_11" sap:VirtualizedContainerService.HintSize="299,1177">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ViewStateData_12" sap:VirtualizedContainerService.HintSize="339,1257" />
+      <sap2010:ViewStateData Id="CRS_SL.ConfirmActivity_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="FlowStep_8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">0,319</av:Point>
+            <av:Size x:Key="ShapeSize">200,22</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ViewStateData_13" sap:VirtualizedContainerService.HintSize="255,97" />
+      <sap2010:ViewStateData Id="ViewStateData_14" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_15" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="ViewStateData_16" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_17" sap:VirtualizedContainerService.HintSize="277,535">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ViewStateData_18" sap:VirtualizedContainerService.HintSize="317,615" />
+      <sap2010:ViewStateData Id="CRS_SL.CancelActivity_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="FlowStep_7">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">250,319</av:Point>
+            <av:Size x:Key="ShapeSize">200,22</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowDecision_2" sap:VirtualizedContainerService.HintSize="75,87">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">145,196.5</av:Point>
+            <av:Size x:Key="ShapeSize">75,87</av:Size>
+            <av:PointCollection x:Key="FalseConnector">220,240 350,240 350,319</av:PointCollection>
+            <av:PointCollection x:Key="TrueConnector">145,240 100,240 100,319</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ViewStateData_19" sap:VirtualizedContainerService.HintSize="277,97" />
+      <sap2010:ViewStateData Id="ViewStateData_20" sap:VirtualizedContainerService.HintSize="277,86" />
+      <sap2010:ViewStateData Id="ViewStateData_21" sap:VirtualizedContainerService.HintSize="277,22" />
+      <sap2010:ViewStateData Id="ViewStateData_22" sap:VirtualizedContainerService.HintSize="277,22" />
+      <sap2010:ViewStateData Id="ViewStateData_23" sap:VirtualizedContainerService.HintSize="277,86" />
+      <sap2010:ViewStateData Id="ViewStateData_24" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_25" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="ViewStateData_26" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="ViewStateData_27" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_28" sap:VirtualizedContainerService.HintSize="277,540">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ViewStateData_29" sap:VirtualizedContainerService.HintSize="299,1177">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ViewStateData_30" sap:VirtualizedContainerService.HintSize="339,1257" />
+      <sap2010:ViewStateData Id="PickBranch_1" sap:VirtualizedContainerService.HintSize="230,318" />
+      <sap2010:ViewStateData Id="ViewStateData_31" sap:VirtualizedContainerService.HintSize="255,97" />
+      <sap2010:ViewStateData Id="ViewStateData_32" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_33" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="ViewStateData_34" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_35" sap:VirtualizedContainerService.HintSize="277,535">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ViewStateData_36" sap:VirtualizedContainerService.HintSize="317,615" />
+      <sap2010:ViewStateData Id="PickBranch_2" sap:VirtualizedContainerService.HintSize="230,318" />
+      <sap2010:ViewStateData Id="Pick_1" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">410,204.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowDecision_1" sap:VirtualizedContainerService.HintSize="87,87">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">256.5,106.5</av:Point>
+            <av:Size x:Key="ShapeSize">87,87</av:Size>
+            <av:PointCollection x:Key="TrueConnector">256.5,150 182.5,150 182.5,196.5</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">343.5,150 510,150 510,204.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="634,636">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,106.5</av:PointCollection>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Double x:Key="Width">620</x:Double>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="656,1012">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WorkflowService_1" sap:VirtualizedContainerService.HintSize="686,1082" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</WorkflowService>
