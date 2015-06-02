@@ -68,6 +68,10 @@
     <Compile Include="Search\SearchCriterionItem.cs" />
     <Compile Include="Search\SearchCriterion.cs" />
     <Compile Include="Search\SearchEngine.cs" />
+    <Compile Include="Service\AttendanceService.cs" />
+    <Compile Include="Service\IAttendanceService.cs" />
+    <Compile Include="Service\IRegistrationService.cs" />
+    <Compile Include="Service\RegistrationService.cs" />
     <Compile Include="Session\ISession.cs" />
     <Compile Include="Session\SessionFactory.cs" />
     <Compile Include="Session\SessionImplement.cs" />
@@ -84,9 +88,6 @@
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
       <Name>CRS_DM</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

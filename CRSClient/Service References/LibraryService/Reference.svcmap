@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7e62c13f-e07f-4ad7-929e-d19d0730a981" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:62616/LibraryService.xamlx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LibraryService.xsd" MetadataType="Schema" ID="0baba741-b0a1-4d33-af44-8039772528a4" SourceId="1" SourceUrl="http://localhost:62616/LibraryService.xamlx?xsd=xsd0" />
+    <MetadataFile FileName="LibraryService1.xsd" MetadataType="Schema" ID="17add1eb-d6e0-41c2-bc85-667e9194ae76" SourceId="1" SourceUrl="http://localhost:62616/LibraryService.xamlx?xsd=xsd1" />
+    <MetadataFile FileName="LibraryService2.xsd" MetadataType="Schema" ID="0c1edeb7-a576-42ec-b0c8-2c35336e01e8" SourceId="1" SourceUrl="http://localhost:62616/LibraryService.xamlx?xsd=xsd2" />
+    <MetadataFile FileName="LibraryService.disco" MetadataType="Disco" ID="c14f89ea-e177-4f05-8f20-93e8eb53b463" SourceId="1" SourceUrl="http://localhost:62616/LibraryService.xamlx?disco" />
+    <MetadataFile FileName="LibraryService.wsdl" MetadataType="Wsdl" ID="e60f1ae2-d93a-4809-804f-f62546d0f7a6" SourceId="1" SourceUrl="http://localhost:62616/LibraryService.xamlx?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

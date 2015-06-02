@@ -34,6 +34,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,11 +45,149 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttendanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceForm.Designer.cs">
+      <DependentUpon>AttendanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CourseCompleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CourseCompleteForm.Designer.cs">
+      <DependentUpon>CourseCompleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CourseConfirmationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CourseConfirmationForm.Designer.cs">
+      <DependentUpon>CourseConfirmationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CourseRegstrationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CourseRegstrationForm.Designer.cs">
+      <DependentUpon>CourseRegstrationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CourseConfirmService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LibraryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Service References\CourseConfirmService\CourseConfirmService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CourseConfirmService\CourseConfirmService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CourseConfirmService\CRSClient.CourseConfirmService.CancelCourseClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CourseConfirmService\CRSClient.CourseConfirmService.ConfirmCourseClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CourseConfirmService\CRSClient.CourseConfirmService.MakePaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CourseConfirmService\CRSClient.CourseConfirmService.RequestConfirmationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CourseConfirmService\Service1.wsdl" />
+    <None Include="Service References\LibraryService\CRSClient.LibraryService.BorrowResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LibraryService\CRSClient.LibraryService.Customer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LibraryService\CRSClient.LibraryService.RenewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LibraryService\CRSClient.LibraryService.ReturnResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LibraryService\LibraryService.wsdl" />
+    <None Include="Service References\LibraryService\LibraryService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LibraryService\LibraryService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LibraryService\LibraryService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CourseCompleteForm.resx">
+      <DependentUpon>CourseCompleteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CourseConfirmationForm.resx">
+      <DependentUpon>CourseConfirmationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CourseConfirmService\" />
+    <WCFMetadataStorage Include="Service References\LibraryService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseConfirmService\CourseConfirmService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseConfirmService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseConfirmService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseConfirmService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LibraryService\LibraryService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LibraryService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LibraryService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LibraryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
