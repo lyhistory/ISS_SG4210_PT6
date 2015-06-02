@@ -41,6 +41,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,8 +71,6 @@
     <Compile Include="Search\SearchEngine.cs" />
     <Compile Include="Service\AttendanceService.cs" />
     <Compile Include="Service\IAttendanceService.cs" />
-    <Compile Include="Service\IRegistrationService.cs" />
-    <Compile Include="Service\RegistrationService.cs" />
     <Compile Include="Session\ISession.cs" />
     <Compile Include="Session\SessionFactory.cs" />
     <Compile Include="Session\SessionImplement.cs" />

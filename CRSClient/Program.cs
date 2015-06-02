@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRSClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace WFClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CourseConfirmation());
+            Application.Run(new MainForm());
             //Application.Run(new Form1());
         }
     }

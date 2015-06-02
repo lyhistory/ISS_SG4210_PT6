@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="nus.iss.crs.pl.Service.CourseRegistrationService" CodeBehind="CourseRegistrationService.svc.cs" %>
