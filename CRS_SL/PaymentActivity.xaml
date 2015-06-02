@@ -1,6 +1,5 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CRS_SL.CancelActivity"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CRS_SL.PaymentActivity"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
- xmlns:local="clr-namespace:CRS_SL"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
  xmlns:nicdc="clr-namespace:nus.iss.crs.dm.Course;assembly=CRS_DM"
@@ -15,13 +14,13 @@
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="courseClass" Type="InArgument(nicdc:CourseClass)" />
-    <x:Property Name="status" Type="OutArgument(x:String)" />
-    <x:Property Name="message" Type="OutArgument(x:String)" />
     <x:Property Name="classSize" Type="InArgument(x:Int32)" />
+    <x:Property Name="message" Type="OutArgument(x:String)" />
+    <x:Property Name="status" Type="OutArgument(x:String)" />
     <x:Property Name="classCode" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap2010:WorkflowViewState.IdRef>CRS_SL.CancelActivity_1</sap2010:WorkflowViewState.IdRef>
+  <sap2010:WorkflowViewState.IdRef>CRS_SL.PaymentActivity_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System</x:String>
@@ -62,9 +61,9 @@
       <AssemblyReference>CRS_SL</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Cancel" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="Payment" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="p1:CorrelationHandle" x:Name="__ReferenceID0" Name="__handle1" />
+      <Variable x:TypeArguments="p1:CorrelationHandle" x:Name="__ReferenceID0" Name="p__handle1" />
       <Variable x:TypeArguments="p1:CorrelationHandle" Name="courseClassHandle" />
     </Sequence.Variables>
     <p1:InitializeCorrelation sap2010:WorkflowViewState.IdRef="InitializeCorrelation_1">
@@ -77,14 +76,14 @@
         <mca:CSharpValue x:TypeArguments="x:String">classCode</mca:CSharpValue>
       </InArgument>
     </p1:InitializeCorrelation>
-    <p1:Receive x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="Receive_2" OperationName="CancelCourseClass" ServiceContractName="p:IService">
+    <p1:Receive x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="Receive_1" OperationName="MakePayment" ServiceContractName="p:IService">
       <p1:Receive.CorrelatesOn>
         <p1:XPathMessageQuery x:Key="key1">
           <p1:XPathMessageQuery.Namespaces>
             <ssx:XPathMessageContextMarkup>
               <x:String x:Key="xgSc">http://tempuri.org/</x:String>
             </ssx:XPathMessageContextMarkup>
-          </p1:XPathMessageQuery.Namespaces>sm:body()/xgSc:CancelCourseClass/xgSc:classCode</p1:XPathMessageQuery>
+          </p1:XPathMessageQuery.Namespaces>sm:body()/xgSc:MakePayment/xgSc:classCode</p1:XPathMessageQuery>
       </p1:Receive.CorrelatesOn>
       <p1:Receive.CorrelatesWith>
         <InArgument x:TypeArguments="p1:CorrelationHandle">
@@ -109,24 +108,27 @@
         </OutArgument>
       </p1:ReceiveParametersContent>
     </p1:Receive>
-    <local:UpadateCancelStatus Text="{x:Null}" sap2010:WorkflowViewState.IdRef="UpadateCancelStatus_2">
-      <local:UpadateCancelStatus.courseClass>
-        <InArgument x:TypeArguments="nicdc:CourseClass">
-          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
-        </InArgument>
-      </local:UpadateCancelStatus.courseClass>
-      <local:UpadateCancelStatus.message>
-        <OutArgument x:TypeArguments="x:String">
-          <mca:CSharpReference x:TypeArguments="x:String">message</mca:CSharpReference>
-        </OutArgument>
-      </local:UpadateCancelStatus.message>
-      <local:UpadateCancelStatus.status>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
         <OutArgument x:TypeArguments="x:String">
           <mca:CSharpReference x:TypeArguments="x:String">status</mca:CSharpReference>
         </OutArgument>
-      </local:UpadateCancelStatus.status>
-    </local:UpadateCancelStatus>
-    <p1:SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceive" sap2010:WorkflowViewState.IdRef="SendReply_2">
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">Paid</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">
+          <mca:CSharpReference x:TypeArguments="x:String">message</mca:CSharpReference>
+        </OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">Made payment</InArgument>
+      </Assign.Value>
+    </Assign>
+    <p1:SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceive" sap2010:WorkflowViewState.IdRef="SendReply_1">
       <p1:SendParametersContent>
         <InArgument x:TypeArguments="x:String" x:Key="status">
           <mca:CSharpValue x:TypeArguments="x:String">status</mca:CSharpValue>
@@ -139,22 +141,24 @@
         </InArgument>
       </p1:SendParametersContent>
     </p1:SendReply>
-    <sads:DebugSymbol.Symbol>d0ZEOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDYW5jZWxBY3Rpdml0eS54YW1sEUEDjwEOAgEBRgVPIAIBUFAFbxICATZwBYABIQIBHYEBBY0BFAIBAk0JTVACAVlJC0lmAgFRWwtbZgIBSGkLaVkCAUBiD2JvAgE/bAtsWgIBN3MLc10CAS59C31XAgEmeAt4WAIBHoQBC4QBTwIBE4cBC4cBUAIBC4oBC4oBUgIBAw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0dEOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxQYXltZW50QWN0aXZpdHkueGFtbBNAA5EBDgIBAUUFTiACAUtPBW4SAgExbwV4DgIBJ3kFggEOAgEdgwEFjwEUAgECTAlMUAIBVEgLSGYCAUxaC1pmAgFDaAtoWQIBO2EPYW8CATprC2taAgEydjB2NAIBMHILclcCASiAATCAATwCASZ8C3xYAgEehgELhgFPAgETiQELiQFQAgELjAELjAFSAgED</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="InitializeCorrelation_1" sap:VirtualizedContainerService.HintSize="255,97" />
-      <sap2010:ViewStateData Id="Receive_2" sap:VirtualizedContainerService.HintSize="255,86" />
-      <sap2010:ViewStateData Id="UpadateCancelStatus_2" sap:VirtualizedContainerService.HintSize="255,22" />
-      <sap2010:ViewStateData Id="SendReply_2" sap:VirtualizedContainerService.HintSize="255,86" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="277,535">
+      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="277,677">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CRS_SL.CancelActivity_1" sap:VirtualizedContainerService.HintSize="317,615" />
+      <sap2010:ViewStateData Id="CRS_SL.PaymentActivity_1" sap:VirtualizedContainerService.HintSize="317,757" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

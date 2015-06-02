@@ -18,6 +18,10 @@ namespace nus.iss.crs.dm.Course
             course.AddClass(this); 
         }
 
+        public CourseClass()
+        {
+        }
+
         public Course GetCourse()
         {
             return course;

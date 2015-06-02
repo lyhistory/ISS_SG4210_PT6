@@ -11,11 +11,14 @@
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:ssx="clr-namespace:System.ServiceModel.XamlIntegration;assembly=System.ServiceModel"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="courseClass" Type="InArgument(nicdc:CourseClass)" />
+    <x:Property Name="classSize" Type="InArgument(x:Int32)" />
     <x:Property Name="status" Type="OutArgument(x:String)" />
     <x:Property Name="message" Type="OutArgument(x:String)" />
+    <x:Property Name="classCode" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap2010:WorkflowViewState.IdRef>CRS_SL.ConfirmActivity_1</sap2010:WorkflowViewState.IdRef>
@@ -33,6 +36,9 @@
   <TextExpression.ReferencesForImplementation>
     <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System.Activities.Presentation</AssemblyReference>
       <AssemblyReference>System.Web.DynamicData</AssemblyReference>
       <AssemblyReference>System.Drawing</AssemblyReference>
       <AssemblyReference>System.Web.Entity</AssemblyReference>
@@ -50,11 +56,8 @@
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
-      <AssemblyReference>CRS_DM</AssemblyReference>
-      <AssemblyReference>PresentationFramework</AssemblyReference>
-      <AssemblyReference>PresentationCore</AssemblyReference>
-      <AssemblyReference>System.Activities.Presentation</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>CRS_DM</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>CRS_SL</AssemblyReference>
     </sco:Collection>
@@ -65,11 +68,24 @@
       <Variable x:TypeArguments="p1:CorrelationHandle" Name="courseClassHandle" />
     </Sequence.Variables>
     <p1:InitializeCorrelation sap2010:WorkflowViewState.IdRef="InitializeCorrelation_1">
+      <p1:InitializeCorrelation.Correlation>
+        <InArgument x:TypeArguments="p1:CorrelationHandle">
+          <mca:CSharpValue x:TypeArguments="p1:CorrelationHandle">courseClassHandle</mca:CSharpValue>
+        </InArgument>
+      </p1:InitializeCorrelation.Correlation>
       <InArgument x:TypeArguments="x:String" x:Key="key1">
-        <mca:CSharpValue x:TypeArguments="x:String">courseClass.ClassCode</mca:CSharpValue>
+        <mca:CSharpValue x:TypeArguments="x:String">classCode</mca:CSharpValue>
       </InArgument>
     </p1:InitializeCorrelation>
     <p1:Receive x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="Receive_1" OperationName="ConfirmCourseClass" ServiceContractName="p:IService">
+      <p1:Receive.CorrelatesOn>
+        <p1:XPathMessageQuery x:Key="key1">
+          <p1:XPathMessageQuery.Namespaces>
+            <ssx:XPathMessageContextMarkup>
+              <x:String x:Key="xgSc">http://tempuri.org/</x:String>
+            </ssx:XPathMessageContextMarkup>
+          </p1:XPathMessageQuery.Namespaces>sm:body()/xgSc:ConfirmCourseClass/xgSc:classCode</p1:XPathMessageQuery>
+      </p1:Receive.CorrelatesOn>
       <p1:Receive.CorrelatesWith>
         <InArgument x:TypeArguments="p1:CorrelationHandle">
           <mca:CSharpValue x:TypeArguments="p1:CorrelationHandle">courseClassHandle</mca:CSharpValue>
@@ -85,17 +101,30 @@
         </p1:RequestReplyCorrelationInitializer>
       </p1:Receive.CorrelationInitializers>
       <p1:ReceiveParametersContent>
-        <OutArgument x:TypeArguments="nicdc:CourseClass" x:Key="courseClass">
-          <mca:CSharpReference x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpReference>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="classSize">
+          <mca:CSharpReference x:TypeArguments="x:Int32">classSize</mca:CSharpReference>
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="classCode">
+          <mca:CSharpReference x:TypeArguments="x:String">classCode</mca:CSharpReference>
         </OutArgument>
       </p1:ReceiveParametersContent>
     </p1:Receive>
-    <local:UpdateConfirmStatus Text="{x:Null}" message="{x:Null}" status="{x:Null}" sap2010:WorkflowViewState.IdRef="UpdateConfirmStatus_1">
+    <local:UpdateConfirmStatus Text="{x:Null}" sap2010:WorkflowViewState.IdRef="UpdateConfirmStatus_1">
       <local:UpdateConfirmStatus.courseClass>
         <InArgument x:TypeArguments="nicdc:CourseClass">
           <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
         </InArgument>
       </local:UpdateConfirmStatus.courseClass>
+      <local:UpdateConfirmStatus.message>
+        <OutArgument x:TypeArguments="x:String">
+          <mca:CSharpReference x:TypeArguments="x:String">message</mca:CSharpReference>
+        </OutArgument>
+      </local:UpdateConfirmStatus.message>
+      <local:UpdateConfirmStatus.status>
+        <OutArgument x:TypeArguments="x:String">
+          <mca:CSharpReference x:TypeArguments="x:String">status</mca:CSharpReference>
+        </OutArgument>
+      </local:UpdateConfirmStatus.status>
     </local:UpdateConfirmStatus>
     <local:NotifyByEmail Text="{x:Null}" sap2010:WorkflowViewState.IdRef="NotifyByEmail_1" />
     <p1:SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceive" sap2010:WorkflowViewState.IdRef="SendReply_1">
@@ -106,78 +135,64 @@
         <InArgument x:TypeArguments="x:String" x:Key="message">
           <mca:CSharpValue x:TypeArguments="x:String">message</mca:CSharpValue>
         </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="classCode">
+          <mca:CSharpValue x:TypeArguments="x:String">classCode</mca:CSharpValue>
+        </InArgument>
       </p1:SendParametersContent>
     </p1:SendReply>
-    <Sequence DisplayName="Payment" sap2010:WorkflowViewState.IdRef="Sequence_2">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="p1:CorrelationHandle" x:Name="__ReferenceID2" Name="__handle1" />
-      </Sequence.Variables>
-      <p1:Receive x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="Receive_2" OperationName="MakePayment" ServiceContractName="p:IService">
-        <p1:Receive.CorrelatesWith>
-          <InArgument x:TypeArguments="p1:CorrelationHandle">
-            <mca:CSharpValue x:TypeArguments="p1:CorrelationHandle">courseClassHandle</mca:CSharpValue>
-          </InArgument>
-        </p1:Receive.CorrelatesWith>
-        <p1:Receive.CorrelationInitializers>
-          <p1:RequestReplyCorrelationInitializer>
-            <p1:RequestReplyCorrelationInitializer.CorrelationHandle>
-              <InArgument x:TypeArguments="p1:CorrelationHandle">
-                <VariableValue x:TypeArguments="p1:CorrelationHandle" Variable="{x:Reference __ReferenceID2}" />
-              </InArgument>
-            </p1:RequestReplyCorrelationInitializer.CorrelationHandle>
-          </p1:RequestReplyCorrelationInitializer>
-        </p1:Receive.CorrelationInitializers>
-        <p1:ReceiveParametersContent>
-          <OutArgument x:TypeArguments="nicdc:CourseClass" x:Key="courseClass">
-            <mca:CSharpReference x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpReference>
-          </OutArgument>
-        </p1:ReceiveParametersContent>
-      </p1:Receive>
-      <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">
-            <mca:CSharpReference x:TypeArguments="x:String">status</mca:CSharpReference>
-          </OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">Paid</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">
-            <mca:CSharpReference x:TypeArguments="x:String">message</mca:CSharpReference>
-          </OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">Made payment</InArgument>
-        </Assign.Value>
-      </Assign>
-      <p1:SendReply Request="{x:Reference __ReferenceID3}" DisplayName="SendReplyToReceive" sap2010:WorkflowViewState.IdRef="SendReply_2">
-        <p1:SendParametersContent>
-          <InArgument x:TypeArguments="x:String" x:Key="status">
-            <mca:CSharpValue x:TypeArguments="x:String">status</mca:CSharpValue>
-          </InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="message">
-            <mca:CSharpValue x:TypeArguments="x:String">message</mca:CSharpValue>
-          </InArgument>
-        </p1:SendParametersContent>
-      </p1:SendReply>
-    </Sequence>
-    <sads:DebugSymbol.Symbol>d0dEOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDb25maXJtQWN0aXZpdHkueGFtbBs+A6gBDgIBAUMFRyACAVtIBVwSAgFNXQVjIQIBRmQFZF4CAUVlBW4UAgE2bwWmARACAQJFCUVcAgFcSwtLZgIBVVkLWWUCAU9SD1JvAgFOYAtgXQIBR2gLaE8CAT1rC2tQAgE3cweHARQCASaIAQeRARACAR2SAQebARACARScAQelARYCAQN2DXZoAgEvhAENhAFnAgEofRF9cQIBJ48BMo8BNgIBJYsBDYsBWQIBHpkBMpkBPgIBHJUBDZUBWgIBFZ8BDZ8BUQIBC6IBDaIBUgIBBA==</sads:DebugSymbol.Symbol>
+    <local:PaymentActivity sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="CRS_SL.PaymentActivity_1">
+      <sap2010:WorkflowViewState.ViewStateManager>
+        <sap2010:ViewStateManager>
+          <sap2010:ViewStateData Id="InitializeCorrelation_1" sap2010:WorkflowViewState.IdRef="ViewStateData_1" />
+          <sap2010:ViewStateData Id="Receive_1" sap2010:WorkflowViewState.IdRef="ViewStateData_2" />
+          <sap2010:ViewStateData Id="Assign_1" sap2010:WorkflowViewState.IdRef="ViewStateData_3" />
+          <sap2010:ViewStateData Id="Assign_2" sap2010:WorkflowViewState.IdRef="ViewStateData_4" />
+          <sap2010:ViewStateData Id="SendReply_1" sap2010:WorkflowViewState.IdRef="ViewStateData_5" />
+          <sap2010:ViewStateData Id="Sequence_1" sap2010:WorkflowViewState.IdRef="ViewStateData_6" />
+          <sap2010:ViewStateData Id="CRS_SL.PaymentActivity_1" sap2010:WorkflowViewState.IdRef="ViewStateData_7" />
+        </sap2010:ViewStateManager>
+      </sap2010:WorkflowViewState.ViewStateManager>
+      <local:PaymentActivity.classCode>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String">classCode</mca:CSharpValue>
+        </InArgument>
+      </local:PaymentActivity.classCode>
+      <local:PaymentActivity.classSize>
+        <InArgument x:TypeArguments="x:Int32">
+          <mca:CSharpValue x:TypeArguments="x:Int32">classSize</mca:CSharpValue>
+        </InArgument>
+      </local:PaymentActivity.classSize>
+      <local:PaymentActivity.courseClass>
+        <InArgument x:TypeArguments="nicdc:CourseClass">
+          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
+        </InArgument>
+      </local:PaymentActivity.courseClass>
+      <local:PaymentActivity.message>
+        <OutArgument x:TypeArguments="x:String">
+          <mca:CSharpReference x:TypeArguments="x:String">message</mca:CSharpReference>
+        </OutArgument>
+      </local:PaymentActivity.message>
+      <local:PaymentActivity.status>
+        <OutArgument x:TypeArguments="x:String">
+          <mca:CSharpReference x:TypeArguments="x:String">status</mca:CSharpReference>
+        </OutArgument>
+      </local:PaymentActivity.status>
+    </local:PaymentActivity>
+    <sads:DebugSymbol.Symbol>d0dEOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDb25maXJtQWN0aXZpdHkueGFtbBhBA7YBDgIBAUYFTyACAXpQBW8SAgFgcAWAASECAUeBAQWBAV4CAUaCAQWOARQCASuPAQW0AR0CAQJNCU1QAwGDAUkLSWYCAXtbC1tmAgFyaQtpWQIBamIPYm8CAWlsC2xaAgFhcwtzXQIBWH0LfVcCAVB4C3hYAgFIhQELhQFPAgE8iAELiAFQAgE0iwELiwFSAgEspwELpwFdAgEjsQELsQFXAgEbogELogFRAgETrAELrAFYAgELnQELnQFSAgED</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="InitializeCorrelation_1" sap:VirtualizedContainerService.HintSize="277,97" />
-      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="277,86" />
-      <sap2010:ViewStateData Id="UpdateConfirmStatus_1" sap:VirtualizedContainerService.HintSize="277,22" />
-      <sap2010:ViewStateData Id="NotifyByEmail_1" sap:VirtualizedContainerService.HintSize="277,22" />
-      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="277,86" />
-      <sap2010:ViewStateData Id="Receive_2" sap:VirtualizedContainerService.HintSize="255,86" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="255,62" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="255,62" />
-      <sap2010:ViewStateData Id="SendReply_2" sap:VirtualizedContainerService.HintSize="255,86" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="277,540">
+      <sap2010:ViewStateData Id="InitializeCorrelation_1" sap:VirtualizedContainerService.HintSize="255,97" />
+      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="UpdateConfirmStatus_1" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="NotifyByEmail_1" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_1" sap:VirtualizedContainerService.HintSize="255,97" />
+      <sap2010:ViewStateData Id="ViewStateData_2" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_3" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="ViewStateData_4" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="ViewStateData_5" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="ViewStateData_6" sap:VirtualizedContainerService.HintSize="277,677">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -185,7 +200,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="299,1177">
+      <sap2010:ViewStateData Id="ViewStateData_7" sap:VirtualizedContainerService.HintSize="317,757" />
+      <sap2010:ViewStateData Id="CRS_SL.PaymentActivity_1" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="277,659">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -193,7 +210,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CRS_SL.ConfirmActivity_1" sap:VirtualizedContainerService.HintSize="339,1257" />
+      <sap2010:ViewStateData Id="CRS_SL.ConfirmActivity_1" sap:VirtualizedContainerService.HintSize="317,739" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
