@@ -154,7 +154,7 @@ namespace CRS_DAL.Service
                             )
                         {
                             RegID=_registration.RegistrationID,
-                            status =(dm.RegistrationStatus)_registration.Status,
+                            Status = (dm.RegistrationStatus)_registration.Status,
                             billingInfo =new dm.Registration.Billing(){
                                 PersonName =_registration.BillingPersonName,
                                 Address =_registration.BillingAddress,
@@ -203,7 +203,7 @@ namespace CRS_DAL.Service
                             )
                         {
                             RegID = _registration.RegistrationID,
-                            status = (dm.RegistrationStatus)_registration.Status,
+                            Status = (dm.RegistrationStatus)_registration.Status,
                             billingInfo = new dm.Registration.Billing()
                             {
                                 PersonName = _registration.BillingPersonName,
@@ -253,7 +253,7 @@ namespace CRS_DAL.Service
                             )
                         {
                             RegID = _registration.RegistrationID,
-                            status = (dm.RegistrationStatus)_registration.Status,
+                            Status = (dm.RegistrationStatus)_registration.Status,
                             billingInfo = new dm.Registration.Billing()
                             {
                                 PersonName = _registration.BillingPersonName,
@@ -275,7 +275,7 @@ namespace CRS_DAL.Service
             {
                 Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.RegistrationID.Equals(registration.RegID));
                 _registration.Sponsorship = registration.Sponsorship.Equals("Self",StringComparison.OrdinalIgnoreCase) ? 1 : 2;
-                _registration.Status = (int)registration.status;
+                _registration.Status = (int)registration.Status;
                 _registration.BillingAddress = registration.billingInfo.Address;
                 _registration.BillingAddressCountry = registration.billingInfo.Country;
                 _registration.BillingAddressPostalCode = registration.billingInfo.PostalCode;
@@ -335,7 +335,7 @@ namespace CRS_DAL.Service
                             )
                         {
                             RegID = _registration.RegistrationID,
-                            status = (dm.RegistrationStatus)_registration.Status,
+                            Status = (dm.RegistrationStatus)_registration.Status,
                             billingInfo = new dm.Registration.Billing()
                             {
                                 PersonName = _registration.BillingPersonName,
