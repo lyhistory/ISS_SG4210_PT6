@@ -35,5 +35,6 @@ namespace CRS_DAL.EF
         public DbSet<Registration> Registrations { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
     }
 }
