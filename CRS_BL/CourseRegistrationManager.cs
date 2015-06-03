@@ -95,6 +95,11 @@ namespace nus.iss.crs.bl
             return unitOfWork.CourseRegistrationService.GetRegistration(RegID);
         }
 
+        public Registration CreateRegistration(string classId,string participantId)
+        {
+            Registration registration = new Registration();
+            return registration;
+        }
 
     }
 }

@@ -9,16 +9,11 @@ namespace nus.iss.crs.bl.Search
 {
     public class SearchCriterion
     {
-
         private List<SearchCriterionItem> conditionList = new List<SearchCriterionItem>();
 
         public void AddCriterionItem(SearchCriterionItem item)
         {
             conditionList.Add(item);
         }
-
-
-
-
     }
 }
