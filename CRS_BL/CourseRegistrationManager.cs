@@ -89,17 +89,36 @@ namespace nus.iss.crs.bl
             return unitOfWork.CourseRegistrationService.DeleteRegistration(registration);
         }
 
-
         public Registration GetRegistration(string RegID)
         {
             return unitOfWork.CourseRegistrationService.GetRegistration(RegID);
         }
 
-        public Registration CreateRegistration(string classId,string participantId)
+        public Registration CreateRegistration(CourseClass courseClass, Participant participant)
         {
-            Registration registration = new Registration();
+            Registration registration = new Registration(courseClass, participant);
             return registration;
         }
 
+        /// <summary>
+        /// for hr
+        /// </summary>
+        /// <param name="registration"></param>
+        /// <param name="session"></param>
+        /// <returns></returns>
+        public bool SaveRegistration(Registration registration,ISession session)
+        {
+            if (session.GetCurrentUser().GetRole() == null)
+            {
+                //implement save
+            }
+            return false;
+        }
+
+        public List<Participant> GetParticipantListByCourse(Course course,DateTime date)
+        {
+            List<Participant> participantList = new List<Participant>();
+            return participantList;
+        }
     }
 }
