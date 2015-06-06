@@ -106,14 +106,14 @@ namespace nus.iss.crs.bl
         /// <param name="registration"></param>
         /// <param name="session"></param>
         /// <returns></returns>
-        public bool SaveRegistration(Registration registration,ISession session)
-        {
-            if (session.GetCurrentUser().GetRole() == null)
-            {
-                //implement save
-            }
-            return false;
-        }
+        //public bool SaveRegistration(Registration registration,ISession session)
+        //{
+        //    if (session.GetCurrentUser().GetRole() == null)
+        //    {
+        //        //implement save
+        //    }
+        //    return false;
+        //}
 
         public List<Participant> GetParticipantListByCourse(Course course,DateTime date)
         {

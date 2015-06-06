@@ -128,6 +128,11 @@
         <InArgument x:TypeArguments="x:String">Made payment</InArgument>
       </Assign.Value>
     </Assign>
+    <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1">
+      <InArgument x:TypeArguments="x:String">
+        <mca:CSharpValue x:TypeArguments="x:String">message</mca:CSharpValue>
+      </InArgument>
+    </WriteLine>
     <p1:SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceive" sap2010:WorkflowViewState.IdRef="SendReply_1">
       <p1:SendParametersContent>
         <InArgument x:TypeArguments="x:String" x:Key="status">
@@ -141,16 +146,17 @@
         </InArgument>
       </p1:SendParametersContent>
     </p1:SendReply>
-    <sads:DebugSymbol.Symbol>d0dEOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxQYXltZW50QWN0aXZpdHkueGFtbBNAA5EBDgIBAUUFTiACAUtPBW4SAgExbwV4DgIBJ3kFggEOAgEdgwEFjwEUAgECTAlMUAIBVEgLSGYCAUxaC1pmAgFDaAtoWQIBO2EPYW8CATprC2taAgEydjB2NAIBMHILclcCASiAATCAATwCASZ8C3xYAgEehgELhgFPAgETiQELiQFQAgELjAELjAFSAgED</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dztEOlxDdXJyaWN1bHVtXENBXElTU19TRzQyMTBfUFQ2XENSU19TTFxQYXltZW50QWN0aXZpdHkueGFtbBVAA5YBDgIBAUUFTiACAVRPBW4SAgE6bwV4DgIBMHkFggEOAgEmgwEFhwERAgEdiAEFlAEUAgECTAlMUAIBXUgLSGYCAVVaC1pmAgFMaAtoWQIBRGEPYW8CAUNrC2taAgE7djB2NAIBOXILclcCATGAATCAATwCAS98C3xYAgEnhQEJhQFOAgEeiwELiwFPAgETjgELjgFQAgELkQELkQFSAgED</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="InitializeCorrelation_1" sap:VirtualizedContainerService.HintSize="255,97" />
-      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="255,86" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="255,62" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="255,62" />
-      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="255,86" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="277,677">
+      <sap2010:ViewStateData Id="InitializeCorrelation_1" sap:VirtualizedContainerService.HintSize="254.4,99.2" />
+      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="254.4,92.8" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="254.4,62.4" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="254.4,62.4" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="254.4,62.4" />
+      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="254.4,92.8" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="276.8,796.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -158,7 +164,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CRS_SL.PaymentActivity_1" sap:VirtualizedContainerService.HintSize="317,757" />
+      <sap2010:ViewStateData Id="CRS_SL.PaymentActivity_1" sap:VirtualizedContainerService.HintSize="316.8,876.8" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
