@@ -269,6 +269,45 @@ namespace CRS_DAL.Service
             return null;
         }
 
+        public dm.Registration.Registration CreateRegistration(dm.Course.CourseClass courseClass, dm.Registration.Participant participant,dm.Registration.Registration registration)
+        {
+            try
+            {
+                CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(courseClass.ClassCode));
+                if (_courseClass == null)
+                    return null;
+                Participant _participant = this.ParticipantRepository.GetFirstOrDefault(
+                    x => x.IDNumber.Equals(participant.IDNumber)&&string.IsNullOrEmpty(x.CompanyID)&&string.IsNullOrEmpty(participant.CompanyID)
+                    ||
+                    x.IDNumber.Equals(participant.IDNumber)&&x.CompanyID.Equals(participant.CompanyID));
+                if (_participant == null)
+                    return null;
+
+                Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.ClassID.Equals(_courseClass.ClassID)&&x.ParticipantID.Equals(_participant.ParticipantID));
+                if (_registration != null)
+                    return null;
+                _registration = new Registration();
+                _registration.RegistrationID = Guid.NewGuid().ToString();
+                _registration.ParticipantID = _participant.ParticipantID;
+                _registration.ClassID = _courseClass.ClassID;
+                _registration.Sponsorship = registration.Sponsorship.Equals("Self", StringComparison.OrdinalIgnoreCase) ? 1 : 2;
+                _registration.Status = (int)registration.Status;
+                _registration.BillingAddress = registration.billingInfo.Address;
+                _registration.BillingAddressCountry = registration.billingInfo.Country;
+                _registration.BillingAddressPostalCode = registration.billingInfo.PostalCode;
+                _registration.BillingPersonName = registration.billingInfo.PersonName;
+                _registration.DietaryRequirement = registration.DietaryRequirement;
+                _registration.OrganizationSize = registration.OrganizationSize;
+
+                this.RegistrationRepository.Add(_registration);
+                unitOfWork.Commit();
+
+                return this.GetRegistrationByRegID(_registration.RegistrationID);
+            }
+            catch { }
+            return null;
+        }
+
         public bool EditRegistration(dm.Registration.Registration registration)
         {
             try
@@ -305,7 +344,7 @@ namespace CRS_DAL.Service
         }
 
 
-        public dm.Registration.Registration GetRegistration(string RegID)
+        public dm.Registration.Registration GetRegistrationByRegID(string RegID)
         {
             Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.RegistrationID.Equals(RegID));
             Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(_registration.ParticipantID));
@@ -347,6 +386,44 @@ namespace CRS_DAL.Service
                             DietaryRequirement = _registration.DietaryRequirement,
                             OrganizationSize=_registration.OrganizationSize.HasValue ? _registration.OrganizationSize.Value : 0
                         };
+            }
+            return null;
+        }
+
+        public List<dm.Registration.Participant> GetParticipantListByCourse(dm.Course.Course course, DateTime date)
+        {
+            List<CourseClass> _courseClassList = this.CourseClassRepository.GetWhere(x => x.CourseCode.Equals(course.Code) && x.StartDate == date).ToList();
+            if (_courseClassList == null || _courseClassList.Count > 1)
+                return null; // no such class or more than one class found
+            CourseClass _courseClass = _courseClassList.FirstOrDefault();
+            IQueryable<Registration> _registrationList = this.RegistrationRepository.GetWhere(x => x.ClassID.Equals(_courseClass.ClassID));
+
+            IQueryable<Participant> _participantlistall = this.ParticipantRepository.GetAll();
+
+            List<Participant> _participantlist = _participantlistall.Join(_registrationList, p => p.ParticipantID, r => r.ParticipantID, (p, r) => p).ToList();
+
+            if (_participantlist != null)
+            {
+                return (from _participant in _participantlist
+                        select new dm.Registration.Participant()
+                        {
+                            IDNumber = _participant.IDNumber,
+                            EmploymentStatus = _participant.EmploymentStatus,
+                            CompanyID = _participant.CompanyID,
+                            CompanyName = _participant.CompanyName,
+                            Salutation = _participant.Salutation,
+                            JobTitle = _participant.JobTitle,
+                            Department = _participant.Department,
+                            FullName = _participant.FullName,
+                            OrganizationSize = _participant.OrganizationSize,
+                            Gender = _participant.Gender == 1 ? "Male" : "Female",
+                            SalaryRange = _participant.SalaryRange,
+                            Nationality = _participant.Nationality,
+                            DOB = _participant.DateOfBirth,
+                            EMail = _participant.Email,
+                            ContactNumber = _participant.ContactNumber,
+                            DietaryRequirement = _participant.DietaryRequirement
+                        }).ToList();
             }
             return null;
         }

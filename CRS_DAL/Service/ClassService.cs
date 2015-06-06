@@ -50,6 +50,8 @@ namespace CRS_DAL.Service
                     Status = (int)courseClass.Status,
                     Size = courseClass.Size
                 };
+                this.CourseClassRepository.Add(_courseClass);
+                this.unitOfWork.Commit();
                 return true;
             }
             catch { }

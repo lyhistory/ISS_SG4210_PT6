@@ -91,13 +91,12 @@ namespace nus.iss.crs.bl
 
         public Registration GetRegistration(string RegID)
         {
-            return unitOfWork.CourseRegistrationService.GetRegistration(RegID);
+            return unitOfWork.CourseRegistrationService.GetRegistrationByRegID(RegID);
         }
 
-        public Registration CreateRegistration(CourseClass courseClass, Participant participant)
+        public Registration CreateRegistration(CourseClass courseClass, Participant participant, Registration registration)
         {
-            Registration registration = new Registration(courseClass, participant);
-            return registration;
+            return unitOfWork.CourseRegistrationService.CreateRegistration(courseClass, participant, registration);
         }
 
         /// <summary>
@@ -117,8 +116,7 @@ namespace nus.iss.crs.bl
 
         public List<Participant> GetParticipantListByCourse(Course course,DateTime date)
         {
-            List<Participant> participantList = new List<Participant>();
-            return participantList;
+            return unitOfWork.CourseRegistrationService.GetParticipantListByCourse(course, date);
         }
     }
 }
