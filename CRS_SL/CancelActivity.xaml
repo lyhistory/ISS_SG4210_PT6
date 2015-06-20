@@ -4,14 +4,12 @@
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
  xmlns:nicdc="clr-namespace:nus.iss.crs.dm.Course;assembly=CRS_DM"
- xmlns:p="http://tempuri.org/"
- xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
- xmlns:ssx="clr-namespace:System.ServiceModel.XamlIntegration;assembly=System.ServiceModel"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="courseClass" Type="InArgument(nicdc:CourseClass)" />
@@ -19,6 +17,7 @@
     <x:Property Name="message" Type="OutArgument(x:String)" />
     <x:Property Name="classSize" Type="InArgument(x:Int32)" />
     <x:Property Name="classCode" Type="InArgument(x:String)" />
+    <x:Property Name="confirmed" Type="OutArgument(x:Boolean)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap2010:WorkflowViewState.IdRef>CRS_SL.CancelActivity_1</sap2010:WorkflowViewState.IdRef>
@@ -64,52 +63,21 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Cancel" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
-      <Variable x:TypeArguments="p1:CorrelationHandle" x:Name="__ReferenceID0" Name="__handle1" />
-      <Variable x:TypeArguments="p1:CorrelationHandle" Name="courseClassHandle" />
+      <Variable x:TypeArguments="p:CorrelationHandle" Name="__handle1" />
+      <Variable x:TypeArguments="p:CorrelationHandle" Name="courseClassHandle" />
     </Sequence.Variables>
-    <p1:InitializeCorrelation sap2010:WorkflowViewState.IdRef="InitializeCorrelation_1">
-      <p1:InitializeCorrelation.Correlation>
-        <InArgument x:TypeArguments="p1:CorrelationHandle">
-          <mca:CSharpValue x:TypeArguments="p1:CorrelationHandle">courseClassHandle</mca:CSharpValue>
-        </InArgument>
-      </p1:InitializeCorrelation.Correlation>
-      <InArgument x:TypeArguments="x:String" x:Key="key1">
-        <mca:CSharpValue x:TypeArguments="x:String">classCode</mca:CSharpValue>
-      </InArgument>
-    </p1:InitializeCorrelation>
-    <p1:Receive x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="Receive_2" OperationName="CancelCourseClass" ServiceContractName="p:IService">
-      <p1:Receive.CorrelatesOn>
-        <p1:XPathMessageQuery x:Key="key1">
-          <p1:XPathMessageQuery.Namespaces>
-            <ssx:XPathMessageContextMarkup>
-              <x:String x:Key="xgSc">http://tempuri.org/</x:String>
-            </ssx:XPathMessageContextMarkup>
-          </p1:XPathMessageQuery.Namespaces>sm:body()/xgSc:CancelCourseClass/xgSc:classCode</p1:XPathMessageQuery>
-      </p1:Receive.CorrelatesOn>
-      <p1:Receive.CorrelatesWith>
-        <InArgument x:TypeArguments="p1:CorrelationHandle">
-          <mca:CSharpValue x:TypeArguments="p1:CorrelationHandle">courseClassHandle</mca:CSharpValue>
-        </InArgument>
-      </p1:Receive.CorrelatesWith>
-      <p1:Receive.CorrelationInitializers>
-        <p1:RequestReplyCorrelationInitializer>
-          <p1:RequestReplyCorrelationInitializer.CorrelationHandle>
-            <InArgument x:TypeArguments="p1:CorrelationHandle">
-              <VariableValue x:TypeArguments="p1:CorrelationHandle" Variable="{x:Reference __ReferenceID0}" />
-            </InArgument>
-          </p1:RequestReplyCorrelationInitializer.CorrelationHandle>
-        </p1:RequestReplyCorrelationInitializer>
-      </p1:Receive.CorrelationInitializers>
-      <p1:ReceiveParametersContent>
-        <OutArgument x:TypeArguments="x:Int32" x:Key="classSize">
-          <mca:CSharpReference x:TypeArguments="x:Int32">classSize</mca:CSharpReference>
+    <Assign>
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpReference x:TypeArguments="x:Boolean">confirmed</mca:CSharpReference>
         </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="classCode">
-          <mca:CSharpReference x:TypeArguments="x:String">classCode</mca:CSharpReference>
-        </OutArgument>
-      </p1:ReceiveParametersContent>
-    </p1:Receive>
-    <local:UpadateCancelStatus Text="{x:Null}" sap2010:WorkflowViewState.IdRef="UpadateCancelStatus_2">
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+      </Assign.Value>
+      <sap2010:WorkflowViewState.IdRef>Assign_1</sap2010:WorkflowViewState.IdRef>
+    </Assign>
+    <local:UpadateCancelStatus Text="{x:Null}" classCode="{x:Null}" classSize="{x:Null}" sap2010:WorkflowViewState.IdRef="UpadateCancelStatus_2">
       <local:UpadateCancelStatus.courseClass>
         <InArgument x:TypeArguments="nicdc:CourseClass">
           <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
@@ -126,35 +94,20 @@
         </OutArgument>
       </local:UpadateCancelStatus.status>
     </local:UpadateCancelStatus>
-    <p1:SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceive" sap2010:WorkflowViewState.IdRef="SendReply_2">
-      <p1:SendParametersContent>
-        <InArgument x:TypeArguments="x:String" x:Key="status">
-          <mca:CSharpValue x:TypeArguments="x:String">status</mca:CSharpValue>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="message">
-          <mca:CSharpValue x:TypeArguments="x:String">message</mca:CSharpValue>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="classCode">
-          <mca:CSharpValue x:TypeArguments="x:String">classCode</mca:CSharpValue>
-        </InArgument>
-      </p1:SendParametersContent>
-    </p1:SendReply>
-    <sads:DebugSymbol.Symbol>d0ZEOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDYW5jZWxBY3Rpdml0eS54YW1sEUEDjwEOAgEBRgVPIAIBUFAFbxICATZwBYABIQIBHYEBBY0BFAIBAk0JTVACAVlJC0lmAgFRWwtbZgIBSGkLaVkCAUBiD2JvAgE/bAtsWgIBN3MLc10CAS59C31XAgEmeAt4WAIBHoQBC4QBTwIBE4cBC4cBUAIBC4oBC4oBUgIBAw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzpEOlxDdXJyaWN1bHVtXENBXElTU19TRzQyMTBfUFQ2XENSU19TTFxDYW5jZWxBY3Rpdml0eS54YW1sCEADYg4CAQFFBU8OAgEeUAVgIQIBAkwxTDYCAShIC0hbAgEfUwtTXQIBFV0LXVcCAQxYC1hYAgED</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="InitializeCorrelation_1" sap:VirtualizedContainerService.HintSize="255,97" />
-      <sap2010:ViewStateData Id="Receive_2" sap:VirtualizedContainerService.HintSize="255,86" />
-      <sap2010:ViewStateData Id="UpadateCancelStatus_2" sap:VirtualizedContainerService.HintSize="255,22" />
-      <sap2010:ViewStateData Id="SendReply_2" sap:VirtualizedContainerService.HintSize="255,86" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="277,535">
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="243.2,62.4" />
+      <sap2010:ViewStateData Id="UpadateCancelStatus_2" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="265.6,249.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CRS_SL.CancelActivity_1" sap:VirtualizedContainerService.HintSize="317,615" />
+      <sap2010:ViewStateData Id="CRS_SL.CancelActivity_1" sap:VirtualizedContainerService.HintSize="305.6,329.6" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

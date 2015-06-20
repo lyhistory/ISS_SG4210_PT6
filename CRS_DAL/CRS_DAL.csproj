@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF\Attendance.cs">
+      <DependentUpon>CRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Company.cs">
       <DependentUpon>CRS.tt</DependentUpon>
     </Compile>
@@ -101,6 +104,7 @@
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Service\AttendanceService.cs" />
     <Compile Include="Service\ClassService.cs" />
     <Compile Include="Service\CourseRegistrationService.cs" />
     <Compile Include="Service\CourseService.cs" />

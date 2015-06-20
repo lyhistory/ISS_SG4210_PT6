@@ -10,7 +10,7 @@
 <%--<asp:Content ID="Content4" ContentPlaceHolderID="placeholder_LeftMenu" runat="server">
 </asp:Content>--%>
 <asp:Content ID="Content5" ContentPlaceHolderID="placeholder_MainContent" runat="server">
-    <h1>Admin Home Page</h1>
+    <h1 class="active">Admin Home Page</h1>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="placeholder_FooterContent" runat="server">
 </asp:Content>

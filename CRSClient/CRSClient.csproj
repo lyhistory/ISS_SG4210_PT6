@@ -88,6 +88,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\CourseRegistrationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\LibraryService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,6 +120,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CourseConfirmService\Service1.wsdl" />
+    <None Include="Service References\CourseRegistrationService\CourseRegistrationService.wsdl" />
     <None Include="Service References\LibraryService\CRSClient.LibraryService.BorrowResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -145,6 +151,9 @@
     <EmbeddedResource Include="CourseConfirmationForm.resx">
       <DependentUpon>CourseConfirmationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CourseRegstrationForm.resx">
+      <DependentUpon>CourseRegstrationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CourseConfirmService\" />
+    <WCFMetadataStorage Include="Service References\CourseRegistrationService\" />
     <WCFMetadataStorage Include="Service References\LibraryService\" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +195,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\LibraryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseRegistrationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseRegistrationService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseRegistrationService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

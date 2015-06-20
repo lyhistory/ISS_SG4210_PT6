@@ -8,8 +8,8 @@ namespace nus.iss.crs.dm
 {
     public enum AttendanceStatus
     {
-        Attended,
         Absent,
+        Attended,        
         Leave,
         Later
     }
