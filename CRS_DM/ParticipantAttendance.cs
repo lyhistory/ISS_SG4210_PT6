@@ -14,6 +14,8 @@ namespace nus.iss.crs.dm
         public DateTime ClassDate { get; set; }
         public string Remark { get; set; }
 
+        public Course.Course CourseObj { get; set; }
+
 
     }
 }

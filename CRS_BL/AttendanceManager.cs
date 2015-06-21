@@ -21,6 +21,11 @@ namespace nus.iss.crs.bl
             return false;
         }
 
+        public bool SaveParticipantAttendance(ParticipantAttendance individualAttendance)
+        {
+            return false;
+        }
+
         public List<ParticipantAttendance> GetUserAttendances(Participant participant)
         {
             return null;

@@ -45,10 +45,21 @@ namespace nus.iss.crs.bl
             AttendanceManager manager = new AttendanceManager();
 
             ParticipantAttendance pAttendance = new ParticipantAttendance ();
+
+            pAttendance.Attendant = null;
+            pAttendance.ClassDate = DateTime.Now;
+            pAttendance.CourseObj = null;
+            pAttendance.Remark = remark;
+            pAttendance.Status = status;
             
-            //Attendance attendance = manager.CreateAttendance();
-            //attendance.
-            return "success";
+            if (manager.SaveParticipantAttendance(pAttendance))
+            {
+                return "success";
+            }
+            else
+            {
+                return "failed";
+            }
         }
 
         public List<Participant> GetStudents(string courseCode, DateTime dateFrom, DateTime dateTo)
