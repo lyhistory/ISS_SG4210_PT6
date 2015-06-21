@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="placeholder_MainContent" runat="server">
     <p>
-        Executive Education Programmes
+        <h2>Executive Education Programmes</h2>
     </p>
      <div>
         <asp:PlaceHolder runat="server" ID="PlaceHolder1" />
