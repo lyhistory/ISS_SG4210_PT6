@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="nus.iss.crs.pl.Admin.Site" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml" lang ="en">
 <head id="Head1" runat="server">
 	<meta name="title" content="CRS">
 	<meta name="author" content="LAN">
@@ -49,9 +49,8 @@
 				</div>
 			</div>
 			<div runat="server" id="placeholder_Cententer" class="sf_cols placeholder_8">
-				<div runat="server" style="float: left; width: 33%; margin: 0; " class="sf_colsOut">
-					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  > 
-
+				<div runat="server" style="float: left; width: 25%; margin: 0; " class="sf_colsOut">
+					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
 
                         <div class="container"> 
                               <div class="row">
@@ -126,7 +125,7 @@
 					</div>
 
 				</div>
-				<div runat="server" style="float: left; width: 67%; margin: 0; " class="sf_colsOut">
+				<div runat="server" style="float: left; width: 75%; margin: 0; " class="sf_colsOut">
 					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
 						<asp:contentplaceholder id="placeholder_MainContent" runat="server" />
 					</div>
