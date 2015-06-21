@@ -12,8 +12,12 @@ namespace nus.iss.crs.bl
     public class CourseManager
     {
         static UnitOfWork unitOfWork = new UnitOfWork();
+        private static CourseManager theOnlyCourseManager;
 
-        internal CourseManager() {}
+        internal CourseManager() 
+        {
+        
+        }
 
         /// <summary>
         /// detect user type 

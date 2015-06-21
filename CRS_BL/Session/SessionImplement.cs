@@ -13,7 +13,7 @@ namespace nus.iss.crs.bl.Session
         public DateTime lastUpdateTime;
         User currentUser;
 
-        internal SessionImplement() 
+        public SessionImplement() 
         {
             sessionID = Guid.NewGuid().ToString();
             lastUpdateTime = DateTime.Now;

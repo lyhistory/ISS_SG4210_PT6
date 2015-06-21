@@ -12,30 +12,29 @@ namespace nus.iss.crs.pl.Admin
     {
         //page action, target url
         private static Dictionary<string, ActionTarget> mappingTable = new Dictionary<string, ActionTarget>();
-       
-        private static NavigationManager manager = null; 
-        private  NavigationManager()
+
+        private static NavigationManager manager = null;
+        private NavigationManager()
         {
-            ActionTarget actionTarget = new ActionTarget(typeof(CreateCourse), (AdminAction) CourseAdminAction.Save, typeof(ListCourse));
+            ActionTarget actionTarget = new ActionTarget(typeof(CreateCourse), (AdminAction)CourseAdminAction.Save, typeof(ListCourse));
             //actionTarget.FailedTarget =
 
             mappingTable[actionTarget.GetActionID()] = actionTarget;
         }
 
-        public static    NavigationManager GetInstance()
+        public static NavigationManager GetInstance()
         {
             if (manager == null)
                 manager = new NavigationManager();
             return manager;
         }
 
-
-        public void RegisterActionTarget(Page actionContainer,AdminAction action, Type target)
+        public void RegisterActionTarget(Page actionContainer, AdminAction action, Type target)
         {
             RegisterActionTarget(actionContainer, action, target, null);
         }
 
-        public void RegisterActionTarget(Page actionContainer, AdminAction action,Type successTarget, Type failedTarget)
+        public void RegisterActionTarget(Page actionContainer, AdminAction action, Type successTarget, Type failedTarget)
         {
             ActionTarget actionTarget = new ActionTarget(actionContainer.GetType(), action, successTarget);
             if (mappingTable.Keys.Contains(actionTarget.GetActionID()))

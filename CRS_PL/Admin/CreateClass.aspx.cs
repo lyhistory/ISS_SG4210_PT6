@@ -1,4 +1,6 @@
-﻿using nus.iss.crs.dm.Course;
+﻿using nus.iss.crs.bl;
+using nus.iss.crs.bl.Session;
+using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.TestData;
 using System;
 using System.Collections.Generic;
@@ -20,14 +22,23 @@ namespace nus.iss.crs.pl.Admin
                 PopulateCategoryList();
             }
 
-            
+
         }
 
         private void PopulateCategoryList()
         {
             categoryListID.Items.Add("Please select course category...");
-            ModelData testData = ModelData.GetInstance();
-            foreach (CourseCategory category in testData.GetCategories())
+            //test data by LanXM
+            //ModelData testData = ModelData.GetInstance();
+
+            //Session Facade by Tong
+            //ISession session = new SessionImplement();
+            //CourseManager courseManager = session.CreateCourseManager();
+            //List<CourseCategory> courseCategoryList = courseManager.GetCourseCategoryList();
+
+            //Static method by LiuYue
+            List<CourseCategory> courseCategoryList = CourseManager.GetCourseCategoryList();
+            foreach (CourseCategory category in courseCategoryList)
             {
                 ListItem item = new ListItem(category.Name, category.ID);
                 categoryListID.Items.Add(item);
@@ -47,7 +58,7 @@ namespace nus.iss.crs.pl.Admin
         {
             currentAction = (AdminAction)CourseAdminAction.Save;
 
-            //CourseManager manager = BLSession.CreateCourseManager();
+            CourseManager courseManager = BLSession.CreateCourseManager();
 
             ListItem itemCategory = categoryListID.SelectedItem;
             CourseCategory selectedCategory = null;
@@ -71,22 +82,20 @@ namespace nus.iss.crs.pl.Admin
             //        break;
             //    }
             //}
-            ModelData testData = ModelData.GetInstance();
+
+            //ModelData testData = ModelData.GetInstance();
+            //ListItem item = courseListID.SelectedItem;
+            //Course selectedCourse = testData.GetCourse(item.Value);
             ListItem item = courseListID.SelectedItem;
-            Course selectedCourse = testData.GetCourse(item.Value);
+            Course selectedCourse = CourseManager.GetCourseByCode(item.Value);
 
             CourseClass cls = new CourseClass(selectedCourse);
             cls.ClassCode = classID.Text;
             cls.Size = int.Parse(sizeID.Text);
             cls.StartDate = DateTime.Parse(startDateID.Text);
             cls.EndDate = DateTime.Parse(endDateID.Text);
-              
-
-
-            //nus.iss.crs.pl.ActionTarget.CourseAdminAction
 
             NextPage(true);
-
         }
 
         protected void SaveAndNext_Click(object sender, EventArgs e)
@@ -101,16 +110,16 @@ namespace nus.iss.crs.pl.Admin
 
         protected void categoryList_SelectedIndexChanged(object sender, EventArgs e)
         {
-             ListItem item = categoryListID.SelectedItem;
+            ListItem item = categoryListID.SelectedItem;
             if (item == null)
                 return;
 
             ModelData testData = ModelData.GetInstance();
             testData.AddCourseClasses();
-
             CourseCategory category = testData.GetCategory(item.Value);
+            
             PopulateClourse(category);
-             
+
         }
 
         protected void courseList_SelectedIndexChanged(object sender, EventArgs e)
