@@ -16,6 +16,6 @@ namespace nus.iss.crs.pl.Service
         void DoWork();
 
         [OperationContract]
-        void RegistrateCourse(Registration reg);
+        void RegistrateCourse(dm.Registration.Registration reg, string companyName, string participantIDNumber, string courseCode, DateTime dateFrom, DateTime dateTo);
     }
 }

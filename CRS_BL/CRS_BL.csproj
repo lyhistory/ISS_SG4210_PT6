@@ -49,17 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationFacade.cs" />
+    <Compile Include="CRSBusinessFacade.cs" />
     <Compile Include="AttendanceManager.cs" />
     <Compile Include="ClassManager.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="CourseManager.cs" />
     <Compile Include="CourseRegistrationManager.cs" />
+    <Compile Include="ICRSBusinessFacade.cs" />
     <Compile Include="LoginInfo.cs">
       <SubType>
       </SubType>
     </Compile>
     <Compile Include="LoginManager.cs" />
+    <Compile Include="ParticipantManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportManager.cs" />
     <Compile Include="Search\SolrDocumentDetailConverter.cs" />

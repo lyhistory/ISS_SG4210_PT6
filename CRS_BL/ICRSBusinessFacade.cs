@@ -1,0 +1,16 @@
+﻿using nus.iss.crs.dm.Course;
+using nus.iss.crs.dm.Registration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace nus.iss.crs.bl
+{
+    public interface ICRSBusinessFacade 
+    {
+        bool RegistrateCourse(Registration registration, string companyName, string participantID, string courseCode, DateTime dateFrom, DateTime dateTo);
+
+    }
+}
