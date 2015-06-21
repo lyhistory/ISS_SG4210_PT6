@@ -24,7 +24,9 @@ namespace nus.iss.crs.bl
             Course course = CourseManager.GetCourseByCode(courseCode);
             CourseClass courseClass = CourseManager.GetCourseClassList(course, dateFrom, dateTo).FirstOrDefault();
             ParticipantManager pManager = new ParticipantManager();
+
             Participant participant = pManager.GetParticipant(participantID, companyName);
+
             Registration retReg = regManager.CreateRegistration(courseClass, participant, registration);
             if (string.IsNullOrEmpty(retReg.RegID))
             {
@@ -36,5 +38,26 @@ namespace nus.iss.crs.bl
             }
         }
 
+
+
+        public string SubmitAttendance(string studentIDNo, AttendanceStatus status, string remark, string courseCode, DateTime dateFrom, DateTime dateTo)
+        {
+            AttendanceManager manager = new AttendanceManager();
+
+            ParticipantAttendance pAttendance = new ParticipantAttendance ();
+            
+            //Attendance attendance = manager.CreateAttendance();
+            //attendance.
+            return "success";
+        }
+
+        public List<Participant> GetStudents(string courseCode, DateTime dateFrom, DateTime dateTo)
+        {
+            CourseRegistrationManager manager = new CourseRegistrationManager();
+
+            Course course = CourseManager.GetCourseByCode(courseCode);
+
+            return manager.GetParticipantListByCourse(course, dateFrom);
+        }
     }
 }

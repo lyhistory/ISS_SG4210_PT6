@@ -281,9 +281,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AttendanceService.svc.cs">
+      <DependentUpon>AttendanceService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Service\CourseRegistrationService.svc.cs">
       <DependentUpon>CourseRegistrationService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Service\IAttendanceService.cs" />
     <Compile Include="Service\ICourseRegistrationService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Admin\CreateCourse.aspx.cs">
@@ -400,6 +404,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Service\AttendanceService.svc" />
     <Content Include="Service\CourseRegistrationService.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

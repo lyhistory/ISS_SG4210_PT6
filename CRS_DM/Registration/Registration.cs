@@ -37,14 +37,22 @@ namespace nus.iss.crs.dm.Registration
             get { return _Participant; }
             set { _Participant = value; }
         }
-        
+
+        [DataMember]
         public RegistrationStatus Status { get { return _Status; } 
                                            set { _Status = value; } }
 
+
+        [DataMember]
         public Billing billingInfo { get; set; }
 
+        [DataMember]
         public string Sponsorship { get; set; }
+
+        [DataMember]
         public string DietaryRequirement { get; set; }
+        
+        [DataMember]
         public int OrganizationSize { get; set; }
     }
 }
