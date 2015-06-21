@@ -45,7 +45,7 @@ namespace nus.iss.crs.pl.Admin
             }
         }
 
-        private void PopulateClourse(CourseCategory category)
+        private void PopulateCourse(CourseCategory category)
         {
             foreach (Course course in category.GetCourses())
             {
@@ -114,12 +114,19 @@ namespace nus.iss.crs.pl.Admin
             if (item == null)
                 return;
 
-            ModelData testData = ModelData.GetInstance();
-            testData.AddCourseClasses();
-            CourseCategory category = testData.GetCategory(item.Value);
-            
-            PopulateClourse(category);
+            //ModelData testData = ModelData.GetInstance();
+            //testData.AddCourseClasses();
+            //CourseCategory category = testData.GetCategory(item.Value);
+            //PopulateClourse(category);
 
+            List<CourseCategory> courseCategoryList = CourseManager.GetCourseCategoryList();
+            foreach(CourseCategory courseCategory in courseCategoryList)
+            {
+                if(courseCategory.ID == item.Value)
+                {
+                    PopulateCourse(courseCategory);
+                }
+            }
         }
 
         protected void courseList_SelectedIndexChanged(object sender, EventArgs e)

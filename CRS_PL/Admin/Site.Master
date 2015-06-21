@@ -49,7 +49,7 @@
 				</div>
 			</div>
 			<div runat="server" id="placeholder_Cententer" class="sf_cols placeholder_8">
-				<div runat="server" style="float: left; width: 33%; margin: 0; " class="sf_colsOut">
+				<div runat="server" style="float: left; width: 32%; margin: 0; " class="sf_colsOut">
 					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
 
                         <div class="container"> 
@@ -125,7 +125,7 @@
 					</div>
 
 				</div>
-				<div runat="server" style="float: left; width: 67%; margin: 0; " class="sf_colsOut">
+				<div runat="server" style="float: left; width: 66%; margin: 0; " class="sf_colsOut">
 					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
 						<asp:contentplaceholder id="placeholder_MainContent" runat="server" />
 					</div>

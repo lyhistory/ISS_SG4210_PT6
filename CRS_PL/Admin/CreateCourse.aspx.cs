@@ -13,20 +13,20 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class CreateCourse : CrsPageController
     {
-        ModelData testData = ModelData.GetInstance();
+        //ModelData testData = ModelData.GetInstance();
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
             if (this.IsPostBack)
                 return;
             
-            foreach (CourseCategory category in testData.GetCategories())
+            foreach (CourseCategory category in CourseManager.GetCourseCategoryList())
             {
                 ListItem item = new ListItem(category.Name, category.ID);
                 categoryList.Items.Add(item);
             }
 
-            foreach (CourseInstructor instructor in testData.GetInstructors())
+            foreach (CourseInstructor instructor in CourseManager.GetInstructorList())
             {
                 ListItem item = new ListItem(instructor.Name);
                 instructorList.Items.Add(item);
@@ -43,7 +43,7 @@ namespace nus.iss.crs.pl.Admin
             ListItem itemCategory = categoryList.SelectedItem;            
             CourseCategory selectedCategory = null;
 
-            foreach(CourseCategory category in testData.GetCategories())
+            foreach (CourseCategory category in CourseManager.GetCourseCategoryList())
             {
                 if (category.ID == itemCategory.Value)
                 {
@@ -54,7 +54,7 @@ namespace nus.iss.crs.pl.Admin
 
             ListItem itemInstructor= instructorList.SelectedItem;
             CourseInstructor selectedInstructor = null;
-            foreach (CourseInstructor  instructor in testData.GetInstructors())
+            foreach (CourseInstructor instructor in CourseManager.GetInstructorList())
             {
                 if (instructor.Name == itemInstructor.Value)
                 {
