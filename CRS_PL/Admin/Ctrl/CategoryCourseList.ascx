@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CategoryCourseList.ascx.cs" Inherits="nus.iss.crs.pl.Admin.Ctrl.CategoryCourseList" %>
-<asp:Table ID="Table1" runat="server" GridLines="Both">
+<asp:Table ID="Table1" runat="server" GridLines="Both" CssClass="table">
         <asp:TableRow runat="server">
             <asp:TableHeaderCell ColumnSpan="2">Programe </asp:TableHeaderCell>
             

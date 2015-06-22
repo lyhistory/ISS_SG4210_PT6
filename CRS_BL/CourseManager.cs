@@ -11,8 +11,8 @@ namespace nus.iss.crs.bl
 {
     public class CourseManager
     {
-        static UnitOfWork unitOfWork = new UnitOfWork();
-        private static CourseManager theOnlyCourseManager;
+         UnitOfWork unitOfWork = new UnitOfWork();
+        private  CourseManager theOnlyCourseManager;
 
         internal CourseManager() 
         {
@@ -32,7 +32,7 @@ namespace nus.iss.crs.bl
         }
 
         //List course category
-        public static List<CourseCategory> GetCourseCategoryList()
+        public  List<CourseCategory> GetCourseCategoryList()
         {
             List<CourseCategory> courseCategoryList = unitOfWork.CourseService.GetCourseCategoryList();
             return courseCategoryList;
@@ -43,12 +43,12 @@ namespace nus.iss.crs.bl
         /// </summary>
         /// <param name="includeAllKids"></param>
         /// <returns></returns>
-        public static List<CourseCategory> GetCourseCategoryList(bool includeAllKids)
+        public  List<CourseCategory> GetCourseCategoryList(bool includeAllKids)
         {
             return GetCourseCategoryList(DateTime.MinValue, DateTime.MaxValue, includeAllKids);
         }
 
-        public static List<CourseCategory> GetCourseCategoryList(DateTime dateFrom, DateTime dateTo, bool includeAllKids)
+        public  List<CourseCategory> GetCourseCategoryList(DateTime dateFrom, DateTime dateTo, bool includeAllKids)
         {
             List<CourseCategory> courseCategoryList = unitOfWork.CourseService.GetCourseCategoryList();
             if (includeAllKids)
@@ -62,7 +62,7 @@ namespace nus.iss.crs.bl
             return courseCategoryList;
         }
 
-        public static Course CreateCourse(Course course)
+        public  Course CreateCourse(Course course)
         {
             if (course.IsValid())
             {
@@ -73,7 +73,7 @@ namespace nus.iss.crs.bl
         }
 
 
-        public static Course EditCourse(Course course)
+        public  Course EditCourse(Course course)
         {
             if (course.IsValid())
             {
@@ -84,13 +84,13 @@ namespace nus.iss.crs.bl
         }
 
         //show list of courses in a particular category
-        public static List<Course> GetCourseListByCategory(CourseCategory courseCategory)
+        public  List<Course> GetCourseListByCategory(CourseCategory courseCategory)
         {
             List<Course> courseList = unitOfWork.CourseService.GetCourseListByCategory(courseCategory.ID);
             return courseList;
         }
 
-        public static List<Course> GetCourseListByCategory(CourseCategory courseCategory, DateTime dateFrom, DateTime dateTo, bool includeClass)
+        public  List<Course> GetCourseListByCategory(CourseCategory courseCategory, DateTime dateFrom, DateTime dateTo, bool includeClass)
         {
             List<Course> courseList = unitOfWork.CourseService.GetCourseListByCategory(courseCategory.ID);
             if (includeClass)
@@ -103,18 +103,18 @@ namespace nus.iss.crs.bl
             return courseList;
         }
 
-        public static List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo, ClassStatus status)
+        public  List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo, ClassStatus status)
         {
             List<CourseClass> courseClassList = unitOfWork.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo, (int)status);
             return courseClassList;
         }
 
-        public static List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo)
+        public  List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo)
         {
              return unitOfWork.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo);             
         }
 
-        public static List<CourseInstructor> GetInstructorList()
+        public  List<CourseInstructor> GetInstructorList()
         {
             List<CourseInstructor> courseInstructorList = new List<CourseInstructor>();
             //courseInstructorList = unitOfWork.CourseService.
@@ -130,7 +130,7 @@ namespace nus.iss.crs.bl
         //} 
  
         //show course detail by clicking course code
-        public static Course GetCourseByCode(string code)
+        public  Course GetCourseByCode(string code)
         {
             Course course = new Course();
             course = unitOfWork.CourseService.GetCourseByCode(code);

@@ -13,6 +13,7 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class ListClassInCourse :CrsPageController
     {
+        CourseManager manager = null;
         protected override void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack)
@@ -30,7 +31,7 @@ namespace nus.iss.crs.pl.Admin
         {
             categoryListID.Items.Add("Please select course category...");
             //ModelData testData = ModelData.GetInstance();
-            foreach(CourseCategory courseCategory in  CourseManager.GetCourseCategoryList())
+            foreach (CourseCategory courseCategory in manager.GetCourseCategoryList())
             { 
                 ListItem item = new ListItem(courseCategory.Name,courseCategory.ID);
                 categoryListID.Items.Add(item);
@@ -73,7 +74,7 @@ namespace nus.iss.crs.pl.Admin
             //ModelData testData = ModelData.GetInstance();
             //testData.AddCourseClasses();
             //CourseCategory category = testData.GetCategory(item.Value);
-            foreach(CourseCategory courseCategory in CourseManager.GetCourseCategoryList())
+            foreach (CourseCategory courseCategory in manager.GetCourseCategoryList())
             {
                 if(courseCategory.ID == item.Value)
                 {

@@ -21,8 +21,8 @@ namespace nus.iss.crs.bl
         {
             CourseRegistrationManager regManager = new CourseRegistrationManager();
             CourseManager crsManager = new CourseManager();
-            Course course = CourseManager.GetCourseByCode(courseCode);
-            CourseClass courseClass = CourseManager.GetCourseClassList(course, dateFrom, dateTo).FirstOrDefault();
+            Course course = crsManager.GetCourseByCode(courseCode);
+            CourseClass courseClass = crsManager.GetCourseClassList(course, dateFrom, dateTo).FirstOrDefault();
             ParticipantManager pManager = new ParticipantManager();
 
             Participant participant = pManager.GetParticipant(participantID, companyName);
@@ -65,8 +65,8 @@ namespace nus.iss.crs.bl
         public List<Participant> GetStudents(string courseCode, DateTime dateFrom, DateTime dateTo)
         {
             CourseRegistrationManager manager = new CourseRegistrationManager();
-
-            Course course = CourseManager.GetCourseByCode(courseCode);
+            CourseManager crsManager = new CourseManager();
+            Course course = crsManager.GetCourseByCode(courseCode);
 
             return CourseRegistrationManager.GetParticipantListByCourse(course, dateFrom);
         }

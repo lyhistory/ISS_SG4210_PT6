@@ -32,16 +32,19 @@ namespace nus.iss.crs.pl.Controllers
             return View();
         }
 
+        CourseManager manager = null;//new CourseManager();
+
         public JsonResult GetCourseCategoryList(string searchText = "")
         {
-            List<CourseCategory> categoryList = CourseManager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
+            
+            List<CourseCategory> categoryList = manager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
 
             return Json(new { Data = categoryList });
         }
 
         public ActionResult CourseDetail(string code)
         {
-            var model = CourseManager.GetCourseByCode(code);
+            var model = manager.GetCourseByCode(code);
             return View(model);
         }
 
@@ -98,7 +101,7 @@ namespace nus.iss.crs.pl.Controllers
                             loginUser.CompanyID = companyhr.CompanyID;
                     }
                     SessionHelper.SetSession(loginUser);
-                    CRSFormsAuthentication<User>.SetAuthCookie(loginUser.UserID, loginUser, true);
+                    CRSFormsAuthentication<User>.SetAuthCookie(loginUser.LoginID, loginUser, true);
                     userType = loginUser.RoleName;
                     userStatus = loginUser.Status;
                     result = true;
@@ -118,6 +121,8 @@ namespace nus.iss.crs.pl.Controllers
                         if (cookie != null)
                         {
                             string toPage = cookie.Value;
+                            //delete cookie after use
+                            HttpContext.Response.Cookies.Remove("toPage");
                             if (!string.IsNullOrEmpty(toPage) && toPage.Contains("?code="))
                             {
                                 string redirectUrl = userType.ToUpper().Equals("HR") ? "/CourseRegister/HRRegister" : "/CourseRegister/IndividualRegister";
@@ -189,6 +194,7 @@ namespace nus.iss.crs.pl.Controllers
             {
                 user.CompanyID = company.CompanyID;
                 SessionHelper.SetSession(user);
+                CRSFormsAuthentication<User>.SetAuthCookie(user.LoginID, user, true);
                 return Json(new { Code = 1, Message = "" });
             }
             else
@@ -206,10 +212,18 @@ namespace nus.iss.crs.pl.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult PostForgetPassword(string idNumber,string email)
+        public JsonResult PostForgetPassword(string usertype,string loginID,string email)
         {
             // ADD USER TYPE SUP
-            var user = UserManager.GetIndividualUserByIDNumber(idNumber);
+            User user = null;
+            if (usertype.Equals("1"))
+            {
+                user=UserManager.GetIndividualUserByIDNumber(loginID);
+            }
+            else
+            {
+                user=UserManager.GetHRUserByLoginID(loginID);
+            }
             //user=UserManager.GetHRUserByLoginID()
             if (user == null)
             {

@@ -13,6 +13,7 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class ClassCreation : CrsPageController
     {
+        //CourseManager manager = null;//
         protected override void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack)
@@ -32,12 +33,11 @@ namespace nus.iss.crs.pl.Admin
             //ModelData testData = ModelData.GetInstance();
 
             //Session Facade by Tong
-            //ISession session = new SessionImplement();
-            //CourseManager courseManager = session.CreateCourseManager();
+
+            CourseManager courseManager = BLSession.CreateCourseManager();
             //List<CourseCategory> courseCategoryList = courseManager.GetCourseCategoryList();
 
-            //Static method by LiuYue
-            List<CourseCategory> courseCategoryList = CourseManager.GetCourseCategoryList();
+            List<CourseCategory> courseCategoryList = courseManager.GetCourseCategoryList();
             foreach (CourseCategory category in courseCategoryList)
             {
                 ListItem item = new ListItem(category.Name, category.ID);
@@ -86,8 +86,9 @@ namespace nus.iss.crs.pl.Admin
             //ModelData testData = ModelData.GetInstance();
             //ListItem item = courseListID.SelectedItem;
             //Course selectedCourse = testData.GetCourse(item.Value);
+            CourseManager manager = BLSession.CreateCourseManager();
             ListItem item = courseListID.SelectedItem;
-            Course selectedCourse = CourseManager.GetCourseByCode(item.Value);
+            Course selectedCourse = manager.GetCourseByCode(item.Value);
 
             CourseClass cls = new CourseClass(selectedCourse);
             cls.ClassCode = classID.Text;
@@ -119,7 +120,8 @@ namespace nus.iss.crs.pl.Admin
             //CourseCategory category = testData.GetCategory(item.Value);
             //PopulateClourse(category);
 
-            List<CourseCategory> courseCategoryList = CourseManager.GetCourseCategoryList();
+            CourseManager manager = BLSession.CreateCourseManager();
+            List<CourseCategory> courseCategoryList = manager.GetCourseCategoryList();
             foreach(CourseCategory courseCategory in courseCategoryList)
             {
                 if(courseCategory.ID == item.Value)

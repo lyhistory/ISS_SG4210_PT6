@@ -3,6 +3,8 @@ using nus.iss.crs.bl;
 using nus.iss.crs.dm;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.dm.Registration;
+using nus.iss.crs.pl.AppCode.Filter;
+using nus.iss.crs.pl.AppCode.FormAuthentication;
 using nus.iss.crs.pl.AppCode.Session;
 using nus.iss.crs.pl.Models;
 using System;
@@ -16,6 +18,8 @@ namespace nus.iss.crs.pl.Controllers
     public class CourseRegisterController : BaseController
     {
         private static LogHelper _log = LogHelper.GetLogger(typeof(CourseRegisterController));
+
+        CourseManager manager = null;
         // GET: CourseRegister
         public ActionResult IndividualRegister(string code,string message="")
         {
@@ -24,7 +28,7 @@ namespace nus.iss.crs.pl.Controllers
                 ViewBag.Message = message;
             }
             CRForm crform = GetModelForCourseRegister( "", true);
-            var model = CourseManager.GetCourseByCode(code);
+            var model = manager.GetCourseByCode(code);
             crform.CourseTitle = model.CourseTitle;
             crform.CourseCode = model.Code;
 
@@ -63,6 +67,7 @@ namespace nus.iss.crs.pl.Controllers
                     user.RoleName = "User";
                     _log.Debug(string.Format("Your userid:{0},password:{1}", user.LoginID, user.Password));
                     SessionHelper.SetSession(user);
+                    CRSFormsAuthentication<User>.SetAuthCookie(user.LoginID, user, true);
                 }
             }
             CourseClass courseClass = ClassManager.GetCourseClassByCode(crform.ClassCode);
@@ -124,7 +129,7 @@ namespace nus.iss.crs.pl.Controllers
 
             return Json(new { Code = 1, redirectUrl = Url.Action("ViewIndividualRegister", "CourseRegister") });
         }
-
+        [CRSAuthorize(Roles = "Individual")]
         public ActionResult ViewIndividualRegister()
         {
             if (SessionHelper.Current == null)
@@ -135,7 +140,7 @@ namespace nus.iss.crs.pl.Controllers
 
         public ActionResult HRRegister(string code)
         {
-            var model = CourseManager.GetCourseByCode(code);
+            var model = manager.GetCourseByCode(code);
             CRForm crform = new CRForm();
             crform.CourseTitle = model.CourseTitle;
             crform.CourseCode = model.Code;
@@ -248,7 +253,7 @@ namespace nus.iss.crs.pl.Controllers
         {
             CRForm crform = GetModelForCourseRegister(idNumber, false);
 
-            var model = CourseManager.GetCourseByCode(courseCode);
+            var model = manager.GetCourseByCode(courseCode);
             crform.CourseTitle = model.CourseTitle;
             crform.CourseCode = model.Code;
             List<SelectItem> classlist = new List<SelectItem>();
@@ -260,7 +265,7 @@ namespace nus.iss.crs.pl.Controllers
 
             return PartialView("~/views/courseregister/_courseregister.cshtml", crform);
         }
-
+        [CRSAuthorize(Roles = "HR")]
         public ActionResult ViewHRRegister()
         {
             if (SessionHelper.Current == null)
@@ -268,7 +273,7 @@ namespace nus.iss.crs.pl.Controllers
             List<Registration> list = CourseRegistrationManager.GetRegistrationList(new Company() { CompanyID = SessionHelper.Current.CompanyID });
             return View(list);
         }
-
+        [CRSAuthorize(Roles = "HR")]
         public ActionResult ViewCompanyEmployee()
         {
             if (SessionHelper.Current == null)

@@ -14,19 +14,22 @@ namespace nus.iss.crs.pl.Admin
     public partial class CreateCourse : CrsPageController
     {
         //ModelData testData = ModelData.GetInstance();
+
+        //TODO:
+        CourseManager manager = null;//new CourseManager();
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
             if (this.IsPostBack)
                 return;
-            
-            foreach (CourseCategory category in CourseManager.GetCourseCategoryList())
+
+            foreach (CourseCategory category in manager.GetCourseCategoryList())
             {
                 ListItem item = new ListItem(category.Name, category.ID);
                 categoryList.Items.Add(item);
             }
 
-            foreach (CourseInstructor instructor in CourseManager.GetInstructorList())
+            foreach (CourseInstructor instructor in manager.GetInstructorList())
             {
                 ListItem item = new ListItem(instructor.Name);
                 instructorList.Items.Add(item);
@@ -43,7 +46,7 @@ namespace nus.iss.crs.pl.Admin
             ListItem itemCategory = categoryList.SelectedItem;            
             CourseCategory selectedCategory = null;
 
-            foreach (CourseCategory category in CourseManager.GetCourseCategoryList())
+            foreach (CourseCategory category in manager.GetCourseCategoryList())
             {
                 if (category.ID == itemCategory.Value)
                 {
@@ -54,7 +57,7 @@ namespace nus.iss.crs.pl.Admin
 
             ListItem itemInstructor= instructorList.SelectedItem;
             CourseInstructor selectedInstructor = null;
-            foreach (CourseInstructor instructor in CourseManager.GetInstructorList())
+            foreach (CourseInstructor instructor in manager.GetInstructorList())
             {
                 if (instructor.Name == itemInstructor.Value)
                 {

@@ -12,6 +12,9 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class ListCourseClassRegistration : System.Web.UI.Page
     {
+
+        //TODO
+        CourseManager manager = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(this.IsPostBack)
@@ -26,7 +29,7 @@ namespace nus.iss.crs.pl.Admin
         {
             categoryListID.Items.Add("Please select course category...");
 
-            List<CourseCategory> courseCategoryList = CourseManager.GetCourseCategoryList();
+            List<CourseCategory> courseCategoryList = manager.GetCourseCategoryList();
             foreach (CourseCategory category in courseCategoryList)
             {
                 ListItem item = new ListItem(category.Name, category.ID);
@@ -40,7 +43,7 @@ namespace nus.iss.crs.pl.Admin
             if (item == null)
                 return;
 
-            List<CourseCategory> courseCategoryList = CourseManager.GetCourseCategoryList();
+            List<CourseCategory> courseCategoryList = manager.GetCourseCategoryList();
             foreach (CourseCategory courseCategory in courseCategoryList)
             {
                 if (courseCategory.ID == item.Value)
@@ -64,8 +67,8 @@ namespace nus.iss.crs.pl.Admin
             ListItem item = courseListID.SelectedItem;
             if (item == null)
                 return;
-            Course course = CourseManager.GetCourseByCode(item.Value);
-            List<CourseClass> courseClassList = CourseManager.GetCourseClassList(course, DateTime.Now, DateTime.MaxValue);
+            Course course = manager.GetCourseByCode(item.Value);
+            List<CourseClass> courseClassList = manager.GetCourseClassList(course, DateTime.Now, DateTime.MaxValue);
 
             PopulateClass(courseClassList);
         }

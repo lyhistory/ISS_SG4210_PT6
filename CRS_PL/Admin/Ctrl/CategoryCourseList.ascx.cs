@@ -47,7 +47,8 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             TableCell editID = new TableCell();
             HyperLink h = new HyperLink();
             h.Text = "Edit";
-            h.NavigateUrl = "~/Admin/EditCourse.aspx";
+            h.NavigateUrl = "~/Admin/EditCourse.aspx?"+CRSConstant.ParameterCourseCode+"=" + course.Code;
+            
             editID.Controls.Add(h);
             courseRow.Cells.Add(editID);
 

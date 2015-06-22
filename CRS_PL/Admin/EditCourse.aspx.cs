@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm;
+﻿using nus.iss.crs.bl;
+using nus.iss.crs.dm;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.TestData;
 using System;
@@ -28,20 +29,21 @@ namespace nus.iss.crs.pl.Admin
         void PopulateCouseDetail()
         {
             //populate category and instructor
-            TestDat();
+            //TestDat();
 
-            //retrieve parameter from request
+            ////retrieve parameter from request
             
-            //retrieve data by parameter from BL
-            Course course = new Course();
-            course.Category = selectedCategory;
-            course.Instructor = selectedInstructor;
-            course.Code = "123456";
-            course.CourseTitle = "title";
-            course.Description = "description";
-            course.Duration = 3;
-            course.Fee = "2000";
-
+            ////retrieve data by parameter from BL
+            //Course course = new Course();
+            //course.Category = selectedCategory;
+            //course.Instructor = selectedInstructor;
+            //course.Code = "123456";
+            //course.CourseTitle = "title";
+            //course.Description = "description";
+            //course.Duration = 3;
+            //course.Fee = "2000";
+            CourseManager manager = BLSession.CreateCourseManager();
+            Course course = manager.GetCourseByCode(this.Request.QueryString(CRSConstant.ParameterCourseCode));
             //populate data 
             codeID.Text = course.Code;
             titleID.Text = course.CourseTitle;

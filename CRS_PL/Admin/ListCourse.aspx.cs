@@ -14,14 +14,18 @@ namespace nus.iss.crs.pl.Admin
     public partial class ListCourse : CrsPageController
     {
 
+        //TODO
+        CourseManager manager = null;
         protected override void Page_Load(object sender, EventArgs e)
         {
+            base.Page_Load(sender,e);
             ShowCourseList();
         }
 
         private void ShowCourseList()
         {
-            foreach (CourseCategory courseCategory in CourseManager.GetCourseCategoryList())
+            CourseManager manager = BLSession.CreateCourseManager();
+            foreach (CourseCategory courseCategory in manager.GetCourseCategoryList(true))
             {
                 CategoryCourseList table = (CategoryCourseList)Page.LoadControl("./Ctrl/CategoryCourseList.ascx");
 

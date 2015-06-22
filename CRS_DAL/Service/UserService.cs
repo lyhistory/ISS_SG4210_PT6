@@ -265,6 +265,8 @@ namespace CRS_DAL.Service
         public dm.User LoginUser(string loginID, string password)
         {
             var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginID) && x.Password.Equals(password));
+            if (_user == null)
+                return null;
             if (_user.UserType == 2)
             {
                 var hr = companyHRRepository.GetFirstOrDefault(x => x.Email.Equals(_user.LoginID));

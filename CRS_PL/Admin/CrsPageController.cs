@@ -38,7 +38,7 @@ namespace nus.iss.crs.pl.Admin
         protected virtual void Page_Load(object sender, EventArgs e)
         {
                 //BLSession 
-            BLSession = (ISession)Session["BLSession"];
+            BLSession = (ISession)Session[CRSConstant.BLSessionKey];
             if (BLSession == null || !BLSession.IsValid())
             {
                 //redirect to login page or create a new session 
