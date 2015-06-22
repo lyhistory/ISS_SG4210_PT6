@@ -16,7 +16,7 @@ namespace nus.iss.crs.dm.Registration
         {
  
         }
-
+        public string ParticipantID { get; set; }
         public string IDNumber { get; set; }
         public string EmploymentStatus { get; set; }
         public string CompanyID { get; set; }

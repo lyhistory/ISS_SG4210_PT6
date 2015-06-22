@@ -40,6 +40,11 @@ namespace CRS_DAL.Repository
             return dbSet.Where(predicate);
         }
 
+        //public IOrderedEnumerable<TEntity> OrderBy(System.Linq.Expressions.LambdaExpression orderby, System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate, bool asc = true)
+        //{
+        //    return asc ? dbSet.Where(predicate).OrderBy(orderby) : dbSet.Where(predicate).OrderByDescending(orderby);
+        //}
+
         public TEntity GetFirst(System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate)
         {
             return dbSet.First(predicate);

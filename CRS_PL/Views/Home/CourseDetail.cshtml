@@ -9,7 +9,7 @@
             $("#btnRegister").click(function () {
                 if (global.isLogin == 'False') {
                     if (confirm("Continue without Login?") == true) {
-                        window.location.href = "/CourseRegister/IndividualReigster?code=@Model.Code";
+                        window.location.href = "/CourseRegister/IndividualRegister?code=@Model.Code";
                     } else {
                         window.location.href = "/home/logon?toPage=?code=@Model.Code";
                     }
@@ -17,7 +17,7 @@
                     if (global.userType == 'HR') {
                         window.location.href = "/CourseRegister/HRRegister?code=@Model.Code";
                     } else {
-                        window.location.href = "/CourseRegister/IndividualReigster?code=@Model.Code";
+                        window.location.href = "/CourseRegister/IndividualRegister?code=@Model.Code";
                     }
                 }
             });

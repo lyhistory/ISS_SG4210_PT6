@@ -24,7 +24,7 @@ namespace nus.iss.crs.bl
             ext.AssignRole(role);
         }
 
-        public static bool CreateIndIndividualUser(User user)
+        public static User CreateIndIndividualUser(User user)
         {
             user.Password = GenerateRandomPassword();
             return unitOfWork.UserService.CreateIndIndividualUser(user);
@@ -34,10 +34,12 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.UserService.CreateStaff(user);
         }
-
+        public static bool CreateHRUser(User user)
+        {
+            return unitOfWork.UserService.CreateHRUser(user);
+        }
         public static bool CreateHRUser(User user, Company company)
         {
-            user.Password = GenerateRandomPassword();
             return unitOfWork.UserService.CreateHRUser(user,company);
         }
 
@@ -46,9 +48,13 @@ namespace nus.iss.crs.bl
             return unitOfWork.UserService.CreateCompany(company);
         }
 
-        public static Company GetCompanyByID(string companyUEN)
+        public static Company GetCompanyByID(string companyID)
         {
-            return unitOfWork.UserService.GetCompanyByID(companyUEN);
+            return unitOfWork.UserService.GetCompanyByID(companyID);
+        }
+        public static Company GetCompanyByUEN(string companyUEN)
+        {
+            return unitOfWork.UserService.GetCompanyByUEN(companyUEN);
         }
 
         public static List<Company> GetCompanyList()
@@ -89,8 +95,17 @@ namespace nus.iss.crs.bl
 
         public static string GenerateRandomPassword()
         {
-            string password = Guid.NewGuid().ToString();
+            string password = new Random().Next(1000,9999).ToString();
             return password;
+        }
+
+        public static User GetIndividualUserByIDNumber(string idNumber)
+        {
+            return unitOfWork.UserService.GetIndividualUserByIDNumber(idNumber);
+        }
+        public static User GetHRUserByIDNumber(string idNumber)
+        {
+            return unitOfWork.UserService.GetHRUserByIDNumber(idNumber);
         }
     }
 }

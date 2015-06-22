@@ -1,0 +1,40 @@
+﻿@model List<nus.iss.crs.dm.Registration.Registration>
+@{
+    ViewBag.Title = "ViewIndividualRegister";
+}
+
+<div class="container-fluid">
+    <h1 class="page-header">@nus.iss.crs.pl.AppCode.Session.SessionHelper.Current.LoginID Registered Classes:</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>CourseTitle</td>
+                <td>StartDate</td>
+                <td>EndDate</td>
+                <td>Status</td>
+                <td>Edit</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count < 1)
+            {
+                <tr>
+                    <td colspan="5">
+                        No Data.
+                    </td>
+                </tr>
+            }
+            @foreach (var registration in Model)
+            {
+                <tr>
+                    <td>@registration.CourseClassObj.GetCourse().CourseTitle</td>
+                    <td>@registration.CourseClassObj.StartDate.ToString()</td>
+                    <td>@registration.CourseClassObj.EndDate.ToString()</td>
+                    <td>@registration.CourseClassObj.Status.ToString()</td>
+                    <td><input type="button" value="Edit" data-tag="Edit" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+

@@ -6,6 +6,7 @@ using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.AppCode.Filter;
 using nus.iss.crs.pl.AppCode.FormAuthentication;
 using nus.iss.crs.pl.AppCode.Session;
+using nus.iss.crs.pl.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -113,7 +114,7 @@ namespace nus.iss.crs.pl.Controllers
                             string toPage = cookie.Value;
                             if (!string.IsNullOrEmpty(toPage) && toPage.Contains("?code="))
                             {
-                                string redirectUrl = userType.ToUpper().Equals("HR") ? "/CourseRegister/HRRegister" : "/CourseRegister/IndividualReigster";
+                                string redirectUrl = userType.ToUpper().Equals("HR") ? "/CourseRegister/HRRegister" : "/CourseRegister/IndividualRegister";
                                 return Json(new { Code = 1, redirectUrl = string.Format("{0}{1}", redirectUrl, toPage) });
                             }
                         }
@@ -133,11 +134,78 @@ namespace nus.iss.crs.pl.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public JsonResult PostRegister(UserRegisterForm form)
+        {
+            if (this.ModelState.IsValid)
+            {
+                //log
+            }
+            if (!form.Password.Equals(form.ConfirmPassword))
+            {
+                return Json(new { Code = -1, Message = "Password not the same" });
+            }
+            User user=UserManager.GetIndividualUserByIDNumber(form.LoginID);
+            if(user!=null)
+                return Json(new { Code = -1, Message = "User already exsits!" });
+            user = new dm.User();
+            bool createCompany = false;
+            Company company = UserManager.GetCompanyByUEN(form.CompanyUEN);
+            if (company == null)
+            {
+                company = new Company()
+                {
+                    CompanyName = form.CompanyName,
+                    CompanyUEN = form.CompanyUEN,
+                    OrganizationSize = form.OrganizationSize,
+                    CompanyAddress = form.CompanyAddress,
+                    Country = form.Country,
+                    PostalCode = form.PostalCode
+                };
+                createCompany = UserManager.CreateCompany(company);
+                //log if fail
+            }
+            
+            user.CompanyID = company.CompanyID;
+            user.Email=form.LoginID;
+            user.Name = form.Name;
+            user.ContactNumber = form.ContactNumber;
+            user.JobTitle = form.JobTitle;
+            user.FaxNumber = form.FaxNumber;
+            user.Password = form.Password;
+            user.LoginID = form.LoginID;
+            user.RoleName = "HR";
+
+            bool result = createCompany ? UserManager.CreateHRUser(user, company) : UserManager.CreateHRUser(user);
+            if (result)
+            {
+                SessionHelper.SetSession(user);
+                return Json(new { Code = 1, Message = "" });
+            }
+            else
+                return Json(new { Code = -1, Message = "Register failed!" });
+        }
         #endregion
 
         public ActionResult Unauthorized()
         {
             return View();
+        }
+
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult PostForgetPassword(string idNumber,string email)
+        {
+            var user = UserManager.GetIndividualUserByIDNumber(idNumber);
+            if (user == null)
+            {
+                return Json(new { Code = -1, Message = "user not exists!" });
+            }
+            _log.Debug(string.Format("Send Email: userid:{0},password:{1}", user.LoginID, user.Password));
+            return Json(new { Code = 1, Message = "please check your email" });
         }
     }
 }

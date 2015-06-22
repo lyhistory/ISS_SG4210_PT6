@@ -1,27 +1,122 @@
-﻿
+﻿@model nus.iss.crs.pl.Models.UserRegisterForm
 @{
     ViewBag.Title = "Register";
 }
-
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#btnSubmit').click(function () {
+                if ($('#userregisterform').valid()) {
+                    $.ajax({
+                        type: 'post',
+                        url: '/home/postregister',
+                        data: $('#userregisterform').serialize()
+                    }).done(function (data) {
+                        if (data.Code == 1) {
+                            if (confirm("Register Successfully!")) {
+                                window.location = "/home/index";
+                            }
+                        } else {
+                            alert(data.Message);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
 <div class="container center-block">
-    <h1 class="page-header">User Reigster</h1>
-    <form>
+    <h1 class="page-header">User Register</h1>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "userregisterform" }))
+    {
+        Html.EnableClientValidation(true);
+        Html.ValidationSummary(true);
         <div class="form-group">
-            <label for="loginTYPE">User Type</label>
-            <select class="form-control" id="LoginType" name="LoginType">
-                <option value="User">Individual</option>
-                <option value="Staff">HR</option>
+            <label for="loginType">User Type</label>
+            <select class="form-control" id="loginType" name="loginType">
+                @*<option value="User">Individual</option>*@
+                <option value="HR">HR</option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="loginID">LoginID</label>
-            <input type="text" class="form-control" id="loginID" name="loginID" placeholder="Login ID">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-</div>
+        <div class="row">
+            <div class="col-md-6">
+                <blockquote>
+                    <p>Personal Info.</p>
+                </blockquote>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="LoginID">LoginID(Your email)</label>
+                    @Html.TextBoxFor(x => x.LoginID, new { @class = "form-control", @placeholder = "LoginID" })
+                    @Html.ValidationMessageFor(x => x.LoginID)
+                </div>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="Password">Password</label>
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Password" })
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="ConfirmPassword">ConfirmPassword</label>
+                    @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", @placeholder = "ConfirmPassword" })
+                    @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                </div>
 
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="Name">Name</label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Name" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                </div>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="ContactNumber">ContactNumber</label>
+                    @Html.TextBoxFor(x => x.ContactNumber, new { @class = "form-control", @placeholder = "ContactNumber" })
+                    @Html.ValidationMessageFor(x => x.ContactNumber)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <blockquote>
+                    <p>Company Info.</p>
+                </blockquote>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="JobTitle">JobTitle</label>
+                    @Html.TextBoxFor(x => x.JobTitle, new { @class = "form-control", @placeholder = "JobTitle" })
+                    @Html.ValidationMessageFor(x => x.JobTitle)
+                </div>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="FaxNumber">FaxNumber</label>
+                    @Html.TextBoxFor(x => x.FaxNumber, new { @class = "form-control", @placeholder = "FaxNumber" })
+                    @Html.ValidationMessageFor(x => x.FaxNumber)
+                </div>
+
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="CompanyName">CompanyName</label>
+                    @Html.TextBoxFor(x => x.CompanyName, new { @class = "form-control", @placeholder = "CompanyName" })
+                    @Html.ValidationMessageFor(x => x.CompanyName)
+                </div>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="CompanyUEN">CompanyUEN</label>
+                    @Html.TextBoxFor(x => x.CompanyUEN, new { @class = "form-control", @placeholder = "CompanyUEN" })
+                    @Html.ValidationMessageFor(x => x.CompanyUEN)
+                </div>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="OrganizationSize">OrganizationSize</label>
+                    @Html.TextBoxFor(x => x.OrganizationSize, new { @class = "form-control", @placeholder = "OrganizationSize" })
+                    @Html.ValidationMessageFor(x => x.OrganizationSize)
+                </div>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="CompanyAddress">CompanyAddress</label>
+                    @Html.TextBoxFor(x => x.CompanyAddress, new { @class = "form-control", @placeholder = "CompanyAddress" })
+                    @Html.ValidationMessageFor(x => x.CompanyAddress)
+                </div>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="Country">Country</label>
+                    @Html.TextBoxFor(x => x.Country, new { @class = "form-control", @placeholder = "Country" })
+                    @Html.ValidationMessageFor(x => x.Country)
+                </div>
+                <div class="form-group">
+                    <span style="color: red;font-weight: bolder;">(required*)</span><label for="PostalCode">PostalCode</label>
+                    @Html.TextBoxFor(x => x.PostalCode, new { @class = "form-control", @placeholder = "PostalCode" })
+                    @Html.ValidationMessageFor(x => x.PostalCode)
+                </div>
+            </div>
+        </div>
+        <input type="button" id="btnSubmit" class="btn btn-default" value="Submit" />
+    }
+</div>

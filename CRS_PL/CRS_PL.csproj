@@ -41,6 +41,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -246,13 +253,6 @@
     <Compile Include="Admin\ListClassInCalendar.aspx.designer.cs">
       <DependentUpon>ListClassInCalendar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ListCourseRegistration.aspx.cs">
-      <DependentUpon>ListCourseRegistration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ListCourseRegistration.aspx.designer.cs">
-      <DependentUpon>ListCourseRegistration.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\NavigationManager.cs" />
     <Compile Include="Admin\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -280,14 +280,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CRForm.cs" />
+    <Compile Include="Models\SelectItem.cs" />
+    <Compile Include="Models\UserRegisterForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\AttendanceService.svc.cs">
-      <DependentUpon>AttendanceService.svc</DependentUpon>
-    </Compile>
     <Compile Include="Service\CourseRegistrationService.svc.cs">
       <DependentUpon>CourseRegistrationService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Service\IAttendanceService.cs" />
     <Compile Include="Service\ICourseRegistrationService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Admin\CreateCourse.aspx.cs">
@@ -352,7 +351,6 @@
     <Content Include="Admin\ListClassInCourse.aspx" />
     <Content Include="Admin\ListCourse.aspx" />
     <Content Include="Admin\ListClassInCalendar.aspx" />
-    <Content Include="Admin\ListCourseRegistration.aspx" />
     <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.min.css" />
@@ -404,7 +402,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Service\AttendanceService.svc" />
     <Content Include="Service\CourseRegistrationService.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -426,15 +423,19 @@
     <Content Include="Views\Home\Unauthorized.cshtml" />
     <Content Include="Views\Home\CourseDetail.cshtml" />
     <Content Include="Views\CourseRegister\HRRegister.cshtml" />
-    <Content Include="Views\CourseRegister\IndividualReigster.cshtml" />
+    <Content Include="Views\CourseRegister\IndividualRegister.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\CourseRegister\ViewIndividualRegister.cshtml" />
+    <Content Include="Views\Home\ForgetPassword.cshtml" />
+    <Content Include="Views\CourseRegister\ViewCompanyEmployee.cshtml" />
+    <Content Include="Views\CourseRegister\ViewHRRegister.cshtml" />
+    <Content Include="Views\CourseRegister\_CourseRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Log\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Auth\" />
   </ItemGroup>
   <ItemGroup>

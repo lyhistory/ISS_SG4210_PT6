@@ -14,6 +14,6 @@ namespace nus.iss.crs.dm
         public string CompanyAddress { get; set; }
         public string Country { get; set; }
         public string PostalCode { get; set; }
-        public int OrganizationSize { get; set; }
+        public string OrganizationSize { get; set; }
     }
 }

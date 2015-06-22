@@ -16,7 +16,7 @@ namespace nus.iss.crs.dm.Registration
         private Participant _Participant;
 
         public Registration()
-        { }
+        { billingInfo = new Billing();}
 
         public Registration(CourseClass courseClass, Participant participant)
         {
@@ -53,6 +53,6 @@ namespace nus.iss.crs.dm.Registration
         public string DietaryRequirement { get; set; }
         
         [DataMember]
-        public int OrganizationSize { get; set; }
+        public string OrganizationSize { get; set; }
     }
 }

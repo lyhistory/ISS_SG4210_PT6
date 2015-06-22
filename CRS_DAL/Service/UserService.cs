@@ -41,7 +41,7 @@ namespace CRS_DAL.Service
             return null;
         }
 
-        public bool CreateIndIndividualUser(dm.User user)
+        public dm.User CreateIndIndividualUser(dm.User user)
         {
             try
             {
@@ -56,6 +56,39 @@ namespace CRS_DAL.Service
                         UserType = 1
                     });
 
+                    this.unitOfWork.Commit();
+                    return user;
+                }
+            }
+            catch
+            {
+
+            }
+            return null;
+        }
+        public bool CreateHRUser(dm.User user){
+            try
+            {
+                if (!ExistsUser(user.LoginID))
+                {
+                    //INSERT TABLE USER
+                    userRepository.Add(new User()
+                    {
+                        UserID = Guid.NewGuid().ToString(),
+                        LoginID = user.LoginID,
+                        Password = user.Password,
+                        UserType = user.RoleName.Equals("HR") ? 2 : 1
+                    });
+                    companyHRRepository.Add(new CompanyHR()
+                    {
+                        HRID = Guid.NewGuid().ToString(),
+                        CompanyID = user.CompanyID,
+                        Email = user.Email,
+                        Name = user.Name,
+                        ContactNumber = user.ContactNumber,
+                        JobTitle = user.JobTitle,
+                        FaxNumber = user.FaxNumber
+                    });
                     this.unitOfWork.Commit();
                     return true;
                 }
@@ -181,9 +214,25 @@ namespace CRS_DAL.Service
             return false;
         }
 
-        public dm.Company GetCompanyByID(string companyUEN)
+        public dm.Company GetCompanyByID(string companyID)
         {
-            var _company=companyRepository.GetFirstOrDefault(x => x.CompanyUEN.Equals(companyUEN));
+            var _company = companyRepository.GetFirstOrDefault(x => x.CompanyID.Equals(companyID));
+            return new dm.Company()
+            {
+                CompanyID = _company.CompanyID,
+                CompanyName = _company.CompanyName,
+                CompanyUEN = _company.CompanyUEN,
+                OrganizationSize = _company.OrganizationSize,
+                CompanyAddress = _company.CompanyAddress,
+                Country = _company.Country,
+                PostalCode = _company.PostalCode
+            };
+        }
+        public dm.Company GetCompanyByUEN(string companyUEN)
+        {
+            var _company = companyRepository.GetFirstOrDefault(x => x.CompanyUEN.Equals(companyUEN));
+            if (_company == null)
+                return null;
             return new dm.Company()
             {
                 CompanyID = _company.CompanyID,
@@ -214,14 +263,34 @@ namespace CRS_DAL.Service
         public dm.User LoginUser(string loginID, string password)
         {
             var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginID) && x.Password.Equals(password));
-            return new dm.User()
+            if (_user.UserType == 2)
             {
-                UserID=_user.UserID,
-                LoginID=_user.LoginID,
-                Password=_user.Password,
-                RoleName = _user.UserType == 2 ? "HR" : "Individual",
-                Status=_user.Status
-            };
+                var hr = companyHRRepository.GetFirstOrDefault(x => x.Email.Equals(_user.LoginID));
+                if(hr==null)
+                {
+                    //log exception
+                }
+                return new dm.User()
+                {
+                    UserID = _user.UserID,
+                    LoginID = _user.LoginID,
+                    Password = _user.Password,
+                    RoleName = _user.UserType == 2 ? "HR" : "Individual",
+                    Status = _user.Status,
+                    CompanyID = hr.CompanyID
+                };
+            }
+            else
+            {
+                return new dm.User()
+                {
+                    UserID = _user.UserID,
+                    LoginID = _user.LoginID,
+                    Password = _user.Password,
+                    RoleName = _user.UserType == 2 ? "HR" : "Individual",
+                    Status = _user.Status
+                };
+            }
         }
 
         public dm.User LoginStaff(string loginID, string password)
@@ -235,7 +304,7 @@ namespace CRS_DAL.Service
                 RoleName = _staff.Role == 1 ? "SYSTEM" : "COURSE"
             };
         }
-
+        
         public List<dm.User> GetUserList()
         {
             var _userlist = userRepository.GetAll();
@@ -306,6 +375,50 @@ namespace CRS_DAL.Service
                 return companyHRRepository.GetFirstOrDefault(g => g.Email.Equals(email)&&g.CompanyID.Equals(company.CompanyID))!=null;
             }
             return false;
+        }
+
+        public dm.User GetUserByIDNumber(string idNumber)
+        {
+            var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(idNumber));
+            if (_user == null)
+                return null;
+            return new dm.User()
+            {
+                UserID = _user.UserID,
+                LoginID = _user.LoginID,
+                Password = _user.Password,
+                RoleName = _user.UserType == 2 ? "HR" : "Individual",
+                Status = _user.Status
+            };
+        }
+
+        public dm.User GetIndividualUserByIDNumber(string idNumber)
+        {
+            var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(idNumber) && x.UserType.Equals(1));
+            if (_user == null)
+                return null;
+            return new dm.User()
+            {
+                UserID = _user.UserID,
+                LoginID = _user.LoginID,
+                Password = _user.Password,
+                RoleName = _user.UserType == 2 ? "HR" : "Individual",
+                Status = _user.Status
+            };
+        }
+        public dm.User GetHRUserByIDNumber(string idNumber)
+        {
+            var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(idNumber)&&x.UserType.Equals(2));
+            if (_user == null)
+                return null;
+            return new dm.User()
+            {
+                UserID = _user.UserID,
+                LoginID = _user.LoginID,
+                Password = _user.Password,
+                RoleName = _user.UserType == 2 ? "HR" : "Individual",
+                Status = _user.Status
+            };
         }
     }
 }

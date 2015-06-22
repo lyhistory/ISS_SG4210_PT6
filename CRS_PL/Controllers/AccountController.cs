@@ -45,7 +45,7 @@ namespace nus.iss.crs.pl.Controllers
                             string toPage = cookie.Value;
                             if (!string.IsNullOrEmpty(toPage) && toPage.Contains("?code="))
                             {
-                                string redirectUrl = session.RoleName.ToUpper().Equals("HR") ? "/CourseRegister/HRRegister" : "/CourseRegister/IndividualReigster";
+                                string redirectUrl = session.RoleName.ToUpper().Equals("HR") ? "/CourseRegister/HRRegister" : "/CourseRegister/IndividualRegister";
                                 return Json(new { Code = 1, redirectUrl = string.Format("{0}{1}", redirectUrl, toPage) });
                             }
                         }

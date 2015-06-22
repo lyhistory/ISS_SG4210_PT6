@@ -27,7 +27,7 @@ namespace nus.iss.crs.bl
 
             Participant participant = pManager.GetParticipant(participantID, companyName);
 
-            Registration retReg = regManager.CreateRegistration(courseClass, participant, registration);
+            Registration retReg = CourseRegistrationManager.CreateRegistration(courseClass, participant, registration);
             if (string.IsNullOrEmpty(retReg.RegID))
             {
                 return false;
@@ -68,7 +68,7 @@ namespace nus.iss.crs.bl
 
             Course course = CourseManager.GetCourseByCode(courseCode);
 
-            return manager.GetParticipantListByCourse(course, dateFrom);
+            return CourseRegistrationManager.GetParticipantListByCourse(course, dateFrom);
         }
     }
 }

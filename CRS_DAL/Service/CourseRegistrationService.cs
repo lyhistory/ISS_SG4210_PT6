@@ -41,6 +41,7 @@ namespace CRS_DAL.Service
                 return (from _participant in _participantlist
                         select new dm.Registration.Participant()
                         {
+                            ParticipantID = _participant.ParticipantID,
                             IDNumber = _participant.IDNumber,
                             EmploymentStatus =_participant.EmploymentStatus,
                             CompanyID =_participant.CompanyID,
@@ -62,13 +63,16 @@ namespace CRS_DAL.Service
             return null;
         }
 
-        public dm.Registration.Participant GetEmployeeByIDNumber(string idNumber)
+        public dm.Registration.Participant GetParticipantByIDNumber(string idNumber,string companyID="")
         {
-            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(idNumber));
+            Participant _participant = string.IsNullOrEmpty(companyID) ? this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(idNumber)&&string.IsNullOrEmpty(x.CompanyID))
+                :
+                this.ParticipantRepository.GetFirstOrDefault(x=>x.IDNumber.Equals(idNumber)&&companyID.Equals(companyID));
             if (_participant != null)
             {
                 return new dm.Registration.Participant()
                 {
+                    ParticipantID=_participant.ParticipantID,
                     IDNumber = _participant.IDNumber,
                     EmploymentStatus = _participant.EmploymentStatus,
                     CompanyID = _participant.CompanyID,
@@ -90,12 +94,47 @@ namespace CRS_DAL.Service
             return null;
         }
 
-        public bool CreateEmployee(dm.Registration.Participant participant)
+        public dm.Registration.Participant UpdateParticipant(dm.Registration.Participant participant, string companyID = "")
+        {
+            try
+            {
+                Participant _participant = string.IsNullOrEmpty(companyID) ? this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(participant.IDNumber) && string.IsNullOrEmpty(x.CompanyID))
+                :
+                this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(participant.IDNumber) && companyID.Equals(companyID));
+
+                if (_participant != null)
+                {
+                    _participant.EmploymentStatus = participant.EmploymentStatus;
+                    _participant.CompanyName = participant.CompanyName;
+                    _participant.JobTitle = participant.JobTitle;
+                    _participant.Department = participant.Department;
+                    _participant.OrganizationSize = participant.OrganizationSize; 
+                    _participant.SalaryRange = participant.SalaryRange;
+
+                    _participant.FullName = participant.FullName;
+                    _participant.Gender = participant.Gender.Equals("Male", StringComparison.OrdinalIgnoreCase) ? 1 : 2;
+                    _participant.Nationality = participant.Nationality;
+                    _participant.DateOfBirth = participant.DOB;
+                    _participant.Email = participant.EMail;
+                    _participant.ContactNumber = participant.ContactNumber;
+                    _participant.DietaryRequirement = participant.DietaryRequirement;
+
+                    this.unitOfWork.Commit();
+                    return participant;
+                }
+            }
+            catch { }
+
+            return null;
+        }
+
+        public dm.Registration.Participant CreateParticipant(dm.Registration.Participant participant)
         {
             try
             {
                 Participant _participant = new Participant()
                 {
+                    ParticipantID=Guid.NewGuid().ToString(),
                     IDNumber = participant.IDNumber,
                     EmploymentStatus = participant.EmploymentStatus,
                     CompanyID = participant.CompanyID,
@@ -115,11 +154,11 @@ namespace CRS_DAL.Service
                 };
                 this.ParticipantRepository.Add(_participant);
                 this.unitOfWork.Commit();
-                return true;
+                return participant;
             }
             catch { }
 
-            return false;
+            return null;
         }
 
         public List<dm.Registration.Registration> GetRegistrationList(dm.Course.CourseClass courseClass)
@@ -134,6 +173,7 @@ namespace CRS_DAL.Service
                         select new dm.Registration.Registration(
                             courseClass,    // totally believe your input!!!!!!!!!!!!!!!!!
                             new dm.Registration.Participant(){
+                                ParticipantID = _participant.ParticipantID,
                                 IDNumber = _participant.IDNumber,
                                 EmploymentStatus = _participant.EmploymentStatus,
                                 CompanyID = _participant.CompanyID,
@@ -163,7 +203,7 @@ namespace CRS_DAL.Service
                             },
                             Sponsorship=_registration.Sponsorship==1 ? "Self" : "Company",
                             DietaryRequirement =_registration.DietaryRequirement,
-                            OrganizationSize = _registration.OrganizationSize.HasValue ? _registration.OrganizationSize.Value : 0
+                            OrganizationSize = _registration.OrganizationSize
                         }).ToList();
             }
             return null;
@@ -183,6 +223,7 @@ namespace CRS_DAL.Service
                             GetCourseClassByCode(_courseClass.ClassCode),   
                             new dm.Registration.Participant()
                             {
+                                ParticipantID = _participant.ParticipantID,
                                 IDNumber = _participant.IDNumber,
                                 EmploymentStatus = _participant.EmploymentStatus,
                                 CompanyID = _participant.CompanyID,
@@ -213,7 +254,7 @@ namespace CRS_DAL.Service
                             },
                             Sponsorship = _registration.Sponsorship == 1 ? "Self" : "Company",
                             DietaryRequirement = _registration.DietaryRequirement,
-                            OrganizationSize = _registration.OrganizationSize.HasValue ? _registration.OrganizationSize.Value : 0
+                            OrganizationSize = _registration.OrganizationSize
                         }).ToList();
             }
             return null;
@@ -233,6 +274,7 @@ namespace CRS_DAL.Service
                             GetCourseClassByClassID(_registration.ClassID),
                             new dm.Registration.Participant()
                             {
+                                ParticipantID = _participant.ParticipantID,
                                 IDNumber = _participant.IDNumber,
                                 EmploymentStatus = _participant.EmploymentStatus,
                                 CompanyID = _participant.CompanyID,
@@ -263,7 +305,7 @@ namespace CRS_DAL.Service
                             },
                             Sponsorship = _registration.Sponsorship == 1 ? "Self" : "Company",
                             DietaryRequirement = _registration.DietaryRequirement,
-                            OrganizationSize = _registration.OrganizationSize.HasValue ? _registration.OrganizationSize.Value : 0
+                            OrganizationSize = _registration.OrganizationSize
                         }).ToList();
             }
             return null;
@@ -291,7 +333,7 @@ namespace CRS_DAL.Service
                 _registration.ParticipantID = _participant.ParticipantID;
                 _registration.ClassID = _courseClass.ClassID;
                 _registration.Sponsorship = registration.Sponsorship.Equals("Self", StringComparison.OrdinalIgnoreCase) ? 1 : 2;
-                _registration.Status = (int)registration.Status;
+                //_registration.Status = (int)registration.Status;
                 _registration.BillingAddress = registration.billingInfo.Address;
                 _registration.BillingAddressCountry = registration.billingInfo.Country;
                 _registration.BillingAddressPostalCode = registration.billingInfo.PostalCode;
@@ -354,6 +396,7 @@ namespace CRS_DAL.Service
                             GetCourseClassByClassID(_registration.ClassID),
                             new dm.Registration.Participant()
                             {
+                                ParticipantID = _participant.ParticipantID,
                                 IDNumber = _participant.IDNumber,
                                 EmploymentStatus = _participant.EmploymentStatus,
                                 CompanyID = _participant.CompanyID,
@@ -384,8 +427,114 @@ namespace CRS_DAL.Service
                             },
                             Sponsorship = _registration.Sponsorship == 1 ? "Self" : "Company",
                             DietaryRequirement = _registration.DietaryRequirement,
-                            OrganizationSize=_registration.OrganizationSize.HasValue ? _registration.OrganizationSize.Value : 0
+                            OrganizationSize=_registration.OrganizationSize
                         };
+            }
+            return null;
+        }
+
+        public dm.Registration.Registration GetLastRegistrationByParticipantID(string participantID)
+        {
+            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(participantID)&&string.IsNullOrEmpty(x.CompanyID));
+            if (_participant == null)
+            {
+                return null;
+            }
+            Registration _registration = this.RegistrationRepository.GetWhere(x => x.ParticipantID.Equals(participantID)).OrderByDescending(x=>x.RegisterOn).FirstOrDefault();
+            
+            if (_registration != null)
+            {
+                
+                return new dm.Registration.Registration(
+                            GetCourseClassByClassID(_registration.ClassID),
+                            new dm.Registration.Participant()
+                            {
+                                ParticipantID = _participant.ParticipantID,
+                                IDNumber = _participant.IDNumber,
+                                EmploymentStatus = _participant.EmploymentStatus,
+                                CompanyID = _participant.CompanyID,
+                                CompanyName = _participant.CompanyName,
+                                Salutation = _participant.Salutation,
+                                JobTitle = _participant.JobTitle,
+                                Department = _participant.Department,
+                                FullName = _participant.FullName,
+                                OrganizationSize = _participant.OrganizationSize,
+                                Gender = _participant.Gender == 1 ? "Male" : "Female",
+                                SalaryRange = _participant.SalaryRange,
+                                Nationality = _participant.Nationality,
+                                DOB = _participant.DateOfBirth,
+                                EMail = _participant.Email,
+                                ContactNumber = _participant.ContactNumber,
+                                DietaryRequirement = _participant.DietaryRequirement
+                            }
+                            )
+                {
+                    RegID = _registration.RegistrationID,
+                    Status = (dm.RegistrationStatus)_registration.Status,
+                    billingInfo = new dm.Registration.Billing()
+                    {
+                        PersonName = _registration.BillingPersonName,
+                        Address = _registration.BillingAddress,
+                        Country = _registration.BillingAddressCountry,
+                        PostalCode = _registration.BillingAddressPostalCode
+                    },
+                    Sponsorship = _registration.Sponsorship == 1 ? "Self" : "Company",
+                    DietaryRequirement = _registration.DietaryRequirement,
+                    OrganizationSize = _registration.OrganizationSize
+                };
+            }
+            return null;
+        }
+
+        public dm.Registration.Registration GetLastRegistrationByHR(string participantID,string companyID)
+        {
+            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(participantID)&&x.CompanyID.Equals(companyID));
+            if (_participant == null)
+            {
+                return null;
+            }
+            Registration _registration = this.RegistrationRepository.GetWhere(x => x.ParticipantID.Equals(participantID)).OrderByDescending(x => x.RegisterOn).FirstOrDefault();
+
+            if (_registration != null)
+            {
+                
+                return new dm.Registration.Registration(
+                            GetCourseClassByClassID(_registration.ClassID),
+                            new dm.Registration.Participant()
+                            {
+                                ParticipantID = _participant.ParticipantID,
+                                IDNumber = _participant.IDNumber,
+                                EmploymentStatus = _participant.EmploymentStatus,
+                                CompanyID = _participant.CompanyID,
+                                CompanyName = _participant.CompanyName,
+                                Salutation = _participant.Salutation,
+                                JobTitle = _participant.JobTitle,
+                                Department = _participant.Department,
+                                FullName = _participant.FullName,
+                                OrganizationSize = _participant.OrganizationSize,
+                                Gender = _participant.Gender == 1 ? "Male" : "Female",
+                                SalaryRange = _participant.SalaryRange,
+                                Nationality = _participant.Nationality,
+                                DOB = _participant.DateOfBirth,
+                                EMail = _participant.Email,
+                                ContactNumber = _participant.ContactNumber,
+                                DietaryRequirement = _participant.DietaryRequirement
+                            }
+                            )
+                {
+                    RegID = _registration.RegistrationID,
+                    Status = (dm.RegistrationStatus)_registration.Status,
+                    billingInfo = new dm.Registration.Billing()
+                    {
+                        PersonName = _registration.BillingPersonName,
+                        Address = _registration.BillingAddress,
+                        Country = _registration.BillingAddressCountry,
+                        PostalCode = _registration.BillingAddressPostalCode
+                    },
+                    Sponsorship = _registration.Sponsorship == 1 ? "Self" : "Company",
+                    DietaryRequirement = _registration.DietaryRequirement,
+                    OrganizationSize = _registration.OrganizationSize
+                };
             }
             return null;
         }
@@ -407,6 +556,7 @@ namespace CRS_DAL.Service
                 return (from _participant in _participantlist
                         select new dm.Registration.Participant()
                         {
+                            ParticipantID = _participant.ParticipantID,
                             IDNumber = _participant.IDNumber,
                             EmploymentStatus = _participant.EmploymentStatus,
                             CompanyID = _participant.CompanyID,
