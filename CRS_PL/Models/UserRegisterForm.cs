@@ -35,9 +35,9 @@ namespace nus.iss.crs.pl.Models
         [Required]
         public string CompanyUEN{get;set;}
         [Required]
-        public string OrganizationSize;
+        public string OrganizationSize { get; set; }
         [Required]
-        public string CompanyAddress;
+        public string CompanyAddress { get; set; }
         [Required]
         public string Country{get;set;}
         [Required]

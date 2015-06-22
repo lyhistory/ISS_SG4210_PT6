@@ -77,7 +77,8 @@ namespace CRS_DAL.Service
                         UserID = Guid.NewGuid().ToString(),
                         LoginID = user.LoginID,
                         Password = user.Password,
-                        UserType = user.RoleName.Equals("HR") ? 2 : 1
+                        UserType = user.RoleName.Equals("HR") ? 2 : 1,
+                        Status=user.Status
                     });
                     companyHRRepository.Add(new CompanyHR()
                     {
@@ -111,7 +112,8 @@ namespace CRS_DAL.Service
                         UserID = Guid.NewGuid().ToString(),
                         LoginID = user.LoginID,
                         Password = user.Password,
-                        UserType = user.RoleName.Equals("HR") ? 2 : 1
+                        UserType = user.RoleName.Equals("HR") ? 2 : 1,
+                        Status=user.Status
                     });
 
                     Company _company;
@@ -134,7 +136,7 @@ namespace CRS_DAL.Service
                     {
                         _company = companyRepository.GetFirstOrDefault(x => x.CompanyUEN.Equals(company.CompanyUEN));
                     }
-
+                    company.CompanyID = _company.CompanyID;
                     //INSERT TABLE COMPANYHR
                     if (!ExistsCompanyHR(user.Email, company.CompanyUEN) && _company != null)
                     {
@@ -406,9 +408,9 @@ namespace CRS_DAL.Service
                 Status = _user.Status
             };
         }
-        public dm.User GetHRUserByIDNumber(string idNumber)
+        public dm.User GetHRUserByLoginID(string loginID)
         {
-            var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(idNumber)&&x.UserType.Equals(2));
+            var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginID) && x.UserType.Equals(2));
             if (_user == null)
                 return null;
             return new dm.User()
@@ -418,6 +420,23 @@ namespace CRS_DAL.Service
                 Password = _user.Password,
                 RoleName = _user.UserType == 2 ? "HR" : "Individual",
                 Status = _user.Status
+            };
+        }
+
+        public dm.CompanyHR GetCompanyHRByLoginID(string loginID)
+        {
+            var companyHR = companyHRRepository.GetFirstOrDefault(x => x.Email.Equals(loginID));
+            if (companyHR == null)
+                return null;
+            return new dm.CompanyHR()
+            {
+                HRID = companyHR.HRID,
+                CompanyID = companyHR.CompanyID,
+                Email = companyHR.Email,
+                Name = companyHR.Name,
+                ContactNumber = companyHR.ContactNumber,
+                JobTitle = companyHR.JobTitle,
+                FaxNumber = companyHR.FaxNumber
             };
         }
     }

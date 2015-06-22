@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Attendance.cs" />
     <Compile Include="AttendanceStatus.cs" />
+    <Compile Include="CompanyHR.cs" />
     <Compile Include="CourseSearchValueObject.cs" />
     <Compile Include="Course\ClassStatus.cs" />
     <Compile Include="Course\CourseStatus.cs" />

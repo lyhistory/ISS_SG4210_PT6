@@ -103,9 +103,13 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.UserService.GetIndividualUserByIDNumber(idNumber);
         }
-        public static User GetHRUserByIDNumber(string idNumber)
+        public static User GetHRUserByLoginID(string loginID)
         {
-            return unitOfWork.UserService.GetHRUserByIDNumber(idNumber);
+            return unitOfWork.UserService.GetHRUserByLoginID(loginID);
+        }
+        public static dm.CompanyHR GetCompanyHRByLoginID(string loginID)
+        {
+            return unitOfWork.UserService.GetCompanyHRByLoginID(loginID);
         }
     }
 }

@@ -91,6 +91,12 @@ namespace nus.iss.crs.pl.Controllers
                 nus.iss.crs.dm.User loginUser = UserManager.LoginUser(loginID, password); //new nus.iss.crs.dm.User() { UserID = "test", Password = "1111", Email = "", RoleName = "HR" };
                 if (loginUser != null)
                 {
+                    if (loginUser.RoleName.ToUpper().Equals("HR"))
+                    {
+                        var companyhr = UserManager.GetCompanyHRByLoginID(loginUser.LoginID);
+                        if (companyhr != null)
+                            loginUser.CompanyID = companyhr.CompanyID;
+                    }
                     SessionHelper.SetSession(loginUser);
                     CRSFormsAuthentication<User>.SetAuthCookie(loginUser.UserID, loginUser, true);
                     userType = loginUser.RoleName;
@@ -145,7 +151,7 @@ namespace nus.iss.crs.pl.Controllers
             {
                 return Json(new { Code = -1, Message = "Password not the same" });
             }
-            User user=UserManager.GetIndividualUserByIDNumber(form.LoginID);
+            User user=UserManager.GetHRUserByLoginID(form.LoginID);
             if(user!=null)
                 return Json(new { Code = -1, Message = "User already exsits!" });
             user = new dm.User();
@@ -175,10 +181,13 @@ namespace nus.iss.crs.pl.Controllers
             user.Password = form.Password;
             user.LoginID = form.LoginID;
             user.RoleName = "HR";
+            user.Status = 1;
 
             bool result = createCompany ? UserManager.CreateHRUser(user, company) : UserManager.CreateHRUser(user);
+
             if (result)
             {
+                user.CompanyID = company.CompanyID;
                 SessionHelper.SetSession(user);
                 return Json(new { Code = 1, Message = "" });
             }
@@ -199,7 +208,9 @@ namespace nus.iss.crs.pl.Controllers
         [HttpPost]
         public JsonResult PostForgetPassword(string idNumber,string email)
         {
+            // ADD USER TYPE SUP
             var user = UserManager.GetIndividualUserByIDNumber(idNumber);
+            //user=UserManager.GetHRUserByLoginID()
             if (user == null)
             {
                 return Json(new { Code = -1, Message = "user not exists!" });

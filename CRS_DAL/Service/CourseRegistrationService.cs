@@ -36,6 +36,10 @@ namespace CRS_DAL.Service
 
         public List<dm.Registration.Participant> GetEmployeeListByCompanyID(string companyID)
         {
+            if (string.IsNullOrEmpty(companyID))
+            {
+                return null;
+            }
             List<Participant> _participantlist = this.ParticipantRepository.GetWhere(x=>x.CompanyID.Equals(companyID)).ToList();
             if(_participantlist!=null){
                 return (from _participant in _participantlist

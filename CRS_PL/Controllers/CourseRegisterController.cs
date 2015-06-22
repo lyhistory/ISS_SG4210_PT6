@@ -60,6 +60,7 @@ namespace nus.iss.crs.pl.Controllers
                 {
                     //auto register and login
                     user = UserManager.CreateIndIndividualUser(new dm.User() { LoginID = IDNumber });
+                    user.RoleName = "User";
                     _log.Debug(string.Format("Your userid:{0},password:{1}", user.LoginID, user.Password));
                     SessionHelper.SetSession(user);
                 }
@@ -158,6 +159,7 @@ namespace nus.iss.crs.pl.Controllers
             Company company = UserManager.GetCompanyByID(SessionHelper.Current.CompanyID);
             if (company != null)
             {
+                crform.CompanyID = company.CompanyID;
                 crform.EmploymentStatus = "Regular Full Time";
                 crform.Company = company.CompanyName;
 
@@ -207,7 +209,7 @@ namespace nus.iss.crs.pl.Controllers
                 participant = CourseRegistrationManager.CreateParticipant(new Participant()
                 {
                     IDNumber = IDNumber,
-                    CompanyID = crform.CompanyID,
+                    CompanyID = SessionHelper.Current.CompanyID,//crform.CompanyID,
                     Salutation = crform.Salutation,
                     FullName = crform.FullName,
                     Gender = crform.Gender,
