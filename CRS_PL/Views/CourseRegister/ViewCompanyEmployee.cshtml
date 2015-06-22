@@ -1,4 +1,4 @@
-﻿@model List<CRS_DAL.EF.Participant>
+﻿@model List<nus.iss.crs.dm.Registration.Participant>
 @{
     ViewBag.Title = "ViewCompanyEmployee";
 }
@@ -31,9 +31,9 @@
                         <td>@participant.FullName</td>
                         <td>@participant.IDNumber</td>
                         <td>@participant.Gender</td>
-                        <td>@participant.DateOfBirth.ToShortDateString()</td>
+                        <td>@participant.DOB.ToShortDateString()</td>
                         <td>@participant.JobTitle</td>
-                        <td>@participant.Email</td>
+                        <td>@participant.EMail</td>
                         <td><input type="button" value="Edit" data-tag="Edit" /></td>
                     </tr>
                 }
