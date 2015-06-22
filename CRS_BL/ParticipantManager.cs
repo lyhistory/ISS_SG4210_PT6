@@ -9,6 +9,14 @@ namespace nus.iss.crs.bl
 {
     public class ParticipantManager
     {
+        internal ParticipantManager() { }
+        internal ParticipantManager(ISession session) 
+        {
+            if (session.GetCurrentUser().GetRole() == null) 
+            {
+                throw new Exception("No permission.");
+            }
+        }
         public List<Participant> GetParticipants(string companyName)
         {
             return null;

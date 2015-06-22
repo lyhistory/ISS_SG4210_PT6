@@ -11,10 +11,9 @@ namespace nus.iss.crs.bl
 {
     public class CourseManager
     {
+        UnitOfWork unitOfWork = new UnitOfWork();
         private List<CourseCategory> courseCategoryList = null;
-
-         UnitOfWork unitOfWork = new UnitOfWork();
-        private  CourseManager theOnlyCourseManager;
+        private List<CourseInstructor> courseInstructorList = null;
 
         internal CourseManager() 
         {
@@ -147,6 +146,16 @@ namespace nus.iss.crs.bl
             {
                 if (category.ID == categoryID)
                     return category;
+            }
+            return null;
+        }
+
+        public CourseInstructor GetInstructorByID(string instructorID)
+        {
+            foreach (CourseInstructor instructor in this.GetInstructorList())
+            {
+                if (instructor.ID == instructorID)
+                    return instructor;
             }
             return null;
         }

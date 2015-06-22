@@ -12,8 +12,8 @@ namespace nus.iss.crs.dm
         public string Name {get;set;}
         public CourseInstructor(string ID,string name)
         {
-            ID = ID;
-            Name = name;
+            this.ID = ID;
+            this.Name = name;
         }
     }
 }

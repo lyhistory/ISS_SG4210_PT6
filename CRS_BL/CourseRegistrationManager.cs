@@ -38,17 +38,17 @@ namespace nus.iss.crs.bl
         //}
 
         //get employee list by HR
-        public static List<Participant> GetEmployeeListByCompanyID(string companyID) 
+        public List<Participant> GetEmployeeListByCompanyID(string companyID) 
         {
             return unitOfWork.CourseRegistrationService.GetEmployeeListByCompanyID(companyID);
         }
         
         //Populate employee details by ID Number
-        public static Participant GetIndividualParticipantByIDNumber(string idNumber)
+        public Participant GetIndividualParticipantByIDNumber(string idNumber)
         {
             return unitOfWork.CourseRegistrationService.GetParticipantByIDNumber(idNumber);
         }
-        public static Participant GetParticipantByHR(string idNumber,string companyID)
+        public Participant GetParticipantByHR(string idNumber,string companyID)
         {
             if (string.IsNullOrEmpty(companyID))
             {
@@ -57,11 +57,11 @@ namespace nus.iss.crs.bl
             return unitOfWork.CourseRegistrationService.GetParticipantByIDNumber(idNumber,companyID);
         }
 
-        public static Participant UpdateIndividualParticipant(dm.Registration.Participant participant, string companyID = "")
+        public Participant UpdateIndividualParticipant(dm.Registration.Participant participant, string companyID = "")
         {
             return unitOfWork.CourseRegistrationService.UpdateParticipant(participant);
         }
-        public static Participant UpdateParticipantByHR(dm.Registration.Participant participant, string companyID)
+        public Participant UpdateParticipantByHR(dm.Registration.Participant participant, string companyID)
         {
             if (string.IsNullOrEmpty(companyID))
             {
@@ -70,25 +70,23 @@ namespace nus.iss.crs.bl
             return unitOfWork.CourseRegistrationService.UpdateParticipant(participant,companyID);
         }
         //Create new employee
-        public static Participant CreateParticipant(Participant participant)
+        public Participant CreateParticipant(Participant participant)
         {
             return unitOfWork.CourseRegistrationService.CreateParticipant(participant);
         }
 
         //View course details
-
-
-        public static List<Registration> GetRegistrationList(CourseClass cls)
+        public List<Registration> GetRegistrationList(CourseClass cls)
         {
             return unitOfWork.CourseRegistrationService.GetRegistrationList(cls);
         }
 
-        public static List<Registration> GetRegistrationList(User user)
+        public List<Registration> GetRegistrationList(User user)
         {
             return unitOfWork.CourseRegistrationService.GetRegistrationList(user);
         }
 
-        public static List<Registration> GetRegistrationList(Company company)
+        public List<Registration> GetRegistrationList(Company company)
         {
             return unitOfWork.CourseRegistrationService.GetRegistrationList(company);
         }
@@ -99,26 +97,26 @@ namespace nus.iss.crs.bl
         /// </summary>
         /// <param name="registration"></param>
         /// <returns></returns>
-        public static bool EditRegistration(Registration registration)
+        public bool EditRegistration(Registration registration)
         {
             return unitOfWork.CourseRegistrationService.EditRegistration(registration);
         }
 
-        public static bool DeleteRegistration(Registration registration)
+        public bool DeleteRegistration(Registration registration)
         {
             return unitOfWork.CourseRegistrationService.DeleteRegistration(registration);
         }
 
-        public static Registration GetRegistration(string RegID)
+        public Registration GetRegistration(string RegID)
         {
             return unitOfWork.CourseRegistrationService.GetRegistrationByRegID(RegID);
         }
 
-        public static Registration GetLastIndividualRegistrationByParticipantID(string participantID)
+        public Registration GetLastIndividualRegistrationByParticipantID(string participantID)
         {
             return unitOfWork.CourseRegistrationService.GetLastRegistrationByParticipantID(participantID);
         }
-        public static Registration GetLastRegistrationByHR(string participantID,string companyID)
+        public Registration GetLastRegistrationByHR(string participantID,string companyID)
         {
             if (string.IsNullOrEmpty(companyID))
             {
@@ -127,27 +125,12 @@ namespace nus.iss.crs.bl
             return unitOfWork.CourseRegistrationService.GetLastRegistrationByHR(participantID,companyID);
         }
 
-        public static Registration CreateRegistration(CourseClass courseClass, Participant participant, Registration registration)
+        public Registration CreateRegistration(CourseClass courseClass, Participant participant, Registration registration)
         {
             return unitOfWork.CourseRegistrationService.CreateRegistration(courseClass, participant, registration);
         }
 
-        /// <summary>
-        /// for hr
-        /// </summary>
-        /// <param name="registration"></param>
-        /// <param name="session"></param>
-        /// <returns></returns>
-        //public bool SaveRegistration(Registration registration,ISession session)
-        //{
-        //    if (session.GetCurrentUser().GetRole() == null)
-        //    {
-        //        //implement save
-        //    }
-        //    return false;
-        //}
-
-        public static List<Participant> GetParticipantListByCourse(Course course,DateTime date)
+        public List<Participant> GetParticipantListByCourse(Course course,DateTime date)
         {
             return unitOfWork.CourseRegistrationService.GetParticipantListByCourse(course, date);
         }

@@ -12,7 +12,12 @@ namespace nus.iss.crs.bl.Session
         public string sessionID;
         public DateTime lastUpdateTime;
         User currentUser;
+        private AttendanceManager attendanceManager = null;
         private CourseManager courseManager = null;
+        private CourseRegistrationManager courseRegistrationManager = null;
+        private ParticipantManager participantManager = null;
+        private ReportManager reportManager = null;
+        private UserManager userManager = null;
 
         public SessionImplement() 
         {
@@ -72,13 +77,48 @@ namespace nus.iss.crs.bl.Session
             return courseManager;
         }
 
-        //public CourseRegistrationManager CreateCourseRegistrationManager()
-        //{
-        //    return new CourseRegistrationManager(this);
-        //}
+        public CourseRegistrationManager CreateCourseRegistrationManager()
+        {
+            if (courseRegistrationManager == null)
+            {
+                courseRegistrationManager = new CourseRegistrationManager(this);
+            }
+            return courseRegistrationManager;
+        }
+
+        public AttendanceManager CreateAttendanceManager()
+        {
+            if (attendanceManager == null)
+            {
+                attendanceManager = new AttendanceManager(this);
+            }
+            return attendanceManager;
+        }
+
+        public ParticipantManager CreateParticipantManager()
+        {
+            if (participantManager == null)
+            {
+                participantManager = new ParticipantManager(this);
+            }
+            return participantManager;
+        }
+
+        public ReportManager CreateReportManager()
+        {
+            if (reportManager == null)
+            {
+                reportManager = new ReportManager(this);
+            }
+            return reportManager;
+        }
 
         public UserManager CreateUserManager() {
-            return new UserManager(this);
+            if (userManager == null)
+            {
+                userManager = new UserManager(this);
+            }
+            return userManager;
         }
     }
 }

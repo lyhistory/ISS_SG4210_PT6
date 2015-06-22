@@ -23,7 +23,7 @@ namespace nus.iss.crs.bl
             }
         }
 
-        public static bool CreateCourseClass(CourseClass courseClass)
+        public bool CreateCourseClass(CourseClass courseClass)
         {
             if (courseClass.GetCourse() != null)
             {
@@ -32,40 +32,40 @@ namespace nus.iss.crs.bl
             return false;
         }
 
-        public static bool CloseCourseClass(CourseClass courseClass)
+        public bool CloseCourseClass(CourseClass courseClass)
         {
             courseClass.Status = ClassStatus.Close;
             return unitOfWork.ClassService.ChangeCourseClassStatus(courseClass);
         }
 
-        public static bool ConfirmCourseClass(CourseClass courseClass)
+        public bool ConfirmCourseClass(CourseClass courseClass)
         {
             courseClass.Status = ClassStatus.Confirmed;
             return unitOfWork.ClassService.ChangeCourseClassStatus(courseClass);
         }
 
-        public static bool CancelCourseClass(CourseClass courseClass)
+        public bool CancelCourseClass(CourseClass courseClass)
         {
             courseClass.Status = ClassStatus.Canceled;
             return unitOfWork.ClassService.ChangeCourseClassStatus(courseClass);
         }
 
-        public static bool AdjustCourseClassSchedule(CourseClass courseClass, DateTime startDate, DateTime endDate)
+        public bool AdjustCourseClassSchedule(CourseClass courseClass, DateTime startDate, DateTime endDate)
         {
             return unitOfWork.ClassService.EditCourseClassDate(courseClass, startDate, endDate);
         }
 
-        public static CourseClass GetCourseClassByCode(string classCode)
+        public CourseClass GetCourseClassByCode(string classCode)
         {
             return unitOfWork.ClassService.GetCourseClassByCode(classCode);
         }
 
-        public static List<Participant> GetCourseClassParticipantList(CourseClass courseClass)
+        public List<Participant> GetCourseClassParticipantList(CourseClass courseClass)
         {
             return unitOfWork.ClassService.GetCourseClassParticipantList(courseClass);
         }
 
-        public static DateTime AutoGenerateCourseClassEndDate(Course course, DateTime startDate)
+        public DateTime AutoGenerateCourseClassEndDate(Course course, DateTime startDate)
         {
             DateTime tempDate = new DateTime();
             int duration = course.Duration;
@@ -96,7 +96,7 @@ namespace nus.iss.crs.bl
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        public static List<DateTime> SingaporeHolidaySchedule(int year)
+        public List<DateTime> SingaporeHolidaySchedule(int year)
         {
             List<DateTime> holidayList = new List<DateTime>();
 
@@ -115,7 +115,7 @@ namespace nus.iss.crs.bl
             return holidayList;
         }
 
-        public static DateTime AdjustWeekendHoliday(DateTime holiday)
+        public DateTime AdjustWeekendHoliday(DateTime holiday)
         {
             if(holiday.DayOfWeek == DayOfWeek.Sunday)
             {
@@ -130,7 +130,7 @@ namespace nus.iss.crs.bl
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        public static DateTime EasterSunday(int year)
+        public DateTime EasterSunday(int year)
         {
             int day = 0;
             int month = 0;

@@ -16,7 +16,10 @@ namespace nus.iss.crs.bl
 
         User GetCurrentUser();
         CourseManager CreateCourseManager();
-        //CourseRegistrationManager CreateCourseRegistrationManager();
+        CourseRegistrationManager CreateCourseRegistrationManager();
+        AttendanceManager CreateAttendanceManager();
+        ParticipantManager CreateParticipantManager();
+        ReportManager CreateReportManager();
         UserManager CreateUserManager();
     }
 }

@@ -19,7 +19,10 @@ namespace nus.iss.crs.pl.Controllers
     {
         private static LogHelper _log = LogHelper.GetLogger(typeof(CourseRegisterController));
 
-        CourseManager manager = null;
+        CourseManager courseManager = null;
+        ClassManager classManager = null;
+        CourseRegistrationManager courseRegistrationManager = null;
+
         // GET: CourseRegister
         public ActionResult IndividualRegister(string code,string message="")
         {
@@ -28,7 +31,7 @@ namespace nus.iss.crs.pl.Controllers
                 ViewBag.Message = message;
             }
             CRForm crform = GetModelForCourseRegister( "", true);
-            var model = manager.GetCourseByCode(code);
+            var model = courseManager.GetCourseByCode(code);
             crform.CourseTitle = model.CourseTitle;
             crform.CourseCode = model.Code;
 
@@ -70,9 +73,10 @@ namespace nus.iss.crs.pl.Controllers
                     CRSFormsAuthentication<User>.SetAuthCookie(user.LoginID, user, true);
                 }
             }
-            CourseClass courseClass = ClassManager.GetCourseClassByCode(crform.ClassCode);
+           
+            CourseClass courseClass = classManager.GetCourseClassByCode(crform.ClassCode);
             Participant participant = null;
-            participant = CourseRegistrationManager.GetIndividualParticipantByIDNumber(IDNumber);
+            participant = courseRegistrationManager.GetIndividualParticipantByIDNumber(IDNumber);
             if (participant != null) {
                 participant.EmploymentStatus = crform.EmploymentStatus;
                 participant.CompanyName = crform.Company;
@@ -88,11 +92,11 @@ namespace nus.iss.crs.pl.Controllers
                 participant.EMail = crform.Email;
                 participant.ContactNumber = crform.ContactNumber;
                 participant.DietaryRequirement = crform.DietaryRequirement;
-                CourseRegistrationManager.UpdateIndividualParticipant(participant);
+                courseRegistrationManager.UpdateIndividualParticipant(participant);
             }
             else
             {
-                participant = CourseRegistrationManager.CreateParticipant(new Participant()
+                participant = courseRegistrationManager.CreateParticipant(new Participant()
                 {
                     IDNumber = IDNumber,
                     CompanyID = crform.CompanyID,
@@ -122,9 +126,9 @@ namespace nus.iss.crs.pl.Controllers
             registration.billingInfo.Address = crform.BillingAddress;
             registration.billingInfo.PersonName = crform.BillingPersonName;
             registration.billingInfo.Country = crform.BillingAddressCountry;
-            registration.billingInfo.PostalCode = crform.BillingAddressPostalCode;  
-            
-            CourseRegistrationManager.CreateRegistration(courseClass, participant, registration);
+            registration.billingInfo.PostalCode = crform.BillingAddressPostalCode;
+
+            courseRegistrationManager.CreateRegistration(courseClass, participant, registration);
 
 
             return Json(new { Code = 1, redirectUrl = Url.Action("ViewIndividualRegister", "CourseRegister") });
@@ -134,19 +138,19 @@ namespace nus.iss.crs.pl.Controllers
         {
             if (SessionHelper.Current == null)
                 return RedirectToAction("Logon", "home");
-            List<Registration> list = CourseRegistrationManager.GetRegistrationList(SessionHelper.Current);
+            List<Registration> list = courseRegistrationManager.GetRegistrationList(SessionHelper.Current);
             return View(list);
         }
 
         public ActionResult HRRegister(string code)
         {
-            var model = manager.GetCourseByCode(code);
+            var model = courseManager.GetCourseByCode(code);
             CRForm crform = new CRForm();
             crform.CourseTitle = model.CourseTitle;
             crform.CourseCode = model.Code;
 
             List<SelectItem> employlist = new List<SelectItem>();
-            var employs = CourseRegistrationManager.GetEmployeeListByCompanyID(SessionHelper.Current.CompanyID);
+            var employs = courseRegistrationManager.GetEmployeeListByCompanyID(SessionHelper.Current.CompanyID);
             employlist.Add(new SelectItem() { Value = "-1", Name = "New Employee" });
             foreach (var item in employs)
             {
@@ -188,9 +192,10 @@ namespace nus.iss.crs.pl.Controllers
                 //log
                 return Content("wrong");
             }
-            CourseClass courseClass = ClassManager.GetCourseClassByCode(crform.ClassCode);
+
+            CourseClass courseClass = classManager.GetCourseClassByCode(crform.ClassCode);
             Participant participant = null;
-            participant = CourseRegistrationManager.GetParticipantByHR(IDNumber,SessionHelper.Current.CompanyID);
+            participant = courseRegistrationManager.GetParticipantByHR(IDNumber, SessionHelper.Current.CompanyID);
             if (participant != null)
             {
                 participant.EmploymentStatus = crform.EmploymentStatus;
@@ -207,11 +212,11 @@ namespace nus.iss.crs.pl.Controllers
                 participant.EMail = crform.Email;
                 participant.ContactNumber = crform.ContactNumber;
                 participant.DietaryRequirement = crform.DietaryRequirement;
-                CourseRegistrationManager.UpdateIndividualParticipant(participant);
+                courseRegistrationManager.UpdateIndividualParticipant(participant);
             }
             else
             {
-                participant = CourseRegistrationManager.CreateParticipant(new Participant()
+                participant = courseRegistrationManager.CreateParticipant(new Participant()
                 {
                     IDNumber = IDNumber,
                     CompanyID = SessionHelper.Current.CompanyID,//crform.CompanyID,
@@ -243,7 +248,7 @@ namespace nus.iss.crs.pl.Controllers
             registration.billingInfo.Country = crform.BillingAddressCountry;
             registration.billingInfo.PostalCode = crform.BillingAddressPostalCode;
 
-            CourseRegistrationManager.CreateRegistration(courseClass, participant, registration);
+            courseRegistrationManager.CreateRegistration(courseClass, participant, registration);
 
 
             return Json(new { Code = 1, redirectUrl = Url.Action("ViewHRRegister", "CourseRegister") });
@@ -253,7 +258,7 @@ namespace nus.iss.crs.pl.Controllers
         {
             CRForm crform = GetModelForCourseRegister(idNumber, false);
 
-            var model = manager.GetCourseByCode(courseCode);
+            var model = courseManager.GetCourseByCode(courseCode);
             crform.CourseTitle = model.CourseTitle;
             crform.CourseCode = model.Code;
             List<SelectItem> classlist = new List<SelectItem>();
@@ -270,7 +275,7 @@ namespace nus.iss.crs.pl.Controllers
         {
             if (SessionHelper.Current == null)
                 return RedirectToAction("Logon", "home");
-            List<Registration> list = CourseRegistrationManager.GetRegistrationList(new Company() { CompanyID = SessionHelper.Current.CompanyID });
+            List<Registration> list = courseRegistrationManager.GetRegistrationList(new Company() { CompanyID = SessionHelper.Current.CompanyID });
             return View(list);
         }
         [CRSAuthorize(Roles = "HR")]
@@ -280,7 +285,7 @@ namespace nus.iss.crs.pl.Controllers
             {
                 return RedirectToAction("Logon", "home");
             }
-            List<Participant> list = CourseRegistrationManager.GetEmployeeListByCompanyID(SessionHelper.Current.CompanyID);
+            List<Participant> list = courseRegistrationManager.GetEmployeeListByCompanyID(SessionHelper.Current.CompanyID);
             return View(list);
         }
 
@@ -294,15 +299,15 @@ namespace nus.iss.crs.pl.Controllers
             {
                 if (isIndividual)
                 {
-                    participant = CourseRegistrationManager.GetIndividualParticipantByIDNumber(SessionHelper.Current.LoginID);
+                    participant = courseRegistrationManager.GetIndividualParticipantByIDNumber(SessionHelper.Current.LoginID);
                     if(participant!=null)
-                        registration = CourseRegistrationManager.GetLastIndividualRegistrationByParticipantID(participant.ParticipantID);
+                        registration = courseRegistrationManager.GetLastIndividualRegistrationByParticipantID(participant.ParticipantID);
                 }
                 else
                 {
-                    participant = CourseRegistrationManager.GetParticipantByHR(idnumber, SessionHelper.Current.CompanyID);
+                    participant = courseRegistrationManager.GetParticipantByHR(idnumber, SessionHelper.Current.CompanyID);
                     if (participant != null)
-                        registration = CourseRegistrationManager.GetLastRegistrationByHR(participant.ParticipantID,SessionHelper.Current.CompanyID);
+                        registration = courseRegistrationManager.GetLastRegistrationByHR(participant.ParticipantID, SessionHelper.Current.CompanyID);
                 }
             }
 
