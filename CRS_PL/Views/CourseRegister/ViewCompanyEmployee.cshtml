@@ -1,7 +1,42 @@
-﻿
+﻿@model List<CRS_DAL.EF.Participant>
 @{
     ViewBag.Title = "ViewCompanyEmployee";
 }
-
-<h2>ViewCompanyEmployee</h2>
+<div class="container-fluid">
+    <h1 class="page-header">employees under company @nus.iss.crs.pl.AppCode.Session.SessionHelper.Current.CompanyID </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Full Name</td>
+                <td>ID Number</td>
+                <td>Gender</td>
+                <td>Date Of Birth</td>
+                <td>JobTitle</td>
+                <td>Email</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model == null || Model.Count < 1)
+            {
+                <tr>
+                    <td colspan="6">
+                        No Data.
+                    </td>
+                </tr>
+            }
+            @foreach (var participant in Model)
+            {
+                <tr>
+                    <td>@participant.FullName</td>
+                    <td>@participant.IDNumber</td>
+                    <td>@participant.Gender</td>
+                    <td>@participant.DateOfBirth.ToShortDateString()</td>
+                    <td>@participant.JobTitle</td>
+                    <td>@participant.Email</td>
+                    <td><input type="button" value="Edit" data-tag="Edit" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
