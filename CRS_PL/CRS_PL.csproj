@@ -253,6 +253,13 @@
     <Compile Include="Admin\ListClassInCalendar.aspx.designer.cs">
       <DependentUpon>ListClassInCalendar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ListCourseClassRegistration.aspx.cs">
+      <DependentUpon>ListCourseClassRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ListCourseClassRegistration.aspx.designer.cs">
+      <DependentUpon>ListCourseClassRegistration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\NavigationManager.cs" />
     <Compile Include="Admin\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -351,6 +358,7 @@
     <Content Include="Admin\ListClassInCourse.aspx" />
     <Content Include="Admin\ListCourse.aspx" />
     <Content Include="Admin\ListClassInCalendar.aspx" />
+    <Content Include="Admin\ListCourseClassRegistration.aspx" />
     <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.min.css" />

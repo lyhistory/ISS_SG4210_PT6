@@ -10,16 +10,16 @@
 namespace nus.iss.crs.pl.Admin {
     
     
-    public partial class ListCourseRegistraton {
+    public partial class ListCourseClassRegistration {
         
         /// <summary>
-        /// courseID control.
+        /// categoryListID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label courseID;
+        protected global::System.Web.UI.WebControls.DropDownList categoryListID;
         
         /// <summary>
         /// courseListID control.
@@ -29,6 +29,15 @@ namespace nus.iss.crs.pl.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList courseListID;
+        
+        /// <summary>
+        /// classListID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList classListID;
         
         /// <summary>
         /// PlaceHolder1 control.
