@@ -24,15 +24,17 @@
                     </td>
                 </tr>
             }
-            @foreach (var registration in Model)
-            {
-                <tr>
-                    <td>@registration.CourseClassObj.GetCourse().CourseTitle</td>
-                    <td>@registration.CourseClassObj.StartDate.ToString()</td>
-                    <td>@registration.CourseClassObj.EndDate.ToString()</td>
-                    <td>@registration.CourseClassObj.Status.ToString()</td>
-                    <td><input type="button" value="Edit" data-tag="Edit" /></td>
-                </tr>
+            else { 
+                foreach (var registration in Model)
+                {
+                    <tr>
+                        <td>@registration.CourseClassObj.GetCourse().CourseTitle</td>
+                        <td>@registration.CourseClassObj.StartDate.ToString()</td>
+                        <td>@registration.CourseClassObj.EndDate.ToString()</td>
+                        <td>@registration.CourseClassObj.Status.ToString()</td>
+                        <td><input type="button" value="Edit" data-tag="Edit" /></td>
+                    </tr>
+                }
             }
         </tbody>
     </table>

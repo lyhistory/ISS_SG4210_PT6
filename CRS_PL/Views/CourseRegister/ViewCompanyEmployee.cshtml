@@ -24,17 +24,19 @@
                     </td>
                 </tr>
             }
-            @foreach (var participant in Model)
-            {
-                <tr>
-                    <td>@participant.FullName</td>
-                    <td>@participant.IDNumber</td>
-                    <td>@participant.Gender</td>
-                    <td>@participant.DateOfBirth.ToShortDateString()</td>
-                    <td>@participant.JobTitle</td>
-                    <td>@participant.Email</td>
-                    <td><input type="button" value="Edit" data-tag="Edit" /></td>
-                </tr>
+            else { 
+                foreach (var participant in Model)
+                {
+                    <tr>
+                        <td>@participant.FullName</td>
+                        <td>@participant.IDNumber</td>
+                        <td>@participant.Gender</td>
+                        <td>@participant.DateOfBirth.ToShortDateString()</td>
+                        <td>@participant.JobTitle</td>
+                        <td>@participant.Email</td>
+                        <td><input type="button" value="Edit" data-tag="Edit" /></td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
