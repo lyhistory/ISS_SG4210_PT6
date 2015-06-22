@@ -12,6 +12,7 @@ namespace nus.iss.crs.bl.Session
         public string sessionID;
         public DateTime lastUpdateTime;
         User currentUser;
+        private CourseManager courseManager = null;
 
         public SessionImplement() 
         {
@@ -64,7 +65,11 @@ namespace nus.iss.crs.bl.Session
 
         public CourseManager CreateCourseManager()
         {
-            return new CourseManager(this);
+            if (courseManager == null)
+            {
+                courseManager = new CourseManager(this);
+            }
+            return courseManager;
         }
 
         //public CourseRegistrationManager CreateCourseRegistrationManager()

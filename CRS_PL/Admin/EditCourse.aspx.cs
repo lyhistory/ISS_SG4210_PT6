@@ -42,8 +42,23 @@ namespace nus.iss.crs.pl.Admin
             //course.Description = "description";
             //course.Duration = 3;
             //course.Fee = "2000";
+            
             CourseManager manager = BLSession.CreateCourseManager();
-            Course course = manager.GetCourseByCode(this.Request.QueryString(CRSConstant.ParameterCourseCode));
+            foreach (CourseCategory category in manager.GetCourseCategoryList())
+            {
+                ListItem item = new ListItem(category.Name, category.ID);
+                categoryList.Items.Add(item);
+            }
+
+            foreach (CourseInstructor instructor in manager.GetInstructorList())
+            {
+                if (selectedInstructor == null)
+                    selectedInstructor = instructor;
+                ListItem item = new ListItem(instructor.Name);
+                instructorList.Items.Add(item);
+            }
+
+            Course course = manager.GetCourseByCode(this.Request.QueryString.Get(CRSConstant.ParameterCourseCode));
             //populate data 
             codeID.Text = course.Code;
             titleID.Text = course.CourseTitle;
@@ -102,6 +117,23 @@ namespace nus.iss.crs.pl.Admin
 
         protected void Save_Click(object sender, EventArgs e)
         {
+            CourseManager manager = BLSession.CreateCourseManager();
+            Course tempCourse = new Course();
+            tempCourse.Code = codeID.Text.ToString();
+            tempCourse.CourseTitle = titleID.Text.ToString();
+            tempCourse.Description = descriptionID.Text.ToString();
+            tempCourse.Duration = Convert.ToInt32(durationID.Text.ToString());
+            tempCourse.Fee = feeID.Text.ToString();
+            
+            string categoryID = categoryList.SelectedItem.Value;
+            if(string.IsNullOrEmpty (categoryID))
+                return;
+            tempCourse.Category = manager.GetCourseCategoryByID(categoryID);
+            //codeID.Text = course.Code;
+            //titleID.Text = course.CourseTitle;
+            //descriptionID.Text = course.Description;
+            //durationID.Text = course.Duration + "";
+            //feeID.Text = course.Fee;
             NextPage(true);
         }
 

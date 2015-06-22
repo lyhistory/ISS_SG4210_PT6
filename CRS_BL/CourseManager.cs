@@ -11,6 +11,8 @@ namespace nus.iss.crs.bl
 {
     public class CourseManager
     {
+        private List<CourseCategory> courseCategoryList = null;
+
          UnitOfWork unitOfWork = new UnitOfWork();
         private  CourseManager theOnlyCourseManager;
 
@@ -34,7 +36,8 @@ namespace nus.iss.crs.bl
         //List course category
         public  List<CourseCategory> GetCourseCategoryList()
         {
-            List<CourseCategory> courseCategoryList = unitOfWork.CourseService.GetCourseCategoryList();
+            if (courseCategoryList == null)
+            courseCategoryList = unitOfWork.CourseService.GetCourseCategoryList();
             return courseCategoryList;
         }
 
@@ -137,6 +140,15 @@ namespace nus.iss.crs.bl
 
             return course;
         }
-         
+        
+        public CourseCategory GetCourseCategoryByID(string categoryID)
+        {
+            foreach (CourseCategory category in this.GetCourseCategoryList())
+            {
+                if (category.ID == categoryID)
+                    return category;
+            }
+            return null;
+        }
     }
 }
