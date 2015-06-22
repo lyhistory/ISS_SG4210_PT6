@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm.Course;
+﻿using nus.iss.crs.bl;
+using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.Admin.Ctrl;
 using nus.iss.crs.pl.TestData;
 using System;
@@ -15,18 +16,16 @@ namespace nus.iss.crs.pl.Admin
 
         protected override void Page_Load(object sender, EventArgs e)
         {
-            TestData();
+            ShowCourseList();
         }
 
-        private void TestData()
+        private void ShowCourseList()
         {
-            ModelData testData = ModelData.GetInstance();
-            testData.AddCourse4Categories();
-            foreach (CourseCategory category in testData.GetCategories())
+            foreach (CourseCategory courseCategory in CourseManager.GetCourseCategoryList())
             {
                 CategoryCourseList table = (CategoryCourseList)Page.LoadControl("./Ctrl/CategoryCourseList.ascx");
 
-                table.Category = category;
+                table.Category = courseCategory;
                 //table.Category = testData.CreateCategory(); 
                 PlaceHolder1.Controls.Add(table);
                 Label newline = new Label();
@@ -34,6 +33,23 @@ namespace nus.iss.crs.pl.Admin
                 PlaceHolder1.Controls.Add(newline);
             }
         }
+
+        //private void TestData()
+        //{
+        //    ModelData testData = ModelData.GetInstance();
+        //    testData.AddCourse4Categories();
+        //    foreach (CourseCategory courseCategory in testData.GetCategories())
+        //    {
+        //        CategoryCourseList table = (CategoryCourseList)Page.LoadControl("./Ctrl/CategoryCourseList.ascx");
+
+        //        table.Category = courseCategory;
+        //        //table.Category = testData.CreateCategory(); 
+        //        PlaceHolder1.Controls.Add(table);
+        //        Label newline = new Label();
+        //        newline.Text = "<BR/>";
+        //        PlaceHolder1.Controls.Add(newline);
+        //    }
+        //}
 
         public override void RegistraterAction()
         {

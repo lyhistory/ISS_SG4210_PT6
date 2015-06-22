@@ -27,7 +27,7 @@ namespace nus.iss.crs.pl.Admin
         void PopulateCouseDetail()
         {
             //populate category and instructor
-            TestDat();
+            //TestDat();
 
             //retrieve parameter from request
 

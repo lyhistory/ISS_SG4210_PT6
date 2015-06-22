@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm.Course;
+﻿using nus.iss.crs.bl;
+using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.Admin.Ctrl;
 using nus.iss.crs.pl.TestData;
 using System;
@@ -28,32 +29,32 @@ namespace nus.iss.crs.pl.Admin
         private void PopulateCategoryList()
         {
             categoryListID.Items.Add("Please select course category...");
-             ModelData testData = ModelData.GetInstance();
-            foreach(CourseCategory category in  testData.GetCategories())
+            //ModelData testData = ModelData.GetInstance();
+            foreach(CourseCategory courseCategory in  CourseManager.GetCourseCategoryList())
             { 
-                ListItem item = new ListItem(category.Name,category.ID);
+                ListItem item = new ListItem(courseCategory.Name,courseCategory.ID);
                 categoryListID.Items.Add(item);
             }
         }
 
-        private void TestData()
-        {
+        //private void TestData()
+        //{
 
-            ModelData testData = ModelData.GetInstance();
+        //    ModelData testData = ModelData.GetInstance();
             
 
-            testData.AddCourseClasses();
-            foreach (Course course in testData.GetCourses())
-            {
-                CourseClassList table = (CourseClassList)Page.LoadControl("./Ctrl/CourseClassList.ascx");
+        //    testData.AddCourseClasses();
+        //    foreach (Course course in testData.GetCourses())
+        //    {
+        //        CourseClassList table = (CourseClassList)Page.LoadControl("./Ctrl/CourseClassList.ascx");
 
-                table.course = course;
-                PlaceHolder1.Controls.Add(table);
-                Label newline = new Label();
-                newline.Text = "<BR/>";
-                PlaceHolder1.Controls.Add(newline);
-            }
-        }
+        //        table.course = course;
+        //        PlaceHolder1.Controls.Add(table);
+        //        Label newline = new Label();
+        //        newline.Text = "<BR/>";
+        //        PlaceHolder1.Controls.Add(newline);
+        //    }
+        //}
 
 
         public override void RegistraterAction()
@@ -65,16 +66,21 @@ namespace nus.iss.crs.pl.Admin
         {
             //load and display course and course class
 
-            //TestData();
             ListItem item = categoryListID.SelectedItem;
             if (item == null)
                 return;
 
-            ModelData testData = ModelData.GetInstance();
-            testData.AddCourseClasses();
-
-            CourseCategory category = testData.GetCategory(item.Value);
-            PopulateClass(category);
+            //ModelData testData = ModelData.GetInstance();
+            //testData.AddCourseClasses();
+            //CourseCategory category = testData.GetCategory(item.Value);
+            foreach(CourseCategory courseCategory in CourseManager.GetCourseCategoryList())
+            {
+                if(courseCategory.ID == item.Value)
+                {
+                    PopulateClass(courseCategory);
+                }
+            }
+            return;
         }
 
 
