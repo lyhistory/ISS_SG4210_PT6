@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Site.Master" AutoEventWireup="true" CodeBehind="EditClass.aspx.cs" Inherits="nus.iss.crs.pl.Admin.EditClass" %>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="placeholder_MainContent" runat="server">
-    
+    <h1>Edit Class </h1>
    
     <Table id="Table1" class="table" >
         <tr>
