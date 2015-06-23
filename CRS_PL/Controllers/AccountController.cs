@@ -11,6 +11,14 @@ namespace nus.iss.crs.pl.Controllers
 {
     public class AccountController: AuthController
     {
+         UserManager manager = null;
+
+         public AccountController()
+        {
+            manager = new UserManager(BLSession);
+        }
+
+
         //Account Center
         public ActionResult Index()
         {
@@ -34,7 +42,7 @@ namespace nus.iss.crs.pl.Controllers
             {
                 if (session.Password.Equals(password))
                 {
-                    if (UserManager.ResetPassword(session.LoginID, password,newpassword))
+                    if (manager.ResetPassword(session.LoginID, password, newpassword))
                     {
                         session.Password = newpassword;
                         session.Status = 1;
@@ -62,9 +70,7 @@ namespace nus.iss.crs.pl.Controllers
 
         public ActionResult LogOff()
         {
-            Session.Clear();
-            Session.Abandon();
-            FormsAuthentication.SignOut();
+            SessionHelper.ReleaseSession();
 
             return RedirectToAction("index", "home");
         }

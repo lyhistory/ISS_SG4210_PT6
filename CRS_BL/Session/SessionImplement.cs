@@ -18,6 +18,7 @@ namespace nus.iss.crs.bl.Session
         private ParticipantManager participantManager = null;
         private ReportManager reportManager = null;
         private UserManager userManager = null;
+        private ClassManager classManager = null;
 
         public SessionImplement() 
         {
@@ -84,6 +85,15 @@ namespace nus.iss.crs.bl.Session
                 courseRegistrationManager = new CourseRegistrationManager(this);
             }
             return courseRegistrationManager;
+        }
+
+        public ClassManager CreateClassManager()
+        {
+            if (classManager == null)
+            {
+                classManager = new ClassManager(this);
+            }
+            return classManager;
         }
 
         public AttendanceManager CreateAttendanceManager()

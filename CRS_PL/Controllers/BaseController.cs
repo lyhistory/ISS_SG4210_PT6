@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using nus.iss.crs.dm;
 using System.Web.Security;
+using nus.iss.crs.bl;
+using nus.iss.crs.bl.Session;
 /*
  *AUTHOR: LIU YUE
  * */
@@ -13,6 +15,8 @@ namespace nus.iss.crs.pl.Controllers
 {
     public class BaseController : Controller
     {
+        protected ISession BLSession  = SessionHelper.BLSession;
+
         protected override void OnAuthorization(AuthorizationContext filterContext)
         {
             bool afterLogin = false;
@@ -36,10 +40,8 @@ namespace nus.iss.crs.pl.Controllers
 
         protected ActionResult Kickout(bool isAjaxRequest)
         {
-            Session.Clear();
-            Session.Abandon();
-            FormsAuthentication.SignOut();
-
+            SessionHelper.ReleaseSession();
+             
             Response.TrySkipIisCustomErrors = true;
             Response.StatusCode = 403;
 

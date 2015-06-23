@@ -19,6 +19,12 @@ namespace nus.iss.crs.pl.Controllers
     {
         private static LogHelper _log = LogHelper.GetLogger(typeof(HomeController));
 
+        UserManager manager = null;
+
+        public HomeController()
+        {
+            manager = new UserManager(BLSession);
+        }
         public ActionResult Index()
         {
             //ISession session = SessionFactory.CreateSession();
@@ -32,11 +38,11 @@ namespace nus.iss.crs.pl.Controllers
             return View();
         }
 
-        CourseManager manager = null;//new CourseManager();
+        
 
         public JsonResult GetCourseCategoryList(string searchText = "")
         {
-            
+            CourseManager manager = this.BLSession.CreateCourseManager();
             List<CourseCategory> categoryList = manager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
 
             return Json(new { Data = categoryList });
@@ -44,6 +50,7 @@ namespace nus.iss.crs.pl.Controllers
 
         public ActionResult CourseDetail(string code)
         {
+            CourseManager manager = this.BLSession.CreateCourseManager();
             var model = manager.GetCourseByCode(code);
             return View(model);
         }
@@ -91,12 +98,12 @@ namespace nus.iss.crs.pl.Controllers
             {
                 //do user login
 
-                nus.iss.crs.dm.User loginUser = UserManager.LoginUser(loginID, password); //new nus.iss.crs.dm.User() { UserID = "test", Password = "1111", Email = "", RoleName = "HR" };
+                nus.iss.crs.dm.User loginUser = manager.LoginUser(loginID, password); //new nus.iss.crs.dm.User() { UserID = "test", Password = "1111", Email = "", RoleName = "HR" };
                 if (loginUser != null)
                 {
                     if (loginUser.RoleName.ToUpper().Equals("HR"))
                     {
-                        var companyhr = UserManager.GetCompanyHRByLoginID(loginUser.LoginID);
+                        var companyhr = manager.GetCompanyHRByLoginID(loginUser.LoginID);
                         if (companyhr != null)
                             loginUser.CompanyID = companyhr.CompanyID;
                     }
@@ -156,12 +163,12 @@ namespace nus.iss.crs.pl.Controllers
             {
                 return Json(new { Code = -1, Message = "Password not the same" });
             }
-            User user=UserManager.GetHRUserByLoginID(form.LoginID);
+            User user = manager.GetHRUserByLoginID(form.LoginID);
             if(user!=null)
                 return Json(new { Code = -1, Message = "User already exsits!" });
             user = new dm.User();
             bool createCompany = false;
-            Company company = UserManager.GetCompanyByUEN(form.CompanyUEN);
+            Company company = manager.GetCompanyByUEN(form.CompanyUEN);
             if (company == null)
             {
                 company = new Company()
@@ -173,7 +180,7 @@ namespace nus.iss.crs.pl.Controllers
                     Country = form.Country,
                     PostalCode = form.PostalCode
                 };
-                createCompany = UserManager.CreateCompany(company);
+                createCompany = manager.CreateCompany(company);
                 //log if fail
             }
             
@@ -188,7 +195,7 @@ namespace nus.iss.crs.pl.Controllers
             user.RoleName = "HR";
             user.Status = 1;
 
-            bool result = createCompany ? UserManager.CreateHRUser(user, company) : UserManager.CreateHRUser(user);
+            bool result = createCompany ? manager.CreateHRUser(user, company) : manager.CreateHRUser(user);
 
             if (result)
             {
@@ -218,11 +225,11 @@ namespace nus.iss.crs.pl.Controllers
             User user = null;
             if (usertype.Equals("1"))
             {
-                user=UserManager.GetIndividualUserByIDNumber(loginID);
+                user = manager.GetIndividualUserByIDNumber(loginID);
             }
             else
             {
-                user=UserManager.GetHRUserByLoginID(loginID);
+                user = manager.GetHRUserByLoginID(loginID);
             }
             //user=UserManager.GetHRUserByLoginID()
             if (user == null)
