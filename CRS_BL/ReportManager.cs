@@ -15,10 +15,10 @@ namespace nus.iss.crs.bl
 
         internal ReportManager(ISession session)
         {
-            if (session.GetCurrentUser().GetRole() == null)
-            {
-                throw new Exception("No permission.");
-            }
+            //if (session.GetCurrentUser().GetRole() == null)
+            //{
+            //    throw new Exception("No permission.");
+            //}
         }
         public Attendance GetAttendanceReport(CourseClass cls)
         {

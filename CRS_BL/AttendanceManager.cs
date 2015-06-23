@@ -14,10 +14,10 @@ namespace nus.iss.crs.bl
         internal AttendanceManager() { }
         internal AttendanceManager(ISession session) 
         {
-            if (session.GetCurrentUser().GetRole() == null) 
-            {
-                throw new Exception("No permission.");
-            }
+            //if (session.GetCurrentUser().GetRole() == null) 
+            //{
+            //    throw new Exception("No permission.");
+            //}
         }
         public Attendance CreateAttendance(CourseClass cls)
         {

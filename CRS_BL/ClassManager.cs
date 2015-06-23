@@ -17,10 +17,10 @@ namespace nus.iss.crs.bl
         internal ClassManager() { }
         internal ClassManager(ISession session) 
         {
-            if (session.GetCurrentUser().GetRole() == null) 
-            {
-                throw new Exception("No permission.");
-            }
+            //if (session.GetCurrentUser().GetRole() == null) 
+            //{
+            //    throw new Exception("No permission.");
+            //}
         }
 
         public bool CreateCourseClass(CourseClass courseClass)
