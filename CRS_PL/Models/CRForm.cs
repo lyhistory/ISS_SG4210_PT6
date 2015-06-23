@@ -30,6 +30,7 @@ namespace nus.iss.crs.pl.Models
         public string Nationality { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]

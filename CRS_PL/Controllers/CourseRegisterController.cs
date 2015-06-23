@@ -24,9 +24,11 @@ namespace nus.iss.crs.pl.Controllers
          public CourseRegisterController()
         {
             manager = new UserManager(BLSession);
-        }  
+        }
 
-        // GET: CourseRegister
+         #region Individual Register
+         // GET: CourseRegister
+        [CRSAuthorize(Roles="Individual")]
         public ActionResult IndividualRegister(string code,string message="")
         {
             CourseManager courseManager = this.BLSession.CreateCourseManager();
@@ -37,22 +39,27 @@ namespace nus.iss.crs.pl.Controllers
             }
             CRForm crform = GetModelForCourseRegister( "", true);
             var model = courseManager.GetCourseByCode(code);
-            crform.CourseTitle = model.CourseTitle;
-            crform.CourseCode = model.Code;
-
-            List<SelectItem> classlist = new List<SelectItem>();
-            foreach (var item in model.CourseClasses)
+            if (model == null)
             {
-                classlist.Add(new SelectItem() { Value = item.ClassCode, Name = string.Format("{0}-{1}", item.StartDate.ToString("MMM dd, yyyy"), item.EndDate.ToString("MMM dd, yyyy")) });
-            }
-            ViewBag.ClassList = classlist;
+                ViewBag.Message = "This course currently Not Available!";
+            }else{
+                crform.CourseTitle = model.CourseTitle;
+                crform.CourseCode = model.Code;
 
+                List<SelectItem> classlist = new List<SelectItem>();
+                foreach (var item in model.CourseClasses)
+                {
+                    classlist.Add(new SelectItem() { Value = item.ClassCode, Name = string.Format("{0}-{1}", item.StartDate.ToString("MMM dd, yyyy"), item.EndDate.ToString("MMM dd, yyyy")) });
+                }
+                ViewBag.ClassList = classlist;
+            }
             
 
             return View(crform);
         }
 
         [HttpPost]
+        [CRSAuthorize(Roles = "Individual")]
         public ActionResult PostIndividualRegister(CRForm crform)
         {
             if (!this.ModelState.IsValid)
@@ -152,16 +159,46 @@ namespace nus.iss.crs.pl.Controllers
             List<Registration> list = courseRegistrationManager.GetRegistrationList(SessionHelper.Current);
             return View(list);
         }
+        #endregion
 
+        #region HR Register
+        [CRSAuthorize(Roles="HR")]
         public ActionResult HRRegister(string code)
         {
+            if (SessionHelper.Current == null)
+                return RedirectToAction("logon", "home");
+
             CourseManager courseManager = this.BLSession.CreateCourseManager();
             CourseRegistrationManager courseRegistrationManager = this.BLSession.CreateCourseRegistrationManager();
 
             var model = courseManager.GetCourseByCode(code);
             CRForm crform = new CRForm();
-            crform.CourseTitle = model.CourseTitle;
-            crform.CourseCode = model.Code;
+            if (model == null)
+            {
+                ViewBag.Message = "This course currently Not Available!";
+            }
+            else
+            {
+                crform.CourseTitle = model.CourseTitle;
+                crform.CourseCode = model.Code;
+
+                List<SelectItem> classlist = new List<SelectItem>();
+                foreach (var item in model.CourseClasses)
+                {
+                    classlist.Add(new SelectItem() { Value = item.ClassCode, Name = string.Format("{0}-{1}", item.StartDate.ToString("MMM dd, yyyy"), item.EndDate.ToString("MMM dd, yyyy")) });
+                }
+                ViewBag.ClassList = classlist;
+
+                Company company = manager.GetCompanyByID(SessionHelper.Current.CompanyID);
+                if (company != null)
+                {
+                    crform.CompanyID = company.CompanyID;
+                    crform.EmploymentStatus = "Regular Full Time";
+                    crform.Company = company.CompanyName;
+
+                    crform.OrganizationSize = company.OrganizationSize;
+                }
+            }
 
             List<SelectItem> employlist = new List<SelectItem>();
             var employs = courseRegistrationManager.GetEmployeeListByCompanyID(SessionHelper.Current.CompanyID);
@@ -172,27 +209,11 @@ namespace nus.iss.crs.pl.Controllers
             }
             ViewBag.EmployeeList = employlist;
 
-            List<SelectItem> classlist = new List<SelectItem>();
-            foreach (var item in model.CourseClasses)
-            {
-                classlist.Add(new SelectItem() { Value = item.ClassCode, Name = string.Format("{0}-{1}", item.StartDate.ToString("MMM dd, yyyy"), item.EndDate.ToString("MMM dd, yyyy")) });
-            }
-            ViewBag.ClassList = classlist;
-
-            Company company = manager.GetCompanyByID(SessionHelper.Current.CompanyID);
-            if (company != null)
-            {
-                crform.CompanyID = company.CompanyID;
-                crform.EmploymentStatus = "Regular Full Time";
-                crform.Company = company.CompanyName;
-
-                crform.OrganizationSize = company.OrganizationSize;
-            }
-
             return View(crform);
         }
 
         [HttpPost]
+        [CRSAuthorize(Roles = "Individual")]
         public ActionResult PostHRRegister(CRForm crform)
         {
             if (!this.ModelState.IsValid)
@@ -273,10 +294,21 @@ namespace nus.iss.crs.pl.Controllers
 
         public ActionResult RenderCourseRegister(string courseCode,string idNumber)
         {
+            if (string.IsNullOrEmpty(courseCode))
+            {
+                return Content("No Course Selected");
+            }
             CourseManager courseManager = this.BLSession.CreateCourseManager();
 
-            CRForm crform = GetModelForCourseRegister(idNumber, false);
-
+            CRForm crform = null;
+            if (idNumber.Equals("-1"))
+            {
+                crform = new CRForm();
+            }
+            else
+            {
+               crform=GetModelForCourseRegister(idNumber, false);
+            }
             var model = courseManager.GetCourseByCode(courseCode);
             crform.CourseTitle = model.CourseTitle;
             crform.CourseCode = model.Code;
@@ -310,7 +342,23 @@ namespace nus.iss.crs.pl.Controllers
             List<Participant> list = courseRegistrationManager.GetEmployeeListByCompanyID(SessionHelper.Current.CompanyID);
             return View(list);
         }
+        #endregion
 
+        #region Common View
+        [CRSAuthorize(Roles = "Individual,HR")]
+        public ActionResult ViewRegistrationDetail(string regid)
+        {
+            if (SessionHelper.Current == null)
+            {
+                return RedirectToAction("logon", "home");
+            }
+            CourseRegistrationManager courseRegistrationManager = this.BLSession.CreateCourseRegistrationManager();
+            var model = courseRegistrationManager.GetRegistration(regid);
+            return View(model);
+        }
+        #endregion
+
+        #region Helper
         private CRForm GetModelForCourseRegister(string idnumber,bool isIndividual=false)
         {
             CRForm crform = new CRForm();
@@ -340,7 +388,7 @@ namespace nus.iss.crs.pl.Controllers
                 crform.FullName = participant.FullName;
                 crform.Gender = participant.Gender;
                 crform.Nationality = participant.Nationality;
-                crform.DateOfBirth = participant.DOB;
+                crform.DateOfBirth = participant.DOB.Date;
                 crform.Email = participant.EMail;
                 crform.ContactNumber = participant.ContactNumber;
                 crform.DietaryRequirement = participant.DietaryRequirement;
@@ -365,5 +413,7 @@ namespace nus.iss.crs.pl.Controllers
             }
             return crform;
         }
+        #endregion
+
     }
 }

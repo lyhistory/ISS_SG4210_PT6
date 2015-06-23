@@ -23,6 +23,7 @@ namespace nus.iss.crs.dm
         public string JobTitle { get; set; }
         public string FaxNumber { get; set; }
         public string CompanyID { get; set; }
+        public string CompanyName { get; set; }
 
         //roles
         protected UserRole role = null;

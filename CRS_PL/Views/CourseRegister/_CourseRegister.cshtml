@@ -43,7 +43,9 @@
     </div>
     <div class="form-group">
         <span style="color: red;font-weight: bolder;">(required*)</span><label for="DateOfBirth">DateOfBirth</label>
-        <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="">
+        @*@Html.TextBoxFor(model => model.DateOfBirth, new { type = "date",@class = "form-control" })*@
+        @Html.TextBox("DateOfBirth", String.Format("{0:yyyy-MM-dd}", @Model.DateOfBirth), new { type = "date", @class = "form-control" })
+
         @Html.ValidationMessageFor(x => x.DateOfBirth)
     </div>
     <div class="form-group">

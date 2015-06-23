@@ -344,7 +344,7 @@ namespace CRS_DAL.Service
                 _registration.BillingPersonName = registration.billingInfo.PersonName;
                 _registration.DietaryRequirement = registration.DietaryRequirement;
                 _registration.OrganizationSize = registration.OrganizationSize;
-
+                _registration.RegisterOn = DateTime.Now;
                 this.RegistrationRepository.Add(_registration);
                 unitOfWork.Commit();
 
@@ -393,6 +393,8 @@ namespace CRS_DAL.Service
         public dm.Registration.Registration GetRegistrationByRegID(string RegID)
         {
             Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.RegistrationID.Equals(RegID));
+            if (_registration == null)
+                return null;
             Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(_registration.ParticipantID));
             if (_registration != null)
             {
