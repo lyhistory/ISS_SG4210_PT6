@@ -104,8 +104,13 @@ namespace nus.iss.crs.pl.Controllers
                     if (loginUser.RoleName.ToUpper().Equals("HR"))
                     {
                         var companyhr = manager.GetCompanyHRByLoginID(loginUser.LoginID);
+
                         if (companyhr != null)
+                        {
                             loginUser.CompanyID = companyhr.CompanyID;
+                            var company = manager.GetCompanyByID(companyhr.CompanyID);
+                            loginUser.CompanyName = company.CompanyName;
+                        }
                     }
                     SessionHelper.SetSession(loginUser);
                     CRSFormsAuthentication<User>.SetAuthCookie(loginUser.LoginID, loginUser, true);
@@ -200,6 +205,7 @@ namespace nus.iss.crs.pl.Controllers
             if (result)
             {
                 user.CompanyID = company.CompanyID;
+                user.CompanyName = company.CompanyName;
                 SessionHelper.SetSession(user);
                 CRSFormsAuthentication<User>.SetAuthCookie(user.LoginID, user, true);
                 return Json(new { Code = 1, Message = "" });

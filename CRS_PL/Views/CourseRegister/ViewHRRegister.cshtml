@@ -3,9 +3,19 @@
     ViewBag.Title = "ViewHRRegister";
 }
 
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#viewHRRegisterDiv').on('click','input[data-tag=View]',function () {
+                window.location.href = "/CourseRegister/ViewRegistrationDetail?regid="+$(this).attr('data-regid');
+            });
+        });
+    </script>
+}
+
 <div class="container-fluid">
     <h1 class="page-header">@nus.iss.crs.pl.AppCode.Session.SessionHelper.Current.LoginID Registered :</h1>
-    <table class="table">
+    <table class="table" id="viewHRRegisterDiv">
         <thead>
             <tr>
                 <td>CourseTitle</td>
@@ -34,7 +44,7 @@
                         <td>@registration.CourseClassObj.StartDate.ToString()</td>
                         <td>@registration.CourseClassObj.EndDate.ToString()</td>
                         <td>@registration.CourseClassObj.Status.ToString()</td>
-                        <td><input type="button" value="Edit" data-tag="Edit" /></td>
+                        <td><input type="button" value="View" data-tag="View" data-regid="@registration.RegID"/></td>
                     </tr>
                 }
             }

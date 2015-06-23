@@ -393,6 +393,8 @@ namespace CRS_DAL.Service
         public dm.Registration.Registration GetRegistrationByRegID(string RegID)
         {
             Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.RegistrationID.Equals(RegID));
+            if (_registration == null)
+                return null;
             Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(_registration.ParticipantID));
             if (_registration != null)
             {

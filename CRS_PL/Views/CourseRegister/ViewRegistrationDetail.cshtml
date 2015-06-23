@@ -1,0 +1,91 @@
+﻿@model nus.iss.crs.dm.Registration.Registration
+
+<div class="container center-block">
+    @if (Model == null)
+    {
+        <h1 class="page-header">No data found.</h1>
+    }
+    else { 
+    <h1 class="page-header">@Html.DisplayFor(x => x.CourseClassObj.GetCourse().CourseTitle)</h1>
+    <div class="row">
+        <div class="col-md-12">
+            @*<blockquote>
+            <p>Participant Info.</p>
+            </blockquote>*@
+            <div class="form-group">
+                <label for="StartDate">StartDate</label>
+                @Model.CourseClassObj.StartDate.ToString()
+            </div>
+            <div class="form-group">
+                <label for="StartDate">EndDate</label>
+                @Model.CourseClassObj.EndDate.ToString()
+            </div>
+            <div class="form-group">
+                <label for="ClassStatus">Class Status</label>
+                @Model.CourseClassObj.Status.ToString()
+            </div>
+            @*<blockquote>
+            <p>Participant Info.</p>
+            </blockquote>*@
+            <div class="form-group">
+                <label for="IDNumber">IDNumber</label>
+                @Html.DisplayFor(x => x.ParticipantObj.IDNumber, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="FullName">FullName</label>
+                @Html.DisplayFor(x => x.ParticipantObj.FullName, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="DietaryRequirement">DietaryRequirement</label>
+                @Html.DisplayFor(x => x.DietaryRequirement, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="DietaryRequirement">DietaryRequirement</label>
+                @Html.DisplayFor(x => x.DietaryRequirement, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="Status">Registration Status</label>
+                @Model.Status.ToString()
+            </div>
+            @*<blockquote>
+                <p>Billing Info.</p>
+            </blockquote>*@
+            <div class="form-group">
+                <label for="Sponsorship">Sponsorship</label>
+                @Html.DisplayFor(x => x.Sponsorship, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="PersonName">Billing PersonName</label>
+                @Html.DisplayFor(x => x.billingInfo.PersonName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="Address">Billing Address</label>
+                @Html.DisplayFor(x => x.billingInfo.Address, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="Country">Billing Country</label>
+                @Html.DisplayFor(x => x.billingInfo.Country, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="PostalCode">Billing PostalCode</label>
+                @Html.DisplayFor(x => x.billingInfo.PostalCode, new { @class = "form-control" })
+            </div>
+        </div>
+        @*<div class="col-md-4">
+            <blockquote>
+                <p>Working Info.</p>
+            </blockquote>
+            <div class="form-group">
+                <label for="EmploymentStatus">EmploymentStatus</label>
+                @Html.TextBoxFor(x => x.EmploymentStatus, new { @class = "form-control", @placeholder = "EmploymentStatus" })
+            </div>
+
+        </div>*@
+    </div>
+    }
+</div>
+
+
