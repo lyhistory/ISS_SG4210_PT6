@@ -18,10 +18,11 @@ namespace nus.iss.crs.bl
         internal CourseRegistrationManager(ISession session)
         {
             //only course admin can do  
-            if (session.GetCurrentUser().GetRole() == null)
-            {
-                throw new Exception("No permisison");
-            }
+            //tempory comment by lanxm
+            //if (session.GetCurrentUser().GetRole() == null)
+            //{
+            //    throw new Exception("No permisison");
+            //}
         }
 
         //how to find out the list of selected course?
