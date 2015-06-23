@@ -101,12 +101,6 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.CourseRegistrationService.GetRegistrationListByCompany(company);
         }
-        public List<Registration> GetRegistrationList()
-        {   
-            List<Registration> registrationList = new List<Registration>();
-            return registrationList;
-            //return unitOfWork.CourseRegistrationService.GetRegistrationList();
-        }
 
         /// <summary>
         /// Edit, Cancel
