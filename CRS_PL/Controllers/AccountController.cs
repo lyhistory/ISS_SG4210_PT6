@@ -38,14 +38,30 @@ namespace nus.iss.crs.pl.Controllers
         public JsonResult PostResetPassword(string password,string newpassword)
         {
             var session=SessionHelper.Current;
+            string usertype = string.Empty;
+            if (session.RoleName.ToUpper().Equals("SYSTEM") || session.RoleName.ToUpper().Equals("COURSE"))
+            {
+                usertype = "STAFF";
+            }
+            else
+            {
+                usertype = "USER";
+            }
+
             if (session != null)
             {
                 if (session.Password.Equals(password))
                 {
-                    if (manager.ResetPassword(session.LoginID, password, newpassword))
+                    if (manager.ResetPassword(usertype,session.LoginID, password, newpassword))
                     {
                         session.Password = newpassword;
                         session.Status = 1;
+
+
+                        if (usertype.Equals("STAFF"))
+                        {
+                            return Json(new { Code = 1, redirectUrl = "~/Admin/AdminHome.aspx" });
+                        }
 
                         var cookie = HttpContext.Request.Cookies["toPage"];
                         if (cookie != null)

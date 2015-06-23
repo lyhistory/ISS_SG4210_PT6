@@ -75,34 +75,36 @@ namespace nus.iss.crs.pl.Controllers
             bool result = false;
             string userType = string.Empty;
             int userStatus = 0;
+            User loginUser = null;
+
             if (loginType.Equals("staff", StringComparison.OrdinalIgnoreCase))
             {
                 //do staff login,redirect to back office
+                loginUser = manager.LoginStaff(loginID, password);
             }
             else
             {
                 //do user login
-
-                nus.iss.crs.dm.User loginUser = manager.LoginUser(loginID, password); //new nus.iss.crs.dm.User() { UserID = "test", Password = "1111", Email = "", RoleName = "HR" };
-                if (loginUser != null)
+                loginUser = manager.LoginUser(loginID, password); //new nus.iss.crs.dm.User() { UserID = "test", Password = "1111", Email = "", RoleName = "HR" };    
+            }
+            if (loginUser != null)
+            {
+                if (loginUser.RoleName.ToUpper().Equals("HR"))
                 {
-                    if (loginUser.RoleName.ToUpper().Equals("HR"))
-                    {
-                        var companyhr = manager.GetCompanyHRByLoginID(loginUser.LoginID);
+                    var companyhr = manager.GetCompanyHRByLoginID(loginUser.LoginID);
 
-                        if (companyhr != null)
-                        {
-                            loginUser.CompanyID = companyhr.CompanyID;
-                            var company = manager.GetCompanyByID(companyhr.CompanyID);
-                            loginUser.CompanyName = company.CompanyName;
-                        }
+                    if (companyhr != null)
+                    {
+                        loginUser.CompanyID = companyhr.CompanyID;
+                        var company = manager.GetCompanyByID(companyhr.CompanyID);
+                        loginUser.CompanyName = company.CompanyName;
                     }
-                    SessionHelper.SetSession(loginUser);
-                    CRSFormsAuthentication<User>.SetAuthCookie(loginUser.LoginID, loginUser, true);
-                    userType = loginUser.RoleName;
-                    userStatus = loginUser.Status;
-                    result = true;
                 }
+                SessionHelper.SetSession(loginUser);
+                CRSFormsAuthentication<User>.SetAuthCookie(loginUser.LoginID, loginUser, true);
+                userType = loginUser.RoleName;
+                userStatus = loginUser.Status;
+                result = true;
             }
             if (result)
             {
@@ -112,7 +114,7 @@ namespace nus.iss.crs.pl.Controllers
                     {
                         return Json(new { Code = 1, redirectUrl = "/Account/ResetPassword" });
                     }
-                    else
+                    if (loginType.Equals("user", StringComparison.OrdinalIgnoreCase))
                     {
                         var cookie = HttpContext.Request.Cookies["toPage"];
                         if (cookie != null)
@@ -134,6 +136,10 @@ namespace nus.iss.crs.pl.Controllers
                                 return Json(new { Code = 1, redirectUrl = string.Format("{0}{1}", redirectUrl, toPage) });
                             }
                         }
+                    }
+                    else
+                    {
+                        return Json(new { Code = 1, redirectUrl = "~/Admin/AdminHome.aspx" });
                     }
                 }
             }

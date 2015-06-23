@@ -43,6 +43,11 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.CourseRegistrationService.GetEmployeeListByCompanyID(companyID);
         }
+        public List<Participant> GetEmployeeListByCompanyName(string companyName)
+        {
+            return unitOfWork.CourseRegistrationService.GetEmployeeListByCompanyName(companyName);
+        }
+        
         
         //Populate employee details by ID Number
         public Participant GetIndividualParticipantByIDNumber(string idNumber)
@@ -82,14 +87,19 @@ namespace nus.iss.crs.bl
             return unitOfWork.CourseRegistrationService.GetRegistrationList(cls);
         }
 
-        public List<Registration> GetRegistrationList(User user)
+        public List<Registration> GetRegistrationList()
         {
-            return unitOfWork.CourseRegistrationService.GetRegistrationList(user);
+            return unitOfWork.CourseRegistrationService.GetRegistrationList();
         }
 
-        public List<Registration> GetRegistrationList(Company company)
+        public List<Registration> GetRegistrationListByEmployee(User user)
         {
-            return unitOfWork.CourseRegistrationService.GetRegistrationList(company);
+            return unitOfWork.CourseRegistrationService.GetRegistrationListByEmployee(user);
+        }
+
+        public List<Registration> GetRegistrationListByCompany(Company company)
+        {
+            return unitOfWork.CourseRegistrationService.GetRegistrationListByCompany(company);
         }
         public List<Registration> GetRegistrationList()
         {   

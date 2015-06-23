@@ -21,8 +21,8 @@ namespace CRS_DAL.Service
         IRepository<Instructor> InstructorRepository;
 
         public CourseRegistrationService(IUnitOfWork unitOfWork, IRepository<CourseClass> courseClassRepository,
-            IRepository<Course> courseRepository,IRepository<CourseCategory> courseCategoryRepository,
-            IRepository<Participant> participantRepository,IRepository<Registration> registrationRepository,
+            IRepository<Course> courseRepository, IRepository<CourseCategory> courseCategoryRepository,
+            IRepository<Participant> participantRepository, IRepository<Registration> registrationRepository,
             IRepository<Instructor> instructorRepository)
         {
             this.unitOfWork = unitOfWork;
@@ -40,43 +40,76 @@ namespace CRS_DAL.Service
             {
                 return null;
             }
-            List<Participant> _participantlist = this.ParticipantRepository.GetWhere(x=>x.CompanyID.Equals(companyID)).ToList();
-            if(_participantlist!=null){
+            List<Participant> _participantlist = this.ParticipantRepository.GetWhere(x => x.CompanyID.Equals(companyID)).ToList();
+            if (_participantlist != null)
+            {
                 return (from _participant in _participantlist
                         select new dm.Registration.Participant()
                         {
                             ParticipantID = _participant.ParticipantID,
                             IDNumber = _participant.IDNumber,
-                            EmploymentStatus =_participant.EmploymentStatus,
-                            CompanyID =_participant.CompanyID,
-                            CompanyName =_participant.CompanyName,
+                            EmploymentStatus = _participant.EmploymentStatus,
+                            CompanyID = _participant.CompanyID,
+                            CompanyName = _participant.CompanyName,
                             Salutation = _participant.Salutation,
-                            JobTitle =_participant.JobTitle,
-                            Department=_participant.Department,
-                            FullName =_participant.FullName,
-                            OrganizationSize =_participant.OrganizationSize,
-                            Gender =_participant.Gender==1 ? "Male" : "Female",
-                            SalaryRange =_participant.SalaryRange,
-                            Nationality =_participant.Nationality,
-                            DOB =_participant.DateOfBirth,
-                            EMail =_participant.Email,
-                            ContactNumber=_participant.ContactNumber,
-                            DietaryRequirement =_participant.DietaryRequirement
+                            JobTitle = _participant.JobTitle,
+                            Department = _participant.Department,
+                            FullName = _participant.FullName,
+                            OrganizationSize = _participant.OrganizationSize,
+                            Gender = _participant.Gender == 1 ? "Male" : "Female",
+                            SalaryRange = _participant.SalaryRange,
+                            Nationality = _participant.Nationality,
+                            DOB = _participant.DateOfBirth,
+                            EMail = _participant.Email,
+                            ContactNumber = _participant.ContactNumber,
+                            DietaryRequirement = _participant.DietaryRequirement
                         }).ToList();
             }
             return null;
         }
-
-        public dm.Registration.Participant GetParticipantByIDNumber(string idNumber,string companyID="")
+        public List<dm.Registration.Participant> GetEmployeeListByCompanyName(string companyName)
         {
-            Participant _participant = string.IsNullOrEmpty(companyID) ? this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(idNumber)&&string.IsNullOrEmpty(x.CompanyID))
+            if (string.IsNullOrEmpty(companyName))
+            {
+                return null;
+            }
+            List<Participant> _participantlist = this.ParticipantRepository.GetWhere(x => x.CompanyName.Equals(companyName)).ToList();
+            if (_participantlist != null)
+            {
+                return (from _participant in _participantlist
+                        select new dm.Registration.Participant()
+                        {
+                            ParticipantID = _participant.ParticipantID,
+                            IDNumber = _participant.IDNumber,
+                            EmploymentStatus = _participant.EmploymentStatus,
+                            CompanyID = _participant.CompanyID,
+                            CompanyName = _participant.CompanyName,
+                            Salutation = _participant.Salutation,
+                            JobTitle = _participant.JobTitle,
+                            Department = _participant.Department,
+                            FullName = _participant.FullName,
+                            OrganizationSize = _participant.OrganizationSize,
+                            Gender = _participant.Gender == 1 ? "Male" : "Female",
+                            SalaryRange = _participant.SalaryRange,
+                            Nationality = _participant.Nationality,
+                            DOB = _participant.DateOfBirth,
+                            EMail = _participant.Email,
+                            ContactNumber = _participant.ContactNumber,
+                            DietaryRequirement = _participant.DietaryRequirement
+                        }).ToList();
+            }
+            return null;
+        }
+        public dm.Registration.Participant GetParticipantByIDNumber(string idNumber, string companyID = "")
+        {
+            Participant _participant = string.IsNullOrEmpty(companyID) ? this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(idNumber) && string.IsNullOrEmpty(x.CompanyID))
                 :
-                this.ParticipantRepository.GetFirstOrDefault(x=>x.IDNumber.Equals(idNumber)&&companyID.Equals(companyID));
+                this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(idNumber) && companyID.Equals(companyID));
             if (_participant != null)
             {
                 return new dm.Registration.Participant()
                 {
-                    ParticipantID=_participant.ParticipantID,
+                    ParticipantID = _participant.ParticipantID,
                     IDNumber = _participant.IDNumber,
                     EmploymentStatus = _participant.EmploymentStatus,
                     CompanyID = _participant.CompanyID,
@@ -112,7 +145,7 @@ namespace CRS_DAL.Service
                     _participant.CompanyName = participant.CompanyName;
                     _participant.JobTitle = participant.JobTitle;
                     _participant.Department = participant.Department;
-                    _participant.OrganizationSize = participant.OrganizationSize; 
+                    _participant.OrganizationSize = participant.OrganizationSize;
                     _participant.SalaryRange = participant.SalaryRange;
 
                     _participant.FullName = participant.FullName;
@@ -138,7 +171,7 @@ namespace CRS_DAL.Service
             {
                 Participant _participant = new Participant()
                 {
-                    ParticipantID=Guid.NewGuid().ToString(),
+                    ParticipantID = Guid.NewGuid().ToString(),
                     IDNumber = participant.IDNumber,
                     EmploymentStatus = participant.EmploymentStatus,
                     CompanyID = participant.CompanyID,
@@ -148,7 +181,7 @@ namespace CRS_DAL.Service
                     Department = participant.Department,
                     FullName = participant.FullName,
                     OrganizationSize = participant.OrganizationSize,
-                    Gender = participant.Gender.Equals("Male",StringComparison.OrdinalIgnoreCase) ? 1 : 2,
+                    Gender = participant.Gender.Equals("Male", StringComparison.OrdinalIgnoreCase) ? 1 : 2,
                     SalaryRange = participant.SalaryRange,
                     Nationality = participant.Nationality,
                     DateOfBirth = participant.DOB,
@@ -176,55 +209,6 @@ namespace CRS_DAL.Service
                         join _participant in _participantlist on _registration.ParticipantID equals _participant.ParticipantID
                         select new dm.Registration.Registration(
                             courseClass,    // totally believe your input!!!!!!!!!!!!!!!!!
-                            new dm.Registration.Participant(){
-                                ParticipantID = _participant.ParticipantID,
-                                IDNumber = _participant.IDNumber,
-                                EmploymentStatus = _participant.EmploymentStatus,
-                                CompanyID = _participant.CompanyID,
-                                CompanyName = _participant.CompanyName,
-                                Salutation = _participant.Salutation,
-                                JobTitle = _participant.JobTitle,
-                                Department = _participant.Department,
-                                FullName = _participant.FullName,
-                                OrganizationSize = _participant.OrganizationSize,
-                                Gender = _participant.Gender == 1 ? "Male" : "Female",
-                                SalaryRange = _participant.SalaryRange,
-                                Nationality = _participant.Nationality,
-                                DOB = _participant.DateOfBirth,
-                                EMail = _participant.Email,
-                                ContactNumber = _participant.ContactNumber,
-                                DietaryRequirement = _participant.DietaryRequirement
-                            }
-                            )
-                        {
-                            RegID=_registration.RegistrationID,
-                            Status = (dm.RegistrationStatus)_registration.Status,
-                            billingInfo =new dm.Registration.Billing(){
-                                PersonName =_registration.BillingPersonName,
-                                Address =_registration.BillingAddress,
-                                Country =_registration.BillingAddressCountry,
-                                PostalCode=_registration.BillingAddressPostalCode
-                            },
-                            Sponsorship=_registration.Sponsorship==1 ? "Self" : "Company",
-                            DietaryRequirement =_registration.DietaryRequirement,
-                            OrganizationSize = _registration.OrganizationSize
-                        }).ToList();
-            }
-            return null;
-        }
-
-        public List<dm.Registration.Registration> GetRegistrationList(dm.User user)
-        {
-            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(user.LoginID)&&string.IsNullOrEmpty(x.CompanyID));
-            
-            if (_participant != null)
-            {
-                List<Registration> _registrationlist = this.RegistrationRepository.GetWhere(x => x.ParticipantID.Equals(_participant.ParticipantID)).ToList();
-                IQueryable<CourseClass> _courseClasslist = this.CourseClassRepository.GetAll();
-                return (from _registration in _registrationlist
-                        join _courseClass in _courseClasslist on _registration.ClassID equals _courseClass.ClassID
-                        select new dm.Registration.Registration(
-                            GetCourseClassByCode(_courseClass.ClassCode),   
                             new dm.Registration.Participant()
                             {
                                 ParticipantID = _participant.ParticipantID,
@@ -264,7 +248,59 @@ namespace CRS_DAL.Service
             return null;
         }
 
-        public List<dm.Registration.Registration> GetRegistrationList(dm.Company company)
+        public List<dm.Registration.Registration> GetRegistrationListByEmployee(dm.User user)
+        {
+            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.IDNumber.Equals(user.LoginID) && string.IsNullOrEmpty(x.CompanyID));
+
+            if (_participant != null)
+            {
+                List<Registration> _registrationlist = this.RegistrationRepository.GetWhere(x => x.ParticipantID.Equals(_participant.ParticipantID)).ToList();
+                IQueryable<CourseClass> _courseClasslist = this.CourseClassRepository.GetAll();
+                return (from _registration in _registrationlist
+                        join _courseClass in _courseClasslist on _registration.ClassID equals _courseClass.ClassID
+                        select new dm.Registration.Registration(
+                            GetCourseClassByCode(_courseClass.ClassCode),
+                            new dm.Registration.Participant()
+                            {
+                                ParticipantID = _participant.ParticipantID,
+                                IDNumber = _participant.IDNumber,
+                                EmploymentStatus = _participant.EmploymentStatus,
+                                CompanyID = _participant.CompanyID,
+                                CompanyName = _participant.CompanyName,
+                                Salutation = _participant.Salutation,
+                                JobTitle = _participant.JobTitle,
+                                Department = _participant.Department,
+                                FullName = _participant.FullName,
+                                OrganizationSize = _participant.OrganizationSize,
+                                Gender = _participant.Gender == 1 ? "Male" : "Female",
+                                SalaryRange = _participant.SalaryRange,
+                                Nationality = _participant.Nationality,
+                                DOB = _participant.DateOfBirth,
+                                EMail = _participant.Email,
+                                ContactNumber = _participant.ContactNumber,
+                                DietaryRequirement = _participant.DietaryRequirement
+                            }
+                            )
+                        {
+                            RegID = _registration.RegistrationID,
+                            Status = (dm.RegistrationStatus)_registration.Status,
+                            billingInfo = new dm.Registration.Billing()
+                            {
+                                PersonName = _registration.BillingPersonName,
+                                Address = _registration.BillingAddress,
+                                Country = _registration.BillingAddressCountry,
+                                PostalCode = _registration.BillingAddressPostalCode
+                            },
+                            Sponsorship = _registration.Sponsorship == 1 ? "Self" : "Company",
+                            DietaryRequirement = _registration.DietaryRequirement,
+                            OrganizationSize = _registration.OrganizationSize
+                        }).ToList();
+            }
+            return null;
+        }
+
+
+        public List<dm.Registration.Registration> GetRegistrationListByCompany(dm.Company company)
         {
             IQueryable<Participant> _participantlist = this.ParticipantRepository.GetWhere(x => x.CompanyID.Equals(company.CompanyID));
 
@@ -315,7 +351,57 @@ namespace CRS_DAL.Service
             return null;
         }
 
-        public dm.Registration.Registration CreateRegistration(dm.Course.CourseClass courseClass, dm.Registration.Participant participant,dm.Registration.Registration registration)
+        public List<dm.Registration.Registration> GetRegistrationList()
+        {
+            List<Registration> _registrationlist = this.RegistrationRepository.GetAll().ToList();
+            IQueryable<Participant> _participantlist = this.ParticipantRepository.GetAll();
+            try
+            {
+                return (from _registration in _registrationlist
+                        join _participant in _participantlist on _registration.ParticipantID equals _participant.ParticipantID
+                        select new dm.Registration.Registration(
+                            GetCourseClassByClassID(_registration.ClassID),
+                            new dm.Registration.Participant()
+                            {
+                                ParticipantID = _participant.ParticipantID,
+                                IDNumber = _participant.IDNumber,
+                                EmploymentStatus = _participant.EmploymentStatus,
+                                CompanyID = _participant.CompanyID,
+                                CompanyName = _participant.CompanyName,
+                                Salutation = _participant.Salutation,
+                                JobTitle = _participant.JobTitle,
+                                Department = _participant.Department,
+                                FullName = _participant.FullName,
+                                OrganizationSize = _participant.OrganizationSize,
+                                Gender = _participant.Gender == 1 ? "Male" : "Female",
+                                SalaryRange = _participant.SalaryRange,
+                                Nationality = _participant.Nationality,
+                                DOB = _participant.DateOfBirth,
+                                EMail = _participant.Email,
+                                ContactNumber = _participant.ContactNumber,
+                                DietaryRequirement = _participant.DietaryRequirement
+                            }
+                            )
+                        {
+                            RegID = _registration.RegistrationID,
+                            Status = (dm.RegistrationStatus)_registration.Status,
+                            billingInfo = new dm.Registration.Billing()
+                            {
+                                PersonName = _registration.BillingPersonName,
+                                Address = _registration.BillingAddress,
+                                Country = _registration.BillingAddressCountry,
+                                PostalCode = _registration.BillingAddressPostalCode
+                            },
+                            Sponsorship = _registration.Sponsorship == 1 ? "Self" : "Company",
+                            DietaryRequirement = _registration.DietaryRequirement,
+                            OrganizationSize = _registration.OrganizationSize
+                        }).ToList();
+            }
+            catch { }
+            return null;
+        }
+
+        public dm.Registration.Registration CreateRegistration(dm.Course.CourseClass courseClass, dm.Registration.Participant participant, dm.Registration.Registration registration)
         {
             try
             {
@@ -323,13 +409,13 @@ namespace CRS_DAL.Service
                 if (_courseClass == null)
                     return null;
                 Participant _participant = this.ParticipantRepository.GetFirstOrDefault(
-                    x => x.IDNumber.Equals(participant.IDNumber)&&string.IsNullOrEmpty(x.CompanyID)&&string.IsNullOrEmpty(participant.CompanyID)
+                    x => x.IDNumber.Equals(participant.IDNumber) && string.IsNullOrEmpty(x.CompanyID) && string.IsNullOrEmpty(participant.CompanyID)
                     ||
-                    x.IDNumber.Equals(participant.IDNumber)&&x.CompanyID.Equals(participant.CompanyID));
+                    x.IDNumber.Equals(participant.IDNumber) && x.CompanyID.Equals(participant.CompanyID));
                 if (_participant == null)
                     return null;
 
-                Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.ClassID.Equals(_courseClass.ClassID)&&x.ParticipantID.Equals(_participant.ParticipantID));
+                Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.ClassID.Equals(_courseClass.ClassID) && x.ParticipantID.Equals(_participant.ParticipantID));
                 if (_registration != null)
                     return null;
                 _registration = new Registration();
@@ -359,7 +445,7 @@ namespace CRS_DAL.Service
             try
             {
                 Registration _registration = this.RegistrationRepository.GetFirstOrDefault(x => x.RegistrationID.Equals(registration.RegID));
-                _registration.Sponsorship = registration.Sponsorship.Equals("Self",StringComparison.OrdinalIgnoreCase) ? 1 : 2;
+                _registration.Sponsorship = registration.Sponsorship.Equals("Self", StringComparison.OrdinalIgnoreCase) ? 1 : 2;
                 _registration.Status = (int)registration.Status;
                 _registration.BillingAddress = registration.billingInfo.Address;
                 _registration.BillingAddressCountry = registration.billingInfo.Country;
@@ -433,7 +519,7 @@ namespace CRS_DAL.Service
                             },
                             Sponsorship = _registration.Sponsorship == 1 ? "Self" : "Company",
                             DietaryRequirement = _registration.DietaryRequirement,
-                            OrganizationSize=_registration.OrganizationSize
+                            OrganizationSize = _registration.OrganizationSize
                         };
             }
             return null;
@@ -441,16 +527,16 @@ namespace CRS_DAL.Service
 
         public dm.Registration.Registration GetLastRegistrationByParticipantID(string participantID)
         {
-            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(participantID)&&string.IsNullOrEmpty(x.CompanyID));
+            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(participantID) && string.IsNullOrEmpty(x.CompanyID));
             if (_participant == null)
             {
                 return null;
             }
-            Registration _registration = this.RegistrationRepository.GetWhere(x => x.ParticipantID.Equals(participantID)).OrderByDescending(x=>x.RegisterOn).FirstOrDefault();
-            
+            Registration _registration = this.RegistrationRepository.GetWhere(x => x.ParticipantID.Equals(participantID)).OrderByDescending(x => x.RegisterOn).FirstOrDefault();
+
             if (_registration != null)
             {
-                
+
                 return new dm.Registration.Registration(
                             GetCourseClassByClassID(_registration.ClassID),
                             new dm.Registration.Participant()
@@ -492,9 +578,9 @@ namespace CRS_DAL.Service
             return null;
         }
 
-        public dm.Registration.Registration GetLastRegistrationByHR(string participantID,string companyID)
+        public dm.Registration.Registration GetLastRegistrationByHR(string participantID, string companyID)
         {
-            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(participantID)&&x.CompanyID.Equals(companyID));
+            Participant _participant = this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(participantID) && x.CompanyID.Equals(companyID));
             if (_participant == null)
             {
                 return null;
@@ -503,7 +589,7 @@ namespace CRS_DAL.Service
 
             if (_registration != null)
             {
-                
+
                 return new dm.Registration.Registration(
                             GetCourseClassByClassID(_registration.ClassID),
                             new dm.Registration.Participant()

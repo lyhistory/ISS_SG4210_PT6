@@ -341,13 +341,20 @@ namespace CRS_DAL.Service
             return false;
         }
 
-        public bool ResetPassword(string loginId,string oldpassword,string newpassword)
+        public bool ResetPassword(string usertype,string loginId,string oldpassword,string newpassword)
         {
             try
             {
-                var _user = userRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginId) && x.Password.Equals(oldpassword));
-                _user.Password = newpassword;
-                _user.Status = 1;
+                if(usertype.Equals("STAFF")){
+                    var _staff=staffRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginId) && x.Password.Equals(oldpassword));
+                    _staff.Password = newpassword;
+                    _staff.Status = 1;
+                }else{
+                    var _user=userRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginId) && x.Password.Equals(oldpassword));
+                    _user.Password = newpassword;
+                    _user.Status = 1;
+                }
+                
                 unitOfWork.Commit();
                 return true;
             }
