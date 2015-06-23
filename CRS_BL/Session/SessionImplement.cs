@@ -63,6 +63,7 @@ namespace nus.iss.crs.bl.Session
         public bool IsValid()
         {
             //throw new NotImplementedException();
+            return true;
         }
 
         public void Release()
