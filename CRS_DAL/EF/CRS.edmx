@@ -136,6 +136,8 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
           <Property Name="LoginID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="Enabled" Type="int" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -185,7 +187,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
           <Property Name="CompanyID" Type="String" MaxLength="36" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CompanyUEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OrganizationSize" Type="String" />
+          <Property Name="OrganizationSize" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="CompanyAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
@@ -283,6 +285,8 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
           <Property Name="LoginID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="Int32" Nullable="false" />
+          <Property Name="Enabled" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -442,6 +446,8 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
           <EntitySetMapping Name="Staffs">
             <EntityTypeMapping TypeName="CRSModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="StaffID" ColumnName="StaffID" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
