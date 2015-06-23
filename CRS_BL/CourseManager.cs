@@ -118,10 +118,7 @@ namespace nus.iss.crs.bl
 
         public  List<CourseInstructor> GetInstructorList()
         {
-            List<CourseInstructor> courseInstructorList = new List<CourseInstructor>();
-            //courseInstructorList = unitOfWork.CourseService.
-
-            return courseInstructorList;
+            return unitOfWork.CourseService.GetInstructorList();
         }
 
         //List upcoming course within half years
@@ -152,12 +149,7 @@ namespace nus.iss.crs.bl
 
         public CourseInstructor GetInstructorByID(string instructorID)
         {
-            foreach (CourseInstructor instructor in this.GetInstructorList())
-            {
-                if (instructor.ID == instructorID)
-                    return instructor;
-            }
-            return null;
+            return unitOfWork.CourseService.GetInstructorByID(instructorID);
         }
     }
 }

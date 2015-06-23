@@ -202,5 +202,37 @@ namespace CRS_DAL.Service
             }
             return null;
         }
+
+        public List<dm.CourseInstructor> GetInstructorList()
+        {
+            try
+            {
+                var instructorlist=InstructorRepository.GetAll();
+                return (from instructor in instructorlist
+                        select new dm.CourseInstructor(instructor.InstructorID,instructor.InstructorName)
+                        {
+
+                        }).ToList();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
+        }
+        public dm.CourseInstructor GetInstructorByID(string instructorID)
+        {
+            try
+            {
+                var instructor= InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(instructorID));
+                if (instructor != null)
+                    return new dm.CourseInstructor(instructor.InstructorID, instructor.InstructorName);
+            }
+            catch
+            {
+
+            }
+            return null;
+        }
     }
 }
