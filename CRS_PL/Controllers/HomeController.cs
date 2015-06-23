@@ -37,6 +37,14 @@ namespace nus.iss.crs.pl.Controllers
             //CourseManager manager = session.CreateCourseManager();
             //List<CourseCategory> categoryList = CourseManager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
 
+            if (SessionHelper.Current != null)
+            {
+                if (SessionHelper.Current.RoleName.ToUpper().Equals("SYSTEM") || SessionHelper.Current.RoleName.ToUpper().Equals("COURSE"))
+                {
+                    return Redirect("/Admin/AdminHome.aspx");
+                }
+            }
+
             return View();
         }
 
@@ -139,7 +147,7 @@ namespace nus.iss.crs.pl.Controllers
                     }
                     else
                     {
-                        return Json(new { Code = 1, redirectUrl = "~/Admin/AdminHome.aspx" });
+                        return Json(new { Code = 1, redirectUrl = "../Admin/AdminHome.aspx" });
                     }
                 }
             }

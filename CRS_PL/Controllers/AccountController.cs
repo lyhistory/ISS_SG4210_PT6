@@ -60,7 +60,7 @@ namespace nus.iss.crs.pl.Controllers
 
                         if (usertype.Equals("STAFF"))
                         {
-                            return Json(new { Code = 1, redirectUrl = "~/Admin/AdminHome.aspx" });
+                            return Json(new { Code = 1, redirectUrl = "../Admin/AdminHome.aspx" });
                         }
 
                         var cookie = HttpContext.Request.Cookies["toPage"];
