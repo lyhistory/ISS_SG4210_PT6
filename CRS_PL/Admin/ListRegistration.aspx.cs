@@ -36,7 +36,11 @@ namespace nus.iss.crs.pl.Admin
 
             foreach (Registration registration in manager.GetRegistrationList())
             {
-                Table1.Rows.Add(CreateRegistrationRow(registration));
+                if (registration.CourseClassObj != null)
+                {
+                    Table1.Rows.Add(CreateRegistrationRow(registration));
+                }
+                
             }
         }
 
@@ -73,24 +77,36 @@ namespace nus.iss.crs.pl.Admin
             courseRow.Cells.Add(endDate);
 
             TableCell updateID = new TableCell();
-            HyperLink h = new HyperLink();
-            h.Text = "Enable/Disable";
-            h.NavigateUrl = "";
-            updateID.Controls.Add(h);
+            LinkButton updateLb = new LinkButton();
+            updateLb.Text = "Enable / Disable";
+            updateLb.OnClientClick = "ChangeRegistrationStatus";
+            updateID.Controls.Add(updateLb);
             courseRow.Cells.Add(updateID);
 
             TableCell editID = new TableCell();
-            h = new HyperLink();
-            h.Text = "Reset Password";
-            h.NavigateUrl = "~/Account/ResetPassword";
+            HyperLink h = new HyperLink();
+            h.Text = "Move";
+            h.NavigateUrl = "";
             editID.Controls.Add(h);
             courseRow.Cells.Add(editID);
+
+            TableCell cancelID = new TableCell();
+            LinkButton lb = new LinkButton();
+            lb.Text = "Cancel";
+            lb.OnClientClick = "";
+            cancelID.Controls.Add(lb);
+            courseRow.Cells.Add(cancelID);
 
             return courseRow;
         }
         public override void RegistraterAction()
         {
             //throw new NotImplementedException();
+        }
+
+        private void ChangeRegistrationStatus()
+        {
+
         }
     }
 }

@@ -677,7 +677,14 @@ namespace CRS_DAL.Service
         {
             CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassID.Equals(classID));
 
-            return GetCourseClassByCode(_courseClass.ClassCode);
+            try
+            {
+                return GetCourseClassByCode(_courseClass.ClassCode);
+            }
+            catch (Exception e)
+            {
+            }
+            return null;
         }
 
         public dm.Course.CourseClass GetCourseClassByCode(string classCode)
