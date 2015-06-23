@@ -36,6 +36,20 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="GetEmployees">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="companyName" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEmployeesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Registration" minOccurs="0" name="GetEmployeesResult" nillable="true" type="q3:ArrayOfParticipant" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="anyType" nillable="true" type="xs:anyType" />
@@ -99,6 +113,29 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="Billing" nillable="true" type="tns:Billing" />
+      <xs:complexType name="ArrayOfParticipant">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Participant" nillable="true" type="tns:Participant" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfParticipant" nillable="true" type="tns:ArrayOfParticipant" />
+      <xs:complexType name="Participant">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CompanyID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ContactNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DietaryRequirement" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EMail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EmploymentStatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IDNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Nationality" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrganizationSize" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ParticipantID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Participant" nillable="true" type="tns:Participant" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:simpleType name="RegistrationStatus">
@@ -141,6 +178,12 @@
   <wsdl:message name="ICourseRegistrationService_GetCourses_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCoursesResponse" />
   </wsdl:message>
+  <wsdl:message name="ICourseRegistrationService_GetEmployees_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployees" />
+  </wsdl:message>
+  <wsdl:message name="ICourseRegistrationService_GetEmployees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeesResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICourseRegistrationService">
     <wsdl:operation name="RegistrateCourse">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseRegistrationService/RegistrateCourse" message="tns:ICourseRegistrationService_RegistrateCourse_InputMessage" />
@@ -149,6 +192,10 @@
     <wsdl:operation name="GetCourses">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseRegistrationService/GetCourses" message="tns:ICourseRegistrationService_GetCourses_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseRegistrationService/GetCoursesResponse" message="tns:ICourseRegistrationService_GetCourses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployees">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseRegistrationService/GetEmployees" message="tns:ICourseRegistrationService_GetEmployees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseRegistrationService/GetEmployeesResponse" message="tns:ICourseRegistrationService_GetEmployees_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICourseRegistrationService" type="tns:ICourseRegistrationService">
@@ -164,6 +211,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetCourses">
       <soap:operation soapAction="http://tempuri.org/ICourseRegistrationService/GetCourses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployees">
+      <soap:operation soapAction="http://tempuri.org/ICourseRegistrationService/GetEmployees" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

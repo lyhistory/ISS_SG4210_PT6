@@ -34,11 +34,11 @@
             this.endDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtIDNumber = new System.Windows.Forms.TextBox();
             this.txtCompanyName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
+            this.cboParticipants = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // courseList
@@ -90,13 +90,6 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Start Date";
             // 
-            // txtIDNumber
-            // 
-            this.txtIDNumber.Location = new System.Drawing.Point(113, 147);
-            this.txtIDNumber.Name = "txtIDNumber";
-            this.txtIDNumber.Size = new System.Drawing.Size(286, 20);
-            this.txtIDNumber.TabIndex = 6;
-            // 
             // txtCompanyName
             // 
             this.txtCompanyName.Location = new System.Drawing.Point(113, 192);
@@ -109,14 +102,14 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(25, 150);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "ID number";
+            this.label4.Text = "Participant";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 192);
+            this.label5.Location = new System.Drawing.Point(25, 193);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 13);
             this.label5.TabIndex = 9;
@@ -132,16 +125,24 @@
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
+            // cboParticipants
+            // 
+            this.cboParticipants.FormattingEnabled = true;
+            this.cboParticipants.Location = new System.Drawing.Point(113, 147);
+            this.cboParticipants.Name = "cboParticipants";
+            this.cboParticipants.Size = new System.Drawing.Size(286, 21);
+            this.cboParticipants.TabIndex = 11;
+            // 
             // CourseRegstrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 465);
+            this.Controls.Add(this.cboParticipants);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtCompanyName);
-            this.Controls.Add(this.txtIDNumber);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.endDate);
@@ -164,10 +165,10 @@
         private System.Windows.Forms.DateTimePicker endDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtIDNumber;
         private System.Windows.Forms.TextBox txtCompanyName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.ComboBox cboParticipants;
     }
 }

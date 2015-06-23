@@ -13,6 +13,10 @@ namespace nus.iss.crs.bl
     {
         LoginManager loginManager = new LoginManager();
         CourseManager crsManager = new CourseManager();
+
+        CourseRegistrationManager regManager = new CourseRegistrationManager();
+        UserManager userManager = new UserManager();
+
         public User login(LogingStrategy strategy)
         {
             return loginManager.Login(strategy);
@@ -20,21 +24,18 @@ namespace nus.iss.crs.bl
 
         public bool RegistrateCourse(dm.Registration.Registration registration, string companyName, string participantID, string courseCode, DateTime dateFrom, DateTime dateTo)
         {
-            CourseRegistrationManager regManager = new CourseRegistrationManager();
-            
+
+
             Course course = crsManager.GetCourseByCode(courseCode);
             CourseClass courseClass = crsManager.GetCourseClassList(course, dateFrom, dateTo).FirstOrDefault();
-            ParticipantManager pManager = new ParticipantManager();
 
-            //Participant p = new Participant ();
-            //p.
-            //regManager.CreateParticipant 
-            //pManager.CreateParticipantByHR()
-            Participant participant = pManager.GetParticipant(participantID, companyName);
+            Company company = userManager.GetCompanyByName(companyName);
+
+            Participant participant = regManager.GetParticipantByHR(participantID, company.CompanyID);
 
             Registration retReg = regManager.CreateRegistration(courseClass, participant, registration);
 
-                if (retReg == null || string.IsNullOrEmpty(retReg.RegID))
+            if (retReg == null || string.IsNullOrEmpty(retReg.RegID))
             {
                 return false;
             }
@@ -50,14 +51,14 @@ namespace nus.iss.crs.bl
         {
             AttendanceManager manager = new AttendanceManager();
 
-            ParticipantAttendance pAttendance = new ParticipantAttendance ();
+            ParticipantAttendance pAttendance = new ParticipantAttendance();
 
             pAttendance.Attendant = null;
             pAttendance.ClassDate = DateTime.Now;
             pAttendance.CourseObj = null;
             pAttendance.Remark = remark;
             pAttendance.Status = status;
-            
+
             if (manager.SaveParticipantAttendance(pAttendance))
             {
                 return "success";
@@ -71,7 +72,7 @@ namespace nus.iss.crs.bl
         public List<Participant> GetStudents(string courseCode, DateTime dateFrom, DateTime dateTo)
         {
             CourseRegistrationManager manager = new CourseRegistrationManager();
-            
+
             Course course = crsManager.GetCourseByCode(courseCode);
 
             return manager.GetParticipantListByCourse(course, dateFrom);
@@ -81,7 +82,7 @@ namespace nus.iss.crs.bl
         List<CourseCategory> categories = null;
         public List<Course> GetCourses(DateTime dateFrom, DateTime dateTo)
         {
-           categories =  crsManager.GetCourseCategoryList();
+            categories = crsManager.GetCourseCategoryList();
             CourseCategory category = categories[0];
             return crsManager.GetCourseListByCategory(category);
         }
@@ -89,7 +90,7 @@ namespace nus.iss.crs.bl
 
         public List<Participant> GetEmployees(string companyName)
         {
-            return null;
+            return regManager.GetEmployeeListByCompanyName(companyName);
         }
     }
 }
