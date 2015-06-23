@@ -1,4 +1,5 @@
 ﻿using nus.iss.crs.bl;
+using nus.iss.crs.bl.Session;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.Admin.Ctrl;
 using nus.iss.crs.pl.TestData;
@@ -16,6 +17,7 @@ namespace nus.iss.crs.pl.Admin
 
         //TODO
         CourseManager manager = null;
+
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender,e);
@@ -24,7 +26,17 @@ namespace nus.iss.crs.pl.Admin
 
         private void ShowCourseList()
         {
-            CourseManager manager = BLSession.CreateCourseManager();
+            if (BLSession == null)
+            {
+                ISession session = new SessionImplement();
+                manager = session.CreateCourseManager();
+            }
+            else
+            {
+                manager = BLSession.CreateCourseManager();
+            }
+            //CourseManager manager = BLSession.CreateCourseManager();
+            
             foreach (CourseCategory courseCategory in manager.GetCourseCategoryList(true))
             {
                 CategoryCourseList table = (CategoryCourseList)Page.LoadControl("./Ctrl/CategoryCourseList.ascx");

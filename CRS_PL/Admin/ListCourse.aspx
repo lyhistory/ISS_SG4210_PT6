@@ -4,9 +4,9 @@
     <p>
         <h2>Executive Education Programmes</h2>
     </p>
-     <div>
+    <div>
         <asp:PlaceHolder runat="server" ID="PlaceHolder1" />
-      </div>
+    </div>
 
    <%-- <asp:Table ID="Table1" runat="server" GridLines="Both">
         <asp:TableRow runat="server">

@@ -61,23 +61,23 @@
                                                   <li>
                                                       Course Admin
                                                       <ul class="nav tree">
-                                                          <li><a href="#">View Course</a>
+                                                          <li><a href="ListCourse.aspx">View Course</a>
                                                           </li>
-                                                          <li><a href="#">Create Course</a>
+                                                          <li><a href="CreateCourse.aspx">Create Course</a>
                                                           </li>
                                                       </ul>
                                                   </li>
                                                   <li>
                                                       Class Admin
                                                     <ul class="nav tree">
-                                                      <li><a href="#">View Class</a>
+                                                      <li><a href="ListClassInCourse.aspx">View Class</a>
                                                       </li>
-                                                      <li><a href="#">Create Class</a>
+                                                      <li><a href="CreateCourse.aspx">Create Class</a>
                                                       </li>
                                                     </ul>
                                                   </li>
                                                   <li>
-                                                      Registration Management
+                                                    Registration Management
                                                     <ul class="nav tree">
                                                       <li><a href="#">Overview</a>
                                                       </li>
@@ -104,12 +104,14 @@
                                                     </ul>
                                                   </li>
                                                   <li>
-                                                      User Management
+                                                    User Management
                                                     <ul class="nav tree">
-                                                      <li><a href="#">View User</a>
-                                                      </li>
-                                                      <li><a href="#">Course Administrator</a>
-                                                      </li> 
+                                                        <li><a href="ListUser.aspx">View User</a>
+                                                        </li>
+                                                        <li><a href="#">Course Administrator</a>
+                                                        </li>
+                                                        <li><a href="#">Create User</a>
+                                                        </li>
                                                     </ul>
                                                   </li>
                                                   <li>
