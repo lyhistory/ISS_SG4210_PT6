@@ -44,7 +44,8 @@ namespace nus.iss.crs.bl.Session
 
         public bool Login()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return true;
         }
 
         public bool Login(LogingStrategy strategy)
@@ -61,12 +62,13 @@ namespace nus.iss.crs.bl.Session
 
         public bool IsValid()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return true;
         }
 
         public void Release()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public CourseManager CreateCourseManager()
