@@ -16,5 +16,9 @@ namespace nus.iss.crs.bl
         string SubmitAttendance(string studentIDNo, AttendanceStatus status, string remark, string courseCode, DateTime dateFrom, DateTime dateTo);
 
         List<Participant> GetStudents(string courseCode, DateTime dateFrom, DateTime dateTo);
+
+        List<Participant> GetEmployees(string companyName); 
+
+        List<Course> GetCourses(DateTime dateFrom, DateTime dateTo);
     }
 }

@@ -1,20 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm.Course
 {
+    [DataContract]
     public class Course
     {
+        [DataMember]
         public string Code { get; set; }
+
+        [DataMember]
         public string CourseTitle { get; set; }
+
+        [DataMember]
         public string Description { get; set; }
+
+        [DataMember]
         public string Fee { get; set; }
+
+        [DataMember]
         public string ClassTime { get; set; }
         
         public CourseInstructor Instructor { get; set; }
+
+        [DataMember]
         public int Duration { get; set; }
 
         public CourseCategory Category { get; set; }

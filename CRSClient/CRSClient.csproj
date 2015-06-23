@@ -51,6 +51,7 @@
     <Compile Include="AttendanceForm.Designer.cs">
       <DependentUpon>AttendanceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComboItem.cs" />
     <Compile Include="CourseCompleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +122,9 @@
     </None>
     <None Include="Service References\CourseConfirmService\Service1.wsdl" />
     <None Include="Service References\CourseRegistrationService\CourseRegistrationService.wsdl" />
+    <None Include="Service References\CourseRegistrationService\CRSClient.CourseRegistrationService.Course.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\LibraryService\CRSClient.LibraryService.BorrowResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -1,4 +1,6 @@
 ﻿using nus.iss.crs.bl;
+using nus.iss.crs.dm.Course;
+using nus.iss.crs.dm.Registration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +16,20 @@ namespace nus.iss.crs.pl.Service
     {
 
         ICRSBusinessFacade facadeObj = new CRSBusinessFacade();
-        public void DoWork()
-        {
-            Console.WriteLine("Do work");
-        }
-
+         
         public void RegistrateCourse(dm.Registration.Registration reg,string companyName, string participantIDNumber,string courseCode,DateTime dateFrom,DateTime dateTo)
         {
             facadeObj.RegistrateCourse(reg,companyName, participantIDNumber, courseCode, dateFrom, dateTo);
+        }
+
+        public List<Course> GetCourses(DateTime dateFrom, DateTime dateTo)
+        {
+            return facadeObj.GetCourses(dateFrom, dateTo);
+        }
+
+        public List<Participant> GetEmployees(string companyName)
+        {
+            return facadeObj.GetEmployees(companyName);
         }
     }
 }
