@@ -56,6 +56,10 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.UserService.GetCompanyByUEN(companyUEN);
         }
+        public Company GetCompanyByName(string companyName)
+        {
+            return unitOfWork.UserService.GetCompanyByName(companyName);
+        }
 
         public  List<Company> GetCompanyList()
         {

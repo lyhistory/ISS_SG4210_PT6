@@ -246,6 +246,22 @@ namespace CRS_DAL.Service
                 PostalCode = _company.PostalCode
             };
         }
+        public dm.Company GetCompanyByName(string companyName)
+        {
+            var _company = companyRepository.GetFirstOrDefault(x => x.CompanyName.Equals(companyName));
+            if (_company == null)
+                return null;
+            return new dm.Company()
+            {
+                CompanyID = _company.CompanyID,
+                CompanyName = _company.CompanyName,
+                CompanyUEN = _company.CompanyUEN,
+                OrganizationSize = _company.OrganizationSize,
+                CompanyAddress = _company.CompanyAddress,
+                Country = _company.Country,
+                PostalCode = _company.PostalCode
+            };
+        }
         public List<dm.Company> GetCompanyList()
         {
             var _companylist = companyRepository.GetAll();
