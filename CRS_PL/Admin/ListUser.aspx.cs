@@ -14,7 +14,7 @@ namespace nus.iss.crs.pl.Admin
     {
         UserManager manager = null;
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
             ShowCourseList();
@@ -33,22 +33,54 @@ namespace nus.iss.crs.pl.Admin
                 manager = BLSession.CreateUserManager();
             }
 
-            //foreach (UserManager userManager in manager.GetUserList())
-            //{
-            //    UserList table = (UserList)Page.LoadControl("./Ctrl/UserList.ascx");
+            foreach (dm.User user in manager.GetUserList())
+            {
+                //UserList table = (UserList)Page.LoadControl("./Ctrl/UserList.ascx");
 
-            //    table.c = userManager;
-            //    //table.Category = testData.CreateCategory(); 
-            //    PlaceHolder1.Controls.Add(table);
-            //    Label newline = new Label();
-            //    newline.Text = "<BR/>";
-            //    PlaceHolder1.Controls.Add(newline);
-            //}
+                //table.User = user;
+                //PlaceHolder1.Controls.Add(table);
+                //Label newline = new Label();
+                //newline.Text = "<BR/>";
+                //PlaceHolder1.Controls.Add(newline);
+                Table1.Rows.Add(CreateCourseRow(user));
+            }
         }
 
-        private void SeachUser()
+        public TableRow CreateCourseRow(dm.User user)
         {
+            TableRow courseRow = new TableRow();
 
+            TableCell logInID = new TableCell();
+            logInID.Text = user.LoginID;
+            courseRow.Cells.Add(logInID);
+
+            TableCell name = new TableCell();
+            name.Text = user.Name;
+            courseRow.Cells.Add(name);
+
+            TableCell contactNumber = new TableCell();
+            contactNumber.Text = user.Email;
+            courseRow.Cells.Add(contactNumber);
+
+            TableCell companyName = new TableCell();
+            companyName.Text = user.CompanyName;
+            courseRow.Cells.Add(companyName);
+
+            TableCell editID = new TableCell();
+            HyperLink h = new HyperLink();
+            h.Text = "Reset Password";
+            h.NavigateUrl = "~/Account/ResetPassword";
+            editID.Controls.Add(h);
+            courseRow.Cells.Add(editID);
+
+            //TableCell updateID = new TableCell();
+            //h = new HyperLink();
+            //h.Text = "Enable/Disable";
+            //h.NavigateUrl = "";
+            //updateID.Controls.Add(h);
+            //courseRow.Cells.Add(updateID);
+
+            return courseRow;
         }
 
         public override void RegistraterAction()
