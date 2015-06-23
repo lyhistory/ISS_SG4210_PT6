@@ -18,5 +18,7 @@ namespace CRS_DAL.EF
         public string LoginID { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }
+        public Nullable<int> Enabled { get; set; }
+        public Nullable<int> Status { get; set; }
     }
 }
