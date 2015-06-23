@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm.Registration;
+﻿using nus.iss.crs.dm.Course;
+using nus.iss.crs.dm.Registration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,14 @@ namespace nus.iss.crs.pl.Service
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "ICourseRegistrationService" in both code and config file together.
     [ServiceContract]
     public interface ICourseRegistrationService
-    {
-        [OperationContract]
-        void DoWork();
-
+    { 
         [OperationContract]
         void RegistrateCourse(dm.Registration.Registration reg, string companyName, string participantIDNumber, string courseCode, DateTime dateFrom, DateTime dateTo);
+
+        [OperationContract]
+        List<Course> GetCourses(DateTime dateFrom, DateTime dateTo);
+
+        [OperationContract]
+        List<Participant> GetEmployees(string companyName);
     }
 }

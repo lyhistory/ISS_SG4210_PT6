@@ -12,6 +12,7 @@ namespace nus.iss.crs.bl
     public class CRSBusinessFacade : ICRSBusinessFacade
     {
         LoginManager loginManager = new LoginManager();
+        CourseManager crsManager = new CourseManager();
         public User login(LogingStrategy strategy)
         {
             return loginManager.Login(strategy);
@@ -20,15 +21,20 @@ namespace nus.iss.crs.bl
         public bool RegistrateCourse(dm.Registration.Registration registration, string companyName, string participantID, string courseCode, DateTime dateFrom, DateTime dateTo)
         {
             CourseRegistrationManager regManager = new CourseRegistrationManager();
-            CourseManager crsManager = new CourseManager();
+            
             Course course = crsManager.GetCourseByCode(courseCode);
             CourseClass courseClass = crsManager.GetCourseClassList(course, dateFrom, dateTo).FirstOrDefault();
             ParticipantManager pManager = new ParticipantManager();
 
+            //Participant p = new Participant ();
+            //p.
+            //regManager.CreateParticipant 
+            //pManager.CreateParticipantByHR()
             Participant participant = pManager.GetParticipant(participantID, companyName);
 
             Registration retReg = regManager.CreateRegistration(courseClass, participant, registration);
-            if (string.IsNullOrEmpty(retReg.RegID))
+
+                if (retReg == null || string.IsNullOrEmpty(retReg.RegID))
             {
                 return false;
             }
@@ -65,10 +71,25 @@ namespace nus.iss.crs.bl
         public List<Participant> GetStudents(string courseCode, DateTime dateFrom, DateTime dateTo)
         {
             CourseRegistrationManager manager = new CourseRegistrationManager();
-            CourseManager crsManager = new CourseManager();
+            
             Course course = crsManager.GetCourseByCode(courseCode);
 
             return manager.GetParticipantListByCourse(course, dateFrom);
+        }
+
+
+        List<CourseCategory> categories = null;
+        public List<Course> GetCourses(DateTime dateFrom, DateTime dateTo)
+        {
+           categories =  crsManager.GetCourseCategoryList();
+            CourseCategory category = categories[0];
+            return crsManager.GetCourseListByCategory(category);
+        }
+
+
+        public List<Participant> GetEmployees(string companyName)
+        {
+            return null;
         }
     }
 }

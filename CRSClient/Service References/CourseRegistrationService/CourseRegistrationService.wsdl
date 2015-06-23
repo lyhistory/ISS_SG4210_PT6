@@ -3,26 +3,37 @@
   <wsdl:types>
     <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Registration" />
-      <xs:element name="DoWork">
-        <xs:complexType>
-          <xs:sequence />
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="DoWorkResponse">
-        <xs:complexType>
-          <xs:sequence />
-        </xs:complexType>
-      </xs:element>
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Course" />
       <xs:element name="RegistrateCourse">
         <xs:complexType>
           <xs:sequence>
             <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Registration" minOccurs="0" name="reg" nillable="true" type="q1:Registration" />
+            <xs:element minOccurs="0" name="companyName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="participantIDNumber" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="courseCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="dateFrom" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="dateTo" type="xs:dateTime" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="RegistrateCourseResponse">
         <xs:complexType>
           <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCourses">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="dateFrom" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="dateTo" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCoursesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Course" minOccurs="0" name="GetCoursesResult" nillable="true" type="q2:ArrayOfCourse" />
+          </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:schema>
@@ -68,38 +79,82 @@
       <xs:attribute name="Ref" type="xs:IDREF" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Registration" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Registration" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" />
       <xs:complexType name="Registration">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DietaryRequirement" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrganizationSize" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Sponsorship" nillable="true" type="xs:string" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" minOccurs="0" name="Status" type="q1:RegistrationStatus" />
+          <xs:element minOccurs="0" name="billingInfo" nillable="true" type="tns:Billing" />
+        </xs:sequence>
       </xs:complexType>
       <xs:element name="Registration" nillable="true" type="tns:Registration" />
+      <xs:complexType name="Billing">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PersonName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Billing" nillable="true" type="tns:Billing" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:simpleType name="RegistrationStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Valid" />
+          <xs:enumeration value="Cancel" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="RegistrationStatus" nillable="true" type="tns:RegistrationStatus" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Course" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Course" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfCourse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Course" nillable="true" type="tns:Course" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfCourse" nillable="true" type="tns:ArrayOfCourse" />
+      <xs:complexType name="Course">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClassTime" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CourseTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Duration" type="xs:int" />
+          <xs:element minOccurs="0" name="Fee" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Course" nillable="true" type="tns:Course" />
     </xs:schema>
   </wsdl:types>
-  <wsdl:message name="ICourseRegistrationService_DoWork_InputMessage">
-    <wsdl:part name="parameters" element="tns:DoWork" />
-  </wsdl:message>
-  <wsdl:message name="ICourseRegistrationService_DoWork_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
-  </wsdl:message>
   <wsdl:message name="ICourseRegistrationService_RegistrateCourse_InputMessage">
     <wsdl:part name="parameters" element="tns:RegistrateCourse" />
   </wsdl:message>
   <wsdl:message name="ICourseRegistrationService_RegistrateCourse_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegistrateCourseResponse" />
   </wsdl:message>
+  <wsdl:message name="ICourseRegistrationService_GetCourses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourses" />
+  </wsdl:message>
+  <wsdl:message name="ICourseRegistrationService_GetCourses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoursesResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICourseRegistrationService">
-    <wsdl:operation name="DoWork">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICourseRegistrationService/DoWork" message="tns:ICourseRegistrationService_DoWork_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICourseRegistrationService/DoWorkResponse" message="tns:ICourseRegistrationService_DoWork_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="RegistrateCourse">
       <wsdl:input wsaw:Action="http://tempuri.org/ICourseRegistrationService/RegistrateCourse" message="tns:ICourseRegistrationService_RegistrateCourse_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICourseRegistrationService/RegistrateCourseResponse" message="tns:ICourseRegistrationService_RegistrateCourse_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCourses">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseRegistrationService/GetCourses" message="tns:ICourseRegistrationService_GetCourses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseRegistrationService/GetCoursesResponse" message="tns:ICourseRegistrationService_GetCourses_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICourseRegistrationService" type="tns:ICourseRegistrationService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="DoWork">
-      <soap:operation soapAction="http://tempuri.org/ICourseRegistrationService/DoWork" style="document" />
+    <wsdl:operation name="RegistrateCourse">
+      <soap:operation soapAction="http://tempuri.org/ICourseRegistrationService/RegistrateCourse" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -107,8 +162,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RegistrateCourse">
-      <soap:operation soapAction="http://tempuri.org/ICourseRegistrationService/RegistrateCourse" style="document" />
+    <wsdl:operation name="GetCourses">
+      <soap:operation soapAction="http://tempuri.org/ICourseRegistrationService/GetCourses" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
