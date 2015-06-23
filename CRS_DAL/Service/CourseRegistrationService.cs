@@ -397,7 +397,9 @@ namespace CRS_DAL.Service
                             OrganizationSize = _registration.OrganizationSize
                         }).ToList();
             }
-            catch { }
+            catch(Exception ex){
+            
+            }
             return null;
         }
 
@@ -680,42 +682,49 @@ namespace CRS_DAL.Service
 
         public dm.Course.CourseClass GetCourseClassByCode(string classCode)
         {
-            CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(classCode));
-
-            if (_courseClass != null)
+            try
             {
-                Course _course = this.CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(_courseClass.CourseCode));
-                if (_course != null)
+                CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(classCode));
+
+                if (_courseClass != null)
                 {
-                    Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
-                    if (_instructor != null)
+                    Course _course = this.CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(_courseClass.CourseCode));
+                    if (_course != null)
                     {
-                        CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
-                        if (_category != null)
+                        Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
+                        if (_instructor != null)
                         {
-                            return new dm.Course.CourseClass(
-                                    new dm.Course.Course()
-                                    {
-                                        CourseTitle = _course.CourseTitle,
-                                        Code = _course.CourseCode,
-                                        Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
-                                        Description = _course.Description,
-                                        Duration = _course.NumberOfDays,
-                                        Fee = _course.Fee.ToString(),
-                                        Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
-                                        Status = (dm.Course.CourseStatus)_course.Status
-                                    }
-                                )
+                            CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
+                            if (_category != null)
                             {
-                                StartDate = _courseClass.StartDate,
-                                EndDate = _courseClass.EndDate,
-                                ClassCode = _courseClass.ClassCode,
-                                Size = _courseClass.Size,
-                                Status = (dm.Course.ClassStatus)_courseClass.Status
-                            };
+                                return new dm.Course.CourseClass(
+                                        new dm.Course.Course()
+                                        {
+                                            CourseTitle = _course.CourseTitle,
+                                            Code = _course.CourseCode,
+                                            Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
+                                            Description = _course.Description,
+                                            Duration = _course.NumberOfDays,
+                                            Fee = _course.Fee.ToString(),
+                                            Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
+                                            Status = (dm.Course.CourseStatus)_course.Status
+                                        }
+                                    )
+                                {
+                                    StartDate = _courseClass.StartDate,
+                                    EndDate = _courseClass.EndDate,
+                                    ClassCode = _courseClass.ClassCode,
+                                    Size = _courseClass.Size,
+                                    Status = (dm.Course.ClassStatus)_courseClass.Status
+                                };
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                //
             }
             return null;
         }
