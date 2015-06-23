@@ -156,7 +156,7 @@ namespace nus.iss.crs.pl.Controllers
                 return RedirectToAction("Logon", "home");
 
             CourseRegistrationManager courseRegistrationManager = this.BLSession.CreateCourseRegistrationManager();
-            List<Registration> list = courseRegistrationManager.GetRegistrationList(SessionHelper.Current);
+            List<Registration> list = courseRegistrationManager.GetRegistrationListByEmployee(SessionHelper.Current);
             return View(list);
         }
         #endregion
@@ -327,7 +327,7 @@ namespace nus.iss.crs.pl.Controllers
             if (SessionHelper.Current == null)
                 return RedirectToAction("Logon", "home");
             CourseRegistrationManager courseRegistrationManager = this.BLSession.CreateCourseRegistrationManager();
-            List<Registration> list = courseRegistrationManager.GetRegistrationList(new Company() { CompanyID = SessionHelper.Current.CompanyID });
+            List<Registration> list = courseRegistrationManager.GetRegistrationListByCompany(new Company() { CompanyID = SessionHelper.Current.CompanyID });
             return View(list);
         }
         [CRSAuthorize(Roles = "HR")]

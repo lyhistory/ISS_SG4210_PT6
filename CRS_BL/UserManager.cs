@@ -88,9 +88,9 @@ namespace nus.iss.crs.bl
             return unitOfWork.UserService.EditUser(user);
         }
 
-        public  bool ResetPassword(string loginId,string oldpassword,string newpassword)
+        public  bool ResetPassword(string usertype,string loginId,string oldpassword,string newpassword)
         {
-            return unitOfWork.UserService.ResetPassword(loginId, oldpassword,newpassword);
+            return unitOfWork.UserService.ResetPassword(usertype,loginId, oldpassword,newpassword);
         }
 
         public  string GenerateRandomPassword()
