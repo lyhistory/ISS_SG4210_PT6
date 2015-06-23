@@ -211,13 +211,6 @@
     <Compile Include="Admin\Ctrl\CourseClassList.ascx.designer.cs">
       <DependentUpon>CourseClassList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Ctrl\UserList.ascx.cs">
-      <DependentUpon>UserList.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Ctrl\UserList.ascx.designer.cs">
-      <DependentUpon>UserList.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\EditClass.aspx.cs">
       <DependentUpon>EditClass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -267,12 +260,12 @@
     <Compile Include="Admin\ListClassInCalendar.aspx.designer.cs">
       <DependentUpon>ListClassInCalendar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ListCourseClassRegistration.aspx.cs">
-      <DependentUpon>ListCourseClassRegistration.aspx</DependentUpon>
+    <Compile Include="Admin\ListRegistration.aspx.cs">
+      <DependentUpon>ListRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ListCourseClassRegistration.aspx.designer.cs">
-      <DependentUpon>ListCourseClassRegistration.aspx</DependentUpon>
+    <Compile Include="Admin\ListRegistration.aspx.designer.cs">
+      <DependentUpon>ListRegistration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ListUser.aspx.cs">
       <DependentUpon>ListUser.aspx</DependentUpon>
@@ -378,7 +371,6 @@
     <Content Include="Admin\Ctrl\CalendarClassList.ascx" />
     <Content Include="Admin\Ctrl\CategoryCourseList.ascx" />
     <Content Include="Admin\Ctrl\CourseClassList.ascx" />
-    <Content Include="Admin\Ctrl\UserList.ascx" />
     <Content Include="Admin\EditClass.aspx" />
     <Content Include="Admin\EditCourse.aspx" />
     <Content Include="Admin\EditCourseRegistration.aspx" />
@@ -386,7 +378,7 @@
     <Content Include="Admin\ListClassInCourse.aspx" />
     <Content Include="Admin\ListCourse.aspx" />
     <Content Include="Admin\ListClassInCalendar.aspx" />
-    <Content Include="Admin\ListCourseClassRegistration.aspx" />
+    <Content Include="Admin\ListRegistration.aspx" />
     <Content Include="Admin\ListUser.aspx" />
     <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />

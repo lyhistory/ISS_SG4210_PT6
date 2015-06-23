@@ -52,7 +52,7 @@ namespace nus.iss.crs.pl.AppCode.Session
         {
             
                 bLSession = (ISession)HttpContext.Current.Session[CRSConstant.BLSessionKey];
-                if (bLSession == null || !bLSession.IsValid())
+                if (bLSession != null )
                 {
                     bLSession.Release();
                 }

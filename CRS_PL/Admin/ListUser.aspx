@@ -5,7 +5,7 @@
         <h2>User List</h2>
     </blockquote>
     
-    <div>
+<%--    <div>
         <form class="form-inline">
             <div class="form-group">
                 <label for="SearchCondition">Condition</label>
@@ -19,9 +19,18 @@
 
             <button type="submit" class="btn btn-default" onclick="SearchUser">Search</button>
         </form>
-    </div>
+    </div>--%>
 
     <div>
-        <asp:PlaceHolder runat="server" ID="PlaceHolder1" />
+        <asp:Table ID="Table1" runat="server" CssClass="table">
+            <asp:TableRow>
+                <asp:TableHeaderCell>LogInID</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Name</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Email</asp:TableHeaderCell>
+                <asp:TableHeaderCell>ContactNumber</asp:TableHeaderCell>
+                <asp:TableHeaderCell>CompanyName</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Active</asp:TableHeaderCell>
+            </asp:TableRow>
+        </asp:Table>
     </div>
 </asp:Content>

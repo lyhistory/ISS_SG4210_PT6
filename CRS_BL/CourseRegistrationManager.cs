@@ -102,7 +102,6 @@ namespace nus.iss.crs.bl
             return unitOfWork.CourseRegistrationService.GetRegistrationListByCompany(company);
         }
 
-
         /// <summary>
         /// Edit, Cancel
         /// </summary>

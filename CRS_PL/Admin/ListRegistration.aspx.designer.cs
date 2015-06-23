@@ -7,10 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace nus.iss.crs.pl.Admin.Ctrl {
+namespace nus.iss.crs.pl.Admin {
     
     
-    public partial class UserList {
+    public partial class ListCourseClassRegistration {
+        
+        /// <summary>
+        /// UserPropertyList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList UserPropertyList;
         
         /// <summary>
         /// Table1 control.
