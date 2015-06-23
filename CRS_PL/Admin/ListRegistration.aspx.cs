@@ -79,7 +79,7 @@ namespace nus.iss.crs.pl.Admin
             TableCell updateID = new TableCell();
             LinkButton updateLb = new LinkButton();
             updateLb.Text = "Enable / Disable";
-            updateLb.OnClientClick = "ChangeRegistrationStatus";
+            updateLb.OnClientClick = "javascript:return ChangeRegistrationStatus(this);";
             updateID.Controls.Add(updateLb);
             courseRow.Cells.Add(updateID);
 
@@ -91,10 +91,10 @@ namespace nus.iss.crs.pl.Admin
             courseRow.Cells.Add(editID);
 
             TableCell cancelID = new TableCell();
-            LinkButton lb = new LinkButton();
-            lb.Text = "Cancel";
-            lb.OnClientClick = "";
-            cancelID.Controls.Add(lb);
+            LinkButton cancelLb = new LinkButton();
+            cancelLb.Text = "Cancel";
+            cancelLb.OnClientClick = "javascript:return CancelRegistration(this);";
+            cancelID.Controls.Add(cancelLb);
             courseRow.Cells.Add(cancelID);
 
             return courseRow;
@@ -104,9 +104,5 @@ namespace nus.iss.crs.pl.Admin
             //throw new NotImplementedException();
         }
 
-        private void ChangeRegistrationStatus()
-        {
-
-        }
     }
 }

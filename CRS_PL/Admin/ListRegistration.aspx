@@ -11,7 +11,12 @@
         <form class="form-inline">
             <div class="form-group">
                 <label for="SearchCondition">Search Condition</label>
-                <asp:DropDownList CssClass="form-control" ID="UserPropertyList" runat="server"></asp:DropDownList>
+                <asp:DropDownList CssClass="form-control" ID="UserPropertyList" runat="server">
+                    <asp:ListItem Text ="Course Code" Value="0"></asp:ListItem>
+                    <asp:ListItem Text ="Class Code" Value="1"></asp:ListItem>
+                    <asp:ListItem Text ="Company Name" Value="2"></asp:ListItem>
+                </asp:DropDownList>
+                
             </div>
 
             <div class="form-group">
@@ -41,6 +46,11 @@
             </asp:TableRow>
         </asp:Table>
     </div>
+
+    <script type="text/javascript">
+        function ChangeRegistrationStatus(val) {
+
+        }
+    </script>
 </asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="placeholder_FooterContent" runat="server">
-</asp:Content>
+
