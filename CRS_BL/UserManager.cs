@@ -17,6 +17,9 @@ namespace nus.iss.crs.bl
         {
             _Session = session;
         }
+        internal  UserManager()
+        {
+        }
 
         private void AssignRole(User user, UserRole role)
         {
@@ -55,6 +58,10 @@ namespace nus.iss.crs.bl
         public  Company GetCompanyByUEN(string companyUEN)
         {
             return unitOfWork.UserService.GetCompanyByUEN(companyUEN);
+        }
+        public Company GetCompanyByName(string companyName)
+        {
+            return unitOfWork.UserService.GetCompanyByName(companyName);
         }
 
         public  List<Company> GetCompanyList()

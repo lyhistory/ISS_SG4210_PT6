@@ -351,6 +351,227 @@ namespace CRSClient.CourseRegistrationService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Participant", Namespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Registration")]
+    [System.SerializableAttribute()]
+    public partial class Participant : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CompanyIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CompanyNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContactNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DietaryRequirementField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EMailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmploymentStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GenderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IDNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NationalityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OrganizationSizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ParticipantIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CompanyID {
+            get {
+                return this.CompanyIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CompanyIDField, value) != true)) {
+                    this.CompanyIDField = value;
+                    this.RaisePropertyChanged("CompanyID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CompanyName {
+            get {
+                return this.CompanyNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CompanyNameField, value) != true)) {
+                    this.CompanyNameField = value;
+                    this.RaisePropertyChanged("CompanyName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContactNumber {
+            get {
+                return this.ContactNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContactNumberField, value) != true)) {
+                    this.ContactNumberField = value;
+                    this.RaisePropertyChanged("ContactNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DietaryRequirement {
+            get {
+                return this.DietaryRequirementField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DietaryRequirementField, value) != true)) {
+                    this.DietaryRequirementField = value;
+                    this.RaisePropertyChanged("DietaryRequirement");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EMail {
+            get {
+                return this.EMailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EMailField, value) != true)) {
+                    this.EMailField = value;
+                    this.RaisePropertyChanged("EMail");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EmploymentStatus {
+            get {
+                return this.EmploymentStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmploymentStatusField, value) != true)) {
+                    this.EmploymentStatusField = value;
+                    this.RaisePropertyChanged("EmploymentStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FullName {
+            get {
+                return this.FullNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
+                    this.FullNameField = value;
+                    this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Gender {
+            get {
+                return this.GenderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GenderField, value) != true)) {
+                    this.GenderField = value;
+                    this.RaisePropertyChanged("Gender");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IDNumber {
+            get {
+                return this.IDNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDNumberField, value) != true)) {
+                    this.IDNumberField = value;
+                    this.RaisePropertyChanged("IDNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nationality {
+            get {
+                return this.NationalityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NationalityField, value) != true)) {
+                    this.NationalityField = value;
+                    this.RaisePropertyChanged("Nationality");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OrganizationSize {
+            get {
+                return this.OrganizationSizeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OrganizationSizeField, value) != true)) {
+                    this.OrganizationSizeField = value;
+                    this.RaisePropertyChanged("OrganizationSize");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ParticipantID {
+            get {
+                return this.ParticipantIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ParticipantIDField, value) != true)) {
+                    this.ParticipantIDField = value;
+                    this.RaisePropertyChanged("ParticipantID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CourseRegistrationService.ICourseRegistrationService")]
     public interface ICourseRegistrationService {
@@ -366,6 +587,12 @@ namespace CRSClient.CourseRegistrationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseRegistrationService/GetCourses", ReplyAction="http://tempuri.org/ICourseRegistrationService/GetCoursesResponse")]
         System.Threading.Tasks.Task<CRSClient.CourseRegistrationService.Course[]> GetCoursesAsync(System.DateTime dateFrom, System.DateTime dateTo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseRegistrationService/GetEmployees", ReplyAction="http://tempuri.org/ICourseRegistrationService/GetEmployeesResponse")]
+        CRSClient.CourseRegistrationService.Participant[] GetEmployees(string companyName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICourseRegistrationService/GetEmployees", ReplyAction="http://tempuri.org/ICourseRegistrationService/GetEmployeesResponse")]
+        System.Threading.Tasks.Task<CRSClient.CourseRegistrationService.Participant[]> GetEmployeesAsync(string companyName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -409,6 +636,14 @@ namespace CRSClient.CourseRegistrationService {
         
         public System.Threading.Tasks.Task<CRSClient.CourseRegistrationService.Course[]> GetCoursesAsync(System.DateTime dateFrom, System.DateTime dateTo) {
             return base.Channel.GetCoursesAsync(dateFrom, dateTo);
+        }
+        
+        public CRSClient.CourseRegistrationService.Participant[] GetEmployees(string companyName) {
+            return base.Channel.GetEmployees(companyName);
+        }
+        
+        public System.Threading.Tasks.Task<CRSClient.CourseRegistrationService.Participant[]> GetEmployeesAsync(string companyName) {
+            return base.Channel.GetEmployeesAsync(companyName);
         }
     }
 }
