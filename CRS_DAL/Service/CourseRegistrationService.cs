@@ -344,7 +344,7 @@ namespace CRS_DAL.Service
                 _registration.BillingPersonName = registration.billingInfo.PersonName;
                 _registration.DietaryRequirement = registration.DietaryRequirement;
                 _registration.OrganizationSize = registration.OrganizationSize;
-
+                _registration.RegisterOn = DateTime.Now;
                 this.RegistrationRepository.Add(_registration);
                 unitOfWork.Commit();
 
