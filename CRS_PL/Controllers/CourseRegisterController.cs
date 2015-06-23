@@ -28,6 +28,7 @@ namespace nus.iss.crs.pl.Controllers
 
          #region Individual Register
          // GET: CourseRegister
+        [CRSAuthorize(Roles="Individual")]
         public ActionResult IndividualRegister(string code,string message="")
         {
             CourseManager courseManager = this.BLSession.CreateCourseManager();
@@ -58,6 +59,7 @@ namespace nus.iss.crs.pl.Controllers
         }
 
         [HttpPost]
+        [CRSAuthorize(Roles = "Individual")]
         public ActionResult PostIndividualRegister(CRForm crform)
         {
             if (!this.ModelState.IsValid)
@@ -211,6 +213,7 @@ namespace nus.iss.crs.pl.Controllers
         }
 
         [HttpPost]
+        [CRSAuthorize(Roles = "Individual")]
         public ActionResult PostHRRegister(CRForm crform)
         {
             if (!this.ModelState.IsValid)

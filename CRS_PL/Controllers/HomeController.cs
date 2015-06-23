@@ -25,6 +25,8 @@ namespace nus.iss.crs.pl.Controllers
         {
             manager = new UserManager(BLSession);
         }
+
+        #region CourseCatalogue and Details
         public ActionResult Index()
         {
             //ISession session = SessionFactory.CreateSession();
@@ -37,8 +39,6 @@ namespace nus.iss.crs.pl.Controllers
 
             return View();
         }
-
-        
 
         public JsonResult GetCourseCategoryList(string searchText = "")
         {
@@ -55,22 +55,7 @@ namespace nus.iss.crs.pl.Controllers
             return View(model);
         }
 
-
-        [CRSAuthorize(Roles = "HR")]
-        public ActionResult About()
-        {
-            _log.Debug("test about");
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-        [CRSAuthorize(Roles="Individual")]
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        #endregion
 
         #region Login&Register
         public ActionResult Logon(string message="",string toPage="")
@@ -134,7 +119,15 @@ namespace nus.iss.crs.pl.Controllers
                         {
                             string toPage = cookie.Value;
                             //delete cookie after use
-                            HttpContext.Response.Cookies.Remove("toPage");
+                            if (cookie != null)
+                            {
+                                //delete cookie after use
+                                HttpCookie currentUserCookie = HttpContext.Request.Cookies["toPage"];
+                                HttpContext.Response.Cookies.Remove("toPage");
+                                currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+                                currentUserCookie.Value = null;
+                                HttpContext.Response.SetCookie(currentUserCookie);
+                            }
                             if (!string.IsNullOrEmpty(toPage) && toPage.Contains("?code="))
                             {
                                 string redirectUrl = userType.ToUpper().Equals("HR") ? "/CourseRegister/HRRegister" : "/CourseRegister/IndividualRegister";
@@ -245,5 +238,6 @@ namespace nus.iss.crs.pl.Controllers
             _log.Debug(string.Format("Send Email: userid:{0},password:{1}", user.LoginID, user.Password));
             return Json(new { Code = 1, Message = "please check your email" });
         }
+      
     }
 }
