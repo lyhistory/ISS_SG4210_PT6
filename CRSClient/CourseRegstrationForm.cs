@@ -36,7 +36,13 @@ namespace CRSClient
 
             ComboItem item =(ComboItem)courseList.SelectedItem;
             Course c = (Course) item.Tag ;
-            client.RegistrateCourse(reg, txtCompanyName.Text, txtIDNumber.Text, c.Code, startDate.Value, endDate.Value);
+
+
+            ComboItem itemP = (ComboItem)cboParticipants.SelectedItem;
+            Participant p = (Participant)itemP.Tag;
+
+
+            client.RegistrateCourse(reg, txtCompanyName.Text, p.IDNumber, c.Code, startDate.Value, endDate.Value);
             
         }
 
@@ -47,6 +53,16 @@ namespace CRSClient
             {
                 ComboItem item = new ComboItem("(" + c.Code + ") " + c.CourseTitle, c.Code, c);
                 courseList.Items.Add(item);
+            }
+
+            txtCompanyName.Text = "aft";
+
+            Participant[] participants = client.GetEmployees(txtCompanyName.Text);
+
+            foreach (Participant p in participants)
+            {
+                ComboItem item = new ComboItem("(" + p.IDNumber+ ") " + p.FullName, p.IDNumber, p);
+                cboParticipants.Items.Add(item);
             }
         }
     }

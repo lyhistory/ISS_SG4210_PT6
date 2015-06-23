@@ -17,6 +17,9 @@ namespace nus.iss.crs.bl
         {
             _Session = session;
         }
+        internal  UserManager()
+        {
+        }
 
         private void AssignRole(User user, UserRole role)
         {

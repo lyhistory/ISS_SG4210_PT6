@@ -32,13 +32,12 @@
             <asp:TableRow>
                 <asp:TableHeaderCell>Full Name</asp:TableHeaderCell>
                 <asp:TableHeaderCell>Company Name</asp:TableHeaderCell>
-                <asp:TableHeaderCell>Email</asp:TableHeaderCell>
                 <asp:TableHeaderCell>Course Code</asp:TableHeaderCell>
                 <asp:TableHeaderCell>Course Name</asp:TableHeaderCell>
                 <asp:TableHeaderCell>Class Code</asp:TableHeaderCell>
                 <asp:TableHeaderCell>Start Date</asp:TableHeaderCell>
                 <asp:TableHeaderCell>End Date</asp:TableHeaderCell>
-                <asp:TableHeaderCell>Active</asp:TableHeaderCell>
+                <asp:TableHeaderCell ColumnSpan="3">Operation</asp:TableHeaderCell>
             </asp:TableRow>
         </asp:Table>
     </div>
