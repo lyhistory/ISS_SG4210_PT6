@@ -26,6 +26,7 @@ namespace nus.iss.crs.pl.Admin
 
         private void ShowCourseList()
         {
+            //CourseManager manager = BLSession.CreateCourseManager();
             if (BLSession == null)
             {
                 ISession session = new SessionImplement();
@@ -35,7 +36,6 @@ namespace nus.iss.crs.pl.Admin
             {
                 manager = BLSession.CreateCourseManager();
             }
-            //CourseManager manager = BLSession.CreateCourseManager();
             
             foreach (CourseCategory courseCategory in manager.GetCourseCategoryList(true))
             {

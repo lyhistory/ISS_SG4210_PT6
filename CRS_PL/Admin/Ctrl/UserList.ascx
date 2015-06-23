@@ -3,10 +3,10 @@
     <asp:TableRow>
         <asp:TableHeaderCell>UserID</asp:TableHeaderCell>
         <asp:TableHeaderCell>LogInID</asp:TableHeaderCell>
-        <asp:TableHeaderCell>Password</asp:TableHeaderCell>
-        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
         <asp:TableHeaderCell>Name</asp:TableHeaderCell>
         <asp:TableHeaderCell>Email</asp:TableHeaderCell>
+        <asp:TableHeaderCell>ContactNumber</asp:TableHeaderCell>
+        <asp:TableHeaderCell>CompanyName</asp:TableHeaderCell>
+        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
     </asp:TableRow>
 </asp:Table>
-
