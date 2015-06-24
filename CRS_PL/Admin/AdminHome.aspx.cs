@@ -10,6 +10,8 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class AdminHome : CrsPageController
     {
- 
+        public override void RegistraterAction()
+        {
+        }
     }
 }
