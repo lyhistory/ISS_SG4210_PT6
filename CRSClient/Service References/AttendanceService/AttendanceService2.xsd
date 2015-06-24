@@ -21,7 +21,7 @@
   <xs:element name="SubmitAttendance">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="studentIDNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="participantID" nillable="true" type="xs:string" />
         <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" minOccurs="0" name="status" type="q2:AttendanceStatus" />
         <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="courseCode" nillable="true" type="xs:string" />

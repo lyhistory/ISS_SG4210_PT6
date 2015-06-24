@@ -151,10 +151,12 @@
             this.lvStudent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.lvStudent.Location = new System.Drawing.Point(377, 22);
+            this.lvStudent.MultiSelect = false;
             this.lvStudent.Name = "lvStudent";
             this.lvStudent.Size = new System.Drawing.Size(288, 470);
             this.lvStudent.TabIndex = 12;
             this.lvStudent.UseCompatibleStateImageBehavior = false;
+            this.lvStudent.View = System.Windows.Forms.View.Details;
             // 
             // label6
             // 
@@ -178,7 +180,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Student Name";
-            this.columnHeader1.Width = 120;
+            this.columnHeader1.Width = 250;
             // 
             // AttendanceForm
             // 

@@ -17,6 +17,6 @@ namespace nus.iss.crs.pl.Service
         List<Participant> GetStudents(string courseCode, DateTime dateFrom, DateTime dateTo);
 
         [OperationContract]
-        string  SubmitAttendance(string studentIDNo,AttendanceStatus status,string remark,  string courseCode, DateTime dateFrom, DateTime dateTo);
+        string SubmitAttendance(string participantID, AttendanceStatus status, string remark, string courseCode, DateTime dateFrom, DateTime dateTo);
     }
 }

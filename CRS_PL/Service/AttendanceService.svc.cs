@@ -14,9 +14,9 @@ namespace nus.iss.crs.pl.Service
     public class AttendanceService : IAttendanceService
     {
         ICRSBusinessFacade facadeObj = new CRSBusinessFacade();
-        public string  SubmitAttendance(string studentIDNo,AttendanceStatus status,string remark,  string courseCode, DateTime dateFrom, DateTime dateTo)
+        public string SubmitAttendance(string participantID, AttendanceStatus status, string remark, string courseCode, DateTime dateFrom, DateTime dateTo)
         {
-            return facadeObj.SubmitAttendance(studentIDNo, status, remark, courseCode, dateFrom, dateTo);            
+            return facadeObj.SubmitAttendance(participantID, status, remark, courseCode, dateFrom, dateTo);            
         }
 
         public List<dm.Registration.Participant> GetStudents(string courseCode, DateTime dateFrom, DateTime dateTo)

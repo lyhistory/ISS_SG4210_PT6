@@ -262,10 +262,10 @@ namespace CRSClient.AttendanceService {
         System.Threading.Tasks.Task<CRSClient.AttendanceService.Participant[]> GetStudentsAsync(string courseCode, System.DateTime dateFrom, System.DateTime dateTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAttendanceService/SubmitAttendance", ReplyAction="http://tempuri.org/IAttendanceService/SubmitAttendanceResponse")]
-        string SubmitAttendance(string studentIDNo, CRSClient.AttendanceService.AttendanceStatus status, string remark, string courseCode, System.DateTime dateFrom, System.DateTime dateTo);
+        string SubmitAttendance(string participantID, CRSClient.AttendanceService.AttendanceStatus status, string remark, string courseCode, System.DateTime dateFrom, System.DateTime dateTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAttendanceService/SubmitAttendance", ReplyAction="http://tempuri.org/IAttendanceService/SubmitAttendanceResponse")]
-        System.Threading.Tasks.Task<string> SubmitAttendanceAsync(string studentIDNo, CRSClient.AttendanceService.AttendanceStatus status, string remark, string courseCode, System.DateTime dateFrom, System.DateTime dateTo);
+        System.Threading.Tasks.Task<string> SubmitAttendanceAsync(string participantID, CRSClient.AttendanceService.AttendanceStatus status, string remark, string courseCode, System.DateTime dateFrom, System.DateTime dateTo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -303,12 +303,12 @@ namespace CRSClient.AttendanceService {
             return base.Channel.GetStudentsAsync(courseCode, dateFrom, dateTo);
         }
         
-        public string SubmitAttendance(string studentIDNo, CRSClient.AttendanceService.AttendanceStatus status, string remark, string courseCode, System.DateTime dateFrom, System.DateTime dateTo) {
-            return base.Channel.SubmitAttendance(studentIDNo, status, remark, courseCode, dateFrom, dateTo);
+        public string SubmitAttendance(string participantID, CRSClient.AttendanceService.AttendanceStatus status, string remark, string courseCode, System.DateTime dateFrom, System.DateTime dateTo) {
+            return base.Channel.SubmitAttendance(participantID, status, remark, courseCode, dateFrom, dateTo);
         }
         
-        public System.Threading.Tasks.Task<string> SubmitAttendanceAsync(string studentIDNo, CRSClient.AttendanceService.AttendanceStatus status, string remark, string courseCode, System.DateTime dateFrom, System.DateTime dateTo) {
-            return base.Channel.SubmitAttendanceAsync(studentIDNo, status, remark, courseCode, dateFrom, dateTo);
+        public System.Threading.Tasks.Task<string> SubmitAttendanceAsync(string participantID, CRSClient.AttendanceService.AttendanceStatus status, string remark, string courseCode, System.DateTime dateFrom, System.DateTime dateTo) {
+            return base.Channel.SubmitAttendanceAsync(participantID, status, remark, courseCode, dateFrom, dateTo);
         }
     }
 }

@@ -27,13 +27,28 @@ namespace CRSClient
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            Participant owner = null;
+            foreach (ListViewItem item in lvStudent.Items)
+            {
+                Participant p = (Participant)item.Tag;
+                if (p.IDNumber == txtID.Text)
+                { 
+                    owner = p;
+                    break;
+                }
+            }
+            string status =  client.SubmitAttendance(owner.ParticipantID, AttendanceStatus.Attended, txtRemark.Text, txtCourse.Text, startDate.Value, endDate.Value);
+            MessageBox.Show("Submit Status:" + status);
         }
 
         private void btnShow_Click(object sender, EventArgs e)
         {
           AttendanceService.Participant[] students =   client.GetStudents(txtCourse.Text, startDate.Value, endDate.Value);
-
+          if (students == null)
+          {
+              MessageBox.Show("No Student for this course with the date");
+              return;
+          }
           foreach (Participant p in students)
           {
               ListViewItem item = new ListViewItem(p.FullName);
