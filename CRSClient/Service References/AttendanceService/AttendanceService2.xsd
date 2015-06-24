@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:57335/Service/AttendanceService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Registration" />
+  <xs:import schemaLocation="http://localhost:57335/Service/AttendanceService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" />
+  <xs:element name="GetStudents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="courseCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="dateFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dateTo" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStudentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm.Registration" minOccurs="0" name="GetStudentsResult" nillable="true" type="q1:ArrayOfParticipant" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitAttendance">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="studentIDNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" minOccurs="0" name="status" type="q2:AttendanceStatus" />
+        <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="courseCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="dateFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dateTo" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitAttendanceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SubmitAttendanceResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/nus.iss.crs.dm" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="AttendanceStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Absent" />
+      <xs:enumeration value="Attended" />
+      <xs:enumeration value="Leave" />
+      <xs:enumeration value="Later" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AttendanceStatus" nillable="true" type="tns:AttendanceStatus" />
+</xs:schema>

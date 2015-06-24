@@ -14,9 +14,11 @@ namespace CRSClient
     public partial class CourseRegstrationForm : Form
     {
         CourseRegistrationService.CourseRegistrationServiceClient client = new CourseRegistrationService.CourseRegistrationServiceClient();
-        public CourseRegstrationForm()
+        internal CourseRegstrationForm(LoginInfo info)
         {
             InitializeComponent();
+            //client.ClientCredentials.UserName.UserName = info.LoginId;
+            //client.ClientCredentials.UserName.Password = info.Password;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

@@ -12,40 +12,36 @@
   <wsdl:message name="IService_RequestConfirmation_OutputMessage">
     <wsdl:part name="parameters" element="tns:RequestConfirmationResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_CancelCourseClass_InputMessage">
-    <wsdl:part name="parameters" element="tns:CancelCourseClass" />
-  </wsdl:message>
-  <wsdl:message name="IService_CancelCourseClass_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CancelCourseClassResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService_ConfirmCourseClass_InputMessage">
-    <wsdl:part name="parameters" element="tns:ConfirmCourseClass" />
-  </wsdl:message>
-  <wsdl:message name="IService_ConfirmCourseClass_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ConfirmCourseClassResponse" />
-  </wsdl:message>
   <wsdl:message name="IService_MakePayment_InputMessage">
     <wsdl:part name="parameters" element="tns:MakePayment" />
   </wsdl:message>
   <wsdl:message name="IService_MakePayment_OutputMessage">
     <wsdl:part name="parameters" element="tns:MakePaymentResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_ManualConfirm_InputMessage">
+    <wsdl:part name="parameters" element="tns:ManualConfirm" />
+  </wsdl:message>
+  <wsdl:message name="IService_ManualConfirm_OutputMessage" />
+  <wsdl:message name="IService_ManualCancel_InputMessage">
+    <wsdl:part name="parameters" element="tns:ManualCancel" />
+  </wsdl:message>
+  <wsdl:message name="IService_ManualCancel_OutputMessage" />
   <wsdl:portType name="IService">
     <wsdl:operation name="RequestConfirmation">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/RequestConfirmation" message="tns:IService_RequestConfirmation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/RequestConfirmationResponse" message="tns:IService_RequestConfirmation_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CancelCourseClass">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/CancelCourseClass" message="tns:IService_CancelCourseClass_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/CancelCourseClassResponse" message="tns:IService_CancelCourseClass_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ConfirmCourseClass">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/ConfirmCourseClass" message="tns:IService_ConfirmCourseClass_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/ConfirmCourseClassResponse" message="tns:IService_ConfirmCourseClass_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="MakePayment">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/MakePayment" message="tns:IService_MakePayment_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/MakePaymentResponse" message="tns:IService_MakePayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ManualConfirm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ManualConfirm" message="tns:IService_ManualConfirm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ManualConfirmResponse" message="tns:IService_ManualConfirm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ManualCancel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ManualCancel" message="tns:IService_ManualCancel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ManualCancelResponse" message="tns:IService_ManualCancel_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -59,26 +55,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CancelCourseClass">
-      <soap:operation soapAction="http://tempuri.org/IService/CancelCourseClass" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ConfirmCourseClass">
-      <soap:operation soapAction="http://tempuri.org/IService/ConfirmCourseClass" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="MakePayment">
       <soap:operation soapAction="http://tempuri.org/IService/MakePayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ManualConfirm">
+      <soap:operation soapAction="http://tempuri.org/IService/ManualConfirm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ManualCancel">
+      <soap:operation soapAction="http://tempuri.org/IService/ManualCancel" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

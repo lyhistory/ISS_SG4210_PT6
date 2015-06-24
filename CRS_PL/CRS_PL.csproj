@@ -52,6 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -321,6 +322,7 @@
     </Compile>
     <Compile Include="Service\IAttendanceService.cs" />
     <Compile Include="Service\ICourseRegistrationService.cs" />
+    <Compile Include="Service\ServiceValidator.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Admin\CreateCourse.aspx.cs">
       <DependentUpon>CreateCourse.aspx</DependentUpon>

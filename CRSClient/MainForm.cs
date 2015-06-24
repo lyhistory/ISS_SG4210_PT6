@@ -19,8 +19,13 @@ namespace CRSClient
 
         private void btnRegistrateCourse_Click(object sender, EventArgs e)
         {
-            CourseRegstrationForm registrationForm = new CourseRegstrationForm();
-            registrationForm.ShowDialog();
+            LoginForm login = new LoginForm();
+           // if (login.ShowDialog() == DialogResult.OK)
+            {
+                CourseRegstrationForm registrationForm = new CourseRegstrationForm(login.LoginInfoObj);
+                registrationForm.ShowDialog();
+            }
+            
         }
 
         private void btnAttendance_Click(object sender, EventArgs e)

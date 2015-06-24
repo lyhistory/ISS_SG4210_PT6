@@ -47,15 +47,18 @@ namespace nus.iss.crs.bl
 
 
 
-        public string SubmitAttendance(string studentIDNo, AttendanceStatus status, string remark, string courseCode, DateTime dateFrom, DateTime dateTo)
+        public string SubmitAttendance(string participantID, AttendanceStatus status, string remark, string courseCode, DateTime dateFrom, DateTime dateTo)
         {
             AttendanceManager manager = new AttendanceManager();
 
             ParticipantAttendance pAttendance = new ParticipantAttendance();
 
-            pAttendance.Attendant = null;
+            Participant p =  new Participant();
+            p.ParticipantID = participantID;
+            
+            pAttendance.Attendant = p;
             pAttendance.ClassDate = DateTime.Now;
-            pAttendance.CourseObj = null;
+            pAttendance.CourseObj = crsManager.GetCourseByCode(courseCode); ;
             pAttendance.Remark = remark;
             pAttendance.Status = status;
 

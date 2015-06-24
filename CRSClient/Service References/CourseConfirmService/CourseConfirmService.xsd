@@ -17,40 +17,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CancelCourseClass">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="classSize" type="xs:int" />
-        <xs:element minOccurs="0" name="classCode" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CancelCourseClassResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="classCode" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ConfirmCourseClass">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="classSize" type="xs:int" />
-        <xs:element minOccurs="0" name="classCode" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ConfirmCourseClassResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="classCode" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="MakePayment">
     <xs:complexType>
       <xs:sequence>
@@ -64,6 +30,20 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="classCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ManualConfirm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="classCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ManualCancel">
+    <xs:complexType>
+      <xs:sequence>
         <xs:element minOccurs="0" name="classCode" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
