@@ -1,11 +1,15 @@
 ﻿using nus.iss.crs.bl;
 using nus.iss.crs.bl.Session;
+using nus.iss.crs.dm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Script.Serialization;
+using System.Web.Security;
 using System.Web.UI;
 
 namespace nus.iss.crs.pl.Admin
@@ -21,6 +25,18 @@ namespace nus.iss.crs.pl.Admin
         {
             if (IsPostBack)
                 return;
+
+            //role manager
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/home/logon");
+            }
+            var userdata = (new JavaScriptSerializer()).Deserialize<User>(((FormsIdentity)HttpContext.Current.User.Identity).Ticket.UserData);
+            if (userdata == null || (userdata.RoleName.Equals("SYSTEM") || userdata.RoleName.Equals("COURSE")) == false)
+            {
+                Response.Redirect("/home/logon");
+            }
+
             RegistraterAction();
         }
 

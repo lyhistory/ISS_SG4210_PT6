@@ -171,7 +171,6 @@
     <Compile Include="Admin\AdminAction.cs" />
     <Compile Include="Admin\AdminHome.aspx.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdminHome.aspx.designer.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
@@ -182,9 +181,6 @@
     </Compile>
     <Compile Include="Admin\AdminMenu.aspx.designer.cs">
       <DependentUpon>AdminMenu.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\BasePage.cs">
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\CreateClass.aspx.cs">
       <DependentUpon>CreateClass.aspx</DependentUpon>
