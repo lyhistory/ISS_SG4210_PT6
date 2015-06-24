@@ -25,6 +25,7 @@ namespace CRS_DAL.EF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Attendance> Attendances { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<CompanyHR> CompanyHRs { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
@@ -34,7 +35,6 @@ namespace CRS_DAL.EF
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Attendance> Attendances { get; set; }
         public virtual DbSet<Instructor> Instructors { get; set; }
     }
 }
