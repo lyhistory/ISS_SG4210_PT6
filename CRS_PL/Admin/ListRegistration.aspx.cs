@@ -76,12 +76,14 @@ namespace nus.iss.crs.pl.Admin
             endDate.Text = registration.CourseClassObj.EndDate.ToString();
             courseRow.Cells.Add(endDate);
 
-            TableCell updateID = new TableCell();
-            LinkButton updateLb = new LinkButton();
-            updateLb.Text = "Enable / Disable";
-            updateLb.OnClientClick = "javascript:return ChangeRegistrationStatus(this);";
-            updateID.Controls.Add(updateLb);
-            courseRow.Cells.Add(updateID);
+            TableCell disableID = new TableCell();
+            LinkButton disableLb = new LinkButton();
+            disableLb.Text = "Enable / Disable";
+            disableLb.OnClientClick = "javascript:return ChangeRegistrationStatus(this);";
+            disableLb.CommandName = "Disable";
+            disableLb.CommandArgument = registration.RegID;
+            disableID.Controls.Add(disableLb);
+            courseRow.Cells.Add(disableID);
 
             TableCell editID = new TableCell();
             HyperLink h = new HyperLink();
@@ -99,6 +101,12 @@ namespace nus.iss.crs.pl.Admin
 
             return courseRow;
         }
+
+        protected void ChangeRegistrationStatus_Click(object sender, EventArgs e )
+        {
+
+        }
+
         public override void RegistraterAction()
         {
             //throw new NotImplementedException();

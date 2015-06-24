@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace nus.iss.crs.pl.Admin {
+namespace nus.iss.crs.pl.Admin.Ctrl {
     
     
-    public partial class ListUser {
+    public partial class UserList {
         
         /// <summary>
-        /// PlaceHolder1 control.
+        /// Table1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
+        protected global::System.Web.UI.WebControls.Table Table1;
     }
 }
