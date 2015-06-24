@@ -1,6 +1,7 @@
 ﻿using nus.iss.crs.bl;
 using nus.iss.crs.bl.Session;
 using nus.iss.crs.dm.Course;
+using nus.iss.crs.pl.Admin.Ctrl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,12 +35,19 @@ namespace nus.iss.crs.pl.Admin
             else
             {
                 CalStartDate.Visible = false;
+                CalEndDate.Visible = false;
+                PopulateCategoryList();
             }
         }
 
-        private void ShowCourseClassList()
+        private void PopulateCategoryList()
         {
-            //List<CourseClass> courseClassList = manager.GetCourseClassList(null,)
+            categoryListID.Items.Add("ALL");
+            foreach (CourseCategory courseCategory in manager.GetCourseCategoryList())
+            {
+                ListItem item = new ListItem(courseCategory.Name, courseCategory.ID);
+                categoryListID.Items.Add(item);
+            }
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -56,12 +64,54 @@ namespace nus.iss.crs.pl.Admin
 
         protected void ImageButton1_SelectionChanged(object sender, ImageClickEventArgs e)
         {
-            txtStartDate.Text = CalStartDate.SelectedDate.ToString();
+            txtStartDate.Text = CalStartDate.SelectedDate.ToShortDateString();
         }
 
         public override void RegistraterAction()
         {
             //throw new NotImplementedException();
+        }
+
+        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+        {
+            if (CalEndDate.Visible == false)
+            {
+                CalEndDate.Visible = true;
+            }
+            else
+            {
+                CalEndDate.Visible = false;
+            }
+        }
+
+        protected void ImageButton2_SelectionChanged(object sender, ImageClickEventArgs e)
+        {
+            txtEndDate.Text = CalEndDate.SelectedDate.ToShortDateString();
+        }
+
+        private void ShowCourseClassList()
+        {
+            if (categoryListID.SelectedValue == "ALL")
+            {
+                foreach(CourseCategory courseCategory in manager.GetCourseCategoryList())
+                {
+                    foreach(Course course in manager.GetCourseListByCategory(courseCategory))
+                    {
+                        List<CourseClass> courseClassList = manager.GetCourseClassList(course, DateTime.Parse(txtStartDate.Text.ToString()), DateTime.Parse(txtEndDate.Text.ToString()));
+                        CalendarClassList table = (CalendarClassList)Page.LoadControl("./Ctrl/CalendarClassList.ascx");
+                        table.courseClassList = courseClassList;
+                        PlaceHolder1.Controls.Add(table);
+                    }
+                }
+            }
+            else
+            {
+                Course course = manager.GetCourseByCode(categoryListID.SelectedValue);
+                List<CourseClass> courseClassList = manager.GetCourseClassList(course, DateTime.Parse(txtStartDate.Text.ToString()), DateTime.Parse(txtEndDate.Text.ToString()));
+                CalendarClassList table = (CalendarClassList)Page.LoadControl("./Ctrl/CalendarClassList.ascx");
+                table.courseClassList = courseClassList;
+                PlaceHolder1.Controls.Add(table);
+            }     
         }
     }
 }
