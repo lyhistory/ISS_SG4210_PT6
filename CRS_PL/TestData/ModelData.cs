@@ -29,17 +29,17 @@ namespace nus.iss.crs.pl.TestData
         {
             List<CourseInstructor> instructors = new List<CourseInstructor>();
 
-            CourseInstructor instructor = new CourseInstructor("1","Super Hero");
-            instructors.Add(instructor);
+            //CourseInstructor instructor = new CourseInstructor("1","Super Hero");
+            //instructors.Add(instructor);
 
-            instructor = new CourseInstructor("2","Super Man");
-            instructors.Add(instructor);
+            //instructor = new CourseInstructor("2","Super Man");
+            //instructors.Add(instructor);
 
-            instructor = new CourseInstructor("3","Green Man");
-            instructors.Add(instructor);
+            //instructor = new CourseInstructor("3","Green Man");
+            //instructors.Add(instructor);
 
-            instructor = new CourseInstructor("4","Iron Man");
-            instructors.Add(instructor);
+            //instructor = new CourseInstructor("4","Iron Man");
+            //instructors.Add(instructor);
 
             return instructors;
         }

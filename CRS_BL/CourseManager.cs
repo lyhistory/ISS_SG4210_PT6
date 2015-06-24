@@ -89,6 +89,10 @@ namespace nus.iss.crs.bl
         public  List<Course> GetCourseListByCategory(CourseCategory courseCategory)
         {
             List<Course> courseList = unitOfWork.CourseService.GetCourseListByCategory(courseCategory.ID);
+            foreach (Course course in courseList)
+            {
+                course.AddClassList(GetCourseClassList(course));
+            }
             return courseList;
         }
 
@@ -119,6 +123,11 @@ namespace nus.iss.crs.bl
         public  List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo)
         {
              return unitOfWork.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo);             
+        }
+
+        public List<CourseClass> GetCourseClassList(Course course)
+        {
+            return unitOfWork.CourseService.GetCourseClassList(course.Code, DateTime.MinValue, DateTime.MaxValue);
         }
 
         public  List<CourseInstructor> GetInstructorList()

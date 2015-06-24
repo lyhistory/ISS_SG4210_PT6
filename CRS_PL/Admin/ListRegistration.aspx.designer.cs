@@ -22,6 +22,15 @@ namespace nus.iss.crs.pl.Admin {
         protected global::System.Web.UI.WebControls.DropDownList UserPropertyList;
         
         /// <summary>
+        /// SearchRegistration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SearchRegistration;
+        
+        /// <summary>
         /// Table1 control.
         /// </summary>
         /// <remarks>

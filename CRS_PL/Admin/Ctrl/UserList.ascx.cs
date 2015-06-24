@@ -50,7 +50,7 @@ namespace nus.iss.crs.pl.Admin.Ctrl
 
             TableCell disableID = new TableCell();
             LinkButton lb = new LinkButton();
-            lb.Text = "Enable/ Disable";
+            lb.Text = "Enable /Disable";
             lb.OnClientClick = "";
             disableID.Controls.Add(lb);
             courseRow.Cells.Add(disableID);

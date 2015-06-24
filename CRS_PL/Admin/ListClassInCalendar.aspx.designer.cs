@@ -13,22 +13,22 @@ namespace nus.iss.crs.pl.Admin {
     public partial class ListCourseInCalendar {
         
         /// <summary>
-        /// categoryID control.
+        /// courseID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label categoryID;
+        protected global::System.Web.UI.WebControls.Label courseID;
         
         /// <summary>
-        /// categoryListID control.
+        /// courseListID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList categoryListID;
+        protected global::System.Web.UI.WebControls.DropDownList courseListID;
         
         /// <summary>
         /// txtStartDate control.
@@ -40,24 +40,6 @@ namespace nus.iss.crs.pl.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtStartDate;
         
         /// <summary>
-        /// ImageButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
-        
-        /// <summary>
-        /// CalStartDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalStartDate;
-        
-        /// <summary>
         /// txtEndDate control.
         /// </summary>
         /// <remarks>
@@ -67,22 +49,13 @@ namespace nus.iss.crs.pl.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
         
         /// <summary>
-        /// ImageButton2 control.
+        /// SearchClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
-        
-        /// <summary>
-        /// CalEndDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalEndDate;
+        protected global::System.Web.UI.WebControls.Button SearchClass;
         
         /// <summary>
         /// PlaceHolder1 control.

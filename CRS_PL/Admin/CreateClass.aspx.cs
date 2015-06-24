@@ -13,9 +13,21 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class ClassCreation : CrsPageController
     {
-        //CourseManager manager = null;//
+        CourseManager manager = null;//
         protected override void Page_Load(object sender, EventArgs e)
         {
+            base.Page_Load(sender, e);
+
+            if (BLSession == null)
+            {
+                ISession session = new SessionImplement();
+                manager = session.CreateCourseManager();
+            }
+            else
+            {
+                manager = BLSession.CreateCourseManager();
+            }
+
             if (this.IsPostBack)
             { }
             else
@@ -34,10 +46,10 @@ namespace nus.iss.crs.pl.Admin
 
             //Session Facade by Tong
 
-            CourseManager courseManager = BLSession.CreateCourseManager();
+            
             //List<CourseCategory> courseCategoryList = courseManager.GetCourseCategoryList();
 
-            List<CourseCategory> courseCategoryList = courseManager.GetCourseCategoryList();
+            List<CourseCategory> courseCategoryList = manager.GetCourseCategoryList();
             foreach (CourseCategory category in courseCategoryList)
             {
                 ListItem item = new ListItem(category.Name, category.ID);
@@ -47,7 +59,7 @@ namespace nus.iss.crs.pl.Admin
 
         private void PopulateCourse(CourseCategory category)
         {
-            foreach (Course course in category.GetCourses())
+            foreach (Course course in manager.GetCourseListByCategory(category))
             {
                 ListItem item = new ListItem(course.CourseTitle, course.Code);
                 courseListID.Items.Add(item);
@@ -61,7 +73,6 @@ namespace nus.iss.crs.pl.Admin
             CourseManager courseManager = BLSession.CreateCourseManager();
 
             ListItem itemCategory = categoryListID.SelectedItem;
-            CourseCategory selectedCategory = null;
 
             //foreach (CourseCategory category in testData.GetCategories())
             //{
@@ -95,6 +106,9 @@ namespace nus.iss.crs.pl.Admin
             cls.Size = int.Parse(sizeID.Text);
             cls.StartDate = DateTime.Parse(startDateID.Text);
             cls.EndDate = DateTime.Parse(endDateID.Text);
+
+            ClassManager classManager = BLSession.CreateClassManager();
+            classManager.CreateCourseClass(cls);
 
             NextPage(true);
         }

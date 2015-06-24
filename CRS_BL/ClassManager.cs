@@ -21,7 +21,7 @@ namespace nus.iss.crs.bl
             //{
             //    throw new Exception("No permission.");
             //}
-        }
+        } 
 
         public bool CreateCourseClass(CourseClass courseClass)
         {

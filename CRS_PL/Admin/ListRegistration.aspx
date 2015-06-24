@@ -23,8 +23,7 @@
                 <label for="SearchValue">Search Value</label>
                 <input type="text" class="form-control" id="SearchValue">
             </div>
-
-            <button type="submit" class="btn btn-default" onclick="SearchUser">Search</button>
+            <asp:Button ID="SearchRegistration" runat="server" Text="Search" CssClass="btn btn-default" OnClick="SearchRegistration_Click" />
         </form>
     </div>
     <br />

@@ -61,7 +61,7 @@ namespace nus.iss.crs.pl.Admin
             courseRow.Cells.Add(courseCode);
 
             TableCell courseName = new TableCell();
-            courseName.Text = registration.CourseClassObj.GetCourse().Description;
+            courseName.Text = registration.CourseClassObj.GetCourse().CourseTitle;
             courseRow.Cells.Add(courseName);
 
             TableCell classCode = new TableCell();
@@ -78,7 +78,7 @@ namespace nus.iss.crs.pl.Admin
 
             TableCell disableID = new TableCell();
             LinkButton disableLb = new LinkButton();
-            disableLb.Text = "Enable / Disable";
+            disableLb.Text = "Enable /Disable";
             disableLb.OnClientClick = "javascript:return ChangeRegistrationStatus(this);";
             disableLb.CommandName = "Disable";
             disableLb.CommandArgument = registration.RegID;
@@ -110,6 +110,11 @@ namespace nus.iss.crs.pl.Admin
         public override void RegistraterAction()
         {
             //throw new NotImplementedException();
+        }
+
+        protected void SearchRegistration_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

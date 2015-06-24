@@ -34,84 +34,86 @@ namespace nus.iss.crs.pl.Admin
             }
             else
             {
-                CalStartDate.Visible = false;
-                CalEndDate.Visible = false;
+                //CalStartDate.Visible = false;
+                //CalEndDate.Visible = false;
                 PopulateCategoryList();
             }
         }
 
         private void PopulateCategoryList()
         {
-            categoryListID.Items.Add("ALL");
-            foreach (CourseCategory courseCategory in manager.GetCourseCategoryList())
+            courseListID.Items.Add("ALL");
+            foreach (Course course in manager.GetCourseList())
             {
-                ListItem item = new ListItem(courseCategory.Name, courseCategory.ID);
-                categoryListID.Items.Add(item);
+                ListItem item = new ListItem(course.CourseTitle, course.Code);
+                courseListID.Items.Add(item);
             }
         }
 
-        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
-        {
-            if (CalStartDate.Visible == false)
-            {
-                CalStartDate.Visible = true;
-            }
-            else
-            {
-                CalStartDate.Visible = false;
-            }
-        }
+        //protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        //{
+        //    if (CalStartDate.Visible == false)
+        //    {
+        //        CalStartDate.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        CalStartDate.Visible = false;
+        //    }
+        //}
 
-        protected void ImageButton1_SelectionChanged(object sender, ImageClickEventArgs e)
-        {
-            txtStartDate.Text = CalStartDate.SelectedDate.ToShortDateString();
-        }
+        //protected void CalStartDate_SelectionChanged(object sender, ImageClickEventArgs e)
+        //{
+        //    txtStartDate.Text = CalStartDate.SelectedDate.ToShortDateString();
+        //}
+        //protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+        //{
+        //    if (CalEndDate.Visible == false)
+        //    {
+        //        CalEndDate.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        CalEndDate.Visible = false;
+        //    }
+        //}
+
+        //protected void CalEndDate_SelectionChanged(object sender, ImageClickEventArgs e)
+        //{
+        //    txtEndDate.Text = CalEndDate.SelectedDate.ToShortDateString();
+        //}
 
         public override void RegistraterAction()
         {
             //throw new NotImplementedException();
         }
 
-        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
-        {
-            if (CalEndDate.Visible == false)
-            {
-                CalEndDate.Visible = true;
-            }
-            else
-            {
-                CalEndDate.Visible = false;
-            }
-        }
-
-        protected void ImageButton2_SelectionChanged(object sender, ImageClickEventArgs e)
-        {
-            txtEndDate.Text = CalEndDate.SelectedDate.ToShortDateString();
-        }
-
         private void ShowCourseClassList()
         {
-            if (categoryListID.SelectedValue == "ALL")
+            if (courseListID.SelectedValue == "ALL")
             {
-                foreach(CourseCategory courseCategory in manager.GetCourseCategoryList())
+                foreach(Course course in manager.GetCourseList())
                 {
-                    foreach(Course course in manager.GetCourseListByCategory(courseCategory))
-                    {
-                        List<CourseClass> courseClassList = manager.GetCourseClassList(course, DateTime.Parse(txtStartDate.Text.ToString()), DateTime.Parse(txtEndDate.Text.ToString()));
-                        CalendarClassList table = (CalendarClassList)Page.LoadControl("./Ctrl/CalendarClassList.ascx");
-                        table.courseClassList = courseClassList;
-                        PlaceHolder1.Controls.Add(table);
-                    }
+                    List<CourseClass> courseClassList = manager.GetCourseClassList(course, DateTime.Parse(txtStartDate.Text.ToString()), DateTime.Parse(txtEndDate.Text.ToString()));
+                    CalendarClassList table = (CalendarClassList)Page.LoadControl("./Ctrl/CalendarClassList.ascx");
+                    table.courseClassList = courseClassList;
+                    PlaceHolder1.Controls.Add(table);
                 }
             }
             else
             {
-                Course course = manager.GetCourseByCode(categoryListID.SelectedValue);
+                Course course = manager.GetCourseByCode(courseListID.SelectedValue);
                 List<CourseClass> courseClassList = manager.GetCourseClassList(course, DateTime.Parse(txtStartDate.Text.ToString()), DateTime.Parse(txtEndDate.Text.ToString()));
                 CalendarClassList table = (CalendarClassList)Page.LoadControl("./Ctrl/CalendarClassList.ascx");
                 table.courseClassList = courseClassList;
                 PlaceHolder1.Controls.Add(table);
             }     
         }
+
+        protected void SearchClass_Click(object sender, EventArgs e)
+        {
+            ShowCourseClassList();
+        }
+
     }
 }
