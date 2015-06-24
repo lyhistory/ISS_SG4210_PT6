@@ -1,29 +1,42 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="nus.iss.crs.pl.Admin.Site" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang ="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head id="Head1" runat="server">
-	<meta name="title" content="CRS">
-	<meta name="author" content="LAN">
-	<meta name="version" content="1">
-	<meta name="description" content="1">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="title" content="CRS">
+    <meta name="author" content="LAN">
+    <meta name="version" content="1">
+    <meta name="description" content="1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Course Registration System</title>
-    
-    <link href="~/Admin/css/treeview.css" type="text/css"  rel="stylesheet" />
-      
-     <script src="~/Scripts/jquery-1.10.2.min.js" language="javascript" type="text/javascript" ></script>
-     <script src="~/Admin/css/bootstrap-3.3.4-dist/js/bootstrap.js" language="javascript" type="text/javascript"></script>
-     <link href="~/Admin/css/bootstrap-3.3.4-dist/css/bootstrap.css" type="text/css"  rel="stylesheet" />
-     <link href="~/Admin/css/bootstrap-3.3.4-dist/css/bootstrap-theme.css" type="text/css"  rel="stylesheet" />
 
-        <script language="javascript"  type="text/javascript">
+    <%--<link href="~/Admin/css/treeview.css" type="text/css" rel="stylesheet" />--%>
 
-        $('.tree-toggle').click(function () {
-            $(this).parent().children('ul.tree').toggle(200);
-        });
+    <script src="/Scripts/jquery-1.10.2.min.js" language="javascript" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="/Admin/css/bootstrap-3.3.4-dist/js/bootstrap.js" language="javascript" type="text/javascript"></script>
+    <link href="/Admin/css/bootstrap-3.3.4-dist/css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="/Admin/css/bootstrap-3.3.4-dist/css/bootstrap-theme.css" type="text/css" rel="stylesheet" />
+
+    <script src="/Admin/fancy-tree/jquery.fancytree.js" type="text/javascript"></script>
+    <link href="/Admin/fancy-tree/skin-win8/ui.fancytree.css" type="text/css" rel="Stylesheet" />
+    <script language="javascript" type="text/javascript">
+
+        //$('.tree-toggle').click(function () {
+        //    $(this).parent().children('ul.tree').toggle(200);
+        //});
         $(function () {
-            $('.tree-toggle').parent().children('ul.tree').toggle(200);
+            // $('.tree-toggle').parent().children('ul.tree').toggle(200);
+
+            $("#tree").fancytree({
+                click: function (event, data) {
+                    if (data.node.data.url != undefined) {
+                        window.location.href = data.node.data.url;
+                    } else {
+                        alert("hi");
+                    }
+                }
+            });
         })
 
     </script>
@@ -31,59 +44,50 @@
     </asp:ContentPlaceHolder>
 </head>
 <body class="standard">
-	<form id="form1" runat="server">
-		<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-		<div id="PublicWrapper" class="width900 float-center  line-height-normal font-size-medium">
-			<div runat="server" id="placeholder_Header1" class="sf_cols placeholder_1">
-				<div runat="server" style="float: left; width: 100%; margin: 0; " class="sf_colsOut">
-					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
-						<asp:contentplaceholder id="placeholder_HeadContent1" runat="server" />
-					</div>
-				</div>
-			</div>
-			<div runat="server" id="placeholder_Header2" class="sf_cols placeholder_11">
-				<div runat="server" style="float: left; width: 100%; margin: 0; " class="sf_colsOut">
-					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
-						<asp:contentplaceholder id="placeholder_HeadContent2" runat="server" />
-					</div>
-				</div>
-			</div>
-			<div runat="server" id="placeholder_Cententer" class="sf_cols placeholder_8">
-				<div runat="server" style="float: left; width: 32%; margin: 0; " class="sf_colsOut">
-					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <div id="PublicWrapper" class="width900 float-center  line-height-normal font-size-medium">
+            <div runat="server" id="placeholder_Header1" class="sf_cols placeholder_1">
+                <div runat="server" style="float: left; width: 100%; margin: 0;" class="sf_colsOut">
+                    <div runat="server" style="padding: 7px;" class="sf_colsIn">
+                        <asp:ContentPlaceHolder ID="placeholder_HeadContent1" runat="server" />
+                    </div>
+                </div>
+            </div>
+            <div runat="server" id="placeholder_Header2" class="sf_cols placeholder_11">
+                <div runat="server" style="float: left; width: 100%; margin: 0;" class="sf_colsOut">
+                    <div runat="server" style="padding: 7px;" class="sf_colsIn">
+                        <asp:ContentPlaceHolder ID="placeholder_HeadContent2" runat="server" />
+                    </div>
+                </div>
+            </div>
+            <div runat="server" id="placeholder_Cententer" class="sf_cols placeholder_8">
+                <div runat="server" style="float: left; width: 32%; margin: 0;" class="sf_colsOut">
+                    <div runat="server" style="padding: 7px;" class="sf_colsIn">
 
-                        <div class="container"> 
-                              <div class="row">
-                                  <div class="col-md-4">
-                                      <div class="well">
-                                          <div>
-                                              <ul class="nav">
-                                                  <li>
-                                                      Course Admin
-                                                      <ul class="nav tree">
-                                                          <li><a href="ListCourse.aspx">View Course</a>
-                                                          </li>
-                                                          <li><a href="CreateCourse.aspx">Create Course</a>
-                                                          </li>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="well">
+                                        <div id="tree">
+                                            <ul id="treeData" style="display: none;">
+                                                <li class="folder expanded">Course Admin
+                                                      <ul>
+                                                          <li data-url="ListCourse.aspx">View Course</li>
+                                                          <li data-url="CreateCourse.aspx">Create Course</li>
                                                       </ul>
-                                                  </li>
-                                                  <li>
-                                                      Class Admin
-                                                    <ul class="nav tree">
-                                                      <li><a href="ListClassInCourse.aspx">View Class</a>
-                                                      </li>
-                                                      <li><a href="CreateCourse.aspx">Create Class</a>
-                                                      </li>
+                                                </li>
+                                                <li class="folder expanded">Class Admin
+                                                    <ul class="folder">
+                                                        <li data-url="ListClassInCourse.aspx">View Class</li>
+                                                        <li data-url="CreateCourse.aspx">Create Class</li>
                                                     </ul>
-                                                  </li>
-                                                  <li>
-                                                    Registration Management
-                                                    <ul class="nav tree">
-                                                      <li><a href="#">Overview</a>
-                                                      </li>
-                                                      <li><a href="#">CSS</a>
-                                                      </li>
-                                                      <%--<li>
+                                                </li>
+                                                <li class="folder expanded">Registration Management
+                                                    <ul class="folder">
+                                                        <li data-url="#">Overview</li>
+                                                        <li data-url="#">CSS</li>
+                                                        <%--<li>
                                                         <label label-default="" class="tree-toggle nav-header">Media Queries</label>
                                                         <ul class="nav tree">
                                                           <li><a href="#">Text</a>
@@ -102,46 +106,40 @@
                                                         </ul>
                                                       </li>--%>
                                                     </ul>
-                                                  </li>
-                                                  <li>
-                                                    User Management
-                                                    <ul class="nav tree">
-                                                        <li><a href="ListUser.aspx">View User</a>
-                                                        </li>
-                                                        <li><a href="#">Course Administrator</a>
-                                                        </li>
-                                                        <li><a href="#">Create User</a>
-                                                        </li>
+                                                </li>
+                                                <li class="folder expanded">User Management
+                                                    <ul>
+                                                        <li data-url="ListUser.aspx">View User</li>
+                                                        <li data-url="#">Course Administrator</li>
+                                                        <li data-url="#">Create User</li>
                                                     </ul>
-                                                  </li>
-                                                  <li>
-                                                      Report                                                     
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
+                                                </li>
+                                                <li>Report                                                     
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-						<%--<asp:contentplaceholder id="placeholder_LeftMenu" runat="server" />--%>
-					</div>
+                        </div>
+                        <%--<asp:contentplaceholder id="placeholder_LeftMenu" runat="server" />--%>
+                    </div>
 
-				</div>
-				<div runat="server" style="float: left; width: 66%; margin: 0; " class="sf_colsOut">
-					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
-						<asp:contentplaceholder id="placeholder_MainContent" runat="server" />
-					</div>
-				</div>
-			</div>
-			<div runat="server" id="placeholder_Footer" class="sf_cols placeholder_10">
-				<div runat="server" style="float: left; width: 100%; margin: 0; " class="sf_colsOut">
-					<div runat="server" style=" padding: 7px; " class="sf_colsIn"  >
-						<asp:contentplaceholder id="placeholder_FooterContent" runat="server" />
-					</div>
-				</div>
-			</div>
-	</div>
-	</form>
+                </div>
+                <div runat="server" style="float: left; width: 66%; margin: 0;" class="sf_colsOut">
+                    <div runat="server" style="padding: 7px;" class="sf_colsIn">
+                        <asp:ContentPlaceHolder ID="placeholder_MainContent" runat="server" />
+                    </div>
+                </div>
+            </div>
+            <div runat="server" id="placeholder_Footer" class="sf_cols placeholder_10">
+                <div runat="server" style="float: left; width: 100%; margin: 0;" class="sf_colsOut">
+                    <div runat="server" style="padding: 7px;" class="sf_colsIn">
+                        <asp:ContentPlaceHolder ID="placeholder_FooterContent" runat="server" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
- 
