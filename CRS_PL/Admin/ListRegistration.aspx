@@ -48,8 +48,16 @@
     </div>
 
     <script type="text/javascript">
-        function ChangeRegistrationStatus(val) {
-
+        function ChangeRegistrationStatus(btn) {
+            if (confirm('Are you sure ?')) {
+                //clicked the OK button.  
+                var registrationID = btn.ToolTip
+                __doPostBack('ChangeRegistrationStatus', registrationID);
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     </script>
 </asp:Content>

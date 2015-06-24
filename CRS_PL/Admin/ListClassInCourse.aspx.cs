@@ -23,7 +23,6 @@ namespace nus.iss.crs.pl.Admin
             {
                 PopulateCategoryList();
             }
-            //TestData();
         }
 
 
@@ -38,26 +37,6 @@ namespace nus.iss.crs.pl.Admin
             }
         }
 
-        //private void TestData()
-        //{
-
-        //    ModelData testData = ModelData.GetInstance();
-            
-
-        //    testData.AddCourseClasses();
-        //    foreach (Course course in testData.GetCourses())
-        //    {
-        //        CourseClassList table = (CourseClassList)Page.LoadControl("./Ctrl/CourseClassList.ascx");
-
-        //        table.course = course;
-        //        PlaceHolder1.Controls.Add(table);
-        //        Label newline = new Label();
-        //        newline.Text = "<BR/>";
-        //        PlaceHolder1.Controls.Add(newline);
-        //    }
-        //}
-
-
         public override void RegistraterAction()
         {
             
@@ -66,7 +45,6 @@ namespace nus.iss.crs.pl.Admin
         protected void categoryListID_SelectedIndexChanged(object sender, EventArgs e)
         {
             //load and display course and course class
-
             ListItem item = categoryListID.SelectedItem;
             if (item == null)
                 return;

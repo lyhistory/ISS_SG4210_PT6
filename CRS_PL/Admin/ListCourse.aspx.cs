@@ -50,23 +50,6 @@ namespace nus.iss.crs.pl.Admin
             }
         }
 
-        //private void TestData()
-        //{
-        //    ModelData testData = ModelData.GetInstance();
-        //    testData.AddCourse4Categories();
-        //    foreach (CourseCategory courseCategory in testData.GetCategories())
-        //    {
-        //        CategoryCourseList table = (CategoryCourseList)Page.LoadControl("./Ctrl/CategoryCourseList.ascx");
-
-        //        table.Category = courseCategory;
-        //        //table.Category = testData.CreateCategory(); 
-        //        PlaceHolder1.Controls.Add(table);
-        //        Label newline = new Label();
-        //        newline.Text = "<BR/>";
-        //        PlaceHolder1.Controls.Add(newline);
-        //    }
-        //}
-
         public override void RegistraterAction()
         {
             //throw new NotImplementedException();

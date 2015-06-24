@@ -214,6 +214,13 @@
     <Compile Include="Admin\Ctrl\CourseClassList.ascx.designer.cs">
       <DependentUpon>CourseClassList.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Ctrl\UserList.ascx.cs">
+      <DependentUpon>UserList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Ctrl\UserList.ascx.designer.cs">
+      <DependentUpon>UserList.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\EditClass.aspx.cs">
       <DependentUpon>EditClass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -374,6 +381,7 @@
     <Content Include="Admin\Ctrl\CalendarClassList.ascx" />
     <Content Include="Admin\Ctrl\CategoryCourseList.ascx" />
     <Content Include="Admin\Ctrl\CourseClassList.ascx" />
+    <Content Include="Admin\Ctrl\UserList.ascx" />
     <Content Include="Admin\EditClass.aspx" />
     <Content Include="Admin\EditCourse.aspx" />
     <Content Include="Admin\EditCourseRegistration.aspx" />
@@ -398,6 +406,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Calendar.png" />
     <Content Include="Scripts\bootstrap-treeview.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

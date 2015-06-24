@@ -1,4 +1,5 @@
 ﻿using nus.iss.crs.bl;
+using nus.iss.crs.bl.Session;
 using nus.iss.crs.dm;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.TestData;
@@ -13,13 +14,22 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class CreateCourse : CrsPageController
     {
-        //ModelData testData = ModelData.GetInstance();
+        CourseManager manager = null;
 
-        //TODO:
-        CourseManager manager = null;//new CourseManager();
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
+
+            if (BLSession == null)
+            {
+                ISession session = new SessionImplement();
+                manager = session.CreateCourseManager();
+            }
+            else
+            {
+                manager = BLSession.CreateCourseManager();
+            }
+
             if (this.IsPostBack)
                 return;
 

@@ -22,15 +22,6 @@
     </div>--%>
 
     <div>
-        <asp:Table ID="Table1" runat="server" CssClass="table">
-            <asp:TableRow>
-                <asp:TableHeaderCell>LogInID</asp:TableHeaderCell>
-                <asp:TableHeaderCell>Name</asp:TableHeaderCell>
-                <asp:TableHeaderCell>Email</asp:TableHeaderCell>
-                <asp:TableHeaderCell>ContactNumber</asp:TableHeaderCell>
-                <asp:TableHeaderCell>CompanyName</asp:TableHeaderCell>
-                <asp:TableHeaderCell>Active</asp:TableHeaderCell>
-            </asp:TableRow>
-        </asp:Table>
+        <asp:PlaceHolder runat="server" ID="PlaceHolder1" />
     </div>
 </asp:Content>
