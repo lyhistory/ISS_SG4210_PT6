@@ -8,8 +8,10 @@ using System.Web.UI.WebControls;
 
 namespace nus.iss.crs.pl.Admin
 {
-    public partial class AdminHome : BasePage
+    public partial class AdminHome : CrsPageController
     {
- 
+        public override void RegistraterAction()
+        {
+        }
     }
 }
