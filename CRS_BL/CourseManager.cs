@@ -105,6 +105,11 @@ namespace nus.iss.crs.bl
             return courseList;
         }
 
+        public List<Course> GetCourseList()
+        {
+            return unitOfWork.CourseService.GetCourseList();
+        }
+
         public  List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo, ClassStatus status)
         {
             List<CourseClass> courseClassList = unitOfWork.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo, (int)status);

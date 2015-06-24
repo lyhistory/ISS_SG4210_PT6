@@ -98,6 +98,27 @@ namespace CRS_DAL.Service
                     }).ToList();
         }
 
+        public List<dm.Course.Course> GetCourseList()
+        {
+            var _categorylist = this.CourseCategoryRepository.GetAll();
+            var _courselist = this.CourseRepository.GetAll().ToList();
+            var _instructorlist = this.InstructorRepository.GetAll();
+            return (from _course in _courselist
+                    join _instructor in _instructorlist on _course.InstructorID equals _instructor.InstructorID
+                    join _category in _categorylist on _course.CategoryID equals _category.CategoryID
+                    select new dm.Course.Course()
+                    {
+                        CourseTitle = _course.CourseTitle,
+                        Code = _course.CourseCode,
+                        Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
+                        Description = _course.Description,
+                        Duration = _course.NumberOfDays,
+                        Fee = _course.Fee.ToString(),
+                        Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
+                        Status = (dm.Course.CourseStatus)_course.Status
+                    }).ToList();
+        }
+
         public dm.Course.Course GetCourseByCode(string code)
         {
             if (!string.IsNullOrEmpty(code))
