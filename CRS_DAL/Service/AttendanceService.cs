@@ -52,6 +52,7 @@ namespace CRS_DAL.Service
                 _attendance.ClassID = _courseClass.ClassID;
                 _attendance.Status = status;
                 _attendance.AttendanceDate = classDate;
+                _attendance.ParticipantID = participantID;
                 _attendance.Remark = remark;
                 AttendanceRepository.Add(_attendance);
                 unitOfWork.Commit();

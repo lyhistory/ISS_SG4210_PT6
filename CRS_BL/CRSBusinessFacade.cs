@@ -57,7 +57,7 @@ namespace nus.iss.crs.bl
             p.ParticipantID = participantID;
             
             pAttendance.Attendant = p;
-            pAttendance.ClassDate = DateTime.Now;
+            pAttendance.ClassDate = dateFrom.AddDays(2);
             pAttendance.CourseObj = crsManager.GetCourseByCode(courseCode); ;
             pAttendance.Remark = remark;
             pAttendance.Status = status;
