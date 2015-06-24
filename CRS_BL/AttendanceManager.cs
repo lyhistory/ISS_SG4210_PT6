@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm;
+﻿using CRS_DAL.Repository;
+using nus.iss.crs.dm;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.dm.Registration;
 using System;
@@ -11,6 +12,8 @@ namespace nus.iss.crs.bl
 {
     public class AttendanceManager
     {
+        UnitOfWork unitOfWork = new UnitOfWork();
+
         internal AttendanceManager() { }
         internal AttendanceManager(ISession session) 
         {
@@ -22,17 +25,23 @@ namespace nus.iss.crs.bl
 
         public bool SaveParticipantAttendance(ParticipantAttendance attendance)
         {
-            return false;
+            string participantID = attendance.Attendant.ParticipantID;
+            string courseCode = attendance.CourseObj.Code;
+
+            return unitOfWork.AttendanceService.SaveParticipantAttendance(participantID,courseCode,attendance.ClassDate,(int)attendance.Status,attendance.Remark);
         }
 
         public List<ParticipantAttendance> GetUserAttendances(Participant participant)
         {
-            return null;
+            string pariticipantID = participant.ParticipantID;
+            return unitOfWork.AttendanceService.GetUserAttendances(pariticipantID);
         }
 
         public List<ParticipantAttendance> GetUserAttendances(Participant participant, CourseClass cls)
         {
-            return null;
+            string pariticipantID = participant.ParticipantID;
+            string classCode = cls.ClassCode;
+            return unitOfWork.AttendanceService.GetUserAttendances(pariticipantID, classCode);
         }
     }
 }

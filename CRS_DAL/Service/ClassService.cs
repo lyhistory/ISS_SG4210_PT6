@@ -118,7 +118,11 @@ namespace CRS_DAL.Service
                                         Description = _course.Description,
                                         Duration = _course.NumberOfDays,
                                         Fee = _course.Fee.ToString(),
-                                        Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
+                                        Instructor = new dm.CourseInstructor()
+                                        {
+                                            ID = _instructor.InstructorID,
+                                            Name = _instructor.InstructorName
+                                        },
                                         Status = (dm.Course.CourseStatus)_course.Status
                                     }
                                 )

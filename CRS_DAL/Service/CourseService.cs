@@ -50,7 +50,11 @@ namespace CRS_DAL.Service
                                 Description = _course.Description,
                                 Duration = _course.NumberOfDays,
                                 Fee = _course.Fee.ToString(),
-                                Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
+                                Instructor = new dm.CourseInstructor()
+                                {
+                                    ID=_instructor.InstructorID,
+                                    Name=_instructor.InstructorName
+                                },
                                 Status = (dm.Course.CourseStatus)_course.Status
 
                             })
@@ -93,7 +97,11 @@ namespace CRS_DAL.Service
                         Description = _course.Description,
                         Duration = _course.NumberOfDays,
                         Fee = _course.Fee.ToString(),
-                        Instructor = new dm.CourseInstructor(_instructor.InstructorID,_instructor.InstructorName),
+                        Instructor = new dm.CourseInstructor()
+                        {
+                            ID = _instructor.InstructorID,
+                            Name = _instructor.InstructorName
+                        },
                         Status = (dm.Course.CourseStatus)_course.Status
                     }).ToList();
         }
@@ -114,7 +122,11 @@ namespace CRS_DAL.Service
                         Description = _course.Description,
                         Duration = _course.NumberOfDays,
                         Fee = _course.Fee.ToString(),
-                        Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
+                        Instructor = new dm.CourseInstructor()
+                        {
+                            ID = _instructor.InstructorID,
+                            Name = _instructor.InstructorName
+                        },
                         Status = (dm.Course.CourseStatus)_course.Status
                     }).ToList();
         }
@@ -136,7 +148,11 @@ namespace CRS_DAL.Service
                                 Description = _course.Description,
                                 Duration = _course.NumberOfDays,
                                 Fee = _course.Fee.ToString(),
-                                Instructor = new dm.CourseInstructor(_instructor.InstructorID, _instructor.InstructorName),
+                                Instructor = new dm.CourseInstructor()
+                                {
+                                    ID = _instructor.InstructorID,
+                                    Name = _instructor.InstructorName
+                                },
                                 Status = (dm.Course.CourseStatus)_course.Status
                             };
                course.CourseClasses = (from x in _courseClasslist
@@ -230,9 +246,10 @@ namespace CRS_DAL.Service
             {
                 var instructorlist=InstructorRepository.GetAll();
                 return (from instructor in instructorlist
-                        select new dm.CourseInstructor(instructor.InstructorID,instructor.InstructorName)
+                        select new dm.CourseInstructor()
                         {
-
+                            ID=instructor.InstructorID,
+                            Name=instructor.InstructorName
                         }).ToList();
             }
             catch (Exception ex)
@@ -247,7 +264,11 @@ namespace CRS_DAL.Service
             {
                 var instructor= InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(instructorID));
                 if (instructor != null)
-                    return new dm.CourseInstructor(instructor.InstructorID, instructor.InstructorName);
+                    return new dm.CourseInstructor()
+                    {
+                        ID = instructor.InstructorID,
+                        Name = instructor.InstructorName
+                    };
             }
             catch
             {

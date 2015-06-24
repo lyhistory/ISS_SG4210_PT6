@@ -10,10 +10,9 @@ namespace nus.iss.crs.dm
     {
         public string ID { get; set; }
         public string Name {get;set;}
-        public CourseInstructor(string ID,string name)
+        public CourseInstructor()
         {
-            this.ID = ID;
-            this.Name = name;
+ 
         }
     }
 }
