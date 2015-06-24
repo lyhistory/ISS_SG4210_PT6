@@ -19,17 +19,8 @@ namespace nus.iss.crs.bl
             //    throw new Exception("No permission.");
             //}
         }
-        public Attendance CreateAttendance(CourseClass cls)
-        {
-            return null;
-        }
 
-        public bool SaveAttendance(Attendance attendance)
-        {
-            return false;
-        }
-
-        public bool SaveParticipantAttendance(ParticipantAttendance individualAttendance)
+        public bool SaveParticipantAttendance(ParticipantAttendance attendance)
         {
             return false;
         }

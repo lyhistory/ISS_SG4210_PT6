@@ -635,7 +635,7 @@ namespace CRS_DAL.Service
 
         public List<dm.Registration.Participant> GetParticipantListByCourse(dm.Course.Course course, DateTime date)
         {
-            List<CourseClass> _courseClassList = this.CourseClassRepository.GetWhere(x => x.CourseCode.Equals(course.Code) && x.StartDate == date).ToList();
+            List<CourseClass> _courseClassList = this.CourseClassRepository.GetWhere(x => x.CourseCode.Equals(course.Code) && x.StartDate.Date == date.Date).ToList();
             if (_courseClassList == null || _courseClassList.Count > 1)
                 return null; // no such class or more than one class found
             CourseClass _courseClass = _courseClassList.FirstOrDefault();
