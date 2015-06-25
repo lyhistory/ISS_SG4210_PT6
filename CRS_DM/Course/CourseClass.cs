@@ -59,5 +59,7 @@ namespace nus.iss.crs.dm.Course
         }
 
         public string DisplayStartDay { get; set; }
+
+        public int NoOfRegedParticipant { get; set; }
     }
 }
