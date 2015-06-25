@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm.Registration;
+﻿using CRS_DAL.Repository;
+using nus.iss.crs.dm.Registration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace nus.iss.crs.bl
 {
     public class ParticipantManager
     {
+        static UnitOfWork unitOfWork = new UnitOfWork();
+
         internal ParticipantManager() { }
         internal ParticipantManager(ISession session) 
         {
@@ -19,24 +22,25 @@ namespace nus.iss.crs.bl
         }
         public List<Participant> GetParticipants(string companyName)
         {
-            return null;
+            return unitOfWork.CourseRegistrationService.GetEmployeeListByCompanyName(companyName);
         }
 
         public void CreateParticipantByHR(Participant participant)
         { }
 
-        public Participant GetParticipant(string IDNumber, string companyName)
+        public Participant GetParticipant(string idNumber, string companyID)
         {
-            return null;
+            return unitOfWork.CourseRegistrationService.GetParticipantByIDNumber(idNumber, companyID);
         }
         public Participant GetParticipant(string IDNumber)
         {
             //individual participant, not for HR
-            return null;
+            return unitOfWork.CourseRegistrationService.GetParticipantByIDNumber(IDNumber, "");
         }
 
-
-
-
+        public bool EditPariticipant(Participant participant)
+        {
+            return unitOfWork.ParticipantService.EditPariticipant(participant);
+        }
     }   
 }

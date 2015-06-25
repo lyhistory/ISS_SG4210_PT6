@@ -111,6 +111,7 @@
     <Compile Include="Service\ClassService.cs" />
     <Compile Include="Service\CourseRegistrationService.cs" />
     <Compile Include="Service\CourseService.cs" />
+    <Compile Include="Service\ParticipantService.cs" />
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
