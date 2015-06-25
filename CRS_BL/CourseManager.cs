@@ -85,6 +85,20 @@ namespace nus.iss.crs.bl
             return null;
         }
 
+        public bool ChangeCourseStatus(string courseCode)
+        {
+            if (string.IsNullOrEmpty(courseCode))
+                return false;
+            return unitOfWork.CourseService.ChangeCourseStatus(courseCode);
+        }
+
+        public bool DeleteCourse(string courseCode)
+        {
+            if (string.IsNullOrEmpty(courseCode))
+                return false;
+            return unitOfWork.CourseService.DeleteCourse(courseCode);
+        }
+
         //show list of courses in a particular category
         public  List<Course> GetCourseListByCategory(CourseCategory courseCategory)
         {

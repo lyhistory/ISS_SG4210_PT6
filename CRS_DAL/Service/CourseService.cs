@@ -241,6 +241,41 @@ namespace CRS_DAL.Service
             return null;
         }
 
+        public bool ChangeCourseStatus(string courseCode)
+        {
+            try
+            {
+                var course = CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(courseCode));
+                if (course != null)
+                {
+                    if (course.Status == (int)dm.Course.CourseStatus.Enabled)
+                        course.Status = (int)dm.Course.CourseStatus.Disabled;
+                    if (course.Status == (int)dm.Course.CourseStatus.Disabled)
+                        course.Status = (int)dm.Course.CourseStatus.Enabled;
+                    unitOfWork.Commit();
+                    return true;
+                }
+            }
+            catch { }
+            return false;
+        }
+
+        public bool DeleteCourse(string courseCode)
+        {
+            try
+            {
+                var course = CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(courseCode));
+                if (course != null)
+                {
+                    CourseRepository.Delete(course);
+                    unitOfWork.Commit();
+                    return true;
+                }
+            }
+            catch { }
+            return false;
+        }
+
         public List<dm.CourseInstructor> GetInstructorList()
         {
             try
