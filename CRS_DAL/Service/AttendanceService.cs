@@ -198,5 +198,149 @@ namespace CRS_DAL.Service
                         }
                     }).ToList();
         }
+
+        public List<dm.ParticipantAttendance> GetUserAttendancesByClassCode(string classCode)
+        {
+            CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(classCode));
+            if (_courseClass == null)
+                return null;
+            Course _course = this.CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(_courseClass.CourseCode));
+            if (_course == null)
+                return null;
+            CourseCategory _courseCategory = this.CourseCategoryRepository.GetFirstOrDefault(x => x.CategoryID.Equals(_course.CategoryID));
+            if (_courseCategory == null)
+                return null;
+            Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
+            if (_instructor == null)
+                return null;
+
+            
+            List<Attendance> attendancelist = this.AttendanceRepository.GetWhere(x=>x.ClassID.Equals(_courseClass.ClassID)).ToList();
+
+            IQueryable<CourseClass> courseClasslist = this.CourseClassRepository.GetAll();
+            IQueryable<Course> courselist = this.CourseRepository.GetAll();
+            IQueryable<Instructor> instructorlist = this.InstructorRepository.GetAll();
+            IQueryable<CourseCategory> courseCategorylist = this.CourseCategoryRepository.GetAll();
+            IQueryable<Participant> participantlist = this.ParticipantRepository.GetAll();
+
+            return (from attendance in attendancelist
+                    join participant in participantlist on attendance.ParticipantID equals participant.ParticipantID into finalist
+                    from _participant in finalist
+                    select new dm.ParticipantAttendance()
+                    {
+                        Attendant = new dm.Registration.Participant()
+                        {
+                            ParticipantID = _participant.ParticipantID,
+                            IDNumber = _participant.IDNumber,
+                            EmploymentStatus = _participant.EmploymentStatus,
+                            CompanyID = _participant.CompanyID,
+                            CompanyName = _participant.CompanyName,
+                            Salutation = _participant.Salutation,
+                            JobTitle = _participant.JobTitle,
+                            Department = _participant.Department,
+                            FullName = _participant.FullName,
+                            OrganizationSize = _participant.OrganizationSize,
+                            Gender = _participant.Gender == 1 ? "Male" : "Female",
+                            SalaryRange = _participant.SalaryRange,
+                            Nationality = _participant.Nationality,
+                            DOB = _participant.DateOfBirth,
+                            EMail = _participant.Email,
+                            ContactNumber = _participant.ContactNumber,
+                            DietaryRequirement = _participant.DietaryRequirement
+                        },
+                        ClassDate = attendance.AttendanceDate.Value,
+                        Status = (nus.iss.crs.dm.AttendanceStatus)attendance.Status,
+                        Remark = attendance.Remark,
+                        CourseObj = new dm.Course.Course()
+                        {
+                            CourseTitle = _course.CourseTitle,
+                            Code = _course.CourseCode,
+                            Category = new dm.Course.CourseCategory(_courseCategory.CategoryID, _courseCategory.CategoryName, _courseCategory.CategoryDesc),
+                            Description = _course.Description,
+                            Duration = _course.NumberOfDays,
+                            Fee = _course.Fee.ToString(),
+                            Instructor = new dm.CourseInstructor()
+                            {
+                                ID = _instructor.InstructorID,
+                                Name = _instructor.InstructorName
+                            },
+                            Status = (dm.Course.CourseStatus)_course.Status
+                        }
+                    }).ToList();
+        }
+
+        public List<dm.ParticipantAttendance> GetUserAttendancesByClassCode(string classCode, DateTime date)
+        {
+            CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(classCode));
+            if (_courseClass == null)
+                return null;
+            Course _course = this.CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(_courseClass.CourseCode));
+            if (_course == null)
+                return null;
+            CourseCategory _courseCategory = this.CourseCategoryRepository.GetFirstOrDefault(x => x.CategoryID.Equals(_course.CategoryID));
+            if (_courseCategory == null)
+                return null;
+            Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(_course.InstructorID));
+            if (_instructor == null)
+                return null;
+
+
+            List<Attendance> attendancelist = this.AttendanceRepository.GetWhere(x => x.ClassID.Equals(_courseClass.ClassID)
+                &&x.AttendanceDate!=null
+                &&x.AttendanceDate.Value.Year==date.Year
+                &&x.AttendanceDate.Value.Month==date.Month
+                &&x.AttendanceDate.Value.Day==date.Day).ToList();
+
+            IQueryable<CourseClass> courseClasslist = this.CourseClassRepository.GetAll();
+            IQueryable<Course> courselist = this.CourseRepository.GetAll();
+            IQueryable<Instructor> instructorlist = this.InstructorRepository.GetAll();
+            IQueryable<CourseCategory> courseCategorylist = this.CourseCategoryRepository.GetAll();
+            IQueryable<Participant> participantlist = this.ParticipantRepository.GetAll();
+
+            return (from attendance in attendancelist
+                    join participant in participantlist on attendance.ParticipantID equals participant.ParticipantID into finalist
+                    from _participant in finalist
+                    select new dm.ParticipantAttendance()
+                    {
+                        Attendant = new dm.Registration.Participant()
+                        {
+                            ParticipantID = _participant.ParticipantID,
+                            IDNumber = _participant.IDNumber,
+                            EmploymentStatus = _participant.EmploymentStatus,
+                            CompanyID = _participant.CompanyID,
+                            CompanyName = _participant.CompanyName,
+                            Salutation = _participant.Salutation,
+                            JobTitle = _participant.JobTitle,
+                            Department = _participant.Department,
+                            FullName = _participant.FullName,
+                            OrganizationSize = _participant.OrganizationSize,
+                            Gender = _participant.Gender == 1 ? "Male" : "Female",
+                            SalaryRange = _participant.SalaryRange,
+                            Nationality = _participant.Nationality,
+                            DOB = _participant.DateOfBirth,
+                            EMail = _participant.Email,
+                            ContactNumber = _participant.ContactNumber,
+                            DietaryRequirement = _participant.DietaryRequirement
+                        },
+                        ClassDate = attendance.AttendanceDate.Value,
+                        Status = (nus.iss.crs.dm.AttendanceStatus)attendance.Status,
+                        Remark = attendance.Remark,
+                        CourseObj = new dm.Course.Course()
+                        {
+                            CourseTitle = _course.CourseTitle,
+                            Code = _course.CourseCode,
+                            Category = new dm.Course.CourseCategory(_courseCategory.CategoryID, _courseCategory.CategoryName, _courseCategory.CategoryDesc),
+                            Description = _course.Description,
+                            Duration = _course.NumberOfDays,
+                            Fee = _course.Fee.ToString(),
+                            Instructor = new dm.CourseInstructor()
+                            {
+                                ID = _instructor.InstructorID,
+                                Name = _instructor.InstructorName
+                            },
+                            Status = (dm.Course.CourseStatus)_course.Status
+                        }
+                    }).ToList();
+        }
     }
 }

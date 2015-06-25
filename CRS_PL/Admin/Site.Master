@@ -114,7 +114,10 @@
                                                         <li data-url="#">Create User</li>
                                                     </ul>
                                                 </li>
-                                                <li>Report                                                     
+                                                <li class="folder expanded">Report      
+                                                    <ul>
+                                                        <li data-url="ViewReport.aspx">View Report</li>
+                                                    </ul>                                               
                                                 </li>
                                             </ul>
                                         </div>

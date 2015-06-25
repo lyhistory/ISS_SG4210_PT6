@@ -304,6 +304,13 @@
     <Compile Include="Admin\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ViewReport.aspx.cs">
+      <DependentUpon>ViewReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewReport.aspx.designer.cs">
+      <DependentUpon>ViewReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AppCode\Filter\CRSAuthorizeAttribute.cs" />
     <Compile Include="AppCode\FormAuthentication\CRSFormsAuthentication.cs" />
     <Compile Include="AppCode\FormAuthentication\CRSFormsPrincipal.cs" />
@@ -406,6 +413,7 @@
     <Content Include="Admin\ListClassInCalendar.aspx" />
     <Content Include="Admin\ListRegistration.aspx" />
     <Content Include="Admin\ListUser.aspx" />
+    <Content Include="Admin\ViewReport.aspx" />
     <Content Include="Config\log4net.xml" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-3.3.4-dist\css\bootstrap-theme.min.css" />
