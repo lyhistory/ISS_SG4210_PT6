@@ -114,7 +114,31 @@ namespace nus.iss.crs.pl.Admin
 
         protected void SearchRegistration_Click(object sender, EventArgs e)
         {
+            // 0.base on participant name; 1.base on participant IDNumber; 2.company
+            if (searchConditionList.SelectedIndex == 0)
+            {
+                //ParticipantManager participantManager = BLSession.CreateParticipantManager();
+                //participantManager.GetParticipant(string idnumber);
 
+                //UserManager userManager = BLSession.CreateUserManager();
+                //userManager.GetCompanyByName(string name)
+                //userManager.
+                ////by user
+                //manager.GetRegistrationListByEmployee();
+                ////by company
+                //manager.GetRegistrationListByCompany(dm.Company);
+                ////by regid
+                //manager.GetRegistration(string RegID)
+                //else
+            }
+            else if (searchConditionList.SelectedIndex == 1)
+            {
+
+            }
+            else if (searchConditionList.SelectedIndex == 2)
+            {
+
+            }
         }
 
     }

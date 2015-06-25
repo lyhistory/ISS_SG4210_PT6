@@ -11,9 +11,9 @@
         <form class="form-inline">
             <div class="form-group">
                 <label for="SearchCondition">Search Condition</label>
-                <asp:DropDownList CssClass="form-control" ID="UserPropertyList" runat="server">
-                    <asp:ListItem Text ="Course Code" Value="0"></asp:ListItem>
-                    <asp:ListItem Text ="Class Code" Value="1"></asp:ListItem>
+                <asp:DropDownList CssClass="form-control" ID="searchConditionList" runat="server">
+                    <asp:ListItem Text ="Participant ID" Value="0"></asp:ListItem>
+                    <asp:ListItem Text ="Registration ID" Value="1"></asp:ListItem>
                     <asp:ListItem Text ="Company Name" Value="2"></asp:ListItem>
                 </asp:DropDownList>
                 
@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label for="SearchValue">Search Value</label>
-                <input type="text" class="form-control" id="SearchValue">
+                <input type="text" class="form-control" id="searchValue">
             </div>
             <asp:Button ID="SearchRegistration" runat="server" Text="Search" CssClass="btn btn-default" OnClick="SearchRegistration_Click" />
         </form>
