@@ -1,4 +1,5 @@
-﻿using System;
+﻿using nus.iss.crs.dm.Course;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,67 +12,58 @@ namespace nus.iss.crs.pl.Admin.Ctrl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            categoryID.Text = Category.Name;
+            //categoryID.Text = Category.Name;
 
-            foreach (Course course in Category.GetCourses())
+            foreach (CourseClass cls in CourseClassObjs)
             {
-                Table1.Rows.Add(CreateCourseRow(course));
+                Table1.Rows.Add(CreateCourseClassRow(cls));
             }
         }
 
-        public TableRow CreateCourseRow(Course course)
+        public TableRow CreateCourseClassRow(CourseClass cls)
         {
 
             TableRow courseRow = new TableRow();
             TableCell codeId = new TableCell();
-            codeId.Text = course.Code;
+            codeId.Text = cls.GetCourse().Code;
             courseRow.Cells.Add(codeId);
 
             TableCell nameID = new TableCell();
-            nameID.Text = course.CourseTitle;
+            nameID.Text = cls.GetCourse().CourseTitle;
             courseRow.Cells.Add(nameID);
 
-            TableCell durationID = new TableCell();
-            durationID.Text = course.Duration + "";
-            courseRow.Cells.Add(durationID);
+            TableCell startDateID = new TableCell();
+            startDateID.Text = cls.StartDate.ToString() + "";
+            courseRow.Cells.Add(startDateID);
 
-            TableCell instructorID = new TableCell();
-            instructorID.Text = course.Instructor.Name;
-            courseRow.Cells.Add(instructorID);
+            TableCell endDateID = new TableCell();
+            endDateID.Text = cls.EndDate.ToString();
+            courseRow.Cells.Add(endDateID);
 
-            TableCell feeID = new TableCell();
-            feeID.Text = course.Fee;
-            courseRow.Cells.Add(feeID);
+            TableCell clsSizeID = new TableCell();
+            clsSizeID.Text = cls.Size.ToString();
+            courseRow.Cells.Add(clsSizeID);
+
+            TableCell noOfRegParticipant = new TableCell();
+            noOfRegParticipant.Text = cls.NoOfRegedParticipant + "";
+            courseRow.Cells.Add(noOfRegParticipant);
 
             TableCell editID = new TableCell();
             HyperLink h = new HyperLink();
-            h.Text = "Edit";
-            h.NavigateUrl = "~/Admin/EditCourse.aspx?" + CRSConstant.ParameterCourseCode + "=" + course.Code;
+            h.Text = "Confirm";
+            //h.NavigateUrl = "~/Admin/EditCourse.aspx?" + CRSConstant.ParameterCourseCode + "=" + course.Code;
 
             editID.Controls.Add(h);
             courseRow.Cells.Add(editID);
 
             TableCell deleteID = new TableCell();
             LinkButton lb = new LinkButton();
-            lb.Text = "Delete";
+            lb.Text = "Cancel";
 
             lb.OnClientClick = "";
             deleteID.Controls.Add(lb);
             courseRow.Cells.Add(deleteID);
-
-            TableCell updateID = new TableCell();
-            h = new HyperLink();
-            h.Text = "Enable/Disable";
-            h.NavigateUrl = "";
-            updateID.Controls.Add(h);
-            courseRow.Cells.Add(updateID);
-
-            TableCell view = new TableCell();
-            h = new HyperLink();
-            h.Text = "Detail";
-            h.NavigateUrl = "";
-            view.Controls.Add(h);
-            courseRow.Cells.Add(view);
+ 
             return courseRow;
         }
 
@@ -80,6 +72,7 @@ namespace nus.iss.crs.pl.Admin.Ctrl
 
         }
 
-        public CourseCategory Category { get; set; }
+        //public CourseCategory Category { get; set; }
+        public List<CourseClass> CourseClassObjs { get; set; }        
     }
 }

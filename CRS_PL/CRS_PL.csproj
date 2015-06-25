@@ -184,6 +184,13 @@
     <Compile Include="Admin\AdminMenu.aspx.designer.cs">
       <DependentUpon>AdminMenu.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\CourseConfirmWF.aspx.cs">
+      <DependentUpon>CourseConfirmWF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CourseConfirmWF.aspx.designer.cs">
+      <DependentUpon>CourseConfirmWF.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CreateClass.aspx.cs">
       <DependentUpon>CreateClass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -204,6 +211,13 @@
     </Compile>
     <Compile Include="Admin\Ctrl\CategoryCourseList.ascx.designer.cs">
       <DependentUpon>CategoryCourseList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Ctrl\CategourCourseList4WF.ascx.cs">
+      <DependentUpon>CategourCourseList4WF.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Ctrl\CategourCourseList4WF.ascx.designer.cs">
+      <DependentUpon>CategourCourseList4WF.ascx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Ctrl\CourseClassList.ascx.cs">
       <DependentUpon>CourseClassList.ascx</DependentUpon>
@@ -339,6 +353,7 @@
   <ItemGroup>
     <Content Include="Admin\AdminHome.aspx" />
     <Content Include="Admin\AdminMenu.aspx" />
+    <Content Include="Admin\CourseConfirmWF.aspx" />
     <Content Include="Admin\CreateClass.aspx" />
     <Content Include="Admin\css\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />
     <Content Include="Admin\css\bootstrap-3.3.4-dist\css\bootstrap-theme.min.css" />
@@ -379,6 +394,7 @@
     <Content Include="Admin\css\treeview\TriState.png" />
     <Content Include="Admin\Ctrl\CalendarClassList.ascx" />
     <Content Include="Admin\Ctrl\CategoryCourseList.ascx" />
+    <Content Include="Admin\Ctrl\CategourCourseList4WF.ascx" />
     <Content Include="Admin\Ctrl\CourseClassList.ascx" />
     <Content Include="Admin\Ctrl\UserList.ascx" />
     <Content Include="Admin\EditClass.aspx" />
@@ -517,6 +533,10 @@
     <ProjectReference Include="..\CRS_DM\CRS_DM.csproj">
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
       <Name>CRS_DM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRS_SL\CRS_SL.csproj">
+      <Project>{22540be8-669c-4d72-944d-8c14ac286f1a}</Project>
+      <Name>CRS_SL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
