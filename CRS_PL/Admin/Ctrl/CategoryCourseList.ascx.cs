@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm.Course;
+﻿using nus.iss.crs.bl;
+using nus.iss.crs.dm.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,24 +49,32 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             HyperLink h = new HyperLink();
             h.Text = "Edit";
             h.NavigateUrl = "~/Admin/EditCourse.aspx?"+CRSConstant.ParameterCourseCode+"=" + course.Code;
-            
             editID.Controls.Add(h);
             courseRow.Cells.Add(editID);
 
             TableCell deleteID = new TableCell();
+            //LinkButton lb = new LinkButton();
+            //lb.Text = "Delete";
+            //lb.PostBackUrl = "#";
+            //lb.OnClientClick = "javascript:abc('"+course.Code+"'); return false;";
             LinkButton lb = new LinkButton();
             lb.Text = "Delete";
-            
-            lb.OnClientClick = "";
+            lb.CommandName = "Delete";
+            lb.CommandArgument = course.Code;
+            lb.Click += new EventHandler(lb_Command);
             deleteID.Controls.Add(lb);
             courseRow.Cells.Add(deleteID);
 
             TableCell updateID = new TableCell();
-            h = new HyperLink();
-            h.Text = "Enable/Disable";
-            h.NavigateUrl = "";
-            updateID.Controls.Add(h); 
+            //h = new HyperLink();
+            //h.Text = "Enable/Disable";
+            //h.NavigateUrl = "";
+            lb = new LinkButton();
+            lb.Text = "Enable /Disable";
+            lb.CommandName = "Disable";
+            updateID.Controls.Add(h);
             courseRow.Cells.Add(updateID);
+
 
             TableCell view = new TableCell();
             h = new HyperLink();
@@ -76,11 +85,21 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             return courseRow;
         }
 
-        void lb_Click(Course course)
+        protected void lb_Command(object sender, EventArgs e)
         {
+            LinkButton lb = sender as LinkButton;
             
+            if (lb.CommandName == "Delete")
+            {
+                //List<Course> courseList = courseManager.GetCourseList();
+            }
+            else if(lb.CommandName == "Disable")
+            {
+
+            }
         }
 
         public CourseCategory Category { get; set; }
+        public CourseManager courseManager { get; set; }
     }
 }

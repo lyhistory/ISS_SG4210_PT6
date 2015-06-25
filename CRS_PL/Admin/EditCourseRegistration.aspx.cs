@@ -27,7 +27,7 @@ namespace nus.iss.crs.pl.Admin
 
          protected void Save_Click(object sender, EventArgs e)
         {
-            CourseRegistrationManager manager = BLSession.CreateCourseRegistrationManager();
+            ParticipantManager participantManager = BLSession.CreateParticipantManager();
             Participant tempParticipant = new Participant();
 
             tempParticipant.IDNumber = idNumber.Text.ToString();
@@ -48,7 +48,7 @@ namespace nus.iss.crs.pl.Admin
             tempParticipant.DietaryRequirement = dietaryRequirement.Text.ToString();
 
             //TODO
-            //manager.EditParticipant(tempParticipant);
+            participantManager.EditPariticipant(tempParticipant);
             NextPage(true);
         }
 
