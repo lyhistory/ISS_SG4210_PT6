@@ -57,7 +57,7 @@ namespace nus.iss.crs.bl
             {
                 foreach (CourseCategory category in courseCategoryList)
                 {
-                    category.AddCourses(GetCourseListByCategory(category, dateFrom, dateTo, includeAllKids));
+                    category.AddCourses(GetCourseListByCategory(category, dateFrom, dateTo, includeAllKids,true));
                 }
 
             }
@@ -96,14 +96,14 @@ namespace nus.iss.crs.bl
             return courseList;
         }
 
-        public  List<Course> GetCourseListByCategory(CourseCategory courseCategory, DateTime dateFrom, DateTime dateTo, bool includeClass)
+        public  List<Course> GetCourseListByCategory(CourseCategory courseCategory, DateTime dateFrom, DateTime dateTo, bool includeClass,bool returnLevel1=false,bool returnLevel2=false)
         {
-            List<Course> courseList = unitOfWork.CourseService.GetCourseListByCategory(courseCategory.ID);
+            List<Course> courseList = unitOfWork.CourseService.GetCourseListByCategory(courseCategory.ID, returnLevel2);
             if (includeClass)
             {
                 foreach (Course course in courseList)
                 {
-                    course.AddClassList(GetCourseClassList(course, dateFrom, dateTo));
+                    course.AddClassList(GetCourseClassList(course, dateFrom, dateTo,returnLevel1,returnLevel2));
                 }
             }
             return courseList;
@@ -120,9 +120,9 @@ namespace nus.iss.crs.bl
             return courseClassList;
         }
 
-        public  List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo)
+        public  List<CourseClass> GetCourseClassList(Course course, DateTime dateFrom, DateTime dateTo,bool returnLevel1=true,bool returnLevel2=true)
         {
-             return unitOfWork.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo);             
+             return unitOfWork.CourseService.GetCourseClassList(course.Code, dateFrom, dateTo,-1,returnLevel1,returnLevel2);             
         }
 
         public List<CourseClass> GetCourseClassList(Course course)
