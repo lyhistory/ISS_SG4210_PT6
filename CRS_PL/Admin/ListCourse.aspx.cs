@@ -40,7 +40,7 @@ namespace nus.iss.crs.pl.Admin
             foreach (CourseCategory courseCategory in manager.GetCourseCategoryList(true))
             {
                 CategoryCourseList table = (CategoryCourseList)Page.LoadControl("./Ctrl/CategoryCourseList.ascx");
-
+                table.courseManager = manager;
                 table.Category = courseCategory;
                 //table.Category = testData.CreateCategory(); 
                 PlaceHolder1.Controls.Add(table);

@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CategoryCourseList.ascx.cs" Inherits="nus.iss.crs.pl.Admin.Ctrl.CategoryCourseList" %>
+
 <asp:Table ID="Table1" runat="server" GridLines="Both" CssClass="table">
         <asp:TableRow runat="server">
             <asp:TableHeaderCell ColumnSpan="2">Programe </asp:TableHeaderCell>
@@ -21,8 +22,7 @@
             <asp:TableCell><A  href ="">Edit</A></asp:TableCell>
             <asp:TableCell><A  href ="">Delete</A></asp:TableCell>
             <asp:TableCell><A  href ="">Disable/Enable</A></asp:TableCell>             
-        </asp:TableRow>--%>
-         
+        </asp:TableRow>--%> 
     </asp:Table>
     
 
