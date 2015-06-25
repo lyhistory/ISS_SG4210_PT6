@@ -11,6 +11,7 @@ namespace nus.iss.crs.dm.Course
         New, //To be open
         Open, //allow to registrater
         Close, //close to registrator
+        ToConfirm, //started confirm process, but need administrator to handle the course class
         Confirmed, // start to run class
         Canceled, //cancel class
         Running, //active and running the course based on scheudle
