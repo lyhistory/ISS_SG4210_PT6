@@ -140,7 +140,7 @@ namespace nus.iss.crs.pl.Admin
 
         protected void Back_Click(object sender, EventArgs e)
         {
-
+            NextPage(false);
         }
     }
 }

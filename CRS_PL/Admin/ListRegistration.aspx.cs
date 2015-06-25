@@ -1,5 +1,6 @@
 ﻿using nus.iss.crs.bl;
 using nus.iss.crs.bl.Session;
+using nus.iss.crs.dm;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.dm.Registration;
 using System;
@@ -11,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace nus.iss.crs.pl.Admin
 {
-    public partial class ListCourseClassRegistration : CrsPageController
+    public partial class ListRegistration : CrsPageController
     {
 
         //TODO
@@ -21,6 +22,7 @@ namespace nus.iss.crs.pl.Admin
             base.Page_Load(sender, e);
             ShowRegistrationList();
         }
+
         private void ShowRegistrationList()
         {
             //CourseManager manager = BLSession.CreateCourseManager();
@@ -114,6 +116,7 @@ namespace nus.iss.crs.pl.Admin
 
         protected void SearchRegistration_Click(object sender, EventArgs e)
         {
+            List<Registration> registrationList = new List<Registration>();
             // 0.base on participant name; 1.base on participant IDNumber; 2.company
             if (searchConditionList.SelectedIndex == 0)
             {
@@ -130,14 +133,28 @@ namespace nus.iss.crs.pl.Admin
                 ////by regid
                 //manager.GetRegistration(string RegID)
                 //else
+                
             }
             else if (searchConditionList.SelectedIndex == 1)
             {
 
+                CourseRegistrationManager courseRegistrationManger = BLSession.CreateCourseRegistrationManager();
+                //manager.getp
+                //registrationList = manager.GetRegistrationListByParticipant(registration);
             }
             else if (searchConditionList.SelectedIndex == 2)
             {
+                UserManager userManager = BLSession.CreateUserManager();
+                Company company = userManager.GetCompanyByName(searchValue.Text.ToString());
+                registrationList = manager.GetRegistrationListByCompany(company);
+            }
 
+            foreach (Registration registration in registrationList)
+            {
+                if (registration.CourseClassObj != null)
+                {
+                    Table1.Rows.Add(CreateRegistrationRow(registration));
+                }
             }
         }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Site.Master" AutoEventWireup="true" CodeBehind="ListRegistration.aspx.cs" Inherits="nus.iss.crs.pl.Admin.ListCourseClassRegistration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Site.Master" AutoEventWireup="true" CodeBehind="ListRegistration.aspx.cs" Inherits="nus.iss.crs.pl.Admin.ListRegistration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="placeholder_HeadContent1" runat="server">
@@ -12,8 +12,8 @@
             <div class="form-group">
                 <label for="SearchCondition">Search Condition</label>
                 <asp:DropDownList CssClass="form-control" ID="searchConditionList" runat="server">
-                    <asp:ListItem Text ="Participant ID" Value="0"></asp:ListItem>
-                    <asp:ListItem Text ="Registration ID" Value="1"></asp:ListItem>
+                    <asp:ListItem Text ="Participant Name" Value="0"></asp:ListItem>
+                    <asp:ListItem Text ="Participant ID" Value="1"></asp:ListItem>
                     <asp:ListItem Text ="Company Name" Value="2"></asp:ListItem>
                 </asp:DropDownList>
                 
@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label for="SearchValue">Search Value</label>
-                <input type="text" class="form-control" id="searchValue">
+                <asp:TextBox ID="searchValue" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
             <asp:Button ID="SearchRegistration" runat="server" Text="Search" CssClass="btn btn-default" OnClick="SearchRegistration_Click" />
         </form>
