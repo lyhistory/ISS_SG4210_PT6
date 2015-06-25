@@ -299,6 +299,68 @@ namespace CRS_DAL.Service
             return null;
         }
 
+        public List<dm.Registration.Registration> GetRegistrationListByParticipant(dm.Registration.Participant pariticipant)
+        {
+            IQueryable<Participant> _participantlist = null;
+            if (string.IsNullOrEmpty(pariticipant.IDNumber) && string.IsNullOrEmpty(pariticipant.FullName))
+                return null;
+            if(!string.IsNullOrEmpty(pariticipant.IDNumber))
+                _participantlist=this.ParticipantRepository.GetWhere(x => x.IDNumber.Equals(pariticipant.IDNumber));
+            else
+                _participantlist=this.ParticipantRepository.GetAll();
+            if (!string.IsNullOrEmpty(pariticipant.FullName))
+            {
+                _participantlist = _participantlist.Where(x => x.FullName.Contains(pariticipant.FullName));
+            }
+
+            if (_participantlist != null)
+            {
+                List<Registration> _registrationlist = this.RegistrationRepository.GetAll().ToList();
+                IQueryable<CourseClass> _courseClasslist = this.CourseClassRepository.GetAll();
+                return (from _registration in _registrationlist
+                        join _courseClass in _courseClasslist on _registration.ClassID equals _courseClass.ClassID
+                        join _participant in _participantlist on _registration.ParticipantID equals _participant.ParticipantID into finallist
+                        from subset in finallist
+                        select new dm.Registration.Registration(
+                            GetCourseClassByCode(_courseClass.ClassCode),
+                            new dm.Registration.Participant()
+                            {
+                                ParticipantID = subset.ParticipantID,
+                                IDNumber = subset.IDNumber,
+                                EmploymentStatus = subset.EmploymentStatus,
+                                CompanyID = subset.CompanyID,
+                                CompanyName = subset.CompanyName,
+                                Salutation = subset.Salutation,
+                                JobTitle = subset.JobTitle,
+                                Department = subset.Department,
+                                FullName = subset.FullName,
+                                OrganizationSize = subset.OrganizationSize,
+                                Gender = subset.Gender == 1 ? "Male" : "Female",
+                                SalaryRange = subset.SalaryRange,
+                                Nationality = subset.Nationality,
+                                DOB = subset.DateOfBirth,
+                                EMail = subset.Email,
+                                ContactNumber = subset.ContactNumber,
+                                DietaryRequirement = subset.DietaryRequirement
+                            }
+                            )
+                        {
+                            RegID = _registration.RegistrationID,
+                            Status = (dm.RegistrationStatus)_registration.Status,
+                            billingInfo = new dm.Registration.Billing()
+                            {
+                                PersonName = _registration.BillingPersonName,
+                                Address = _registration.BillingAddress,
+                                Country = _registration.BillingAddressCountry,
+                                PostalCode = _registration.BillingAddressPostalCode
+                            },
+                            Sponsorship = _registration.Sponsorship == 1 ? "Self" : "Company",
+                            DietaryRequirement = _registration.DietaryRequirement,
+                            OrganizationSize = _registration.OrganizationSize
+                        }).ToList();
+            }
+            return null;
+        }
 
         public List<dm.Registration.Registration> GetRegistrationListByCompany(dm.Company company)
         {
