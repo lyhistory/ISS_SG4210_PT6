@@ -66,13 +66,12 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             courseRow.Cells.Add(deleteID);
 
             TableCell updateID = new TableCell();
-            //h = new HyperLink();
-            //h.Text = "Enable/Disable";
-            //h.NavigateUrl = "";
             lb = new LinkButton();
             lb.Text = "Enable /Disable";
             lb.CommandName = "Disable";
-            updateID.Controls.Add(h);
+            lb.CommandArgument = course.Code;
+            lb.Click += new EventHandler(lb_Command);
+            updateID.Controls.Add(lb);
             courseRow.Cells.Add(updateID);
 
 
@@ -91,11 +90,11 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             
             if (lb.CommandName == "Delete")
             {
-                //List<Course> courseList = courseManager.GetCourseList();
+                courseManager.DeleteCourse(lb.CommandArgument);
             }
             else if(lb.CommandName == "Disable")
             {
-
+                courseManager.ChangeCourseStatus(lb.CommandArgument);
             }
         }
 

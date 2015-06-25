@@ -7,9 +7,10 @@
             <asp:TableHeaderCell>Duration</asp:TableHeaderCell>
             <asp:TableHeaderCell>Instructor</asp:TableHeaderCell>
             <asp:TableHeaderCell>Fee</asp:TableHeaderCell>
+            <asp:TableHeaderCell ColumnSpan="4">Operation</asp:TableHeaderCell>
         </asp:TableRow>
         <asp:TableRow runat="server">
-            <asp:TableCell ColumnSpan="5"  >
+            <asp:TableCell ColumnSpan="9"  >
                 <asp:Label ID="categoryID" runat="server"></asp:Label>
               </asp:TableCell>                     
         </asp:TableRow>

@@ -14,8 +14,6 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class ListRegistration : CrsPageController
     {
-
-        //TODO
         CourseRegistrationManager manager = null;
         protected override void Page_Load(object sender, EventArgs e)
         {
@@ -116,44 +114,39 @@ namespace nus.iss.crs.pl.Admin
 
         protected void SearchRegistration_Click(object sender, EventArgs e)
         {
+            TableRow row1 = Table1.Rows[0];
+            Table1.Rows.Clear();
+            Table1.Rows.Add(row1);
+
             List<Registration> registrationList = new List<Registration>();
+            Participant tempParticipant = new Participant();
+
             // 0.base on participant name; 1.base on participant IDNumber; 2.company
             if (searchConditionList.SelectedIndex == 0)
             {
-                //ParticipantManager participantManager = BLSession.CreateParticipantManager();
-                //participantManager.GetParticipant(string idnumber);
-
-                //UserManager userManager = BLSession.CreateUserManager();
-                //userManager.GetCompanyByName(string name)
-                //userManager.
-                ////by user
-                //manager.GetRegistrationListByEmployee();
-                ////by company
-                //manager.GetRegistrationListByCompany(dm.Company);
-                ////by regid
-                //manager.GetRegistration(string RegID)
-                //else
-                
+                tempParticipant.FullName = searchValue.Text.ToString();
+                registrationList = manager.GetRegistrationListByParticipant(tempParticipant);
             }
             else if (searchConditionList.SelectedIndex == 1)
             {
-
-                CourseRegistrationManager courseRegistrationManger = BLSession.CreateCourseRegistrationManager();
-                //manager.getp
-                //registrationList = manager.GetRegistrationListByParticipant(registration);
+                tempParticipant.IDNumber = searchValue.Text.ToString();
+                registrationList = manager.GetRegistrationListByParticipant(tempParticipant);
             }
             else if (searchConditionList.SelectedIndex == 2)
             {
                 UserManager userManager = BLSession.CreateUserManager();
-                Company_DM company = userManager.GetCompanyByName(searchValue.Text.ToString());
-                registrationList = manager.GetRegistrationListByCompany(company);
+                Company_DM tempCompany = userManager.GetCompanyByName(searchValue.Text.ToString());
+                registrationList = manager.GetRegistrationListByCompany(tempCompany);
             }
 
-            foreach (Registration registration in registrationList)
+            if (registrationList != null)
             {
-                if (registration.CourseClassObj != null)
+                foreach (Registration registration in registrationList)
                 {
-                    Table1.Rows.Add(CreateRegistrationRow(registration));
+                    if (registration.CourseClassObj != null)
+                    {
+                        Table1.Rows.Add(CreateRegistrationRow(registration));
+                    }
                 }
             }
         }
