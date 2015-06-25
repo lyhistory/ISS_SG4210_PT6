@@ -327,6 +327,7 @@
     <Compile Include="Controllers\CourseRegisterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HRController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="CRSConstant.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -521,6 +522,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Log\" />
     <Folder Include="Views\Auth\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

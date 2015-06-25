@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using nus.iss.crs.dm;
 using nus.iss.crs.pl.AppCode.Session;
+using System.Web.Script.Serialization;
+using System.Web.Security;
 
 namespace nus.iss.crs.pl.Controllers
 {
@@ -19,7 +21,18 @@ namespace nus.iss.crs.pl.Controllers
 
             if (session == null)
             {
-                filterContext.Result = Kickout(filterContext.HttpContext.Request.IsAjaxRequest());
+                if (HttpContext.User.Identity.IsAuthenticated)
+                {
+                    var userdata = (new JavaScriptSerializer()).Deserialize<User>(((FormsIdentity)HttpContext.User.Identity).Ticket.UserData);
+                    if (userdata == null)
+                    {
+                        afterLogin = true;
+                        userType = userdata.RoleName.ToUpper();
+                        userName = userdata.Name;
+                    }else
+                        filterContext.Result = Kickout(filterContext.HttpContext.Request.IsAjaxRequest());
+                }else
+                    filterContext.Result = Kickout(filterContext.HttpContext.Request.IsAjaxRequest());
             }
             else
             {
