@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm;
+﻿using CRS_DAL.Repository;
+using nus.iss.crs.dm;
 using nus.iss.crs.dm.Course;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace nus.iss.crs.bl
 {
     public class ReportManager
     {
+        UnitOfWork unitOfWork = new UnitOfWork();
+
         internal ReportManager()
         { }
 
@@ -20,13 +23,20 @@ namespace nus.iss.crs.bl
             //    throw new Exception("No permission.");
             //}
         }
-        public Attendance GetAttendanceReport(CourseClass cls)
+        public List<ParticipantAttendance> GetAttendanceReport(CourseClass cls)
         {
+            string classCode = cls.ClassCode;
+            if (string.IsNullOrEmpty(classCode))
+                return null;
+            return unitOfWork.AttendanceService.GetUserAttendancesByClassCode(classCode);
+        }
 
-            //get list of registration based on course clas
-            //get participant list based on registion list
-            //
-            return null;
+        public List<ParticipantAttendance> GetUserAttendances(CourseClass cls,DateTime date)
+        {
+            string classCode = cls.ClassCode;
+            if (string.IsNullOrEmpty(classCode))
+                return null;
+            return unitOfWork.AttendanceService.GetUserAttendancesByClassCode(classCode, date);
         }
     }
 }

@@ -149,5 +149,13 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.CourseRegistrationService.GetParticipantListByCourse(course, date);
         }
+
+        public List<CourseClass> GetCourseClassWithRegisterCount(DateTime date, ClassStatus status)
+        {
+            if (date == null)
+                return null;
+
+            return unitOfWork.CourseRegistrationService.GetCourseClassWithRegisterCount(date, (int)status);
+        }
     }
 }
