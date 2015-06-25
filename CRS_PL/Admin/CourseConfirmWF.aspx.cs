@@ -14,25 +14,25 @@ namespace nus.iss.crs.pl.Admin
     {
 
         //TODO
-        CourseManager manager = null;
+        CourseRegistrationManager manager = null;
 
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
-            ShowCourseList();
+            ShowCourseClassList();
         }
 
-        private void ShowCourseList()
-        { 
-             
-            manager = BLSession.CreateCourseManager();
+        private void ShowCourseClassList()
+        {
+
+            manager = BLSession.CreateCourseRegistrationManager();
+
+            List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);            
             
-            foreach (CourseCategory courseCategory in manager.GetCourseCategoryList(true))
             {
                 CategourCourseList4WF table = (CategourCourseList4WF)Page.LoadControl("./Ctrl/CategourCourseList4WF.ascx");
 
-                table.Category = courseCategory;
-                //table.Category = testData.CreateCategory(); 
+                table.CourseClassObjs = courseClasses;
                 PlaceHolder1.Controls.Add(table);
                 Label newline = new Label();
                 newline.Text = "<BR/>";

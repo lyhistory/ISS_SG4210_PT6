@@ -29,7 +29,7 @@ namespace nus.iss.crs.bl
             Course course = crsManager.GetCourseByCode(courseCode);
             CourseClass courseClass = crsManager.GetCourseClassList(course, dateFrom, dateTo).FirstOrDefault();
 
-            Company company = userManager.GetCompanyByName(companyName);
+            Company_DM company = userManager.GetCompanyByName(companyName);
 
             Participant participant = regManager.GetParticipantByHR(participantID, company.CompanyID);
 

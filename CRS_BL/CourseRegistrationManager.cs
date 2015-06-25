@@ -102,7 +102,7 @@ namespace nus.iss.crs.bl
             return unitOfWork.CourseRegistrationService.GetRegistrationListByParticipant(participant);
         }
 
-        public List<Registration> GetRegistrationListByCompany(Company company)
+        public List<Registration> GetRegistrationListByCompany(Company_DM company)
         {
             return unitOfWork.CourseRegistrationService.GetRegistrationListByCompany(company);
         }

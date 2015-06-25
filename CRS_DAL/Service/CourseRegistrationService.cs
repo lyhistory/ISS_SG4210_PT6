@@ -362,7 +362,7 @@ namespace CRS_DAL.Service
             return null;
         }
 
-        public List<dm.Registration.Registration> GetRegistrationListByCompany(dm.Company company)
+        public List<dm.Registration.Registration> GetRegistrationListByCompany(dm.Company_DM company)
         {
             IQueryable<Participant> _participantlist = this.ParticipantRepository.GetWhere(x => x.CompanyID.Equals(company.CompanyID));
 
@@ -739,7 +739,8 @@ namespace CRS_DAL.Service
 
         public List<dm.Course.CourseClass> GetCourseClassWithRegisterCount(DateTime date, int status)
         {
-            IQueryable<CourseClass> courseClassList = CourseClassRepository.GetWhere(x => x.StartDate>=date.AddDays(7) && x.Status == status);
+            date = date.AddDays(7);
+            IQueryable<CourseClass> courseClassList = CourseClassRepository.GetWhere(x => x.StartDate<=date&&x.EndDate>=date && x.Status == status);
             IQueryable<Instructor> instructorList = InstructorRepository.GetAll();
             IQueryable<Course> courseList = CourseRepository.GetAll();
             IQueryable<CourseCategory> courseCategoryList = CourseCategoryRepository.GetAll();
@@ -750,24 +751,27 @@ namespace CRS_DAL.Service
                     join courseCategory in courseCategoryList on course.CategoryID equals courseCategory.CategoryID
                     join instructor in instructorList on course.InstructorID equals instructor.InstructorID
                     join register in registerList on courseClass.ClassID equals register.ClassID into registerCollect
-                    select new dm.Course.CourseClass(
-                                new dm.Course.Course()
+                    select new dm.Course.CourseClass
+                            {
+                                CourseObj=new dm.Course.Course()
                                 {
                                     CourseTitle = course.CourseTitle,
                                     Code = course.CourseCode,
-                                    Category = new dm.Course.CourseCategory(courseCategory.CategoryID, courseCategory.CategoryName, courseCategory.CategoryDesc),
+                                    Category = new dm.Course.CourseCategory{
+                                        ID=courseCategory.CategoryID,
+                                        Name=courseCategory.CategoryName,
+                                        Description=courseCategory.CategoryDesc
+                                    },
                                     Description = course.Description,
                                     Duration = course.NumberOfDays,
                                     Fee = course.Fee.ToString(),
-                                    Instructor = new dm.CourseInstructor()
+                                    Instructor = new dm.CourseInstructor
                                     {
                                         ID = instructor.InstructorID,
                                         Name = instructor.InstructorName
                                     },
                                     Status = (dm.Course.CourseStatus)course.Status
-                                }
-                            )
-                            {
+                                },
                                 StartDate = courseClass.StartDate,
                                 EndDate = courseClass.EndDate,
                                 ClassCode = courseClass.ClassCode,

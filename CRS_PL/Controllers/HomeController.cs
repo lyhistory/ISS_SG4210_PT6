@@ -180,10 +180,10 @@ namespace nus.iss.crs.pl.Controllers
                 return Json(new { Code = -1, Message = "User already exsits!" });
             user = new dm.User();
             bool createCompany = false;
-            Company company = manager.GetCompanyByUEN(form.CompanyUEN);
+            Company_DM company = manager.GetCompanyByUEN(form.CompanyUEN);
             if (company == null)
             {
-                company = new Company()
+                company = new Company_DM()
                 {
                     CompanyName = form.CompanyName,
                     CompanyUEN = form.CompanyUEN,

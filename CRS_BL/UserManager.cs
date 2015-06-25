@@ -41,30 +41,30 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.UserService.CreateHRUser(user);
         }
-        public  bool CreateHRUser(User user, Company company)
+        public  bool CreateHRUser(User user, Company_DM company)
         {
             return unitOfWork.UserService.CreateHRUser(user,company);
         }
 
-        public  bool CreateCompany(Company company)
+        public  bool CreateCompany(Company_DM company)
         {
             return unitOfWork.UserService.CreateCompany(company);
         }
 
-        public  Company GetCompanyByID(string companyID)
+        public  Company_DM GetCompanyByID(string companyID)
         {
             return unitOfWork.UserService.GetCompanyByID(companyID);
         }
-        public  Company GetCompanyByUEN(string companyUEN)
+        public  Company_DM GetCompanyByUEN(string companyUEN)
         {
             return unitOfWork.UserService.GetCompanyByUEN(companyUEN);
         }
-        public Company GetCompanyByName(string companyName)
+        public Company_DM GetCompanyByName(string companyName)
         {
             return unitOfWork.UserService.GetCompanyByName(companyName);
         }
 
-        public  List<Company> GetCompanyList()
+        public  List<Company_DM> GetCompanyList()
         {
             return unitOfWork.UserService.GetCompanyList();
         }
@@ -114,7 +114,7 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.UserService.GetHRUserByLoginID(loginID);
         }
-        public  dm.CompanyHR GetCompanyHRByLoginID(string loginID)
+        public  dm.CompanyHR_DM GetCompanyHRByLoginID(string loginID)
         {
             return unitOfWork.UserService.GetCompanyHRByLoginID(loginID);
         }

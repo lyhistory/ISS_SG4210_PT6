@@ -100,7 +100,7 @@ namespace CRS_DAL.Service
             }
             return false;
         }
-        public bool CreateHRUser(dm.User user,dm.Company company)
+        public bool CreateHRUser(dm.User user,dm.Company_DM company)
         {
             try
             {
@@ -189,7 +189,7 @@ namespace CRS_DAL.Service
             return false;
         }
 
-        public bool CreateCompany(dm.Company company)
+        public bool CreateCompany(dm.Company_DM company)
         {
             try
             {
@@ -216,10 +216,10 @@ namespace CRS_DAL.Service
             return false;
         }
 
-        public dm.Company GetCompanyByID(string companyID)
+        public dm.Company_DM GetCompanyByID(string companyID)
         {
             var _company = companyRepository.GetFirstOrDefault(x => x.CompanyID.Equals(companyID));
-            return new dm.Company()
+            return new dm.Company_DM()
             {
                 CompanyID = _company.CompanyID,
                 CompanyName = _company.CompanyName,
@@ -230,12 +230,12 @@ namespace CRS_DAL.Service
                 PostalCode = _company.PostalCode
             };
         }
-        public dm.Company GetCompanyByUEN(string companyUEN)
+        public dm.Company_DM GetCompanyByUEN(string companyUEN)
         {
             var _company = companyRepository.GetFirstOrDefault(x => x.CompanyUEN.Equals(companyUEN));
             if (_company == null)
                 return null;
-            return new dm.Company()
+            return new dm.Company_DM()
             {
                 CompanyID = _company.CompanyID,
                 CompanyName = _company.CompanyName,
@@ -246,12 +246,12 @@ namespace CRS_DAL.Service
                 PostalCode = _company.PostalCode
             };
         }
-        public dm.Company GetCompanyByName(string companyName)
+        public dm.Company_DM GetCompanyByName(string companyName)
         {
             var _company = companyRepository.GetFirstOrDefault(x => x.CompanyName.Equals(companyName));
             if (_company == null)
                 return null;
-            return new dm.Company()
+            return new dm.Company_DM()
             {
                 CompanyID = _company.CompanyID,
                 CompanyName = _company.CompanyName,
@@ -262,11 +262,11 @@ namespace CRS_DAL.Service
                 PostalCode = _company.PostalCode
             };
         }
-        public List<dm.Company> GetCompanyList()
+        public List<dm.Company_DM> GetCompanyList()
         {
             var _companylist = companyRepository.GetAll();
             return (from _company in _companylist
-                    select new dm.Company()
+                    select new dm.Company_DM()
                     {
                         CompanyID = _company.CompanyID,
                         CompanyName = _company.CompanyName,
@@ -449,12 +449,12 @@ namespace CRS_DAL.Service
             };
         }
 
-        public dm.CompanyHR GetCompanyHRByLoginID(string loginID)
+        public dm.CompanyHR_DM GetCompanyHRByLoginID(string loginID)
         {
             var companyHR = companyHRRepository.GetFirstOrDefault(x => x.Email.Equals(loginID));
             if (companyHR == null)
                 return null;
-            return new dm.CompanyHR()
+            return new dm.CompanyHR_DM()
             {
                 HRID = companyHR.HRID,
                 CompanyID = companyHR.CompanyID,

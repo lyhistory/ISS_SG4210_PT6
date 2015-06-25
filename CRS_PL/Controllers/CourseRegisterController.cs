@@ -189,7 +189,7 @@ namespace nus.iss.crs.pl.Controllers
                 }
                 ViewBag.ClassList = classlist;
 
-                Company company = manager.GetCompanyByID(SessionHelper.Current.CompanyID);
+                Company_DM company = manager.GetCompanyByID(SessionHelper.Current.CompanyID);
                 if (company != null)
                 {
                     crform.CompanyID = company.CompanyID;
@@ -327,7 +327,7 @@ namespace nus.iss.crs.pl.Controllers
             if (SessionHelper.Current == null)
                 return RedirectToAction("Logon", "home");
             CourseRegistrationManager courseRegistrationManager = this.BLSession.CreateCourseRegistrationManager();
-            List<Registration> list = courseRegistrationManager.GetRegistrationListByCompany(new Company() { CompanyID = SessionHelper.Current.CompanyID });
+            List<Registration> list = courseRegistrationManager.GetRegistrationListByCompany(new Company_DM() { CompanyID = SessionHelper.Current.CompanyID });
             return View(list);
         }
         [CRSAuthorize(Roles = "HR")]

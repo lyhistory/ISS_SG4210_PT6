@@ -145,7 +145,7 @@ namespace nus.iss.crs.pl.Admin
             else if (searchConditionList.SelectedIndex == 2)
             {
                 UserManager userManager = BLSession.CreateUserManager();
-                Company company = userManager.GetCompanyByName(searchValue.Text.ToString());
+                Company_DM company = userManager.GetCompanyByName(searchValue.Text.ToString());
                 registrationList = manager.GetRegistrationListByCompany(company);
             }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace nus.iss.crs.dm
 {
-    public class Company
+    public class Company_DM
     {
         public string CompanyID { get; set; }
         public string CompanyName { get; set; }

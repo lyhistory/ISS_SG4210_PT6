@@ -10,11 +10,11 @@ namespace nus.iss.crs.dm.Course
     [DataContract]
     public class CourseClass
     {
-        private Course course;
+        public Course CourseObj{get;set;}
          
         public CourseClass(Course course)
         {
-            this.course = course;
+            this.CourseObj = course;
             course.AddClass(this); 
         }
 
@@ -24,7 +24,7 @@ namespace nus.iss.crs.dm.Course
 
         public Course GetCourse()
         {
-            return course;
+            return CourseObj;
         }
 
         [DataMember]

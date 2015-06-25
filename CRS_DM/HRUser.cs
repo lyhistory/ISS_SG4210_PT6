@@ -10,7 +10,7 @@ namespace nus.iss.crs.dm
     {
         public HRUser()
         { }
-        public HRUser(string email, Company company)
+        public HRUser(string email, Company_DM company)
         {
             this.Email = email;
         }
