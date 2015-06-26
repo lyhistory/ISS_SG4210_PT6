@@ -1,6 +1,6 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CRS_SL.ConfirmActivity"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CRS_WF.ConfirmActivity"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
- xmlns:local="clr-namespace:CRS_SL"
+ xmlns:local="clr-namespace:CRS_WF"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
  xmlns:nicdc="clr-namespace:nus.iss.crs.dm.Course;assembly=CRS_DM"
@@ -20,7 +20,7 @@
     <x:Property Name="confirmed" Type="OutArgument(x:Boolean)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap2010:WorkflowViewState.IdRef>CRS_SL.ConfirmActivity_1</sap2010:WorkflowViewState.IdRef>
+  <sap2010:WorkflowViewState.IdRef>CRS_WF.ConfirmActivity_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System</x:String>
@@ -58,7 +58,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>CRS_DM</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
-      <AssemblyReference>CRS_SL</AssemblyReference>
+      <AssemblyReference>CRS_WF</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Confirm" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -110,7 +110,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CRS_SL.ConfirmActivity_1" sap:VirtualizedContainerService.HintSize="305.6,392" />
+      <sap2010:ViewStateData Id="CRS_WF.ConfirmActivity_1" sap:VirtualizedContainerService.HintSize="305.6,392" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

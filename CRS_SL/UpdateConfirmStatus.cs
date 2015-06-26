@@ -5,7 +5,7 @@ using System.Text;
 using System.Activities;
 using nus.iss.crs.dm.Course;
 
-namespace CRS_SL
+namespace CRS_WF
 {
 
     public sealed class UpdateConfirmStatus : CodeActivity
