@@ -1,5 +1,7 @@
 ﻿@model List<nus.iss.crs.dm.ParticipantAttendance>
-
+@{
+    Layout = null;
+}
 @if (Model == null || Model.Count < 1)
 {
     <tr>
@@ -14,6 +16,7 @@ else
     {
         <tr>
             <td>@item.CourseObj.CourseTitle</td>
+            <td>@item.ClassCode</td>
             <td>@item.Attendant.IDNumber</td>
             <td>@item.Attendant.CompanyID</td>
             <td>@item.Attendant.FullName</td>

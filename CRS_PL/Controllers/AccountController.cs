@@ -86,7 +86,7 @@ namespace nus.iss.crs.pl.Controllers
 
         public ActionResult LogOff()
         {
-            Session.Abandon();
+            //Session.Abandon();
             SessionHelper.ReleaseSession();
             FormsAuthentication.SignOut();
             return RedirectToAction("index", "home");

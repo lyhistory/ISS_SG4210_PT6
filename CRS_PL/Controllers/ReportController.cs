@@ -33,7 +33,7 @@ namespace nus.iss.crs.pl.Controllers
             {
                 list = manager.GetUserAttendancesByCourseCode(courseCode, datetime);
             }
-            return View("~/views/report/_AttendaceReport.cshtml", list);
+            return View("~/views/report/_AttendanceReport.cshtml", list);
         }
     }
 }

@@ -35,11 +35,9 @@ namespace nus.iss.crs.pl
             }
         }
 
-        protected void Application_Stop()
+        protected void Application_End()
         {
-            Session.Abandon();
             SessionHelper.ReleaseSession();
-            FormsAuthentication.SignOut();
         }
     }
 }

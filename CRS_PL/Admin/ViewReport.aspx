@@ -4,15 +4,21 @@
      <script language="javascript" type="text/javascript">
          $(function () {
              $('#btnSearch').click(function () {
-                 searchReport('ACD');
+                 var courseCode = $('#courseCode').val();
+                 var date = $('#classDate').val();
+                 if (courseCode == '' || date == '') {
+                     alert("invalid query");
+                     return false;
+                 }
+                 searchReport(courseCode,date);
              });
             
          });
-         function searchReport(courseCode) {
+         function searchReport(courseCode,date) {
              $.ajax({
                  type: 'post',
                  url: '/Report/SearchAttendacne',
-                 data: { courseCode: courseCode, date: $('#classDate').val() }
+                 data: { courseCode: courseCode, date:date  }
              }).done(function(data){
                  
                  $('#reportContent').html(data);
@@ -23,17 +29,20 @@
         <h2>Attendance Report</h2>
     </blockquote>
         <div id="header">
-
+            <label for="classCode">Class Code</label>
+            <input id="courseCode" type="text"/>
+            <label for="classDate">Class Date</label>
             <input id="classDate" type="date" />
 
             <input type="button" id="btnSearch" value="Search"/>
 
         </div>
         <div id="reportContainer">
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <td>Course Title</td>
+                        <td>Class Code</td>
                         <td>Participant IdNumber</td>
                         <td>Participant CompanyID</td>
                         <td>Participant FullName</td>
