@@ -12,6 +12,7 @@ using CRS_COMMON;
 
 using nus.iss.crs.dm;
 using nus.iss.crs.pl.AppCode.FormAuthentication;
+using nus.iss.crs.pl.AppCode.Session;
 namespace nus.iss.crs.pl
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -32,6 +33,11 @@ namespace nus.iss.crs.pl
             {
                 HttpContext.Current.User = CRSFormsAuthentication<User>.ParsePrincipal(HttpContext.Current.Request);
             }
+        }
+
+        protected void Application_End()
+        {
+            SessionHelper.ReleaseSession();
         }
     }
 }

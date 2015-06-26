@@ -28,21 +28,8 @@ namespace nus.iss.crs.pl.Admin
 
         void PopulateCouseDetail()
         {
-            //populate category and instructor
-            //TestDat();
-
-            ////retrieve parameter from request
-            
-            ////retrieve data by parameter from BL
-            //Course course = new Course();
-            //course.Category = selectedCategory;
-            //course.Instructor = selectedInstructor;
-            //course.Code = "123456";
-            //course.CourseTitle = "title";
-            //course.Description = "description";
-            //course.Duration = 3;
-            //course.Fee = "2000";
-            
+            //retrieve parameter from request
+            //retrieve data by parameter from BL
             CourseManager manager = BLSession.CreateCourseManager();
             foreach (CourseCategory category in manager.GetCourseCategoryList())
             {
@@ -59,7 +46,6 @@ namespace nus.iss.crs.pl.Admin
             }
 
             Course course = manager.GetCourseByCode(this.Request.QueryString.Get(CRSConstant.ParameterCourseCode));
-            //populate data 
             codeID.Text = course.Code;
             titleID.Text = course.CourseTitle;
             descriptionID.Text = course.Description;

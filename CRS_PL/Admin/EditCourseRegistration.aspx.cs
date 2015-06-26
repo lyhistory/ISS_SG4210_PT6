@@ -1,4 +1,5 @@
 ﻿using nus.iss.crs.bl;
+using nus.iss.crs.dm;
 using nus.iss.crs.dm.Registration;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class EditCourseRegistration : CrsPageController
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
 
@@ -22,18 +23,42 @@ namespace nus.iss.crs.pl.Admin
 
         private void PopulateCouseDetail()
         {
+            ParticipantManager participantManager = BLSession.CreateParticipantManager();
+            Participant participant = participantManager.GetParticipant(this.Request.QueryString.Get(CRSConstant.ParameterParticipantIDNumber));
 
+            UserManager userManager = BLSession.CreateUserManager();
+            foreach (Company_DM company in userManager.GetCompanyList())
+            {
+                ListItem item = new ListItem(company.CompanyName, company.CompanyID);
+                companyList.Items.Add(item);
+            }
+
+            idNumber.Text = participant.IDNumber;
+            employmentStatus.Text = participant.EmploymentStatus;
+            companyList.Text = participant.CompanyName;
+            salutation.Text = participant.Salutation;
+            jobTitle.Text = participant.JobTitle;
+            department.Text = participant.Department;
+            fullName.Text = participant.FullName;
+            organizationSize.Text = participant.OrganizationSize;
+            genderList.Text = participant.Gender;
+            salaryRange.Text = participant.SalaryRange;
+            nationality.Text = participant.Nationality;
+            DOB.Text = participant.DOB.ToString();
+            email.Text = participant.EMail;
+            contactNumber.Text = participant.ContactNumber;
+            dietaryRequirement.Text = participant.DietaryRequirement;
         }
 
          protected void Save_Click(object sender, EventArgs e)
         {
-            CourseRegistrationManager manager = BLSession.CreateCourseRegistrationManager();
+            ParticipantManager participantManager = BLSession.CreateParticipantManager();
             Participant tempParticipant = new Participant();
 
             tempParticipant.IDNumber = idNumber.Text.ToString();
             tempParticipant.EmploymentStatus = employmentStatus.Text.ToString();
-            tempParticipant.CompanyID = companyID.Text.ToString();
-            tempParticipant.CompanyName = companyName.Text.ToString();
+            tempParticipant.CompanyID = companyList.SelectedItem.Attributes["CompanyID"];
+            tempParticipant.CompanyName = companyList.SelectedValue;
             tempParticipant.Salutation = salutation.Text.ToString();
             tempParticipant.JobTitle = jobTitle.Text.ToString();
             tempParticipant.Department = department.Text.ToString();
@@ -48,7 +73,7 @@ namespace nus.iss.crs.pl.Admin
             tempParticipant.DietaryRequirement = dietaryRequirement.Text.ToString();
 
             //TODO
-            //manager.EditParticipant(tempParticipant);
+            participantManager.EditPariticipant(tempParticipant);
             NextPage(true);
         }
 

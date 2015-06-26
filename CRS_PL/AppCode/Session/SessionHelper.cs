@@ -50,23 +50,34 @@ namespace nus.iss.crs.pl.AppCode.Session
 
         public static void ReleaseBLSession()
         {
-            
-                bLSession = (ISession)HttpContext.Current.Session[CRSConstant.BLSessionKey];
-                if (bLSession != null )
-                {
-                    bLSession.Release();
-                }
+            bLSession = (ISession)HttpContext.Current.Session[CRSConstant.BLSessionKey];
+            if (bLSession != null)
+            {
+                bLSession.Release();
+            }
 
-                bLSession = null;             
+            bLSession = null;
+
         }
 
         public static void ReleaseSession()
         {
-            ReleaseBLSession();
+            try
+            {
+                if (HttpContext.Current != null)
+                {
+                    ReleaseBLSession();
 
-            HttpContext.Current.Session.Clear();
-            HttpContext.Current.Session.Abandon();
-            FormsAuthentication.SignOut();
+                    if (HttpContext.Current.Session != null)
+                    {
+                        HttpContext.Current.Session.Clear();
+                        HttpContext.Current.Session.Abandon();
+                    }
+                    FormsAuthentication.SignOut();
+                }
+            }
+            catch { }
+            
         }
     }
 }

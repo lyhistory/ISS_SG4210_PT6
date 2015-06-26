@@ -14,8 +14,6 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class ListRegistration : CrsPageController
     {
-
-        //TODO
         CourseRegistrationManager manager = null;
         protected override void Page_Load(object sender, EventArgs e)
         {
@@ -78,35 +76,49 @@ namespace nus.iss.crs.pl.Admin
             endDate.Text = registration.CourseClassObj.EndDate.ToString();
             courseRow.Cells.Add(endDate);
 
-            TableCell disableID = new TableCell();
-            LinkButton disableLb = new LinkButton();
-            disableLb.Text = "Enable /Disable";
-            disableLb.OnClientClick = "javascript:return ChangeRegistrationStatus(this);";
-            disableLb.CommandName = "Disable";
-            disableLb.CommandArgument = registration.RegID;
-            disableID.Controls.Add(disableLb);
-            courseRow.Cells.Add(disableID);
+            //TableCell disableID = new TableCell();
+            //LinkButton lb = new LinkButton();
+            //lb.Text = "Enable /Disable";
+            //lb.CommandName = "Disable";
+            //lb.CommandArgument = registration.RegID;
+            //lb.Click += new EventHandler(lb_Command);
+            //disableID.Controls.Add(lb);
+            //courseRow.Cells.Add(disableID);
 
-            TableCell editID = new TableCell();
+            TableCell moveID = new TableCell();
             HyperLink h = new HyperLink();
             h.Text = "Move";
             h.NavigateUrl = "";
+            moveID.Controls.Add(h);
+            courseRow.Cells.Add(moveID);
+
+            TableCell editID = new TableCell();
+            h = new HyperLink();
+            h.Text = "Edit";
+            h.NavigateUrl = "~/Admin/EditCourseRegistration.aspx?" + CRSConstant.ParameterParticipantIDNumber + "=" + registration.ParticipantObj.IDNumber;
             editID.Controls.Add(h);
             courseRow.Cells.Add(editID);
 
             TableCell cancelID = new TableCell();
-            LinkButton cancelLb = new LinkButton();
-            cancelLb.Text = "Cancel";
-            cancelLb.OnClientClick = "javascript:return CancelRegistration(this);";
-            cancelID.Controls.Add(cancelLb);
+            LinkButton lb = new LinkButton();
+            lb.Text = "Cancel";
+            lb.CommandName = "Cancel";
+            lb.CommandArgument = registration.RegID;
+            lb.Click += new EventHandler(lb_Command);
+            cancelID.Controls.Add(lb);
             courseRow.Cells.Add(cancelID);
 
             return courseRow;
         }
 
-        protected void ChangeRegistrationStatus_Click(object sender, EventArgs e )
+        protected void lb_Command(object sender, EventArgs e)
         {
+            LinkButton lb = sender as LinkButton;
 
+            if (lb.CommandName == "Cancel")
+            {
+                //manager.DeleteCourse(lb.CommandArgument);
+            }
         }
 
         public override void RegistraterAction()
@@ -116,44 +128,39 @@ namespace nus.iss.crs.pl.Admin
 
         protected void SearchRegistration_Click(object sender, EventArgs e)
         {
+            TableRow row1 = Table1.Rows[0];
+            Table1.Rows.Clear();
+            Table1.Rows.Add(row1);
+
             List<Registration> registrationList = new List<Registration>();
+            Participant tempParticipant = new Participant();
+
             // 0.base on participant name; 1.base on participant IDNumber; 2.company
             if (searchConditionList.SelectedIndex == 0)
             {
-                //ParticipantManager participantManager = BLSession.CreateParticipantManager();
-                //participantManager.GetParticipant(string idnumber);
-
-                //UserManager userManager = BLSession.CreateUserManager();
-                //userManager.GetCompanyByName(string name)
-                //userManager.
-                ////by user
-                //manager.GetRegistrationListByEmployee();
-                ////by company
-                //manager.GetRegistrationListByCompany(dm.Company);
-                ////by regid
-                //manager.GetRegistration(string RegID)
-                //else
-                
+                tempParticipant.FullName = searchValue.Text.ToString();
+                registrationList = manager.GetRegistrationListByParticipant(tempParticipant);
             }
             else if (searchConditionList.SelectedIndex == 1)
             {
-
-                CourseRegistrationManager courseRegistrationManger = BLSession.CreateCourseRegistrationManager();
-                //manager.getp
-                //registrationList = manager.GetRegistrationListByParticipant(registration);
+                tempParticipant.IDNumber = searchValue.Text.ToString();
+                registrationList = manager.GetRegistrationListByParticipant(tempParticipant);
             }
             else if (searchConditionList.SelectedIndex == 2)
             {
                 UserManager userManager = BLSession.CreateUserManager();
-                Company_DM company = userManager.GetCompanyByName(searchValue.Text.ToString());
-                registrationList = manager.GetRegistrationListByCompany(company);
+                Company_DM tempCompany = userManager.GetCompanyByName(searchValue.Text.ToString());
+                registrationList = manager.GetRegistrationListByCompany(tempCompany);
             }
 
-            foreach (Registration registration in registrationList)
+            if (registrationList != null)
             {
-                if (registration.CourseClassObj != null)
+                foreach (Registration registration in registrationList)
                 {
-                    Table1.Rows.Add(CreateRegistrationRow(registration));
+                    if (registration.CourseClassObj != null)
+                    {
+                        Table1.Rows.Add(CreateRegistrationRow(registration));
+                    }
                 }
             }
         }

@@ -13,7 +13,7 @@ namespace nus.iss.crs.pl.Admin
 {
     public partial class ClassCreation : CrsPageController
     {
-        CourseManager manager = null;//
+        CourseManager manager = null;
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
@@ -41,14 +41,6 @@ namespace nus.iss.crs.pl.Admin
         private void PopulateCategoryList()
         {
             categoryListID.Items.Add("Please select course category...");
-            //test data by LanXM
-            //ModelData testData = ModelData.GetInstance();
-
-            //Session Facade by Tong
-
-            
-            //List<CourseCategory> courseCategoryList = courseManager.GetCourseCategoryList();
-
             List<CourseCategory> courseCategoryList = manager.GetCourseCategoryList();
             foreach (CourseCategory category in courseCategoryList)
             {
@@ -64,6 +56,13 @@ namespace nus.iss.crs.pl.Admin
                 ListItem item = new ListItem(course.CourseTitle, course.Code);
                 courseListID.Items.Add(item);
             }
+        }
+
+        protected void startDateID_TextChanged(object sender, EventArgs e)
+        {
+            ClassManager classManager = BLSession.CreateClassManager();
+            Course course = manager.GetCourseByCode(courseListID.SelectedItem.Attributes["ID"]);
+            endDateID.Text = classManager.AutoGenerateCourseClassEndDate(course,DateTime.Parse(startDateID.Text.ToString())).ToString();
         }
 
         protected void Submit_Click(object sender, EventArgs e)
@@ -106,7 +105,6 @@ namespace nus.iss.crs.pl.Admin
             cls.Size = int.Parse(sizeID.Text);
             cls.StartDate = DateTime.Parse(startDateID.Text);
             cls.EndDate = DateTime.Parse(endDateID.Text);
-
             ClassManager classManager = BLSession.CreateClassManager();
             classManager.CreateCourseClass(cls);
 

@@ -31,22 +31,13 @@ namespace nus.iss.crs.pl.Admin {
         protected global::System.Web.UI.WebControls.TextBox employmentStatus;
         
         /// <summary>
-        /// companyID control.
+        /// companyList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox companyID;
-        
-        /// <summary>
-        /// companyName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox companyName;
+        protected global::System.Web.UI.WebControls.DropDownList companyList;
         
         /// <summary>
         /// salutation control.

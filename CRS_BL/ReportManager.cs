@@ -12,31 +12,42 @@ namespace nus.iss.crs.bl
     public class ReportManager
     {
         UnitOfWork unitOfWork = new UnitOfWork();
+        private ISession _Session;
 
-        internal ReportManager()
-        { }
-
-        internal ReportManager(ISession session)
+        public ReportManager(ISession session)
         {
-            //if (session.GetCurrentUser().GetRole() == null)
-            //{
-            //    throw new Exception("No permission.");
-            //}
+            _Session = session;
         }
-        public List<ParticipantAttendance> GetAttendanceReport(CourseClass cls)
+        internal ReportManager()
         {
-            string classCode = cls.ClassCode;
+        }
+
+        public List<ParticipantAttendance> GetAttendanceReport(string classCode)
+        {
             if (string.IsNullOrEmpty(classCode))
                 return null;
             return unitOfWork.AttendanceService.GetUserAttendancesByClassCode(classCode);
         }
 
-        public List<ParticipantAttendance> GetUserAttendances(CourseClass cls,DateTime date)
+        public List<ParticipantAttendance> GetUserAttendances(string classCode, DateTime date)
         {
-            string classCode = cls.ClassCode;
             if (string.IsNullOrEmpty(classCode))
                 return null;
             return unitOfWork.AttendanceService.GetUserAttendancesByClassCode(classCode, date);
+        }
+
+        public List<ParticipantAttendance> GetUserAttendancesByCourseCode(string courseCode)
+        {
+            if (string.IsNullOrEmpty(courseCode))
+                return null;
+            return unitOfWork.AttendanceService.GetUserAttendancesByCourseCode(courseCode);
+        }
+
+        public List<ParticipantAttendance> GetUserAttendancesByCourseCode(string courseCode, DateTime date)
+        {
+            if (string.IsNullOrEmpty(courseCode))
+                return null;
+            return unitOfWork.AttendanceService.GetUserAttendancesByCourseCode(courseCode, date);
         }
     }
 }

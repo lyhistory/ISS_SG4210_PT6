@@ -1,0 +1,27 @@
+﻿@model List<nus.iss.crs.dm.ParticipantAttendance>
+@{
+    Layout = null;
+}
+@if (Model == null || Model.Count < 1)
+{
+    <tr>
+        <td colspan="6">
+            No Data.
+        </td>
+    </tr>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CourseObj.CourseTitle</td>
+            <td>@item.ClassCode</td>
+            <td>@item.Attendant.IDNumber</td>
+            <td>@item.Attendant.CompanyID</td>
+            <td>@item.Attendant.FullName</td>
+            <td>@item.ClassDate</td>
+            <td>@item.Status.ToString()</td>
+        </tr>
+    }
+}

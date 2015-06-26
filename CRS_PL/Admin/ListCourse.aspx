@@ -1,41 +1,55 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Site.Master" AutoEventWireup="true" CodeBehind="ListCourse.aspx.cs" Inherits="nus.iss.crs.pl.Admin.ListCourse" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="ListCourse.aspx.cs" Inherits="nus.iss.crs.pl.Admin.ListCourse" %>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="placeholder_MainContent" runat="server">
-    <p>
+   <%-- <script type="text/javascript">
+        var httpRequest = null;
+
+        function getXMLHttpRequest() {
+            if (window.ActiveXObject) {
+                try {
+                    return new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        return new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e1) {
+                        return null;
+                    }
+                }
+            } else if (window.XMLHttpRequest) {
+                return new XMLHttpRequest();
+            } else {
+                return null;
+            }
+        }
+
+        function sendRequest(url, params, callback, method) {
+            httpRequest = getXMLHttpRequest();
+            var httpMethod = method ? method : 'GET';
+            if (httpMethod != 'GET' && httpMethod != 'POST') {
+                httpMethod = 'GET';
+            }
+            var httpParams = (params == null || params == '') ? null : params;
+            var httpUrl = url;
+            if (httpMethod == 'GET' && httpParams != null) {
+                httpUrl = httpUrl + "?" + httpParams;
+            }
+            httpRequest.open(httpMethod, httpUrl, true);
+            httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            httpRequest.onreadystatechange = callback;
+            httpRequest.send(httpMethod == 'POST' ? httpParams : null);
+        }
+
+        function abc(coursecode) {
+            alert(coursecode);
+            return false;
+        }
+    </script>--%>
+    <blockquote>
         <h2>Executive Education Programmes</h2>
-    </p>
+    </blockquote>
+        
     <div>
         <asp:PlaceHolder runat="server" ID="PlaceHolder1" />
     </div>
-
-   <%-- <asp:Table ID="Table1" runat="server" GridLines="Both">
-        <asp:TableRow runat="server">
-            <asp:TableHeaderCell ColumnSpan="2">Programe </asp:TableHeaderCell>
-            
-            <asp:TableHeaderCell>Duration</asp:TableHeaderCell>
-            <asp:TableHeaderCell>Instructor</asp:TableHeaderCell>
-            <asp:TableHeaderCell>Fee</asp:TableHeaderCell>
-        </asp:TableRow>
-        <asp:TableRow runat="server">
-            <asp:TableCell ColumnSpan="5">SOFTWARE ENGINEERING & DESIGN</asp:TableCell>                     
-        </asp:TableRow>
-        <asp:TableRow runat="server">
-            <asp:TableCell>Code</asp:TableCell>
-            <asp:TableCell>Course Name</asp:TableCell>
-            <asp:TableCell>Duration</asp:TableCell>
-            <asp:TableCell>Instructor</asp:TableCell>
-            <asp:TableCell>Fee</asp:TableCell>
-            <asp:TableCell><A  href ="">Edit</A></asp:TableCell>
-            <asp:TableCell><A  href ="">Delete</A></asp:TableCell>
-            <asp:TableCell><A  href ="">Disable/Enable</A></asp:TableCell>             
-        </asp:TableRow>
-        <asp:TableRow runat="server">
-        </asp:TableRow>
-        <asp:TableRow runat="server">
-        </asp:TableRow>
-        <asp:TableRow runat="server">
-        </asp:TableRow>
-    </asp:Table>
-    --%>
 </asp:Content>
 

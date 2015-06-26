@@ -28,7 +28,7 @@ namespace CRS_DAL.Service
             this.InstructorRepository = instructorRepository;
         }
 
-        public List<dm.Course.CourseClass> GetCourseClassList(string courseCode, DateTime dateFrom, DateTime dateTo,int status=-1)
+        public List<dm.Course.CourseClass> GetCourseClassList(string courseCode, DateTime dateFrom, DateTime dateTo,int status=-1,bool returnLevel1=true,bool returnLevel2=true)
         {
             try
             {
@@ -41,12 +41,13 @@ namespace CRS_DAL.Service
                 CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
 
                 return (from x in _list
-                        select new dm.Course.CourseClass(
-                            new dm.Course.Course()
+                        select new dm.Course.CourseClass()
+                        {
+                            CourseObj=returnLevel1 ? new dm.Course.Course()
                             {
                                 CourseTitle = _course.CourseTitle,
                                 Code = _course.CourseCode,
-                                Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
+                                Category = returnLevel2 ? new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc) : null,
                                 Description = _course.Description,
                                 Duration = _course.NumberOfDays,
                                 Fee = _course.Fee.ToString(),
@@ -57,8 +58,8 @@ namespace CRS_DAL.Service
                                 },
                                 Status = (dm.Course.CourseStatus)_course.Status
 
-                            })
-                        {
+                            }
+                            : null,
                             ClassCode = x.ClassCode,
                             StartDate = x.StartDate,
                             EndDate = x.EndDate,
@@ -82,7 +83,7 @@ namespace CRS_DAL.Service
                         ).ToList();
         }
 
-        public List<dm.Course.Course> GetCourseListByCategory(string courseCategoryID)
+        public List<dm.Course.Course> GetCourseListByCategory(string courseCategoryID,bool returnCategory=true)
         {
             CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(courseCategoryID)).FirstOrDefault();
             var _courselist = this.CourseRepository.GetWhere(x => x.CategoryID.Equals(courseCategoryID)).ToList();
@@ -93,7 +94,7 @@ namespace CRS_DAL.Service
                     {
                         CourseTitle = _course.CourseTitle,
                         Code = _course.CourseCode,
-                        Category = new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc),
+                        Category = returnCategory ? new dm.Course.CourseCategory(_category.CategoryID, _category.CategoryName, _category.CategoryDesc) : null,
                         Description = _course.Description,
                         Duration = _course.NumberOfDays,
                         Fee = _course.Fee.ToString(),
@@ -238,6 +239,41 @@ namespace CRS_DAL.Service
                 //log
             }
             return null;
+        }
+
+        public bool ChangeCourseStatus(string courseCode)
+        {
+            try
+            {
+                var course = CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(courseCode));
+                if (course != null)
+                {
+                    if (course.Status == (int)dm.Course.CourseStatus.Enabled)
+                        course.Status = (int)dm.Course.CourseStatus.Disabled;
+                    if (course.Status == (int)dm.Course.CourseStatus.Disabled)
+                        course.Status = (int)dm.Course.CourseStatus.Enabled;
+                    unitOfWork.Commit();
+                    return true;
+                }
+            }
+            catch { }
+            return false;
+        }
+
+        public bool DeleteCourse(string courseCode)
+        {
+            try
+            {
+                var course = CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(courseCode));
+                if (course != null)
+                {
+                    CourseRepository.Delete(course);
+                    unitOfWork.Commit();
+                    return true;
+                }
+            }
+            catch { }
+            return false;
         }
 
         public List<dm.CourseInstructor> GetInstructorList()

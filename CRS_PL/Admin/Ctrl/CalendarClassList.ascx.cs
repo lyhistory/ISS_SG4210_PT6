@@ -45,19 +45,26 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             editID.Controls.Add(h);
             courseRow.Cells.Add(editID);
 
-            TableCell deleteID = new TableCell();
+            TableCell closeID = new TableCell();
             h = new HyperLink();
-            h.Text = "Delete";
+            h.Text = "Close";
             h.NavigateUrl = "";
-            deleteID.Controls.Add(h);
-            courseRow.Cells.Add(deleteID);
+            closeID.Controls.Add(h);
+            courseRow.Cells.Add(closeID);
 
-            TableCell updateID = new TableCell();
+            TableCell confirmID = new TableCell();
             h = new HyperLink();
-            h.Text = "Enable/Disable";
+            h.Text = "Confirm";
             h.NavigateUrl = "";
-            updateID.Controls.Add(h);
-            courseRow.Cells.Add(updateID);
+            confirmID.Controls.Add(h);
+            courseRow.Cells.Add(confirmID);
+
+            TableCell cancelID = new TableCell();
+            h = new HyperLink();
+            h.Text = "Cancel";
+            h.NavigateUrl = "";
+            cancelID.Controls.Add(h);
+            courseRow.Cells.Add(cancelID);
 
             TableCell view = new TableCell();
             h = new HyperLink();

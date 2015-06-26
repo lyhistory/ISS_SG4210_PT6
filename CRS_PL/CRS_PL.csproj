@@ -328,6 +328,7 @@
     <Compile Include="Controllers\CourseRegisterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HRController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="CRSConstant.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -487,7 +488,9 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Service\AttendanceService.svc" />
     <Content Include="Service\CourseRegistrationService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -516,12 +519,14 @@
     <Content Include="Views\CourseRegister\ViewHRRegister.cshtml" />
     <Content Include="Views\CourseRegister\_CourseRegister.cshtml" />
     <Content Include="Views\CourseRegister\ViewRegistrationDetail.cshtml" />
+    <Content Include="Views\Report\_AttendanceReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Log\" />
     <Folder Include="Views\Auth\" />
+    <Folder Include="Views\Course\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -543,10 +548,13 @@
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
       <Name>CRS_DM</Name>
     </ProjectReference>
+<<<<<<< HEAD
     <ProjectReference Include="..\CRS_SL\CRS_WF.csproj">
       <Project>{22540be8-669c-4d72-944d-8c14ac286f1a}</Project>
       <Name>CRS_WF</Name>
     </ProjectReference>
+=======
+>>>>>>> af40b72535c0204e84db2a4b68dd0a2d50be1959
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
