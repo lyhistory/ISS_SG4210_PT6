@@ -43,6 +43,11 @@ namespace CRSClient
 
         private void btnShow_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtCourse.Text))
+            {
+                MessageBox.Show("Please input your course code");
+                return;
+            }
           AttendanceService.Participant[] students =   client.GetStudents(txtCourse.Text, startDate.Value, endDate.Value);
           if (students == null)
           {

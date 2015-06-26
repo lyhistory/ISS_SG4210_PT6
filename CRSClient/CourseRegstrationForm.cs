@@ -35,7 +35,8 @@ namespace CRSClient
             reg.OrganizationSize = "100";
             reg.Sponsorship = "self";
 
-
+            if (string.IsNullOrEmpty(txtCompanyName.Text))
+                return;
             ComboItem item =(ComboItem)courseList.SelectedItem;
             Course c = (Course) item.Tag ;
 
@@ -43,8 +44,12 @@ namespace CRSClient
             ComboItem itemP = (ComboItem)cboParticipants.SelectedItem;
             Participant p = (Participant)itemP.Tag;
 
+            if (c == null || p == null)
+                return;
 
             client.RegistrateCourse(reg, txtCompanyName.Text, p.IDNumber, c.Code, startDate.Value, endDate.Value);
+
+            MessageBox.Show("Register successfully");
             
         }
 
@@ -57,13 +62,18 @@ namespace CRSClient
                 courseList.Items.Add(item);
             }
 
-            txtCompanyName.Text = "aft";
+           
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cboParticipants.Items.Clear();
 
             Participant[] participants = client.GetEmployees(txtCompanyName.Text);
 
             foreach (Participant p in participants)
             {
-                ComboItem item = new ComboItem("(" + p.IDNumber+ ") " + p.FullName, p.IDNumber, p);
+                ComboItem item = new ComboItem("(" + p.IDNumber + ") " + p.FullName, p.IDNumber, p);
                 cboParticipants.Items.Add(item);
             }
         }
