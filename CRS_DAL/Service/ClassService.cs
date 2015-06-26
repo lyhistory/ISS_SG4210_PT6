@@ -122,6 +122,8 @@ namespace CRS_DAL.Service
         {
             CourseClass _courseClass =this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(classCode));
 
+            
+
             if(_courseClass!=null){
 
                 Course _course=this.CourseRepository.GetFirstOrDefault(x=>x.CourseCode.Equals(_courseClass.CourseCode));
@@ -133,6 +135,10 @@ namespace CRS_DAL.Service
                         CourseCategory _category = this.CourseCategoryRepository.GetWhere(x => x.CategoryID.Equals(_course.CategoryID)).FirstOrDefault();
                         if (_category != null)
                         {
+                            int count = 0;
+                            var registerlist = this.RegistrationRepository.GetWhere(x => x.ClassID.Equals(_courseClass.ClassID));
+                            if (registerlist != null)
+                                count = registerlist.Count();
                             return new dm.Course.CourseClass(
                                     new dm.Course.Course()
                                     {
@@ -155,7 +161,8 @@ namespace CRS_DAL.Service
                                     EndDate = _courseClass.EndDate,
                                     ClassCode = _courseClass.ClassCode,
                                     Size = _courseClass.Size,
-                                    Status = (dm.Course.ClassStatus)_courseClass.Status
+                                    Status = (dm.Course.ClassStatus)_courseClass.Status,
+                                    NoOfRegedParticipant=count
                                 };
                         }
                     }
