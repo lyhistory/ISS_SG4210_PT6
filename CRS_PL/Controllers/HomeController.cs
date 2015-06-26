@@ -90,7 +90,7 @@ namespace nus.iss.crs.pl.Controllers
             {
                 //do staff login,redirect to back office
                 loginUser = manager.LoginStaff(loginID, password);
-                if (loginUser.Enabled < 1)
+                if (loginUser!=null&&loginUser.Enabled < 1)
                 {
                     return Json(new { Code = -2 }); 
                 }
