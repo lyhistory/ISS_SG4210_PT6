@@ -3,6 +3,7 @@
  xmlns:local="clr-namespace:CRS_WF"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:nicb="clr-namespace:nus.iss.crs.bl;assembly=CRS_BDL"
  xmlns:nicdc="clr-namespace:nus.iss.crs.dm.Course;assembly=CRS_DM"
  xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
@@ -18,6 +19,8 @@
     <x:Property Name="classSize" Type="InArgument(x:Int32)" />
     <x:Property Name="classCode" Type="InArgument(x:String)" />
     <x:Property Name="confirmed" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="ArgCourseClass" Type="InOutArgument(nicdc:CourseClass)" />
+    <x:Property Name="ArgManager" Type="InArgument(nicb:ClassManager)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap2010:WorkflowViewState.IdRef>CRS_WF.CancelActivity_1</sap2010:WorkflowViewState.IdRef>
@@ -30,6 +33,7 @@
       <x:String>System.Text</x:String>
       <x:String>nus.iss.crs.dm.Course</x:String>
       <x:String>System.ServiceModel.Activities</x:String>
+      <x:String>nus.iss.crs.bl</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -56,6 +60,7 @@
       <AssemblyReference>System.Xml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>CRS_BDL</AssemblyReference>
       <AssemblyReference>CRS_DM</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>CRS_WF</AssemblyReference>
@@ -66,16 +71,17 @@
       <Variable x:TypeArguments="p:CorrelationHandle" Name="__handle1" />
       <Variable x:TypeArguments="p:CorrelationHandle" Name="courseClassHandle" />
     </Sequence.Variables>
-    <Assign>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:Boolean">
-          <mca:CSharpReference x:TypeArguments="x:Boolean">confirmed</mca:CSharpReference>
+        <OutArgument x:TypeArguments="nicdc:ClassStatus">
+          <mca:CSharpReference x:TypeArguments="nicdc:ClassStatus">ArgCourseClass.Status</mca:CSharpReference>
         </OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+        <InArgument x:TypeArguments="nicdc:ClassStatus">
+          <mca:CSharpValue x:TypeArguments="nicdc:ClassStatus">ClassStatus.Canceled</mca:CSharpValue>
+        </InArgument>
       </Assign.Value>
-      <sap2010:WorkflowViewState.IdRef>Assign_1</sap2010:WorkflowViewState.IdRef>
     </Assign>
     <local:UpadateCancelStatus Text="{x:Null}" classCode="{x:Null}" classSize="{x:Null}" sap2010:WorkflowViewState.IdRef="UpadateCancelStatus_2">
       <local:UpadateCancelStatus.courseClass>
@@ -94,20 +100,20 @@
         </OutArgument>
       </local:UpadateCancelStatus.status>
     </local:UpadateCancelStatus>
-    <sads:DebugSymbol.Symbol>dzpEOlxDdXJyaWN1bHVtXENBXElTU19TRzQyMTBfUFQ2XENSU19TTFxDYW5jZWxBY3Rpdml0eS54YW1sCEADYg4CAQFFBU8OAgEeUAVgIQIBAkwxTDYCAShIC0hbAgEfUwtTXQIBFV0LXVcCAQxYC1hYAgED</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0ZFOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDYW5jZWxBY3Rpdml0eS54YW1sCEUDaA4CAQFKBVUOAgEkVgVmIQIBAlILUmYCATBNC01vAgElWQtZXQIBGWMLY1cCAQ5eC15YAgED</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="243.2,62.4" />
-      <sap2010:ViewStateData Id="UpadateCancelStatus_2" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="265.6,249.6">
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="UpadateCancelStatus_2" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="264,248">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CRS_WF.CancelActivity_1" sap:VirtualizedContainerService.HintSize="305.6,329.6" />
+      <sap2010:ViewStateData Id="CRS_WF.CancelActivity_1" sap:VirtualizedContainerService.HintSize="304,328" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

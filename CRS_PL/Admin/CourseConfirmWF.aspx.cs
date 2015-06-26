@@ -52,10 +52,17 @@ namespace nus.iss.crs.pl.Admin
             manager = BLSession.CreateCourseRegistrationManager();
 
             List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);
+            CourseClass cls = courseClasses[0];
 
-            Activity wf = new CRS_WF.CourseConfirmationFlow();
-
+            ClassManager clsManager = BLSession.CreateClassManager();
+            test wf = new test();
+            wf.ArgCourseClass = new InOutArgument<CourseClass>(ctx => cls);
+            wf.ArgManager = new InArgument<ClassManager>(ctx => clsManager);
             WorkflowInvoker.Invoke(wf);
+            //string username = "lanxm";
+            //Greeting greeting = new Greeting { ArgUserName = username };
+            //IDictionary<string, object> results = WorkflowInvoker.Invoke(greeting);
+            //string abc = results["Result"].ToString();
          
         }
     }

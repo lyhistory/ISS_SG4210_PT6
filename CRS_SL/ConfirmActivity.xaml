@@ -3,6 +3,7 @@
  xmlns:local="clr-namespace:CRS_WF"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:nicb="clr-namespace:nus.iss.crs.bl;assembly=CRS_BDL"
  xmlns:nicdc="clr-namespace:nus.iss.crs.dm.Course;assembly=CRS_DM"
  xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
@@ -18,6 +19,8 @@
     <x:Property Name="message" Type="OutArgument(x:String)" />
     <x:Property Name="classCode" Type="InArgument(x:String)" />
     <x:Property Name="confirmed" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="ArgCourseClass" Type="InOutArgument(nicdc:CourseClass)" />
+    <x:Property Name="ArgManager" Type="InArgument(nicb:ClassManager)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap2010:WorkflowViewState.IdRef>CRS_WF.ConfirmActivity_1</sap2010:WorkflowViewState.IdRef>
@@ -30,6 +33,7 @@
       <x:String>System.Text</x:String>
       <x:String>System.ServiceModel.Activities</x:String>
       <x:String>nus.iss.crs.dm.Course</x:String>
+      <x:String>nus.iss.crs.bl</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -59,6 +63,7 @@
       <AssemblyReference>CRS_DM</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>CRS_WF</AssemblyReference>
+      <AssemblyReference>CRS_BDL</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Confirm" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -66,7 +71,7 @@
       <Variable x:TypeArguments="p:CorrelationHandle" Name="__handle1" />
       <Variable x:TypeArguments="p:CorrelationHandle" Name="courseClassHandle" />
     </Sequence.Variables>
-    <Assign>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Boolean">
           <mca:CSharpReference x:TypeArguments="x:Boolean">confirmed</mca:CSharpReference>
@@ -75,7 +80,6 @@
       <Assign.Value>
         <InArgument x:TypeArguments="x:Boolean">True</InArgument>
       </Assign.Value>
-      <sap2010:WorkflowViewState.IdRef>Assign_1</sap2010:WorkflowViewState.IdRef>
     </Assign>
     <local:UpdateConfirmStatus Text="{x:Null}" classCode="{x:Null}" classSize="{x:Null}" sap2010:WorkflowViewState.IdRef="UpdateConfirmStatus_1">
       <local:UpdateConfirmStatus.courseClass>
@@ -95,14 +99,14 @@
       </local:UpdateConfirmStatus.status>
     </local:UpdateConfirmStatus>
     <local:NotifyByEmail Text="{x:Null}" sap2010:WorkflowViewState.IdRef="NotifyByEmail_1" />
-    <sads:DebugSymbol.Symbol>dztEOlxDdXJyaWN1bHVtXENBXElTU19TRzQyMTBfUFQ2XENSU19TTFxDb25maXJtQWN0aXZpdHkueGFtbAlAA2MOAgEBRQVPDgIBH1AFYCECAQNhBWFeAgECTDFMNQIBKUgLSFsCASBTC1NdAgEWXQtdVwIBDVgLWFgCAQQ=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0dFOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDb25maXJtQWN0aXZpdHkueGFtbAlFA2cOAgEBSgVTDgIBJVQFZCECAQNlBWVeAgECUTFRNQIBMU0LTVsCASZXC1ddAgEaYQthVwIBD1wLXFgCAQQ=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="243.2,62.4" />
-      <sap2010:ViewStateData Id="UpdateConfirmStatus_1" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
-      <sap2010:ViewStateData Id="NotifyByEmail_1" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="265.6,312">
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,62" />
+      <sap2010:ViewStateData Id="UpdateConfirmStatus_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="NotifyByEmail_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="264,310">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -110,7 +114,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CRS_WF.ConfirmActivity_1" sap:VirtualizedContainerService.HintSize="305.6,392" />
+      <sap2010:ViewStateData Id="CRS_WF.ConfirmActivity_1" sap:VirtualizedContainerService.HintSize="304,390" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

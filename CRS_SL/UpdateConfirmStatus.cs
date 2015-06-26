@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Activities;
 using nus.iss.crs.dm.Course;
+using nus.iss.crs.bl;
 
 namespace CRS_WF
 {
@@ -13,6 +14,8 @@ namespace CRS_WF
         // Define an activity input argument of type string
         public InArgument<string> Text { get; set; }
         public InArgument<CourseClass> courseClass { get; set; }
+
+        public InArgument<ClassManager> manager { get; set; }
         public InArgument<int> classSize { get; set; }
         public InArgument<string> classCode { get; set; }
         public OutArgument<string> status { get; set; }
@@ -27,9 +30,11 @@ namespace CRS_WF
             string classCode = context.GetValue(this.classCode);
             string text = context.GetValue(this.Text);
             CourseClass courseClass = context.GetValue(this.courseClass);
+            ClassManager manager = context.GetValue(this.manager);
 
             context.SetValue(status, "Confirmed");
             context.SetValue(message, "Class course confirmed.");
+            manager.ConfirmCourseClass(courseClass);
 
         }
     }
