@@ -61,7 +61,7 @@ namespace nus.iss.crs.pl.Admin
         protected void startDateID_TextChanged(object sender, EventArgs e)
         {
             ClassManager classManager = BLSession.CreateClassManager();
-            Course course = manager.GetCourseByCode(courseListID.SelectedItem.Attributes["ID"]);
+            Course course = manager.GetCourseByCode(courseListID.SelectedItem.Value);
             endDateID.Text = classManager.AutoGenerateCourseClassEndDate(course,DateTime.Parse(startDateID.Text.ToString())).ToString();
         }
 
