@@ -55,6 +55,11 @@ namespace nus.iss.crs.bl
             return unitOfWork.ClassService.EditCourseClassDate(courseClass, startDate, endDate);
         }
 
+        public bool EditCourseClass(CourseClass courseClass)
+        {
+            return unitOfWork.ClassService.EditCourseClass(courseClass);
+
+        }
         public CourseClass GetCourseClassByCode(string classCode)
         {
             return unitOfWork.ClassService.GetCourseClassByCode(classCode);

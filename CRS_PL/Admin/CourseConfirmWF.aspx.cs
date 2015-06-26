@@ -1,4 +1,4 @@
-﻿using CRS_SL;
+﻿//using CRS_SL;
 using nus.iss.crs.bl;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.Admin.Ctrl;
@@ -47,16 +47,16 @@ namespace nus.iss.crs.pl.Admin
             //throw new NotImplementedException();
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            manager = BLSession.CreateCourseRegistrationManager();
+        //protected void Button1_Click(object sender, EventArgs e)
+        //{
+        //    manager = BLSession.CreateCourseRegistrationManager();
 
-            List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);
+        //    List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);
 
-            Activity wf = new CRS_WF.CourseConfirmationFlow();
+        //    Activity wf = new CRS_WF.CourseConfirmationFlow();
 
-            WorkflowInvoker.Invoke(wf);
+        //    WorkflowInvoker.Invoke(wf);
          
-        }
+        //}
     }
 }
