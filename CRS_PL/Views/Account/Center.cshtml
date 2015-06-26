@@ -19,7 +19,8 @@
 <div class="container center-block">
     @if (nus.iss.crs.pl.AppCode.Session.SessionHelper.Current.RoleName.ToUpper().Equals("COURSE"))
     {
-        <h1 class="page-header">you can contact admin 82610780 for assistance!</h1>
+        <h1>Welcome @ViewBag.UserName</h1>
+        <h2 class="page-header">you can contact admin 82610780 for assistance!</h2>
     }
     else
     {

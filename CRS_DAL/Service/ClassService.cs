@@ -82,7 +82,11 @@ namespace CRS_DAL.Service
         {
             try
             {
-                CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(courseClass.ClassCode));
+                CourseClass _courseClass = null;
+                if (!string.IsNullOrEmpty(courseClass.ClassCode))
+                {
+                    _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(courseClass.ClassCode));
+                }
                 if (_courseClass != null)
                 {
                     _courseClass.Status = (int)courseClass.Status;

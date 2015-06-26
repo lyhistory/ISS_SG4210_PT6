@@ -335,6 +335,7 @@
     </Compile>
     <Compile Include="Models\CourseAdminViewModel.cs" />
     <Compile Include="Models\CRForm.cs" />
+    <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\SelectItem.cs" />
     <Compile Include="Models\UserRegisterForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
