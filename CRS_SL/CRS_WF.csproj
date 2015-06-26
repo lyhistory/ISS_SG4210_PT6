@@ -93,6 +93,10 @@
       <Project>{1b5e7572-342b-4981-aa10-85709706f90c}</Project>
       <Name>CRS_BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CRS_COMMON\CRS_COMMON.csproj">
+      <Project>{ebb99bd3-a506-4fc6-ae03-d1da6876e3cc}</Project>
+      <Name>CRS_COMMON</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CRS_DM\CRS_DM.csproj">
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
       <Name>CRS_DM</Name>
