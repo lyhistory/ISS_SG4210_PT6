@@ -333,6 +333,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseAdminViewModel.cs" />
     <Compile Include="Models\CRForm.cs" />
     <Compile Include="Models\SelectItem.cs" />
     <Compile Include="Models\UserRegisterForm.cs" />
@@ -520,6 +521,10 @@
     <Content Include="Views\CourseRegister\_CourseRegister.cshtml" />
     <Content Include="Views\CourseRegister\ViewRegistrationDetail.cshtml" />
     <Content Include="Views\Report\_AttendanceReport.cshtml" />
+    <Content Include="Views\Account\Center.cshtml" />
+    <Content Include="Views\Account\_StaffTemplate.cshtml" />
+    <Content Include="Views\Account\EditCourseAdmin.cshtml" />
+    <Content Include="Views\Account\CreateCourseAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

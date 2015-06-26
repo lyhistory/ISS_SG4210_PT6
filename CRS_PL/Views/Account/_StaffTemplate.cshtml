@@ -1,0 +1,25 @@
+﻿@model List<nus.iss.crs.dm.User>
+@{
+    Layout = null;
+}
+@if (Model == null || Model.Count < 1)
+{
+    <tr>
+        <td colspan="5">
+            No Data.
+        </td>
+    </tr>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserID</td>
+            <td>@item.LoginID</td>
+            <td>@item.Password</td>
+            <td>@item.EnabledStatus</td>
+            <td><input type="button" data-tag="edit" value="Edit" class="btn btn-default" data-userid="@item.UserID" /></td>
+        </tr>
+    }
+}

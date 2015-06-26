@@ -6,6 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="placeholder_HeadContent1" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="placeholder_HeadContent2" runat="server">
+    <asp:HyperLink ID="AccountCenter" runat="server" NavigateUrl="/Account/Center" class="btn btn-primary btn-lg active">Account Center</asp:HyperLink>
 </asp:Content>
 <%--<asp:Content ID="Content4" ContentPlaceHolderID="placeholder_LeftMenu" runat="server">
 </asp:Content>--%>

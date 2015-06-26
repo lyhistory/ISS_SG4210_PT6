@@ -1,5 +1,6 @@
 ﻿using nus.iss.crs.bl;
 using nus.iss.crs.pl.AppCode.Session;
+using nus.iss.crs.pl.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,7 +87,45 @@ namespace nus.iss.crs.pl.Controllers
 
         public ActionResult Center()
         {
-            return Content("account center");
+            return View();
+        }
+        public ActionResult GetCourseAdminList()
+        {
+            var list=manager.GetCourseAdminList();
+            if (list == null)
+                return Content("<tr><td colspan='5'>No Data found.</td></tr>");
+            return View("~/views/account/_StaffTemplate.cshtml", list);
+        }
+        public ActionResult EditCourseAdmin()
+        {
+            return View();
+        }
+        public ActionResult CreateCourseAdmin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult PostCreateCourseAdmin(CourseAdminViewModel model)
+        {
+            try
+            {
+                if (!this.ModelState.IsValid)
+                {
+                    //log
+                }
+
+                bool result = manager.CreateStaff(new dm.User()
+                {
+                    LoginID = model.LoginID,
+                    Password = model.Password,
+                    Enabled = model.Enabled,
+                    RoleName = "COURSE"
+                });
+                if (result)
+                    return Json(new { Code = 1 });
+            }
+            catch { }
+            return Json(new { Code = -1 });
         }
 
         public ActionResult LogOff()

@@ -38,6 +38,18 @@ namespace nus.iss.crs.dm
         {
             return role;
         }
+
+        public int Enabled { get; set; }
+        public string EnabledStatus
+        {
+            get
+            {
+                if (Enabled >= 1)
+                    return "Enabled";
+                else
+                    return "Disabled";
+            }
+        }
          
     }
 }

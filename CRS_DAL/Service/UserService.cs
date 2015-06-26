@@ -170,12 +170,13 @@ namespace CRS_DAL.Service
                 if (!ExistsStaff(staff.LoginID))
                 {
 
-                    userRepository.Add(new User()
+                    staffRepository.Add(new Staff()
                     {
-                        UserID = Guid.NewGuid().ToString(),
+                        StaffID = Guid.NewGuid().ToString(),
                         LoginID = staff.LoginID,
                         Password = staff.Password,
-                        UserType = staff.RoleName.Equals("SYSTEM", StringComparison.OrdinalIgnoreCase) ? 2 : 1
+                        Enabled=staff.Enabled,
+                        Role = staff.RoleName.Equals("SYSTEM", StringComparison.OrdinalIgnoreCase) ? 2 : 1
                     });
 
                     this.unitOfWork.Commit();
@@ -329,6 +330,7 @@ namespace CRS_DAL.Service
         public List<dm.User> GetUserList()
         {
             var _userlist = userRepository.GetAll();
+
             return (from _user in _userlist
                     select new dm.User()
                     {
@@ -338,6 +340,24 @@ namespace CRS_DAL.Service
                         RoleName = _user.UserType == 2 ? "HR" : "Individual"
 
                     }).ToList();
+        }
+
+        public List<dm.User> GetCourseAdminList()
+        {
+            var _stafflist = staffRepository.GetWhere(x => x.Role == 1);
+            if (_stafflist == null)
+                return null;
+            return (from _staff in _stafflist
+                    select new dm.User()
+                    {
+                        UserID = _staff.StaffID,
+                        LoginID = _staff.LoginID,
+                        Password = _staff.Password,
+                        RoleName = _staff.Role == 1 ? "SYSTEM" : "COURSE",
+                        Enabled = _staff.Enabled.HasValue ? _staff.Enabled.Value : 0,
+                        Status = _staff.Status.HasValue ? _staff.Status.Value : 0
+                    }).ToList();
+
         }
 
         public bool EditUser(dm.User user)

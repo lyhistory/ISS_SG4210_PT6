@@ -1,26 +1,37 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (ViewBag.AfterLogin)
 {
-    if (nus.iss.crs.pl.AppCode.Session.SessionHelper.Current.RoleName.ToUpper().Equals("HR"))
-    {
-        <a href="@Url.Action("ViewHRRegister","CourseRegister")">Registration Record</a>
-        <a href="@Url.Action("ViewCompanyEmployee","CourseRegister")">All Employee</a>
-    }
-    else
-    {
-        <a href="@Url.Action("ViewIndividualRegister","CourseRegister")">My Registration</a>
-    }
-    
+    <ul class="nav navbar-nav navbar-left">
+
+        @if (nus.iss.crs.pl.AppCode.Session.SessionHelper.Current.RoleName.ToUpper().Equals("HR"))
+        {
+
+            <li>
+                <a href="@Url.Action("ViewHRRegister","CourseRegister")">Registration Record</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ViewCompanyEmployee","CourseRegister")">All Employee</a>
+            </li>
+        }
+        else if (nus.iss.crs.pl.AppCode.Session.SessionHelper.Current.RoleName.ToUpper().Equals("INDIVIDUAL"))
+        {
+            <li>
+                <a href="@Url.Action("ViewIndividualRegister","CourseRegister")">My Registration</a>
+            </li>
+        }
+        <li><a href="@Url.Action("ResetPassword","Account")">Reset Password</a></li>
+    </ul>
+
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            <a href="#">@string.Format("Hello " + ViewBag.UserName + "!")</a>
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="#">@string.Format("Hello " + ViewBag.UserName + "!")</a>
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
