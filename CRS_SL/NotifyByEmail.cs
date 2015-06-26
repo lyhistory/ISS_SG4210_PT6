@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Activities;
 
-namespace CRS_SL
+namespace CRS_WF
 {
 
     public sealed class NotifyByEmail : CodeActivity

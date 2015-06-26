@@ -5,9 +5,10 @@
     </p>
     <div>
         <asp:PlaceHolder runat="server" ID="PlaceHolder1" />
+       
     </div>
-
-   <asp:Table ID="Table1" runat="server" GridLines="Both">
+     <asp:Button ID="IDStart" runat="server" Text="Start Confirm Workflow" OnClick="Button1_Click" />
+   <%--<asp:Table ID="Table1" runat="server" GridLines="Both">
         <asp:TableRow runat="server">
             <asp:TableHeaderCell ColumnSpan="2">Programe </asp:TableHeaderCell> 
 
@@ -35,7 +36,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server">
         </asp:TableRow>
-    </asp:Table>
+    </asp:Table>--%>
     
 
 </asp:Content>

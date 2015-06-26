@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Activities;
 
-namespace CRS_SL.CourseCompletion
+namespace CRS_WF.CourseCompletion
 {
 
     public sealed class UpdatePassedAttendanceStudents : CodeActivity

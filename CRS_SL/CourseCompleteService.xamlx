@@ -1,6 +1,6 @@
 ﻿<WorkflowService mc:Ignorable="sap sap2010 sads" p1:TextExpression.Namespaces="{x:Reference __ReferenceID1}" p1:TextExpression.References="{x:Reference __ReferenceID2}" ConfigurationName="CourseCompleteService" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="CourseCompleteService"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
- xmlns:cc="clr-namespace:CRS_SL.CourseCompletion;assembly=CRS_SL"
+ xmlns:cc="clr-namespace:CRS_WF.CourseCompletion;assembly=CRS_WF"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
  xmlns:p="http://tempuri.org/"

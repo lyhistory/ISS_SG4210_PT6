@@ -47,22 +47,33 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             TableCell noOfRegParticipant = new TableCell();
             noOfRegParticipant.Text = cls.NoOfRegedParticipant + "";
             courseRow.Cells.Add(noOfRegParticipant);
+            if (cls.Status == ClassStatus.Close)
+            {
+                TableCell lblCell = new TableCell();
+                Label lblStatus = new Label();
+                lblStatus.Text ="To Start";
 
-            TableCell editID = new TableCell();
-            HyperLink h = new HyperLink();
-            h.Text = "Confirm";
-            //h.NavigateUrl = "~/Admin/EditCourse.aspx?" + CRSConstant.ParameterCourseCode + "=" + course.Code;
+                lblCell.Controls.Add(lblStatus);
+                courseRow.Cells.Add(lblCell);
+            }
+            else 
+            {
+                TableCell editID = new TableCell();
+                HyperLink h = new HyperLink();
+                h.Text = "Confirm";
+                //h.NavigateUrl = "~/Admin/EditCourse.aspx?" + CRSConstant.ParameterCourseCode + "=" + course.Code;
 
-            editID.Controls.Add(h);
-            courseRow.Cells.Add(editID);
+                editID.Controls.Add(h);
+                courseRow.Cells.Add(editID);
 
-            TableCell deleteID = new TableCell();
-            LinkButton lb = new LinkButton();
-            lb.Text = "Cancel";
+                TableCell deleteID = new TableCell();
+                LinkButton lb = new LinkButton();
+                lb.Text = "Cancel";
 
-            lb.OnClientClick = "";
-            deleteID.Controls.Add(lb);
-            courseRow.Cells.Add(deleteID);
+                lb.OnClientClick = "";
+                deleteID.Controls.Add(lb);
+                courseRow.Cells.Add(deleteID);
+            } 
  
             return courseRow;
         }

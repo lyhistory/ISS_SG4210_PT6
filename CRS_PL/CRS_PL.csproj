@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
@@ -542,9 +543,9 @@
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
       <Name>CRS_DM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CRS_SL\CRS_SL.csproj">
+    <ProjectReference Include="..\CRS_SL\CRS_WF.csproj">
       <Project>{22540be8-669c-4d72-944d-8c14ac286f1a}</Project>
-      <Name>CRS_SL</Name>
+      <Name>CRS_WF</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
