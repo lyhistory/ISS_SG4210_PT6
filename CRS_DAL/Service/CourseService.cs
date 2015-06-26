@@ -213,20 +213,27 @@ namespace CRS_DAL.Service
                 {
                     if (course.Instructor != null && !string.IsNullOrEmpty(course.Instructor.Name))
                     {
+                        double _fee;
+                        
                         Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(course.Instructor.ID));
                         if (_instructor != null)
                         {
                             Course _course = this.CourseRepository.GetFirstOrDefault(x => x.CourseCode.Equals(course.Code));
+
                             if (_course != null)
                             {
-                                _course.CourseTitle = course.CourseTitle;
-                                _course.CourseCode = course.Code;
-                                _course.CategoryID = course.Category.ID;
-                                _course.Description = course.Description;
-                                _course.NumberOfDays = course.Duration;
-                                _course.Fee = int.Parse(course.Fee);
-                                _course.InstructorID = course.Instructor.ID;
-                                _course.Status = (int)course.Status;
+                                if (double.TryParse(course.Fee, out _fee))
+                                {
+
+                                    _course.CourseTitle = course.CourseTitle;
+                                    _course.CourseCode = course.Code;
+                                    _course.CategoryID = course.Category.ID;
+                                    _course.Description = course.Description;
+                                    _course.NumberOfDays = course.Duration;
+                                    _course.Fee = _fee;
+                                    _course.InstructorID = course.Instructor.ID;
+                                    _course.Status = (int)course.Status;
+                                }
                             }
                             this.unitOfWork.Commit();
                             return course;
@@ -250,7 +257,7 @@ namespace CRS_DAL.Service
                 {
                     if (course.Status == (int)dm.Course.CourseStatus.Enabled)
                         course.Status = (int)dm.Course.CourseStatus.Disabled;
-                    if (course.Status == (int)dm.Course.CourseStatus.Disabled)
+                    else if (course.Status == (int)dm.Course.CourseStatus.Disabled)
                         course.Status = (int)dm.Course.CourseStatus.Enabled;
                     unitOfWork.Commit();
                     return true;
