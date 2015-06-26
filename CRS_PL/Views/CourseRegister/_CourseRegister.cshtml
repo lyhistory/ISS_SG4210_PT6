@@ -17,6 +17,19 @@
         <span style="color: red;font-weight: bolder;">(required*)</span><label for="idNumber">ID Number</label>
         @Html.TextBoxFor(x => x.IDNumber, new { @class = "form-control", @placeholder = "ID Number" })
         @Html.ValidationMessageFor(x => x.IDNumber)
+        <select id="IsLocal" name="IsLocal">
+            @if (Model.IsLocal == 1)
+            {
+                <option value="0">Foreigner</option>
+                <option value="1" selected>LOCAL</option>
+            }
+            else
+            {
+                <option value="0" selected>Foreigner</option>
+                <option value="1">LOCAL</option>
+            }
+            
+        </select>
     </div>
     <div class="form-group">
         <select class="form-control" id="salutation" name="salutation">

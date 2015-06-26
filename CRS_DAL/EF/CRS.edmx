@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CRSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ISS_SG4210_PT6Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Attendance">
           <Key>
             <PropertyRef Name="AttendanceID" />
@@ -145,7 +145,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
           <Property Name="UserType" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="CRSModelStoreContainer">
+        <EntityContainer Name="ISS_SG4210_PT6ModelStoreContainer">
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyHR" EntityType="Self.CompanyHR" Schema="dbo" store:Type="Tables" />
@@ -163,10 +163,11 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
     FROM [dbo].[Instructor] AS [Instructor]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CRSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ISS_SG4210_PT6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Attendance">
           <Key>
             <PropertyRef Name="AttendanceID" />
@@ -323,9 +324,9 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CRSModelStoreContainer" CdmEntityContainer="CRSEntities">
+        <EntityContainerMapping StorageEntityContainer="ISS_SG4210_PT6ModelStoreContainer" CdmEntityContainer="CRSEntities">
           <EntitySetMapping Name="Attendances">
-            <EntityTypeMapping TypeName="CRSModel.Attendance">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.Attendance">
               <MappingFragment StoreEntitySet="Attendance">
                 <ScalarProperty Name="AttendanceID" ColumnName="AttendanceID" />
                 <ScalarProperty Name="ClassID" ColumnName="ClassID" />
@@ -337,7 +338,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="CRSModel.Company">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.Company">
               <MappingFragment StoreEntitySet="Company">
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
@@ -350,7 +351,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CompanyHRs">
-            <EntityTypeMapping TypeName="CRSModel.CompanyHR">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.CompanyHR">
               <MappingFragment StoreEntitySet="CompanyHR">
                 <ScalarProperty Name="HRID" ColumnName="HRID" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
@@ -363,7 +364,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="CRSModel.Course">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.Course">
               <MappingFragment StoreEntitySet="Course">
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
@@ -378,7 +379,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseCategories">
-            <EntityTypeMapping TypeName="CRSModel.CourseCategory">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.CourseCategory">
               <MappingFragment StoreEntitySet="CourseCategory">
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -387,7 +388,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseClasses">
-            <EntityTypeMapping TypeName="CRSModel.CourseClass">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.CourseClass">
               <MappingFragment StoreEntitySet="CourseClass">
                 <ScalarProperty Name="ClassID" ColumnName="ClassID" />
                 <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
@@ -400,9 +401,8 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Participants">
-            <EntityTypeMapping TypeName="CRSModel.Participant">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.Participant">
               <MappingFragment StoreEntitySet="Participant">
-                <ScalarProperty Name="IsLocal" ColumnName="IsLocal" />
                 <ScalarProperty Name="ParticipantID" ColumnName="ParticipantID" />
                 <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
@@ -420,11 +420,12 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="OrganizationSize" ColumnName="OrganizationSize" />
                 <ScalarProperty Name="SalaryRange" ColumnName="SalaryRange" />
+                <ScalarProperty Name="IsLocal" ColumnName="IsLocal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Registrations">
-            <EntityTypeMapping TypeName="CRSModel.Registration">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.Registration">
               <MappingFragment StoreEntitySet="Registration">
                 <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
                 <ScalarProperty Name="ClassID" ColumnName="ClassID" />
@@ -442,7 +443,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Staffs">
-            <EntityTypeMapping TypeName="CRSModel.Staff">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.Staff">
               <MappingFragment StoreEntitySet="Staff">
                 <ScalarProperty Name="StaffID" ColumnName="StaffID" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
@@ -454,7 +455,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="CRSModel.User">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
@@ -465,7 +466,7 @@ warning 6002: The table/view 'ISS_SG4210_PT6.dbo.Instructor' does not have a pri
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Instructors">
-            <EntityTypeMapping TypeName="CRSModel.Instructor">
+            <EntityTypeMapping TypeName="ISS_SG4210_PT6Model.Instructor">
               <MappingFragment StoreEntitySet="Instructor">
                 <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
                 <ScalarProperty Name="InstructorName" ColumnName="InstructorName" />

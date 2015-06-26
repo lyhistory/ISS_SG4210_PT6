@@ -17,9 +17,10 @@
     </script>
 }
 <div class="container center-block">
+    <h1>@ViewBag.UserName , Welcome to Account Center</h1>
     @if (nus.iss.crs.pl.AppCode.Session.SessionHelper.Current.RoleName.ToUpper().Equals("COURSE"))
     {
-        <h1>Welcome @ViewBag.UserName</h1>
+        
         <h2 class="page-header">you can contact admin 82610780 for assistance!</h2>
     }
     else

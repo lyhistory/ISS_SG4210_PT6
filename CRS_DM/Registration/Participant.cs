@@ -60,5 +60,8 @@ namespace nus.iss.crs.dm.Registration
 
         [DataMember]
         public string DietaryRequirement { get; set; }
+
+        [DataMember]
+        public int IsLocal { get; set; }
     }
 }

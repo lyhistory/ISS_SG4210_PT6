@@ -536,7 +536,6 @@
     <Content Include="Views\Home\Unauthorized.cshtml" />
     <Content Include="Views\Home\CourseDetail.cshtml" />
     <Content Include="Views\CourseRegister\HRRegister.cshtml" />
-    <Content Include="Views\CourseRegister\IndividualRegister.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\CourseRegister\ViewIndividualRegister.cshtml" />
@@ -550,6 +549,7 @@
     <Content Include="Views\Account\_StaffTemplate.cshtml" />
     <Content Include="Views\Account\EditCourseAdmin.cshtml" />
     <Content Include="Views\Account\CreateCourseAdmin.cshtml" />
+    <Content Include="Views\CourseRegister\IndividualRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

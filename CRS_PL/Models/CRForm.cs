@@ -20,7 +20,7 @@ namespace nus.iss.crs.pl.Models
         [Required(ErrorMessage = "Name is Requirde")]
         public string IDNumber { get; set; }
         [Required]
-        public bool IsLocal { get; set; }
+        public int IsLocal { get; set; }
         public string CompanyID { get; set; }
         [Required]
         public string Salutation { get; set; }

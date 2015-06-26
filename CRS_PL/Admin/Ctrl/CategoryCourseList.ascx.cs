@@ -45,6 +45,10 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             feeID.Text = course.Fee;
             courseRow.Cells.Add(feeID);
 
+            TableCell statusID = new TableCell();
+            statusID.Text = (course.Status == CourseStatus.Enabled)? "Enable": "Disable";
+            courseRow.Cells.Add(statusID);
+
             TableCell editID = new TableCell();
             HyperLink h = new HyperLink();
             h.Text = "Edit";
@@ -96,6 +100,7 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             {
                 courseManager.ChangeCourseStatus(lb.CommandArgument);
             }
+            Response.Redirect("~/Admin/ListCourse.aspx");
         }
 
         public CourseCategory Category { get; set; }

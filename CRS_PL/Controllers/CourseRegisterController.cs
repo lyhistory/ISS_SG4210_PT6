@@ -108,6 +108,7 @@ namespace nus.iss.crs.pl.Controllers
                 participant.EMail = crform.Email;
                 participant.ContactNumber = crform.ContactNumber;
                 participant.DietaryRequirement = crform.DietaryRequirement;
+                participant.IsLocal = crform.IsLocal;
                 courseRegistrationManager.UpdateIndividualParticipant(participant);
             }
             else
@@ -130,7 +131,8 @@ namespace nus.iss.crs.pl.Controllers
                     JobTitle = crform.JobTitle,
                     Department = crform.Department,
                     OrganizationSize = crform.OrganizationSize,
-                    SalaryRange = crform.SalaryRage
+                    SalaryRange = crform.SalaryRage,
+                    IsLocal=crform.IsLocal
                 });
             }
             Registration registration = new Registration();

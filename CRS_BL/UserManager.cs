@@ -32,7 +32,14 @@ namespace nus.iss.crs.bl
             user.Password = GenerateRandomPassword();
             return unitOfWork.UserService.CreateIndIndividualUser(user);
         }
-
+        public dm.User GetStaffByUserid(string userid)
+        {
+            return unitOfWork.UserService.GetStaffByUserid(userid);
+        }
+        public bool EditStaff(dm.User staff)
+        {
+            return unitOfWork.UserService.EditStaff(staff);
+        }
         public  bool CreateStaff(User user)
         {
             return unitOfWork.UserService.CreateStaff(user);
