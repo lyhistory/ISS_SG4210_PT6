@@ -1,11 +1,10 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CRS_WF.CancelActivity"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CRS_WF.ManualConfirmActivity"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:local="clr-namespace:CRS_WF"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
  xmlns:nicb="clr-namespace:nus.iss.crs.bl;assembly=CRS_BDL"
  xmlns:nicdc="clr-namespace:nus.iss.crs.dm.Course;assembly=CRS_DM"
- xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
@@ -13,17 +12,11 @@
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="courseClass" Type="InArgument(nicdc:CourseClass)" />
-    <x:Property Name="status" Type="OutArgument(x:String)" />
-    <x:Property Name="message" Type="OutArgument(x:String)" />
-    <x:Property Name="classSize" Type="InArgument(x:Int32)" />
-    <x:Property Name="classCode" Type="InArgument(x:String)" />
-    <x:Property Name="confirmed" Type="OutArgument(x:Boolean)" />
-    <x:Property Name="ArgCourseClass" Type="InOutArgument(nicdc:CourseClass)" />
+    <x:Property Name="ArgCourseClass" Type="InArgument(nicdc:CourseClass)" />
     <x:Property Name="ArgManager" Type="InArgument(nicb:ClassManager)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap2010:WorkflowViewState.IdRef>CRS_WF.CancelActivity_1</sap2010:WorkflowViewState.IdRef>
+  <sap2010:WorkflowViewState.IdRef>CRS_WF.ManualConfirmActivity_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System</x:String>
@@ -32,7 +25,6 @@
       <x:String>System.Linq</x:String>
       <x:String>System.Text</x:String>
       <x:String>nus.iss.crs.dm.Course</x:String>
-      <x:String>System.ServiceModel.Activities</x:String>
       <x:String>nus.iss.crs.bl</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
@@ -66,54 +58,62 @@
       <AssemblyReference>CRS_WF</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Cancel" sap2010:WorkflowViewState.IdRef="Sequence_2">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="p:CorrelationHandle" Name="__handle1" />
-      <Variable x:TypeArguments="p:CorrelationHandle" Name="courseClassHandle" />
-    </Sequence.Variables>
-    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="nicdc:ClassStatus">
-          <mca:CSharpReference x:TypeArguments="nicdc:ClassStatus">ArgCourseClass.Status</mca:CSharpReference>
-        </OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="nicdc:ClassStatus">
-          <mca:CSharpValue x:TypeArguments="nicdc:ClassStatus">ClassStatus.Canceled</mca:CSharpValue>
-        </InArgument>
-      </Assign.Value>
-    </Assign>
-    <local:UpadateCancelStatus Text="{x:Null}" classCode="{x:Null}" classSize="{x:Null}" sap2010:WorkflowViewState.IdRef="UpadateCancelStatus_2">
-      <local:UpadateCancelStatus.courseClass>
+  <Sequence>
+    <local:UpdateConfirmStatus Text="{x:Null}" classCode="{x:Null}" classSize="{x:Null}" message="{x:Null}" status="{x:Null}">
+      <local:UpdateConfirmStatus.courseClass>
         <InArgument x:TypeArguments="nicdc:CourseClass">
-          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">courseClass</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">ArgCourseClass</mca:CSharpValue>
         </InArgument>
-      </local:UpadateCancelStatus.courseClass>
-      <local:UpadateCancelStatus.message>
-        <OutArgument x:TypeArguments="x:String">
-          <mca:CSharpReference x:TypeArguments="x:String">message</mca:CSharpReference>
-        </OutArgument>
-      </local:UpadateCancelStatus.message>
-      <local:UpadateCancelStatus.status>
-        <OutArgument x:TypeArguments="x:String">
-          <mca:CSharpReference x:TypeArguments="x:String">status</mca:CSharpReference>
-        </OutArgument>
-      </local:UpadateCancelStatus.status>
-    </local:UpadateCancelStatus>
-    <sads:DebugSymbol.Symbol>d0ZFOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDYW5jZWxBY3Rpdml0eS54YW1sCEUDaA4CAQFKBVUOAgEkVgVmIQIBAlILUmYCATBNC01vAgElWQtZXQIBGWMLY1cCAQ5eC15YAgED</sads:DebugSymbol.Symbol>
+      </local:UpdateConfirmStatus.courseClass>
+      <local:UpdateConfirmStatus.manager>
+        <InArgument x:TypeArguments="nicb:ClassManager">
+          <mca:CSharpValue x:TypeArguments="nicb:ClassManager">ArgManager</mca:CSharpValue>
+        </InArgument>
+      </local:UpdateConfirmStatus.manager>
+      <sap2010:WorkflowViewState.IdRef>UpdateConfirmStatus_2</sap2010:WorkflowViewState.IdRef>
+    </local:UpdateConfirmStatus>
+    <local:CourseFeeCalculationActivity Text="{x:Null}">
+      <local:CourseFeeCalculationActivity.courseClass>
+        <InArgument x:TypeArguments="nicdc:CourseClass">
+          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">ArgCourseClass</mca:CSharpValue>
+        </InArgument>
+      </local:CourseFeeCalculationActivity.courseClass>
+      <local:CourseFeeCalculationActivity.manager>
+        <InArgument x:TypeArguments="nicb:ClassManager">
+          <mca:CSharpValue x:TypeArguments="nicb:ClassManager">ArgManager</mca:CSharpValue>
+        </InArgument>
+      </local:CourseFeeCalculationActivity.manager>
+      <sap2010:WorkflowViewState.IdRef>CourseFeeCalculationActivity_1</sap2010:WorkflowViewState.IdRef>
+    </local:CourseFeeCalculationActivity>
+    <local:NotifyByEmail Text="{x:Null}">
+      <local:NotifyByEmail.courseClass>
+        <InArgument x:TypeArguments="nicdc:CourseClass">
+          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">ArgCourseClass</mca:CSharpValue>
+        </InArgument>
+      </local:NotifyByEmail.courseClass>
+      <local:NotifyByEmail.manager>
+        <InArgument x:TypeArguments="nicb:ClassManager">
+          <mca:CSharpValue x:TypeArguments="nicb:ClassManager">ArgManager</mca:CSharpValue>
+        </InArgument>
+      </local:NotifyByEmail.manager>
+      <sap2010:WorkflowViewState.IdRef>NotifyByEmail_1</sap2010:WorkflowViewState.IdRef>
+    </local:NotifyByEmail>
+    <sap2010:WorkflowViewState.IdRef>Sequence_1</sap2010:WorkflowViewState.IdRef>
+    <sads:DebugSymbol.Symbol>d01FOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxNYW51YWxDb25maXJtQWN0aXZpdHkueGFtbAo9A2cOAgEBPgVKIQIBEEsFVyoCAQlYBWQbAgECQQtBYAIBFEYLRlwCARFOC05gAgENUwtTXAIBClsLW2ACAQZgC2BcAgED</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,62" />
-      <sap2010:ViewStateData Id="UpadateCancelStatus_2" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="264,248">
+      <sap2010:ViewStateData Id="UpdateConfirmStatus_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="CourseFeeCalculationActivity_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="NotifyByEmail_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="222,270">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CRS_WF.CancelActivity_1" sap:VirtualizedContainerService.HintSize="304,328" />
+      <sap2010:ViewStateData Id="CRS_WF.ManualConfirmActivity_1" sap:VirtualizedContainerService.HintSize="262,350" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

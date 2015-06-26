@@ -23,7 +23,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\CRS.Bin\</OutputPath>
+    <OutputPath>..\CRS_PL\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -66,9 +66,11 @@
     <Compile Include="CourseCompletion\RetrieveSubsidizedStudents.cs" />
     <Compile Include="CourseCompletion\SaveAndNotifyFullfillStudents.cs" />
     <Compile Include="CourseCompletion\UpdatePassedAttendanceStudents.cs" />
+    <Compile Include="CourseFeeCalculationActivity.cs" />
     <Compile Include="NotifyByEmail.cs" />
     <Compile Include="UpadateCancelStatus.cs" />
     <Compile Include="UpdateConfirmStatus.cs" />
+    <Compile Include="UpdateInventStatus.cs" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -80,12 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CourseConfirmService.xamlx">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="CourseCompleteService.xamlx">
@@ -113,18 +109,23 @@
     </XamlAppDef>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.xamlx">
+    <XamlAppDef Include="ManualCancelActivity.xaml">
       <SubType>Designer</SubType>
-    </Content>
+      <Generator>MSBuild:Compile</Generator>
+    </XamlAppDef>
+    <XamlAppDef Include="ManualConfirmActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </XamlAppDef>
   </ItemGroup>
   <ItemGroup>
-    <XamlAppDef Include="PaymentActivity.xaml">
+    <XamlAppDef Include="CourseConfirmationFlow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </XamlAppDef>
   </ItemGroup>
   <ItemGroup>
-    <XamlAppDef Include="CourseConfirmationFlow.xaml">
+    <XamlAppDef Include="PaymentActivity.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </XamlAppDef>

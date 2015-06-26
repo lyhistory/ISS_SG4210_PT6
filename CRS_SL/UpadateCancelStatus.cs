@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Activities;
 using nus.iss.crs.dm.Course;
+using nus.iss.crs.bl;
 
 namespace CRS_WF
 {
@@ -15,6 +16,8 @@ namespace CRS_WF
         public InArgument<int> classSize { get; set; }
         public InArgument<string> classCode { get; set; }
         public InArgument<CourseClass> courseClass { get; set; }
+
+        public InArgument<ClassManager> manager { get; set; }
 
         public OutArgument<string> status { get; set; }
         public OutArgument<string > message { get; set; }
@@ -28,10 +31,14 @@ namespace CRS_WF
             string classCode = context.GetValue(this.classCode);
             string Text = context.GetValue(this.Text);
             CourseClass courseClass = context.GetValue(this.courseClass);
+            ClassManager manager = context.GetValue(this.manager);
 
             context.SetValue(status, "Canceled");
             context.SetValue(message, "Class course canceled.");
-            //status = "Canceled";
+
+            courseClass.Status = ClassStatus.Canceled;
+            manager.CancelCourseClass(courseClass);
+
         }
     }
 }
