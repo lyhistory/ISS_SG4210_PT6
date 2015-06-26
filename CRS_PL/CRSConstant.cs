@@ -10,6 +10,7 @@ namespace nus.iss.crs.pl
         public const string BLSessionKey = "BLSession";
         public const string ParameterCourseCode = "CourseCode";
         public const string ParameterParticipantIDNumber = "IDNumber";
+        public const string ParameterClassCode = "ClassCode";
         public const string CRS_NUS_ISS = "CRS_NUS_ISS";
         public const string ParameterUserID = "UserID";
     }

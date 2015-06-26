@@ -90,6 +90,8 @@ namespace nus.iss.crs.pl.Admin
 
         private void ShowCourseClassList()
         {
+            ClassManager classManager = BLSession.CreateClassManager();
+
             if (courseListID.SelectedValue == "ALL")
             {
                 foreach(Course course in manager.GetCourseList())
@@ -97,6 +99,7 @@ namespace nus.iss.crs.pl.Admin
                     List<CourseClass> courseClassList = manager.GetCourseClassList(course, DateTime.Parse(txtStartDate.Text.ToString()), DateTime.Parse(txtEndDate.Text.ToString()));
                     CalendarClassList table = (CalendarClassList)Page.LoadControl("./Ctrl/CalendarClassList.ascx");
                     table.courseClassList = courseClassList;
+                    table.classManager = classManager;
                     PlaceHolder1.Controls.Add(table);
                 }
             }
@@ -106,6 +109,7 @@ namespace nus.iss.crs.pl.Admin
                 List<CourseClass> courseClassList = manager.GetCourseClassList(course, DateTime.Parse(txtStartDate.Text.ToString()), DateTime.Parse(txtEndDate.Text.ToString()));
                 CalendarClassList table = (CalendarClassList)Page.LoadControl("./Ctrl/CalendarClassList.ascx");
                 table.courseClassList = courseClassList;
+                table.classManager = classManager;
                 PlaceHolder1.Controls.Add(table);
             }     
         }
