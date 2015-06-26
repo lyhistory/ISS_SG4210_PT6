@@ -41,7 +41,7 @@
                 <asp:TableHeaderCell>Class Code</asp:TableHeaderCell>
                 <asp:TableHeaderCell>Start Date</asp:TableHeaderCell>
                 <asp:TableHeaderCell>End Date</asp:TableHeaderCell>
-                <asp:TableHeaderCell ColumnSpan="3">Operation</asp:TableHeaderCell>
+                <asp:TableHeaderCell ColumnSpan="2">Operation</asp:TableHeaderCell>
             </asp:TableRow>
         </asp:Table>
     </div>

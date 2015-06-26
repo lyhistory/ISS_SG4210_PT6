@@ -14,13 +14,19 @@
             <td><h4>Employment Status</h4></td>
             <td><asp:TextBox ID="employmentStatus" runat="server" CssClass="form-control" ></asp:TextBox></td>
         </tr>
-        <tr>
+<%--        <tr>
             <td><h4>Company ID</h4></td>
             <td><asp:TextBox ID="companyID" runat="server" CssClass="form-control" ></asp:TextBox></td>
         </tr>
         <tr>
             <td><h4>Company Name</h4></td>
             <td><asp:TextBox ID="companyName" runat="server" CssClass="form-control" ></asp:TextBox></td>
+        </tr>--%>
+        <tr>
+            <td><h4>Company</h4></td>
+            <td><asp:DropDownList ID="companyList" runat="server" CssClass="form-control">
+                </asp:DropDownList>    
+            </td> 
         </tr>
         <tr>
             <td><h4>Salutation</h4></td>

@@ -76,35 +76,49 @@ namespace nus.iss.crs.pl.Admin
             endDate.Text = registration.CourseClassObj.EndDate.ToString();
             courseRow.Cells.Add(endDate);
 
-            TableCell disableID = new TableCell();
-            LinkButton disableLb = new LinkButton();
-            disableLb.Text = "Enable /Disable";
-            disableLb.OnClientClick = "javascript:return ChangeRegistrationStatus(this);";
-            disableLb.CommandName = "Disable";
-            disableLb.CommandArgument = registration.RegID;
-            disableID.Controls.Add(disableLb);
-            courseRow.Cells.Add(disableID);
+            //TableCell disableID = new TableCell();
+            //LinkButton lb = new LinkButton();
+            //lb.Text = "Enable /Disable";
+            //lb.CommandName = "Disable";
+            //lb.CommandArgument = registration.RegID;
+            //lb.Click += new EventHandler(lb_Command);
+            //disableID.Controls.Add(lb);
+            //courseRow.Cells.Add(disableID);
 
-            TableCell editID = new TableCell();
+            TableCell moveID = new TableCell();
             HyperLink h = new HyperLink();
             h.Text = "Move";
             h.NavigateUrl = "";
+            moveID.Controls.Add(h);
+            courseRow.Cells.Add(moveID);
+
+            TableCell editID = new TableCell();
+            h = new HyperLink();
+            h.Text = "Edit";
+            h.NavigateUrl = "~/Admin/EditCourseRegistration.aspx?" + CRSConstant.ParameterParticipantIDNumber + "=" + registration.ParticipantObj.IDNumber;
             editID.Controls.Add(h);
             courseRow.Cells.Add(editID);
 
             TableCell cancelID = new TableCell();
-            LinkButton cancelLb = new LinkButton();
-            cancelLb.Text = "Cancel";
-            cancelLb.OnClientClick = "javascript:return CancelRegistration(this);";
-            cancelID.Controls.Add(cancelLb);
+            LinkButton lb = new LinkButton();
+            lb.Text = "Cancel";
+            lb.CommandName = "Cancel";
+            lb.CommandArgument = registration.RegID;
+            lb.Click += new EventHandler(lb_Command);
+            cancelID.Controls.Add(lb);
             courseRow.Cells.Add(cancelID);
 
             return courseRow;
         }
 
-        protected void ChangeRegistrationStatus_Click(object sender, EventArgs e )
+        protected void lb_Command(object sender, EventArgs e)
         {
+            LinkButton lb = sender as LinkButton;
 
+            if (lb.CommandName == "Cancel")
+            {
+                //manager.DeleteCourse(lb.CommandArgument);
+            }
         }
 
         public override void RegistraterAction()

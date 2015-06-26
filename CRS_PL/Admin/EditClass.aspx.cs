@@ -67,31 +67,6 @@ namespace nus.iss.crs.pl.Admin
 
         }
 
-        private void TestDat()
-        {
-            //Random r = new Random();
-            //ModelData testData = ModelData.GetInstance();
-            //List<CourseCategory> categoryListObj = testData.GetCategories();
-            //foreach (CourseCategory category in categoryListObj)
-            //{
-            //    ListItem item = new ListItem(category.Name, category.ID);
-            //    categoryList.Items.Add(item);
-            //}
-
-            //selectedCategory = categoryListObj[r.Next(categoryListObj.Count - 1)];
-
-            //List<CourseInstructor> instructorListObj = testData.GetInstructors();
-            //foreach (CourseInstructor instructor in instructorListObj)
-            //{
-            //    if (selectedInstructor == null)
-            //        selectedInstructor = instructor;
-            //    ListItem item = new ListItem(instructor.Name);
-            //    instructorList.Items.Add(item);
-            //}
-
-            //selectedInstructor = instructorListObj[r.Next(instructorListObj.Count - 1)];
-        }
-
         public override void RegistraterAction()
         {
             RegistraterActionTarget((AdminAction)ClassAdminAction.Save, typeof(ListClassInCourse));
