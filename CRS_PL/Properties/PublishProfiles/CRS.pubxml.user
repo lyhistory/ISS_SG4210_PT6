@@ -181,7 +181,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/26/2015 23:27:19</publishTime>
     </File>
     <File Include="Admin/Ctrl/CategourCourseList4WF.ascx">
-      <publishTime>06/25/2015 19:48:44</publishTime>
+      <publishTime>06/27/2015 03:17:58</publishTime>
     </File>
     <File Include="Admin/Ctrl/CourseClassList.ascx">
       <publishTime>06/23/2015 19:35:41</publishTime>
@@ -280,22 +280,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2015 23:18:28</publishTime>
     </File>
     <File Include="bin/CRS_BDL.dll">
-      <publishTime>06/27/2015 02:59:43</publishTime>
+      <publishTime>06/27/2015 04:29:21</publishTime>
     </File>
     <File Include="bin/CRS_COMMON.dll">
-      <publishTime>06/27/2015 02:59:40</publishTime>
+      <publishTime>06/27/2015 04:29:19</publishTime>
     </File>
     <File Include="bin/CRS_DAL.dll">
-      <publishTime>06/27/2015 02:59:42</publishTime>
+      <publishTime>06/27/2015 04:29:20</publishTime>
     </File>
     <File Include="bin/CRS_DM.dll">
-      <publishTime>06/27/2015 02:59:41</publishTime>
+      <publishTime>06/27/2015 04:29:19</publishTime>
     </File>
     <File Include="bin/CRS_WF.dll">
-      <publishTime>06/27/2015 02:59:50</publishTime>
+      <publishTime>06/27/2015 04:29:27</publishTime>
     </File>
     <File Include="bin/CR_PL.dll">
-      <publishTime>06/27/2015 02:59:52</publishTime>
+      <publishTime>06/27/2015 04:29:29</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>06/20/2015 16:42:37</publishTime>
@@ -541,7 +541,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/23/2015 13:53:30</publishTime>
     </File>
     <File Include="Views/CourseRegister/IndividualRegister.cshtml">
-      <publishTime>06/26/2015 22:36:32</publishTime>
+      <publishTime>06/27/2015 04:05:06</publishTime>
     </File>
     <File Include="Views/CourseRegister/ViewCompanyEmployee.cshtml">
       <publishTime>06/26/2015 23:36:34</publishTime>
@@ -550,7 +550,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/23/2015 10:30:50</publishTime>
     </File>
     <File Include="Views/CourseRegister/ViewIndividualRegister.cshtml">
-      <publishTime>06/23/2015 13:02:09</publishTime>
+      <publishTime>06/27/2015 04:22:10</publishTime>
     </File>
     <File Include="Views/CourseRegister/ViewRegistrationDetail.cshtml">
       <publishTime>06/23/2015 12:10:49</publishTime>
@@ -574,7 +574,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2015 18:18:14</publishTime>
     </File>
     <File Include="Views/Home/Logon.cshtml">
-      <publishTime>06/20/2015 23:18:26</publishTime>
+      <publishTime>06/27/2015 03:06:15</publishTime>
     </File>
     <File Include="Views/Home/Register.cshtml">
       <publishTime>06/22/2015 00:00:08</publishTime>
@@ -601,7 +601,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2015 23:18:28</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/27/2015 02:59:53</publishTime>
+      <publishTime>06/27/2015 04:29:02</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 @section scripts{
     <script type="text/javascript">
         $(function () {
-            $('#viewHRRegisterDiv').on('click','input[data-tag=View]',function () {
+            $('#viewRegistratoin').on('click', 'input[data-tag=View]', function () {
                 window.location.href = "/CourseRegister/ViewRegistrationDetail?regid="+$(this).attr('data-regid');
             });
         });
@@ -23,7 +23,7 @@
                 <td>Edit</td>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="viewRegistratoin">
             @if (Model==null||Model.Count < 1)
             {
                 <tr>

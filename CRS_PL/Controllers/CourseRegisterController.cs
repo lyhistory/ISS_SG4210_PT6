@@ -28,7 +28,6 @@ namespace nus.iss.crs.pl.Controllers
 
          #region Individual Register
          // GET: CourseRegister
-        [CRSAuthorize(Roles="Individual")]
         public ActionResult IndividualRegister(string code,string message="")
         {
             CourseManager courseManager = this.BLSession.CreateCourseManager();
@@ -59,7 +58,6 @@ namespace nus.iss.crs.pl.Controllers
         }
 
         [HttpPost]
-        [CRSAuthorize(Roles = "Individual")]
         public ActionResult PostIndividualRegister(CRForm crform)
         {
             if (!this.ModelState.IsValid)
@@ -79,7 +77,7 @@ namespace nus.iss.crs.pl.Controllers
                 {
                     //auto register and login
                     user = manager.CreateIndIndividualUser(new dm.User() { LoginID = IDNumber });
-                    user.RoleName = "User";
+                    user.RoleName = "Individual";
                     _log.Debug(string.Format("Your userid:{0},password:{1}", user.LoginID, user.Password));
                     SessionHelper.SetSession(user);
                     CRSFormsAuthentication<User>.SetAuthCookie(user.LoginID, user, true);
@@ -215,7 +213,7 @@ namespace nus.iss.crs.pl.Controllers
         }
 
         [HttpPost]
-        [CRSAuthorize(Roles = "Individual")]
+        [CRSAuthorize(Roles = "HR")]
         public ActionResult PostHRRegister(CRForm crform)
         {
             if (!this.ModelState.IsValid)
