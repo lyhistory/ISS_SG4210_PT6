@@ -92,7 +92,8 @@ namespace nus.iss.crs.pl.Admin
             tempClass.Size = int.Parse(sizeID.Text);
             tempClass.StartDate = DateTime.Parse(startDateID.Text);
             tempClass.EndDate = DateTime.Parse(endDateID.Text);
-            classManager.CreateCourseClass(tempClass);
+
+            classManager.EditCourseClass(tempClass);
             NextPage(true);
         }
 
