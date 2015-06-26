@@ -50,11 +50,22 @@ namespace nus.iss.crs.bl
             return unitOfWork.ClassService.ChangeCourseClassStatus(courseClass);
         }
 
+        public bool ToConfirmCourseClass(CourseClass courseClass)
+        {
+            courseClass.Status = ClassStatus.ToConfirm;
+            return unitOfWork.ClassService.ChangeCourseClassStatus(courseClass);
+        }
+
         public bool AdjustCourseClassSchedule(CourseClass courseClass, DateTime startDate, DateTime endDate)
         {
             return unitOfWork.ClassService.EditCourseClassDate(courseClass, startDate, endDate);
         }
 
+        public bool EditCourseClass(CourseClass courseClass)
+        {
+            return unitOfWork.ClassService.EditCourseClass(courseClass);
+
+        }
         public CourseClass GetCourseClassByCode(string classCode)
         {
             return unitOfWork.ClassService.GetCourseClassByCode(classCode);

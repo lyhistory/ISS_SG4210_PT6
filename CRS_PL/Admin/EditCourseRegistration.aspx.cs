@@ -57,7 +57,7 @@ namespace nus.iss.crs.pl.Admin
 
             tempParticipant.IDNumber = idNumber.Text.ToString();
             tempParticipant.EmploymentStatus = employmentStatus.Text.ToString();
-            tempParticipant.CompanyID = companyList.SelectedItem.Attributes["CompanyID"];
+            tempParticipant.CompanyID = companyList.SelectedItem.Value;
             tempParticipant.CompanyName = companyList.SelectedValue;
             tempParticipant.Salutation = salutation.Text.ToString();
             tempParticipant.JobTitle = jobTitle.Text.ToString();

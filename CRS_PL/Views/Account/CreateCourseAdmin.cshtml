@@ -1,0 +1,48 @@
+﻿@model nus.iss.crs.pl.Models.CourseAdminViewModel
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#btnCreate').click(function () {
+                if (!$('#courseAdminForm').valid()) {
+                    return false;
+                }
+                $.ajax({
+                    type: 'post',
+                    url: '/account/postcreatecourseadmin',
+                    data: $('#courseAdminForm').serialize()
+                }).done(function (data) {
+                    if (data.Code == 1) {
+                        window.location = "/account/center";
+                    } else
+                        alert("create failed");
+                });
+            });
+        });
+    </script>
+}
+<div class="container center-block">
+    <h1 class="page-header">@ViewBag.Message</h1>
+    <form id="courseAdminForm">
+        <div class="form-group">
+            <span style="color: red;font-weight: bolder;">(required*)</span><label for="LoginID">LoginID</label>
+            @Html.TextBoxFor(x => x.LoginID, new { @class = "form-control", @placeholder = "LoginID" })
+            @Html.ValidationMessageFor(x => x.LoginID)
+        </div>
+        <div class="form-group">
+            <span style="color: red;font-weight: bolder;">(required*)</span><label for="Password">Password</label>
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Password" })
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+        <div class="form-group">
+            <span style="color: red;font-weight: bolder;">(required*)</span><label for="ConfirmPassword">ConfirmPassword</label>
+            @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", @placeholder = "ConfirmPassword" })
+            @Html.ValidationMessageFor(x => x.ConfirmPassword)
+        </div>
+        <div class="form-group">
+            <span style="color: red;font-weight: bolder;">(required*)</span><label for="ConfirmPassword">Enabled</label>
+            @Html.RadioButtonFor(x => x.Enabled, new { @class = "form-control", @placeholder = "Enabled" })
+        </div>
+
+        <input type="button" class="btn btn-default" value="Submit" id="btnCreate" />
+    </form>
+</div>

@@ -31,5 +31,6 @@ namespace CRS_DAL.EF
         public string Department { get; set; }
         public string OrganizationSize { get; set; }
         public string SalaryRange { get; set; }
+        public Nullable<int> IsLocal { get; set; }
     }
 }

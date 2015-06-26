@@ -118,5 +118,10 @@ namespace nus.iss.crs.bl
         {
             return unitOfWork.UserService.GetCompanyHRByLoginID(loginID);
         }
+
+        public List<dm.User> GetCourseAdminList()
+        {
+            return unitOfWork.UserService.GetCourseAdminList();
+        }
     }
 }

@@ -61,7 +61,7 @@ namespace nus.iss.crs.pl.Admin
         protected void startDateID_TextChanged(object sender, EventArgs e)
         {
             ClassManager classManager = BLSession.CreateClassManager();
-            Course course = manager.GetCourseByCode(courseListID.SelectedItem.Attributes["ID"]);
+            Course course = manager.GetCourseByCode(courseListID.SelectedItem.Value);
             endDateID.Text = classManager.AutoGenerateCourseClassEndDate(course,DateTime.Parse(startDateID.Text.ToString())).ToString();
         }
 
@@ -126,11 +126,6 @@ namespace nus.iss.crs.pl.Admin
             ListItem item = categoryListID.SelectedItem;
             if (item == null)
                 return;
-
-            //ModelData testData = ModelData.GetInstance();
-            //testData.AddCourseClasses();
-            //CourseCategory category = testData.GetCategory(item.Value);
-            //PopulateClourse(category);
 
             CourseManager manager = BLSession.CreateCourseManager();
             List<CourseCategory> courseCategoryList = manager.GetCourseCategoryList();

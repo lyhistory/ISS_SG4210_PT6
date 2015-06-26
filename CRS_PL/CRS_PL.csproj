@@ -333,7 +333,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseAdminViewModel.cs" />
     <Compile Include="Models\CRForm.cs" />
+    <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\SelectItem.cs" />
     <Compile Include="Models\UserRegisterForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -520,6 +522,10 @@
     <Content Include="Views\CourseRegister\_CourseRegister.cshtml" />
     <Content Include="Views\CourseRegister\ViewRegistrationDetail.cshtml" />
     <Content Include="Views\Report\_AttendanceReport.cshtml" />
+    <Content Include="Views\Account\Center.cshtml" />
+    <Content Include="Views\Account\_StaffTemplate.cshtml" />
+    <Content Include="Views\Account\EditCourseAdmin.cshtml" />
+    <Content Include="Views\Account\CreateCourseAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
@@ -547,10 +553,6 @@
     <ProjectReference Include="..\CRS_DM\CRS_DM.csproj">
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
       <Name>CRS_DM</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CRS_SL\CRS_WF.csproj">
-      <Project>{22540be8-669c-4d72-944d-8c14ac286f1a}</Project>
-      <Name>CRS_WF</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

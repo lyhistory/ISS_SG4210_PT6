@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Logon";
+}
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: '/account/getcourseadminlist',
+                type: 'get'
+            }).done(function (data) {
+                $('#staffContent').html(data);
+            });
+            $('#staffContent').on('click','input[data-tag=edit]',function () {
+                window.location.href = "/Account/EditCourseAdmin?userid=" + $(this).attr('data-userid');
+            });
+        });
+    </script>
+}
+<div class="container center-block">
+    @if (nus.iss.crs.pl.AppCode.Session.SessionHelper.Current.RoleName.ToUpper().Equals("COURSE"))
+    {
+        <h1>Welcome @ViewBag.UserName</h1>
+        <h2 class="page-header">you can contact admin 82610780 for assistance!</h2>
+    }
+    else
+    {
+        <a class="btn btn-primary btn-lg active" role="button" href="/Account/CreateCourseAdmin">Create CourseAdmin</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Staff ID</td>
+                    <td>Login ID</td>
+                    <td>Password</td>
+                    <td>Status</td>
+                    <td>Operation</td>
+                </tr>
+            </thead>
+            <tbody id="staffContent">
+                <tr></tr>
+            </tbody>
+        </table>
+    }
+</div>

@@ -58,11 +58,35 @@ namespace CRS_DAL.Service
             return false;
         }
 
-        public bool ChangeCourseClassStatus(dm.Course.CourseClass courseClass)
+        public bool EditCourseClass(dm.Course.CourseClass courseClass)
         {
             try
             {
                 CourseClass _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(courseClass.ClassCode));
+                if (_courseClass != null)
+                {
+                    _courseClass.StartDate = courseClass.StartDate;
+                    _courseClass.EndDate = courseClass.EndDate;
+                    _courseClass.Status = (int)courseClass.Status;
+                    _courseClass.Size = courseClass.Size;
+                    this.unitOfWork.Commit();
+                    return true;
+                }
+            }
+            catch { }
+            return false;
+
+        }
+
+        public bool ChangeCourseClassStatus(dm.Course.CourseClass courseClass)
+        {
+            try
+            {
+                CourseClass _courseClass = null;
+                if (!string.IsNullOrEmpty(courseClass.ClassCode))
+                {
+                    _courseClass = this.CourseClassRepository.GetFirstOrDefault(x => x.ClassCode.Equals(courseClass.ClassCode));
+                }
                 if (_courseClass != null)
                 {
                     _courseClass.Status = (int)courseClass.Status;

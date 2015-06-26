@@ -1,4 +1,6 @@
-﻿using CRS_WF;
+
+﻿//using CRS_SL;
+
 using nus.iss.crs.bl;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.Admin.Ctrl;
@@ -47,10 +49,11 @@ namespace nus.iss.crs.pl.Admin
             //throw new NotImplementedException();
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            manager = BLSession.CreateCourseRegistrationManager();
+        //protected void Button1_Click(object sender, EventArgs e)
+        //{
+        //    manager = BLSession.CreateCourseRegistrationManager();
 
+<<<<<<< HEAD
             List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);
             CourseClass cls = courseClasses[0];
 
@@ -63,7 +66,14 @@ namespace nus.iss.crs.pl.Admin
             //Greeting greeting = new Greeting { ArgUserName = username };
             //IDictionary<string, object> results = WorkflowInvoker.Invoke(greeting);
             //string abc = results["Result"].ToString();
+=======
+        //    List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);
+
+        //    Activity wf = new CRS_WF.CourseConfirmationFlow();
+
+        //    WorkflowInvoker.Invoke(wf);
+>>>>>>> 3314aa82712f665bb1ec66622b64172fd0cce73f
          
-        }
+        //}
     }
 }
