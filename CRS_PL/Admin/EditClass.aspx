@@ -7,7 +7,7 @@
         <tr>
             <td><h4>Category</h4></td>
             <td>
-                <asp:DropDownList ID="categoryList" runat="server" CssClass="form-control" >
+                <asp:DropDownList ID="categoryList" runat="server" CssClass="form-control" OnSelectedIndexChanged="categoryList_SelectedIndexChanged" >
                 </asp:DropDownList>
             </td>
         </tr>

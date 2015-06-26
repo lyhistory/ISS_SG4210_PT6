@@ -73,48 +73,36 @@
                                     <div class="">
                                         <div id="tree">
                                             <ul id="treeData" style="display: none;">
-                                                <li class="folder expanded">Course Admin
+                                                <li class="" data-url="AdminHome.aspx">Home
+
+                                                </li>
+                                                <li class="folder expanded">Course Management
                                                       <ul>
-                                                          <li data-url="ListCourse.aspx">View Course</li>
+                                                          <li data-url="ListCourse.aspx">Course Overview</li>
                                                           <li data-url="CreateCourse.aspx">Create Course</li>
                                                       </ul>
                                                 </li>
-                                                <li class="folder expanded">Class Admin
+                                                <li class="folder expanded">Class Management
                                                     <ul class="folder">
-                                                        <li data-url="ListClassInCourse.aspx">View Class</li>
-                                                        <li data-url="CreateCourse.aspx">Create Class</li>
+                                                        <li data-url="CreateClass.aspx">Create Class</li>
+                                                        <li data-url="ListClassInCalendar.aspx">Class Overview</li>
+                                                        <li data-url="ListClassInCourse.aspx">View Class by Course</li>
                                                     </ul>
                                                 </li>
                                                 <li class="folder expanded">Registration Management
                                                     <ul class="folder">
-                                                        <li data-url="#">Overview</li>
-                                                        <li data-url="#">CSS</li>
-                                                        <%--<li>
-                                                        <label label-default="" class="tree-toggle nav-header">Media Queries</label>
-                                                        <ul class="nav tree">
-                                                          <li><a href="#">Text</a>
-                                                          </li>
-                                                          <li><a href="#">Images</a>
-                                                          </li>
-                                                          <li>
-                                                            <label label-default="" class="tree-toggle nav-header">Mobile</label>
-                                                            <ul class="nav tree">
-                                                              <li><a href="#">iPhone</a>
-                                                              </li>
-                                                              <li><a href="#">Samsung</a>
-                                                              </li>
-                                                            </ul>
-                                                          </li>
-                                                        </ul>
-                                                      </li>--%>
+                                                        <li data-url="ListRegistration.aspx">Overview</li>
                                                     </ul>
                                                 </li>
                                                 <li class="folder expanded">User Management
                                                     <ul>
                                                         <li data-url="ListUser.aspx">View User</li>
-                                                        <li data-url="#">Course Administrator</li>
-                                                        <li data-url="#">Create User</li>
                                                     </ul>
+                                                </li>
+                                                <li class="folder expanded">Work Flow      
+                                                    <ul>
+                                                        <li data-url="CourseConfirmWF.aspx">Course Confirm</li>
+                                                    </ul>                                               
                                                 </li>
                                                 <li class="folder expanded">Report      
                                                     <ul>
@@ -131,7 +119,7 @@
                     </div>
 
                 </div>
-                <div runat="server" style="float: left; width: auto; margin: 0;min-height:900px;background-color: #F9EDED;" >
+                <div runat="server" style="float: left;   width: 70%; margin: 0;min-height:900px;background-color: #F9EDED;" >
                     <div runat="server" style="padding: 7px;" class="sf_colsIn">
                         <asp:ContentPlaceHolder ID="placeholder_MainContent" runat="server" />
                     </div>

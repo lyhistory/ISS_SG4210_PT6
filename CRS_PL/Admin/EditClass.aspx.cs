@@ -21,16 +21,21 @@ namespace nus.iss.crs.pl.Admin
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
+            
+            manager = BLSession.CreateCourseManager();
+            classManager = BLSession.CreateClassManager();
 
             if (this.IsPostBack)
                 return;
+
+           
             PopulateCategoryDetail();
         }
 
         private void PopulateCategoryDetail()
         {
-            manager = BLSession.CreateCourseManager();
-            classManager = BLSession.CreateClassManager();
+            
+            
 
             foreach (CourseCategory category in manager.GetCourseCategoryList())
             {
@@ -38,13 +43,37 @@ namespace nus.iss.crs.pl.Admin
                 categoryList.Items.Add(item);
             }
 
+            foreach (Course course in manager.GetCourseList())
+            {
+                ListItem item = new ListItem(course.CourseTitle, course.Code);
+                courseList.Items.Add(item);
+            }
+
             CourseClass courseClass = classManager.GetCourseClassByCode(this.Request.QueryString.Get(CRSConstant.ParameterClassCode));
-            categoryList.Text = courseClass.CourseObj.Category.Name;
-            courseList.Text = courseClass.CourseObj.CourseTitle;
+            //categoryList.Text = courseClass.CourseObj.Category.Name;
+            //courseList.Text = courseClass.CourseObj.;
             classCode.Text = courseClass.ClassCode;
             sizeID.Text = courseClass.Size.ToString();
             startDateID.Text = courseClass.StartDate.ToString();
             endDateID.Text = courseClass.EndDate.ToString();
+
+            foreach (ListItem item in categoryList.Items)
+            {
+                if (courseClass.CourseObj.Category.ID == item.Value)
+                {
+                    item.Selected = true;
+                    break;
+                }
+            }
+
+            foreach (ListItem item in courseList.Items)
+            {
+                if (courseClass.CourseObj.Code == item.Value)
+                {
+                    item.Selected = true;
+                    break;
+                }
+            }
         }
 
         private void PopulateCourseDetail(CourseCategory courseCategory)
@@ -56,7 +85,7 @@ namespace nus.iss.crs.pl.Admin
             }
         }
 
-        private void categoryList_SelectedIndexChanged(object sender, EventArgs e)
+        protected void categoryList_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListItem item = categoryList.SelectedItem;
             if (item == null)
@@ -75,13 +104,14 @@ namespace nus.iss.crs.pl.Admin
 
         public override void RegistraterAction()
         {
-            RegistraterActionTarget((AdminAction)ClassAdminAction.Save, typeof(ListClassInCourse));
+            RegistraterActionTarget((AdminAction)ClassAdminAction.Save, typeof(ListClassInCalendar));
         }
 
         protected void Save_Click(object sender, EventArgs e)
         {
             currentAction = (AdminAction)CourseAdminAction.Save;
-            CourseManager courseManager = BLSession.CreateCourseManager();
+            //CourseManager courseManager = BLSession.CreateCourseManager();
+            //CourseManager manager = BLSession.CreateCourseManager();
             ListItem itemCategory = categoryList.SelectedItem;
 
             ListItem item = courseList.SelectedItem;

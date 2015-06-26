@@ -118,7 +118,7 @@ namespace nus.iss.crs.pl.Admin
 
         public override void RegistraterAction()
         {
-            RegistraterActionTarget((AdminAction)ClassAdminAction.Save, typeof(ListClassInCourse));
+            RegistraterActionTarget((AdminAction)ClassAdminAction.Save, typeof(ListClassInCalendar));
         }
 
         protected void categoryList_SelectedIndexChanged(object sender, EventArgs e)

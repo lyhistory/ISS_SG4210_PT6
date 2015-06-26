@@ -24,6 +24,8 @@ namespace nus.iss.crs.pl
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            SessionHelper.ReleaseSession();
         }
 
         protected void Application_PostAuthenticateRequest(object sender, System.EventArgs e)

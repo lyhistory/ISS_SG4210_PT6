@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace nus.iss.crs.pl.Admin
 {
-    public partial class ListCourseInCalendar : CrsPageController
+    public partial class ListClassInCalendar : CrsPageController
     {
         CourseManager manager = null;
         protected override void Page_Load(object sender, EventArgs e)
@@ -28,16 +28,7 @@ namespace nus.iss.crs.pl.Admin
                 manager = BLSession.CreateCourseManager();
             }
 
-            if(IsPostBack)
-            {
-
-            }
-            else
-            {
-                //CalStartDate.Visible = false;
-                //CalEndDate.Visible = false;
-                PopulateCategoryList();
-            }
+            PopulateCategoryList();
         }
 
         private void PopulateCategoryList()
@@ -48,6 +39,7 @@ namespace nus.iss.crs.pl.Admin
                 ListItem item = new ListItem(course.CourseTitle, course.Code);
                 courseListID.Items.Add(item);
             }
+            ShowCourseClassList();
         }
 
         //protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -96,7 +88,16 @@ namespace nus.iss.crs.pl.Admin
             {
                 foreach(Course course in manager.GetCourseList())
                 {
-                    List<CourseClass> courseClassList = manager.GetCourseClassList(course, DateTime.Parse(txtStartDate.Text.ToString()), DateTime.Parse(txtEndDate.Text.ToString()));
+                    DateTime startdate, enddate;
+                    if (!DateTime.TryParse(txtStartDate.Text.ToString(), out startdate))
+                    {
+                        startdate = DateTime.MinValue;
+                    }
+                    if (!DateTime.TryParse(txtEndDate.Text.ToString(), out enddate))
+                    {
+                        enddate = DateTime.MaxValue;
+                    }
+                    List<CourseClass> courseClassList = manager.GetCourseClassList(course, startdate,enddate);
                     CalendarClassList table = (CalendarClassList)Page.LoadControl("./Ctrl/CalendarClassList.ascx");
                     table.courseClassList = courseClassList;
                     table.classManager = classManager;

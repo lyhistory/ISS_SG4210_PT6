@@ -24,7 +24,7 @@ namespace nus.iss.crs.pl.Admin
         private void PopulateCouseDetail()
         {
             ParticipantManager participantManager = BLSession.CreateParticipantManager();
-            Participant participant = participantManager.GetParticipant(this.Request.QueryString.Get(CRSConstant.ParameterParticipantIDNumber));
+            Participant participant = participantManager.GetParticipantByParticipantID(this.Request.QueryString.Get(CRSConstant.ParameterParticipantID));
 
             UserManager userManager = BLSession.CreateUserManager();
             foreach (Company_DM company in userManager.GetCompanyList())
@@ -54,6 +54,7 @@ namespace nus.iss.crs.pl.Admin
         {
             ParticipantManager participantManager = BLSession.CreateParticipantManager();
             Participant tempParticipant = new Participant();
+            currentAction = (AdminAction)CourseAdminAction.Edit;
 
             tempParticipant.IDNumber = idNumber.Text.ToString();
             tempParticipant.EmploymentStatus = employmentStatus.Text.ToString();

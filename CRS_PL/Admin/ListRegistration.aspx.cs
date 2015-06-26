@@ -98,7 +98,7 @@ namespace nus.iss.crs.pl.Admin
             TableCell editID = new TableCell();
             h = new HyperLink();
             h.Text = "Edit";
-            h.NavigateUrl = "~/Admin/EditCourseRegistration.aspx?" + CRSConstant.ParameterParticipantIDNumber + "=" + registration.ParticipantObj.IDNumber;
+            h.NavigateUrl = "~/Admin/EditCourseRegistration.aspx?" + CRSConstant.ParameterParticipantID + "=" + registration.ParticipantObj.ParticipantID;
             editID.Controls.Add(h);
             courseRow.Cells.Add(editID);
 

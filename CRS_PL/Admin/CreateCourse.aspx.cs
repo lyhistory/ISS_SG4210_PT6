@@ -88,7 +88,7 @@ namespace nus.iss.crs.pl.Admin
 
             if (course.IsValid())
             { 
-                //manager.SaveCourse(course);
+                manager.CreateCourse(course);
                 selectedCategory.AddCourse(course);
             }
             else 

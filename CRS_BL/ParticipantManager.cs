@@ -37,6 +37,11 @@ namespace nus.iss.crs.bl
             //individual participant, not for HR
             return unitOfWork.CourseRegistrationService.GetParticipantByIDNumber(IDNumber, "");
         }
+        public Participant GetParticipantByParticipantID(string participantID)
+        {
+            //individual participant, not for HR
+            return unitOfWork.CourseRegistrationService.GetParticipantByParticipantID(participantID);
+        }
 
         public bool EditPariticipant(Participant participant)
         {
