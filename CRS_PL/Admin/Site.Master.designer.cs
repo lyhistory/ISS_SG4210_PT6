@@ -85,6 +85,15 @@ namespace nus.iss.crs.pl.Admin {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder placeholder_HeadContent2;
         
         /// <summary>
+        /// AccountCenter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink AccountCenter;
+        
+        /// <summary>
         /// placeholder_Cententer control.
         /// </summary>
         /// <remarks>
