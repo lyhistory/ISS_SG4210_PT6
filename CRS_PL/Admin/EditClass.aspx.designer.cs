@@ -13,31 +13,31 @@ namespace nus.iss.crs.pl.Admin {
     public partial class EditClass {
         
         /// <summary>
-        /// categoryNameID control.
+        /// categoryList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label categoryNameID;
+        protected global::System.Web.UI.WebControls.DropDownList categoryList;
         
         /// <summary>
-        /// courseTitleID control.
+        /// courseList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label courseTitleID;
+        protected global::System.Web.UI.WebControls.DropDownList courseList;
         
         /// <summary>
-        /// classID control.
+        /// classCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox classID;
+        protected global::System.Web.UI.WebControls.TextBox classCode;
         
         /// <summary>
         /// sizeID control.

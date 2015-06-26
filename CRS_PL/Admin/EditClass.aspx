@@ -7,18 +7,20 @@
         <tr>
             <td><h4>Category</h4></td>
             <td>
-                <asp:Label ID="categoryNameID" runat ="server" CssClass="form-control" ></asp:Label>               
+                <asp:DropDownList ID="categoryList" runat="server" CssClass="form-control" >
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td><h4>Course</h4></td>
             <td>
-                 <asp:Label ID="courseTitleID" runat ="server" CssClass="form-control" ></asp:Label>    
+                <asp:DropDownList ID="courseList" runat="server" CssClass="form-control" >
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td><h4>Class Code</h4></td>
-            <td><asp:TextBox ID="classID" runat="server" CssClass="form-control" ></asp:TextBox></td>
+            <td><asp:TextBox ID="classCode" runat="server" CssClass="form-control" ></asp:TextBox></td>
         </tr>
         <tr>
             <td><h4>Size</h4></td>

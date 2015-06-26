@@ -1,4 +1,5 @@
-﻿using nus.iss.crs.dm.Course;
+﻿using nus.iss.crs.bl;
+using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.TestData;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace nus.iss.crs.pl.Admin
 
         //private CourseCategory selectedCategory = null;
         //private CourseInstructor selectedInstructor = null;
+        CourseManager manager = null;
+        ClassManager classManager = null;
 
         protected override void Page_Load(object sender, EventArgs e)
         {
@@ -21,50 +24,53 @@ namespace nus.iss.crs.pl.Admin
 
             if (this.IsPostBack)
                 return;
-            PopulateCouseDetail();
+            PopulateCategoryDetail();
         }
 
-        void PopulateCouseDetail()
+        private void PopulateCategoryDetail()
         {
-            //populate category and instructor
-            //TestDat();
+            manager = BLSession.CreateCourseManager();
+            classManager = BLSession.CreateClassManager();
 
-            //retrieve parameter from request
+            foreach (CourseCategory category in manager.GetCourseCategoryList())
+            {
+                ListItem item = new ListItem(category.Name, category.ID);
+                categoryList.Items.Add(item);
+            }
 
-            //retrieve data by parameter from BL
-            //CourseClass course = new Course();
-            //course.Category = selectedCategory;
-            //course.Instructor = selectedInstructor;
-            //course.Code = "123456";
-            //course.CourseTitle = "title";
-            //course.Description = "description";
-            //course.Duration = 3;
-            //course.Fee = "2000";
+            CourseClass courseClass = classManager.GetCourseClassByCode(this.Request.QueryString.Get(CRSConstant.ParameterClassCode));
+            categoryList.Text = courseClass.CourseObj.Category.Name;
+            courseList.Text = courseClass.CourseObj.CourseTitle;
+            classCode.Text = courseClass.ClassCode;
+            sizeID.Text = courseClass.Size.ToString();
+            startDateID.Text = courseClass.StartDate.ToString();
+            endDateID.Text = courseClass.EndDate.ToString();
+        }
 
-            ////populate data 
-            //codeID.Text = course.Code;
-            //titleID.Text = course.CourseTitle;
-            //descriptionID.Text = course.Description;
-            //durationID.Text = course.Duration + "";
-            //feeID.Text = course.Fee;
+        private void PopulateCourseDetail(CourseCategory courseCategory)
+        {
+            foreach (Course course in manager.GetCourseListByCategory(courseCategory))
+            {
+                ListItem item = new ListItem(course.CourseTitle, course.Code);
+                courseList.Items.Add(item);
+            }
+        }
 
-            //foreach (ListItem item in categoryList.Items)
-            //{
-            //    if (course.Category.ID == item.Value)
-            //    {
-            //        item.Selected = true;
-            //        break;
-            //    }
-            //}
-            //foreach (ListItem item in instructorList.Items)
-            //{
-            //    if (course.Instructor.Name == item.Value)
-            //    {
-            //        item.Selected = true;
-            //        break;
-            //    }
-            //}
+        private void categoryList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListItem item = categoryList.SelectedItem;
+            if (item == null)
+                return;
 
+            CourseManager manager = BLSession.CreateCourseManager();
+            List<CourseCategory> courseCategoryList = manager.GetCourseCategoryList();
+            foreach (CourseCategory courseCategory in courseCategoryList)
+            {
+                if (courseCategory.ID == item.Value)
+                {
+                    PopulateCourseDetail(courseCategory);
+                }
+            }
         }
 
         public override void RegistraterAction()
@@ -74,6 +80,19 @@ namespace nus.iss.crs.pl.Admin
 
         protected void Save_Click(object sender, EventArgs e)
         {
+            currentAction = (AdminAction)CourseAdminAction.Save;
+            CourseManager courseManager = BLSession.CreateCourseManager();
+            ListItem itemCategory = categoryList.SelectedItem;
+
+            ListItem item = courseList.SelectedItem;
+            Course selectedCourse = manager.GetCourseByCode(item.Value);
+
+            CourseClass tempClass = new CourseClass(selectedCourse);
+            tempClass.ClassCode = classCode.Text;
+            tempClass.Size = int.Parse(sizeID.Text);
+            tempClass.StartDate = DateTime.Parse(startDateID.Text);
+            tempClass.EndDate = DateTime.Parse(endDateID.Text);
+            classManager.CreateCourseClass(tempClass);
             NextPage(true);
         }
 

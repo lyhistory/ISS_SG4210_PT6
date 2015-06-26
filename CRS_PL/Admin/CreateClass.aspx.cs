@@ -127,11 +127,6 @@ namespace nus.iss.crs.pl.Admin
             if (item == null)
                 return;
 
-            //ModelData testData = ModelData.GetInstance();
-            //testData.AddCourseClasses();
-            //CourseCategory category = testData.GetCategory(item.Value);
-            //PopulateClourse(category);
-
             CourseManager manager = BLSession.CreateCourseManager();
             List<CourseCategory> courseCategoryList = manager.GetCourseCategoryList();
             foreach(CourseCategory courseCategory in courseCategoryList)
