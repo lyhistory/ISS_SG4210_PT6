@@ -25,9 +25,7 @@ namespace CRS_WF
             CourseClass courseClass = context.GetValue(this.courseClass);
             ClassManager manager = context.GetValue(this.manager);            
 
-            courseClass.Status = ClassStatus.ToConfirm;
-            //manager.ConfirmCourseClass(courseClass);
-
+            manager.ToConfirmCourseClass(courseClass);
         }
     }
 }

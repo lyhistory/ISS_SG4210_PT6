@@ -185,6 +185,27 @@
     <Compile Include="Admin\AdminMenu.aspx.designer.cs">
       <DependentUpon>AdminMenu.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\CanceledCourseClass.aspx.cs">
+      <DependentUpon>CanceledCourseClass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CanceledCourseClass.aspx.designer.cs">
+      <DependentUpon>CanceledCourseClass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ConfirmCourseClassByAdmin.aspx.cs">
+      <DependentUpon>ConfirmCourseClassByAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ConfirmCourseClassByAdmin.aspx.designer.cs">
+      <DependentUpon>ConfirmCourseClassByAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ConfirmedCourseClass.aspx.cs">
+      <DependentUpon>ConfirmedCourseClass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ConfirmedCourseClass.aspx.designer.cs">
+      <DependentUpon>ConfirmedCourseClass.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CourseConfirmWF.aspx.cs">
       <DependentUpon>CourseConfirmWF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -364,6 +385,9 @@
   <ItemGroup>
     <Content Include="Admin\AdminHome.aspx" />
     <Content Include="Admin\AdminMenu.aspx" />
+    <Content Include="Admin\CanceledCourseClass.aspx" />
+    <Content Include="Admin\ConfirmCourseClassByAdmin.aspx" />
+    <Content Include="Admin\ConfirmedCourseClass.aspx" />
     <Content Include="Admin\CourseConfirmWF.aspx" />
     <Content Include="Admin\CreateClass.aspx" />
     <Content Include="Admin\css\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />
@@ -553,6 +577,10 @@
     <ProjectReference Include="..\CRS_DM\CRS_DM.csproj">
       <Project>{4ac31d05-3220-4e18-9a9d-60305331711e}</Project>
       <Name>CRS_DM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRS_SL\CRS_WF.csproj">
+      <Project>{22540be8-669c-4d72-944d-8c14ac286f1a}</Project>
+      <Name>CRS_WF</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

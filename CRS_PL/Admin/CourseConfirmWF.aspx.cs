@@ -1,6 +1,7 @@
 
 ﻿//using CRS_SL;
 
+using CRS_WF;
 using nus.iss.crs.bl;
 using nus.iss.crs.dm.Course;
 using nus.iss.crs.pl.Admin.Ctrl;
@@ -19,6 +20,7 @@ namespace nus.iss.crs.pl.Admin
 
         //TODO
         CourseRegistrationManager manager = null;
+        ClassManager clsManager = null;
 
         protected override void Page_Load(object sender, EventArgs e)
         {
@@ -28,20 +30,17 @@ namespace nus.iss.crs.pl.Admin
 
         private void ShowCourseClassList()
         {
-
             manager = BLSession.CreateCourseRegistrationManager();
+            clsManager = BLSession.CreateClassManager();
+            List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);
 
-            List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);            
-            
-            {
-                CategourCourseList4WF table = (CategourCourseList4WF)Page.LoadControl("./Ctrl/CategourCourseList4WF.ascx");
-
-                table.CourseClassObjs = courseClasses;
-                PlaceHolder1.Controls.Add(table);
-                Label newline = new Label();
-                newline.Text = "<BR/>";
-                PlaceHolder1.Controls.Add(newline);
-            }
+            CategourCourseList4WF table = (CategourCourseList4WF)Page.LoadControl("./Ctrl/CategourCourseList4WF.ascx");
+            table.clsManagerObj = clsManager;
+            table.CourseClassObjs = courseClasses;
+            PlaceHolder1.Controls.Add(table);
+            Label newline = new Label();
+            newline.Text = "<BR/>";
+            PlaceHolder1.Controls.Add(newline);
         }
 
         public override void RegistraterAction()
@@ -49,31 +48,23 @@ namespace nus.iss.crs.pl.Admin
             //throw new NotImplementedException();
         }
 
-        //protected void Button1_Click(object sender, EventArgs e)
-        //{
-        //    manager = BLSession.CreateCourseRegistrationManager();
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            //manager = BLSession.CreateCourseRegistrationManager();
+         
+            //List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);
+            //CourseClass cls = courseClasses[0];
 
-<<<<<<< HEAD
-            List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);
-            CourseClass cls = courseClasses[0];
-
-            ClassManager clsManager = BLSession.CreateClassManager();
-            test wf = new test();
-            wf.ArgCourseClass = new InOutArgument<CourseClass>(ctx => cls);
-            wf.ArgManager = new InArgument<ClassManager>(ctx => clsManager);
-            WorkflowInvoker.Invoke(wf);
+            //ClassManager clsManager = BLSession.CreateClassManager();
+            //test wf = new test();
+            //wf.ArgCourseClass = new InOutArgument<CourseClass>(ctx => cls);
+            //wf.ArgManager = new InArgument<ClassManager>(ctx => clsManager);
+            //WorkflowInvoker.Invoke(wf);
             //string username = "lanxm";
             //Greeting greeting = new Greeting { ArgUserName = username };
             //IDictionary<string, object> results = WorkflowInvoker.Invoke(greeting);
             //string abc = results["Result"].ToString();
-=======
-        //    List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.Close);
 
-        //    Activity wf = new CRS_WF.CourseConfirmationFlow();
-
-        //    WorkflowInvoker.Invoke(wf);
->>>>>>> 3314aa82712f665bb1ec66622b64172fd0cce73f
-         
-        //}
+        }
     }
 }

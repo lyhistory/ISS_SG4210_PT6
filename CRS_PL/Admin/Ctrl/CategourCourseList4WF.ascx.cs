@@ -1,5 +1,8 @@
-﻿using nus.iss.crs.dm.Course;
+﻿using CRS_WF;
+using nus.iss.crs.bl;
+using nus.iss.crs.dm.Course;
 using System;
+using System.Activities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,8 +15,6 @@ namespace nus.iss.crs.pl.Admin.Ctrl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //categoryID.Text = Category.Name;
-
             foreach (CourseClass cls in CourseClassObjs)
             {
                 Table1.Rows.Add(CreateCourseClassRow(cls));
@@ -47,43 +48,96 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             TableCell noOfRegParticipant = new TableCell();
             noOfRegParticipant.Text = cls.NoOfRegedParticipant + "";
             courseRow.Cells.Add(noOfRegParticipant);
-            if (cls.Status == ClassStatus.Close)
+            switch (cls.Status)
             {
-                TableCell lblCell = new TableCell();
-                Label lblStatus = new Label();
-                lblStatus.Text ="To Start";
+                case ClassStatus.Close:
+                    {
+                        TableCell cell = new TableCell();
+                        LinkButton lbStart = new LinkButton();
+                        lbStart.Text = "Start Workflow";
+                        lbStart.CommandName = "start";
+                        lbStart.CommandArgument = cls.ClassCode;
+                        lbStart.Click += lbStart_Click;
+                        cell.Controls.Add(lbStart);
+                        courseRow.Cells.Add(cell); 
+                        break;
+                    }
+                case ClassStatus.Confirmed:
+                    {
+                        TableCell lblCell = new TableCell();
+                        Label lblStatus = new Label();
+                        lblStatus.Text = "Confirmed";
 
-                lblCell.Controls.Add(lblStatus);
-                courseRow.Cells.Add(lblCell);
+                        lblCell.Controls.Add(lblStatus);
+                        courseRow.Cells.Add(lblCell);
+
+                        break;
+                    }
+                case ClassStatus.Canceled:
+                    {
+                        TableCell lblCell = new TableCell();
+                        Label lblStatus = new Label();
+                        lblStatus.Text = "Cancelled";
+
+                        lblCell.Controls.Add(lblStatus);
+                        courseRow.Cells.Add(lblCell);
+                        break;
+                    }
+                case ClassStatus.ToConfirm:
+                    {
+
+                        TableCell cell = new TableCell();
+                        LinkButton lbConfirm = new LinkButton();
+                        lbConfirm.Text = "Confirm";
+                        lbConfirm.CommandName = "confirm";
+                        lbConfirm.CommandArgument = cls.ClassCode;
+                        lbConfirm.Click += lbConfirm_Click;
+                        cell.Controls.Add(lbConfirm);
+
+                        cell.Controls.Add(new LiteralControl("   " )); 
+
+                        LinkButton lbCancel= new LinkButton();
+                        lbCancel.Text = "Cancel";
+                        lbCancel.CommandName = "cancel";
+                        lbCancel.CommandArgument = cls.ClassCode;
+                        lbCancel.Click += lbCancel_Click;
+                        cell.Controls.Add(lbCancel);
+
+                        courseRow.Cells.Add(cell);  
+
+                        break;
+                    }
             }
-            else 
-            {
-                TableCell editID = new TableCell();
-                HyperLink h = new HyperLink();
-                h.Text = "Confirm";
-                //h.NavigateUrl = "~/Admin/EditCourse.aspx?" + CRSConstant.ParameterCourseCode + "=" + course.Code;
 
-                editID.Controls.Add(h);
-                courseRow.Cells.Add(editID);
-
-                TableCell deleteID = new TableCell();
-                LinkButton lb = new LinkButton();
-                lb.Text = "Cancel";
-
-                lb.OnClientClick = "";
-                deleteID.Controls.Add(lb);
-                courseRow.Cells.Add(deleteID);
-            } 
- 
             return courseRow;
         }
 
-        void lb_Click(Course course)
+        void lbStart_Click(object sender, EventArgs e)
         {
+             LinkButton lb = sender as LinkButton;
+
+             CourseClass cls = clsManagerObj.GetCourseClassByCode(lb.CommandArgument);
+            
+             test wf = new test();
+             wf.ArgCourseClass = new InOutArgument<CourseClass>(ctx => cls);
+             wf.ArgManager = new InArgument<ClassManager>(ctx => clsManagerObj);
+             WorkflowInvoker.Invoke(wf);
+        }
+
+        void lbConfirm_Click(object sender, EventArgs e)
+        {
+            LinkButton lb = sender as LinkButton;
 
         }
 
-        //public CourseCategory Category { get; set; }
-        public List<CourseClass> CourseClassObjs { get; set; }        
+        void lbCancel_Click(object sender, EventArgs e)
+        {
+            LinkButton lb = sender as LinkButton;
+             
+        }
+
+        public List<CourseClass> CourseClassObjs { get; set; }
+
+        public ClassManager clsManagerObj { get; set; }
     }
 }
