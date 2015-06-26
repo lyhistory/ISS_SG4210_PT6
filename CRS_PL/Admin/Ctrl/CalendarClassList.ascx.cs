@@ -13,45 +13,12 @@ namespace nus.iss.crs.pl.Admin.Ctrl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Table1.Rows.Clear();
-            Table1.Rows.Add(CreateClassHeader());
             foreach (CourseClass courseClass in courseClassList)
             {
                 Table1.Rows.Add(CreateClassRow(courseClass));
             }
         }
 
-        public TableHeaderRow CreateClassHeader()
-        {
-            TableHeaderRow headerRow = new TableHeaderRow();
-
-            TableHeaderCell classID = new TableHeaderCell();
-            classID.Text = "Class ID";
-            classID.ColumnSpan = 1;
-            headerRow.Cells.Add(classID);
-
-            TableHeaderCell Size = new TableHeaderCell();
-            Size.Text = "Class ID";
-            Size.ColumnSpan = 1;
-            headerRow.Cells.Add(Size);
-
-            TableHeaderCell startDate = new TableHeaderCell();
-            startDate.Text = "Class ID";
-            startDate.ColumnSpan = 1;
-            headerRow.Cells.Add(startDate);
-
-            TableHeaderCell endDate = new TableHeaderCell();
-            endDate.Text = "Class ID";
-            endDate.ColumnSpan = 1;
-            headerRow.Cells.Add(endDate);
-
-            TableHeaderCell Operation = new TableHeaderCell();
-            Operation.Text = "Class ID";
-            Operation.ColumnSpan = 1;
-            headerRow.Cells.Add(Operation);
-
-            return headerRow;
-        }
         public TableRow CreateClassRow(CourseClass cls)
         {
 

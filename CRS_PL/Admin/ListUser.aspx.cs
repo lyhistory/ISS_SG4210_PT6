@@ -17,12 +17,6 @@ namespace nus.iss.crs.pl.Admin
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
-            ShowCourseList();
-        }
-
-        private void ShowCourseList()
-        {
-            //CourseManager manager = BLSession.CreateCourseManager();
             if (BLSession == null)
             {
                 ISession session = new SessionImplement();
@@ -33,6 +27,11 @@ namespace nus.iss.crs.pl.Admin
                 manager = BLSession.CreateUserManager();
             }
 
+            ShowCourseList();
+        }
+
+        private void ShowCourseList()
+        {
             UserList table = (UserList)Page.LoadControl("./Ctrl/UserList.ascx");
             table.userList = manager.GetUserList();
             PlaceHolder1.Controls.Add(table);

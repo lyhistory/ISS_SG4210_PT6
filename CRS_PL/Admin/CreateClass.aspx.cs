@@ -51,6 +51,7 @@ namespace nus.iss.crs.pl.Admin
 
         private void PopulateCourse(CourseCategory category)
         {
+            courseListID.Items.Clear();
             foreach (Course course in manager.GetCourseListByCategory(category))
             {
                 ListItem item = new ListItem(course.CourseTitle, course.Code);
@@ -136,11 +137,6 @@ namespace nus.iss.crs.pl.Admin
                     PopulateCourse(courseCategory);
                 }
             }
-        }
-
-        protected void courseList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

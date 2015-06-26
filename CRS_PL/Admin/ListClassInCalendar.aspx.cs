@@ -29,6 +29,7 @@ namespace nus.iss.crs.pl.Admin
             }
 
             PopulateCategoryList();
+            ShowCourseClassList();
         }
 
         private void PopulateCategoryList()
@@ -39,7 +40,6 @@ namespace nus.iss.crs.pl.Admin
                 ListItem item = new ListItem(course.CourseTitle, course.Code);
                 courseListID.Items.Add(item);
             }
-            ShowCourseClassList();
         }
 
         //protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -83,9 +83,14 @@ namespace nus.iss.crs.pl.Admin
         private void ShowCourseClassList()
         {
             ClassManager classManager = BLSession.CreateClassManager();
-
+            int total = PlaceHolder1.Controls.Count-1;
+            for (int i = total; i >=0; i--)
+            {
+                PlaceHolder1.Controls.RemoveAt(i);
+            }
             if (courseListID.SelectedValue == "ALL")
             {
+
                 foreach(Course course in manager.GetCourseList())
                 {
                     DateTime startdate, enddate;
@@ -111,6 +116,7 @@ namespace nus.iss.crs.pl.Admin
                 CalendarClassList table = (CalendarClassList)Page.LoadControl("./Ctrl/CalendarClassList.ascx");
                 table.courseClassList = courseClassList;
                 table.classManager = classManager;
+                
                 PlaceHolder1.Controls.Add(table);
             }     
         }
@@ -120,5 +126,36 @@ namespace nus.iss.crs.pl.Admin
             ShowCourseClassList();
         }
 
+        public TableHeaderRow CreateClassHeader()
+        {
+            TableHeaderRow headerRow = new TableHeaderRow();
+
+            TableHeaderCell classID = new TableHeaderCell();
+            classID.Text = "Class ID";
+            classID.ColumnSpan = 1;
+            headerRow.Cells.Add(classID);
+
+            TableHeaderCell Size = new TableHeaderCell();
+            Size.Text = "Class ID";
+            Size.ColumnSpan = 1;
+            headerRow.Cells.Add(Size);
+
+            TableHeaderCell startDate = new TableHeaderCell();
+            startDate.Text = "Class ID";
+            startDate.ColumnSpan = 1;
+            headerRow.Cells.Add(startDate);
+
+            TableHeaderCell endDate = new TableHeaderCell();
+            endDate.Text = "Class ID";
+            endDate.ColumnSpan = 1;
+            headerRow.Cells.Add(endDate);
+
+            TableHeaderCell Operation = new TableHeaderCell();
+            Operation.Text = "Class ID";
+            Operation.ColumnSpan = 1;
+            headerRow.Cells.Add(Operation);
+
+            return headerRow;
+        }
     }
 }

@@ -6,6 +6,5 @@
         <asp:TableHeaderCell>Email</asp:TableHeaderCell>
         <asp:TableHeaderCell>ContactNumber</asp:TableHeaderCell>
         <asp:TableHeaderCell>CompanyName</asp:TableHeaderCell>
-        <asp:TableHeaderCell ColumnSpan="2">Operation</asp:TableHeaderCell>
     </asp:TableRow>
 </asp:Table>

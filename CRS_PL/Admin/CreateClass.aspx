@@ -15,7 +15,7 @@
         <tr>
             <td><h4>Course</h4></td>
             <td>
-                <asp:DropDownList ID="courseListID" runat="server" OnSelectedIndexChanged="courseList_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" >
+                <asp:DropDownList ID="courseListID" runat="server" CssClass="form-control" >
                 </asp:DropDownList>
             </td>
         </tr>

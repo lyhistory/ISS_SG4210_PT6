@@ -8,10 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace nus.iss.crs.pl.Admin {
-
-
-    public partial class ListClassInCalendar
-    {
+    
+    
+    public partial class ListClassInCalendar {
         
         /// <summary>
         /// courseListID control.
@@ -48,6 +47,15 @@ namespace nus.iss.crs.pl.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SearchClass;
+        
+        /// <summary>
+        /// Table2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table Table2;
         
         /// <summary>
         /// PlaceHolder1 control.

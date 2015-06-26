@@ -41,19 +41,19 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             companyName.Text = user.CompanyName;
             courseRow.Cells.Add(companyName);
 
-            TableCell editID = new TableCell();
-            HyperLink h = new HyperLink();
-            h.Text = "Reset Password";
-            h.NavigateUrl = "~/Account/ResetPassword";
-            editID.Controls.Add(h);
-            courseRow.Cells.Add(editID);
+            //TableCell editID = new TableCell();
+            //HyperLink h = new HyperLink();
+            //h.Text = "Reset Password";
+            //h.NavigateUrl = "~/Account/ResetPassword";
+            //editID.Controls.Add(h);
+            //courseRow.Cells.Add(editID);
 
-            TableCell disableID = new TableCell();
-            LinkButton lb = new LinkButton();
-            lb.Text = "Enable /Disable";
-            lb.OnClientClick = "";
-            disableID.Controls.Add(lb);
-            courseRow.Cells.Add(disableID);
+            //TableCell disableID = new TableCell();
+            //LinkButton lb = new LinkButton();
+            //lb.Text = "Enable /Disable";
+            //lb.OnClientClick = "";
+            //disableID.Controls.Add(lb);
+            //courseRow.Cells.Add(disableID);
 
             return courseRow;
         }
