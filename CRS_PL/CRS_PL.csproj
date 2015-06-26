@@ -487,7 +487,9 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Service\AttendanceService.svc" />
     <Content Include="Service\CourseRegistrationService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -516,13 +518,14 @@
     <Content Include="Views\CourseRegister\ViewHRRegister.cshtml" />
     <Content Include="Views\CourseRegister\_CourseRegister.cshtml" />
     <Content Include="Views\CourseRegister\ViewRegistrationDetail.cshtml" />
+    <Content Include="Views\Report\_AttendanceReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Log\" />
     <Folder Include="Views\Auth\" />
-    <Folder Include="Views\Report\" />
+    <Folder Include="Views\Course\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

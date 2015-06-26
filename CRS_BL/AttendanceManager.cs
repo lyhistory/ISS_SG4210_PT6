@@ -43,5 +43,7 @@ namespace nus.iss.crs.bl
             string classCode = cls.ClassCode;
             return unitOfWork.AttendanceService.GetUserAttendances(pariticipantID, classCode);
         }
+
+        
     }
 }

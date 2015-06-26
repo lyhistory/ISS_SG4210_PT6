@@ -4,15 +4,15 @@
      <script language="javascript" type="text/javascript">
          $(function () {
              $('#btnSearch').click(function () {
-                 searchReport('test');
+                 searchReport('ACD');
              });
             
          });
-         function searchReport(classcode) {
+         function searchReport(courseCode) {
              $.ajax({
                  type: 'post',
                  url: '/Report/SearchAttendacne',
-                 data:{classcode:classcode,date:$('#classDate').val()}
+                 data: { courseCode: courseCode, date: $('#classDate').val() }
              }).done(function(data){
                  
                  $('#reportContent').html(data);
@@ -24,7 +24,7 @@
     </blockquote>
         <div id="header">
 
-            <asp:Calendar ID="classDate" runat="server"></asp:Calendar>
+            <input id="classDate" type="date" />
 
             <input type="button" id="btnSearch" value="Search"/>
 
@@ -34,7 +34,6 @@
                 <thead>
                     <tr>
                         <td>Course Title</td>
-                        <td>Class Code</td>
                         <td>Participant IdNumber</td>
                         <td>Participant CompanyID</td>
                         <td>Participant FullName</td>
