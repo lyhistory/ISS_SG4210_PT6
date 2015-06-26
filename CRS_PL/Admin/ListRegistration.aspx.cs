@@ -23,6 +23,9 @@ namespace nus.iss.crs.pl.Admin
 
         private void ShowRegistrationList()
         {
+            TableRow row = Table1.Rows[0];
+            Table1.Rows.Clear();
+            Table1.Rows.Add(row);
             //CourseManager manager = BLSession.CreateCourseManager();
             if (BLSession == null)
             {

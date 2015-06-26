@@ -30,8 +30,6 @@
         {
             this.btnRegistrateCourse = new System.Windows.Forms.Button();
             this.btnAttendance = new System.Windows.Forms.Button();
-            this.btnCourseConfirm = new System.Windows.Forms.Button();
-            this.btnCourseComplete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnRegistrateCourse
@@ -56,35 +54,11 @@
             this.btnAttendance.UseVisualStyleBackColor = true;
             this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
             // 
-            // btnCourseConfirm
-            // 
-            this.btnCourseConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCourseConfirm.Location = new System.Drawing.Point(36, 214);
-            this.btnCourseConfirm.Name = "btnCourseConfirm";
-            this.btnCourseConfirm.Size = new System.Drawing.Size(349, 62);
-            this.btnCourseConfirm.TabIndex = 2;
-            this.btnCourseConfirm.Text = "Course Confirmation";
-            this.btnCourseConfirm.UseVisualStyleBackColor = true;
-            this.btnCourseConfirm.Click += new System.EventHandler(this.btnCourseConfirm_Click);
-            // 
-            // btnCourseComplete
-            // 
-            this.btnCourseComplete.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCourseComplete.Location = new System.Drawing.Point(36, 315);
-            this.btnCourseComplete.Name = "btnCourseComplete";
-            this.btnCourseComplete.Size = new System.Drawing.Size(349, 62);
-            this.btnCourseComplete.TabIndex = 3;
-            this.btnCourseComplete.Text = "Course Completion";
-            this.btnCourseComplete.UseVisualStyleBackColor = true;
-            this.btnCourseComplete.Click += new System.EventHandler(this.btnCourseComplete_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 390);
-            this.Controls.Add(this.btnCourseComplete);
-            this.Controls.Add(this.btnCourseConfirm);
+            this.ClientSize = new System.Drawing.Size(414, 216);
             this.Controls.Add(this.btnAttendance);
             this.Controls.Add(this.btnRegistrateCourse);
             this.Name = "MainForm";
@@ -97,7 +71,5 @@
 
         private System.Windows.Forms.Button btnRegistrateCourse;
         private System.Windows.Forms.Button btnAttendance;
-        private System.Windows.Forms.Button btnCourseConfirm;
-        private System.Windows.Forms.Button btnCourseComplete;
     }
 }

@@ -48,6 +48,7 @@ namespace nus.iss.crs.pl.Admin
             email.Text = participant.EMail;
             contactNumber.Text = participant.ContactNumber;
             dietaryRequirement.Text = participant.DietaryRequirement;
+            participantID.Value = participant.ParticipantID;
         }
 
          protected void Save_Click(object sender, EventArgs e)
@@ -59,7 +60,7 @@ namespace nus.iss.crs.pl.Admin
             tempParticipant.IDNumber = idNumber.Text.ToString();
             tempParticipant.EmploymentStatus = employmentStatus.Text.ToString();
             tempParticipant.CompanyID = companyList.SelectedItem.Value;
-            tempParticipant.CompanyName = companyList.SelectedValue;
+            tempParticipant.CompanyName = companyList.SelectedItem.Text;
             tempParticipant.Salutation = salutation.Text.ToString();
             tempParticipant.JobTitle = jobTitle.Text.ToString();
             tempParticipant.Department = department.Text.ToString();
@@ -72,7 +73,7 @@ namespace nus.iss.crs.pl.Admin
             tempParticipant.EMail = email.Text.ToString();
             tempParticipant.ContactNumber = contactNumber.Text.ToString();
             tempParticipant.DietaryRequirement = dietaryRequirement.Text.ToString();
-
+            tempParticipant.ParticipantID = participantID.Value;
             //TODO
             participantManager.EditPariticipant(tempParticipant);
             NextPage(true);

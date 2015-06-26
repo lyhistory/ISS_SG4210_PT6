@@ -81,6 +81,11 @@
             <td><asp:TextBox ID="dietaryRequirement" runat="server" CssClass="form-control" ></asp:TextBox></td>
         </tr>
         <tr>
+            <td>
+                <asp:HiddenField ID="participantID" runat="server" />
+            </td>
+        </tr>
+        <tr>
             <td colspan="2"  align="center">  
                 <asp:Button  runat="server" ID="Save" Text ="Save" OnClick="Save_Click" CssClass="btn btn-primary" />
                 &nbsp;&nbsp;  

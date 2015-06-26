@@ -49,6 +49,10 @@ namespace CRS_DAL.Service
                     _participant.ContactNumber = participant.ContactNumber;
                     _participant.DietaryRequirement = participant.DietaryRequirement;
 
+                    _participant.CompanyID = participant.CompanyID;
+                    _participant.IDNumber = participant.IDNumber;
+                    _participant.IsLocal = participant.IsLocal;
+
                     this.unitOfWork.Commit();
                     return true;
                 }
