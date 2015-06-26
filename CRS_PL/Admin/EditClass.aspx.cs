@@ -34,9 +34,6 @@ namespace nus.iss.crs.pl.Admin
 
         private void PopulateCategoryDetail()
         {
-            
-            
-
             foreach (CourseCategory category in manager.GetCourseCategoryList())
             {
                 ListItem item = new ListItem(category.Name, category.ID);

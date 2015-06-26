@@ -82,7 +82,7 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             TableCell view = new TableCell();
             h = new HyperLink();
             h.Text = "Detail";
-            h.NavigateUrl = "";
+            h.NavigateUrl = "~/Admin/CourseDetail.aspx?" + CRSConstant.ParameterCourseCode + "=" + course.Code;
             view.Controls.Add(h);
             courseRow.Cells.Add(view);
             return courseRow;
