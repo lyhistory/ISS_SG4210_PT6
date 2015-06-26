@@ -62,7 +62,8 @@ namespace CRS_DAL.Service
                             DOB = _participant.DateOfBirth,
                             EMail = _participant.Email,
                             ContactNumber = _participant.ContactNumber,
-                            DietaryRequirement = _participant.DietaryRequirement
+                            DietaryRequirement = _participant.DietaryRequirement,
+                            IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                         }).ToList();
             }
             return null;
@@ -95,7 +96,8 @@ namespace CRS_DAL.Service
                             DOB = _participant.DateOfBirth,
                             EMail = _participant.Email,
                             ContactNumber = _participant.ContactNumber,
-                            DietaryRequirement = _participant.DietaryRequirement
+                            DietaryRequirement = _participant.DietaryRequirement,
+                            IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                         }).ToList();
             }
             return null;
@@ -125,7 +127,8 @@ namespace CRS_DAL.Service
                     DOB = _participant.DateOfBirth,
                     EMail = _participant.Email,
                     ContactNumber = _participant.ContactNumber,
-                    DietaryRequirement = _participant.DietaryRequirement
+                    DietaryRequirement = _participant.DietaryRequirement,
+                    IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                 };
             }
             return null;
@@ -155,6 +158,7 @@ namespace CRS_DAL.Service
                     _participant.Email = participant.EMail;
                     _participant.ContactNumber = participant.ContactNumber;
                     _participant.DietaryRequirement = participant.DietaryRequirement;
+                    _participant.IsLocal = participant.IsLocal;
 
                     this.unitOfWork.Commit();
                     return participant;
@@ -187,7 +191,8 @@ namespace CRS_DAL.Service
                     DateOfBirth = participant.DOB,
                     Email = participant.EMail,
                     ContactNumber = participant.ContactNumber,
-                    DietaryRequirement = participant.DietaryRequirement
+                    DietaryRequirement = participant.DietaryRequirement,
+                    IsLocal=participant.IsLocal
                 };
                 this.ParticipantRepository.Add(_participant);
                 this.unitOfWork.Commit();
@@ -227,7 +232,8 @@ namespace CRS_DAL.Service
                                 DOB = _participant.DateOfBirth,
                                 EMail = _participant.Email,
                                 ContactNumber = _participant.ContactNumber,
-                                DietaryRequirement = _participant.DietaryRequirement
+                                DietaryRequirement = _participant.DietaryRequirement,
+                                IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                             }
                             )
                         {
@@ -278,7 +284,8 @@ namespace CRS_DAL.Service
                                 DOB = _participant.DateOfBirth,
                                 EMail = _participant.Email,
                                 ContactNumber = _participant.ContactNumber,
-                                DietaryRequirement = _participant.DietaryRequirement
+                                DietaryRequirement = _participant.DietaryRequirement,
+                                IsLocal=_participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                             }
                             )
                         {
@@ -341,7 +348,8 @@ namespace CRS_DAL.Service
                                 DOB = subset.DateOfBirth,
                                 EMail = subset.Email,
                                 ContactNumber = subset.ContactNumber,
-                                DietaryRequirement = subset.DietaryRequirement
+                                DietaryRequirement = subset.DietaryRequirement,
+                                IsLocal = subset.IsLocal.HasValue ? subset.IsLocal.Value : 0
                             }
                             )
                         {
@@ -392,7 +400,8 @@ namespace CRS_DAL.Service
                                 DOB = _participant.DateOfBirth,
                                 EMail = _participant.Email,
                                 ContactNumber = _participant.ContactNumber,
-                                DietaryRequirement = _participant.DietaryRequirement
+                                DietaryRequirement = _participant.DietaryRequirement,
+                                IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                             }
                             )
                         {
@@ -441,7 +450,8 @@ namespace CRS_DAL.Service
                                 DOB = _participant.DateOfBirth,
                                 EMail = _participant.Email,
                                 ContactNumber = _participant.ContactNumber,
-                                DietaryRequirement = _participant.DietaryRequirement
+                                DietaryRequirement = _participant.DietaryRequirement,
+                                IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                             }
                             )
                         {
@@ -568,7 +578,8 @@ namespace CRS_DAL.Service
                                 DOB = _participant.DateOfBirth,
                                 EMail = _participant.Email,
                                 ContactNumber = _participant.ContactNumber,
-                                DietaryRequirement = _participant.DietaryRequirement
+                                DietaryRequirement = _participant.DietaryRequirement,
+                                IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                             }
                             )
                         {
@@ -621,7 +632,8 @@ namespace CRS_DAL.Service
                                 DOB = _participant.DateOfBirth,
                                 EMail = _participant.Email,
                                 ContactNumber = _participant.ContactNumber,
-                                DietaryRequirement = _participant.DietaryRequirement
+                                DietaryRequirement = _participant.DietaryRequirement,
+                                IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                             }
                             )
                 {
@@ -674,7 +686,8 @@ namespace CRS_DAL.Service
                                 DOB = _participant.DateOfBirth,
                                 EMail = _participant.Email,
                                 ContactNumber = _participant.ContactNumber,
-                                DietaryRequirement = _participant.DietaryRequirement
+                                DietaryRequirement = _participant.DietaryRequirement,
+                                IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                             }
                             )
                 {
@@ -731,7 +744,8 @@ namespace CRS_DAL.Service
                             DOB = _participant.DateOfBirth,
                             EMail = _participant.Email,
                             ContactNumber = _participant.ContactNumber,
-                            DietaryRequirement = _participant.DietaryRequirement
+                            DietaryRequirement = _participant.DietaryRequirement,
+                            IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
                         }).ToList();
             }
             return null;

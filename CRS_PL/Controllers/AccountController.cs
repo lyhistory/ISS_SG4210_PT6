@@ -100,9 +100,45 @@ namespace nus.iss.crs.pl.Controllers
                 return Content("<tr><td colspan='5'>No Data found.</td></tr>");
             return View("~/views/account/_StaffTemplate.cshtml", list);
         }
-        public ActionResult EditCourseAdmin()
+        public ActionResult EditCourseAdmin(string userid)
         {
-            return View();
+            dm.User model = null;
+            CourseAdminViewModel _model = null;
+            if (!string.IsNullOrEmpty(userid))
+            {
+                model = manager.GetStaffByUserid(userid);
+                _model = new CourseAdminViewModel()
+                {
+                    LoginID = model.LoginID,
+                    StaffID = model.UserID,
+                    Enabled = model.Enabled,
+                    Password = model.Password,
+                    ConfirmPassword = model.Password
+                };
+            }
+            return View(_model);
+        }
+        [HttpPost]
+        public ActionResult PostEditCourseAdmin(CourseAdminViewModel model)
+        {
+            try
+            {
+                if (!this.ModelState.IsValid)
+                {
+                    //log
+                }
+
+                bool result = manager.EditStaff(new dm.User()
+                {
+                    LoginID = model.LoginID,
+                    Password = model.Password,
+                    Enabled = model.Enabled
+                });
+                if (result)
+                    return Json(new { Code = 1 });
+            }
+            catch { }
+            return Json(new { Code = -1 });
         }
         public ActionResult CreateCourseAdmin()
         {
@@ -122,7 +158,7 @@ namespace nus.iss.crs.pl.Controllers
                 {
                     LoginID = model.LoginID,
                     Password = model.Password,
-                    Enabled = model.Enabled ? 1 : 0,
+                    Enabled = model.Enabled,
                     RoleName = "COURSE"
                 });
                 if (result)
@@ -131,6 +167,7 @@ namespace nus.iss.crs.pl.Controllers
             catch { }
             return Json(new { Code = -1 });
         }
+       
 
         public ActionResult LogOff()
         {

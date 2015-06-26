@@ -17,7 +17,7 @@ namespace nus.iss.crs.pl.Models
         [Compare("Password", ErrorMessage = "Password not the same")]
         public string ConfirmPassword { get; set; }
 
-        public bool Enabled { get; set; }
+        public int Enabled { get; set; }
         public int Status { get; set; }
     }
 }

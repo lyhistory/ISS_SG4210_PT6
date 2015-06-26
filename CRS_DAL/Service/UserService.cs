@@ -163,6 +163,45 @@ namespace CRS_DAL.Service
             return false;
         }
 
+        public dm.User GetStaffByUserid(string userid)
+        {
+            try
+            {
+                var _staff = staffRepository.GetFirstOrDefault(x => x.StaffID.Equals(userid));
+                if (_staff == null)
+                    return null;
+                return new dm.User()
+                {
+                    UserID = _staff.StaffID,
+                    LoginID = _staff.LoginID,
+                    Password = _staff.Password,
+                    Status = _staff.Status.HasValue ? _staff.Status.Value : 0,
+                    RoleName = _staff.Role == 1 ? "SYSTEM" : "COURSE"
+                };
+
+            }
+            catch { }
+            return null;
+        }
+        public bool EditStaff(dm.User staff)
+        {
+            try
+            {
+                var _staff=staffRepository.GetFirstOrDefault(x=>x.LoginID.Equals(staff.LoginID)&&x.Role==2);
+                if (_staff!=null)
+                {
+                    _staff.Password = staff.Password;
+                    _staff.Enabled = staff.Enabled;
+                    this.unitOfWork.Commit();
+                    return true;
+                }
+            }
+            catch
+            {
+
+            }
+            return false;
+        }
         public bool CreateStaff(dm.User staff)
         {
             try
@@ -176,7 +215,8 @@ namespace CRS_DAL.Service
                         LoginID = staff.LoginID,
                         Password = staff.Password,
                         Enabled=staff.Enabled,
-                        Role = staff.RoleName.Equals("SYSTEM", StringComparison.OrdinalIgnoreCase) ? 2 : 1
+                        Role = staff.RoleName.Equals("SYSTEM", StringComparison.OrdinalIgnoreCase) ? 1 : 2,
+                        Status=0
                     });
 
                     this.unitOfWork.Commit();
@@ -317,6 +357,8 @@ namespace CRS_DAL.Service
         public dm.User LoginStaff(string loginID, string password)
         {
             var _staff = staffRepository.GetFirstOrDefault(x => x.LoginID.Equals(loginID) && x.Password.Equals(password));
+            if (_staff == null)
+                return null;
             return new dm.User()
             {
                 UserID = _staff.StaffID,
@@ -344,7 +386,7 @@ namespace CRS_DAL.Service
 
         public List<dm.User> GetCourseAdminList()
         {
-            var _stafflist = staffRepository.GetWhere(x => x.Role == 1);
+            var _stafflist = staffRepository.GetWhere(x => x.Role == 2);
             if (_stafflist == null)
                 return null;
             return (from _staff in _stafflist
