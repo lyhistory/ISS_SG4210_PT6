@@ -213,7 +213,7 @@ namespace CRS_DAL.Service
                 {
                     if (course.Instructor != null && !string.IsNullOrEmpty(course.Instructor.Name))
                     {
-                        double _fee;
+                        decimal _fee;
                         
                         Instructor _instructor = this.InstructorRepository.GetFirstOrDefault(x => x.InstructorID.Equals(course.Instructor.ID));
                         if (_instructor != null)
@@ -222,7 +222,7 @@ namespace CRS_DAL.Service
 
                             if (_course != null)
                             {
-                                if (double.TryParse(course.Fee, out _fee))
+                                if (decimal.TryParse(course.Fee, out _fee))
                                 {
 
                                     _course.CourseTitle = course.CourseTitle;
