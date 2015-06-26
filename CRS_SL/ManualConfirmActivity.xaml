@@ -8,6 +8,7 @@
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
@@ -57,23 +58,62 @@
       <AssemblyReference>CRS_WF</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <local:UpdateConfirmStatus Text="{x:Null}" classCode="{x:Null}" classSize="{x:Null}" message="{x:Null}" status="{x:Null}" sap2010:WorkflowViewState.IdRef="UpdateConfirmStatus_1">
-    <local:UpdateConfirmStatus.courseClass>
-      <InArgument x:TypeArguments="nicdc:CourseClass">
-        <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">ArgCourseClass</mca:CSharpValue>
-      </InArgument>
-    </local:UpdateConfirmStatus.courseClass>
-    <local:UpdateConfirmStatus.manager>
-      <InArgument x:TypeArguments="nicb:ClassManager">
-        <mca:CSharpValue x:TypeArguments="nicb:ClassManager">ArgManager</mca:CSharpValue>
-      </InArgument>
-    </local:UpdateConfirmStatus.manager>
-    <sads:DebugSymbol.Symbol>d01FOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxNYW51YWxDb25maXJtQWN0aXZpdHkueGFtbAM8A0gfAgEBPwk/XgIBBUQJRFoCAQI=</sads:DebugSymbol.Symbol>
-  </local:UpdateConfirmStatus>
+  <Sequence>
+    <local:UpdateConfirmStatus Text="{x:Null}" classCode="{x:Null}" classSize="{x:Null}" message="{x:Null}" status="{x:Null}">
+      <local:UpdateConfirmStatus.courseClass>
+        <InArgument x:TypeArguments="nicdc:CourseClass">
+          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">ArgCourseClass</mca:CSharpValue>
+        </InArgument>
+      </local:UpdateConfirmStatus.courseClass>
+      <local:UpdateConfirmStatus.manager>
+        <InArgument x:TypeArguments="nicb:ClassManager">
+          <mca:CSharpValue x:TypeArguments="nicb:ClassManager">ArgManager</mca:CSharpValue>
+        </InArgument>
+      </local:UpdateConfirmStatus.manager>
+      <sap2010:WorkflowViewState.IdRef>UpdateConfirmStatus_2</sap2010:WorkflowViewState.IdRef>
+    </local:UpdateConfirmStatus>
+    <local:CourseFeeCalculationActivity Text="{x:Null}">
+      <local:CourseFeeCalculationActivity.courseClass>
+        <InArgument x:TypeArguments="nicdc:CourseClass">
+          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">ArgCourseClass</mca:CSharpValue>
+        </InArgument>
+      </local:CourseFeeCalculationActivity.courseClass>
+      <local:CourseFeeCalculationActivity.manager>
+        <InArgument x:TypeArguments="nicb:ClassManager">
+          <mca:CSharpValue x:TypeArguments="nicb:ClassManager">ArgManager</mca:CSharpValue>
+        </InArgument>
+      </local:CourseFeeCalculationActivity.manager>
+      <sap2010:WorkflowViewState.IdRef>CourseFeeCalculationActivity_1</sap2010:WorkflowViewState.IdRef>
+    </local:CourseFeeCalculationActivity>
+    <local:NotifyByEmail Text="{x:Null}">
+      <local:NotifyByEmail.courseClass>
+        <InArgument x:TypeArguments="nicdc:CourseClass">
+          <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">ArgCourseClass</mca:CSharpValue>
+        </InArgument>
+      </local:NotifyByEmail.courseClass>
+      <local:NotifyByEmail.manager>
+        <InArgument x:TypeArguments="nicb:ClassManager">
+          <mca:CSharpValue x:TypeArguments="nicb:ClassManager">ArgManager</mca:CSharpValue>
+        </InArgument>
+      </local:NotifyByEmail.manager>
+      <sap2010:WorkflowViewState.IdRef>NotifyByEmail_1</sap2010:WorkflowViewState.IdRef>
+    </local:NotifyByEmail>
+    <sap2010:WorkflowViewState.IdRef>Sequence_1</sap2010:WorkflowViewState.IdRef>
+    <sads:DebugSymbol.Symbol>d01FOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxNYW51YWxDb25maXJtQWN0aXZpdHkueGFtbAo9A2cOAgEBPgVKIQIBEEsFVyoCAQlYBWQbAgECQQtBYAIBFEYLRlwCARFOC05gAgENUwtTXAIBClsLW2ACAQZgC2BcAgED</sads:DebugSymbol.Symbol>
+  </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="UpdateConfirmStatus_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="CRS_WF.ManualConfirmActivity_1" sap:VirtualizedContainerService.HintSize="240,102" />
+      <sap2010:ViewStateData Id="UpdateConfirmStatus_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="CourseFeeCalculationActivity_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="NotifyByEmail_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="222,270">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CRS_WF.ManualConfirmActivity_1" sap:VirtualizedContainerService.HintSize="262,350" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

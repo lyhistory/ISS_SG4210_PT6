@@ -17,6 +17,7 @@ namespace nus.iss.crs.pl.Admin
 
         //TODO
         CourseRegistrationManager manager = null;
+        ClassManager clsManager = null;
 
         protected override void Page_Load(object sender, EventArgs e)
         {
@@ -28,18 +29,18 @@ namespace nus.iss.crs.pl.Admin
         {
 
             manager = BLSession.CreateCourseRegistrationManager();
+            clsManager = BLSession.CreateClassManager();
 
             List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.ToConfirm);
 
-            {
-                CategourCourseList4WF table = (CategourCourseList4WF)Page.LoadControl("./Ctrl/CategourCourseList4WF.ascx");
+            CategourCourseList4WF table = (CategourCourseList4WF)Page.LoadControl("./Ctrl/CategourCourseList4WF.ascx");
+            table.clsManagerObj = clsManager;
+            table.CourseClassObjs = courseClasses;
+            PlaceHolder1.Controls.Add(table);
+            Label newline = new Label();
+            newline.Text = "<BR/>";
+            PlaceHolder1.Controls.Add(newline);
 
-                table.CourseClassObjs = courseClasses;
-                PlaceHolder1.Controls.Add(table);
-                Label newline = new Label();
-                newline.Text = "<BR/>";
-                PlaceHolder1.Controls.Add(newline);
-            }
         }
 
         public override void RegistraterAction()

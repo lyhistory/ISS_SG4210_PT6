@@ -117,8 +117,8 @@ namespace nus.iss.crs.pl.Admin.Ctrl
              LinkButton lb = sender as LinkButton;
 
              CourseClass cls = clsManagerObj.GetCourseClassByCode(lb.CommandArgument);
-            
-             test wf = new test();
+
+             CourseConfirmationFlow wf = new CourseConfirmationFlow();
              wf.ArgCourseClass = new InOutArgument<CourseClass>(ctx => cls);
              wf.ArgManager = new InArgument<ClassManager>(ctx => clsManagerObj);
              WorkflowInvoker.Invoke(wf);
@@ -128,12 +128,24 @@ namespace nus.iss.crs.pl.Admin.Ctrl
         {
             LinkButton lb = sender as LinkButton;
 
+            CourseClass cls = clsManagerObj.GetCourseClassByCode(lb.CommandArgument);
+
+            ManualConfirmActivity wf = new ManualConfirmActivity();
+            wf.ArgCourseClass = new InArgument<CourseClass>(ctx => cls);
+            wf.ArgManager = new InArgument<ClassManager>(ctx => clsManagerObj);
+            WorkflowInvoker.Invoke(wf);
         }
 
         void lbCancel_Click(object sender, EventArgs e)
         {
             LinkButton lb = sender as LinkButton;
-             
+
+            CourseClass cls = clsManagerObj.GetCourseClassByCode(lb.CommandArgument);
+
+            ManualCancelActivity wf = new ManualCancelActivity();
+            wf.ArgCourseClass = new InArgument<CourseClass>(ctx => cls);
+            wf.ArgManager = new InArgument<ClassManager>(ctx => clsManagerObj);
+            WorkflowInvoker.Invoke(wf);
         }
 
         public List<CourseClass> CourseClassObjs { get; set; }
