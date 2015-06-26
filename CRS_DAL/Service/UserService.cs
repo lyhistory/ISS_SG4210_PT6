@@ -365,6 +365,7 @@ namespace CRS_DAL.Service
                 LoginID = _staff.LoginID,
                 Password = _staff.Password,
                 Status=_staff.Status.HasValue ? _staff.Status.Value : 0,
+                Enabled=_staff.Enabled.HasValue ? _staff.Enabled.Value : 0,
                 RoleName = _staff.Role == 1 ? "SYSTEM" : "COURSE"
             };
         }

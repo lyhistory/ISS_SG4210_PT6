@@ -102,6 +102,9 @@
                                                 <li class="folder expanded">Work Flow      
                                                     <ul>
                                                         <li data-url="CourseConfirmWF.aspx">Course Confirm</li>
+                                                        <li data-url="ConfirmedCourseClass.aspx">Confirmed CourseClass</li>
+                                                        <li data-url="CanceledCourseClass.aspx">Canceled CourseClass</li>
+                                                        <li data-url="ConfirmCourseClassByAdmin.aspx">Confirm CourseClassByAdmin</li>
                                                     </ul>                                               
                                                 </li>
                                                 <li class="folder expanded">Report      

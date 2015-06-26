@@ -51,6 +51,7 @@ namespace nus.iss.crs.pl.Controllers
         public JsonResult GetCourseCategoryList(string searchText = "")
         {
             CourseManager manager = this.BLSession.CreateCourseManager();
+
             List<CourseCategory> categoryList = manager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
 
             return Json(new { Data = categoryList });
@@ -89,6 +90,10 @@ namespace nus.iss.crs.pl.Controllers
             {
                 //do staff login,redirect to back office
                 loginUser = manager.LoginStaff(loginID, password);
+                if (loginUser.Enabled < 1)
+                {
+                    return Json(new { Code = -2 }); 
+                }
             }
             else
             {

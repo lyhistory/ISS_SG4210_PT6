@@ -16,7 +16,9 @@
                         } else {
                             window.location = "/home/index";
                         }
-                    } else
+                    } else if (data.Code == -2) {
+                        alert("user disabled, please contact system admin");
+                    }else
                         alert("logon failed");
                 });
             });
