@@ -76,9 +76,19 @@ namespace CRS_DAL.Service
 
         }
 
-        public List<dm.Course.CourseCategory> GetCourseCategoryList()
+        public List<dm.Course.CourseCategory> GetCourseCategoryList(string searchText="")
         {
-            var _categoryList = this.CourseCategoryRepository.GetAll().ToList();
+            List<CourseCategory> _categoryList;
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                _categoryList = this.CourseCategoryRepository.GetWhere(x=>x.CategoryDesc.Contains(searchText)||x.CategoryName.Contains(searchText)).ToList();
+            }
+            else
+            {
+                _categoryList = this.CourseCategoryRepository.GetAll().ToList();
+            }
+            if (_categoryList == null)
+                return null;
             return (from x in _categoryList
                     select new dm.Course.CourseCategory(x.CategoryID, x.CategoryName, x.CategoryDesc)
                         ).ToList();

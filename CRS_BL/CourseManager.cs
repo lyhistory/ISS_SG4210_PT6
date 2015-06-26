@@ -50,9 +50,9 @@ namespace nus.iss.crs.bl
             return GetCourseCategoryList(DateTime.MinValue, DateTime.MaxValue, includeAllKids);
         }
 
-        public  List<CourseCategory> GetCourseCategoryList(DateTime dateFrom, DateTime dateTo, bool includeAllKids)
+        public List<CourseCategory> GetCourseCategoryList(DateTime dateFrom, DateTime dateTo, bool includeAllKids, string searchText="")
         {
-            List<CourseCategory> courseCategoryList = unitOfWork.CourseService.GetCourseCategoryList();
+            List<CourseCategory> courseCategoryList = unitOfWork.CourseService.GetCourseCategoryList(searchText);
             if (includeAllKids)
             {
                 foreach (CourseCategory category in courseCategoryList)

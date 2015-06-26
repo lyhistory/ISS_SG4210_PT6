@@ -52,7 +52,7 @@ namespace nus.iss.crs.pl.Controllers
         {
             CourseManager manager = this.BLSession.CreateCourseManager();
 
-            List<CourseCategory> categoryList = manager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true);
+            List<CourseCategory> categoryList = manager.GetCourseCategoryList(DateTime.Now, DateTime.Now.AddMonths(5), true, searchText);
 
             return Json(new { Data = categoryList });
         }

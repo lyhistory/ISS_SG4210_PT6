@@ -54,17 +54,42 @@ namespace nus.iss.crs.dm.Course
             get
             {
                 Dictionary<string, string> _groupbyMonth = new Dictionary<string, string>();
-                foreach (var item in GetClassList())
+                var list =GetClassList().OrderBy(X=>X.StartMonth).OrderBy(X=>X.StartDay);
+                for (int i = 0; i <= 5; ++i)
                 {
-                    if (_groupbyMonth.ContainsKey(item.StartMonth.ToString()))
+                    List<CourseClass> innerlist = list.Where(x => x.StartMonth == DateTime.Now.Month + i).ToList();
+
+                    if (innerlist != null&&innerlist.Count>0)
                     {
-                        _groupbyMonth[item.StartMonth.ToString()] += "," + item.StartDay;
+                        foreach (var item in innerlist)
+                        {
+                            if (_groupbyMonth.ContainsKey(item.StartMonth.ToString()))
+                            {
+                                _groupbyMonth[item.StartMonth.ToString()] += "," + item.StartDay;
+                            }
+                            else
+                            {
+                                _groupbyMonth[item.StartMonth.ToString()] = item.StartDay.ToString();
+                            }
+                        }
                     }
-                    else
-                    {
-                        _groupbyMonth[item.StartMonth.ToString()] = item.StartDay.ToString();
-                    }
+                    else if (!_groupbyMonth.ContainsKey((DateTime.Now.Month + i).ToString()))
+                        _groupbyMonth[(DateTime.Now.Month + i).ToString()] = "0";
+
+                    //foreach (var item in list)
+                    //{
+                    //    if (_groupbyMonth.ContainsKey(item.StartMonth.ToString()))
+                    //    {
+                    //        _groupbyMonth[item.StartMonth.ToString()] += "," + item.StartDay;
+                    //    }
+                    //    else
+                    //    {
+                    //        _groupbyMonth[item.StartMonth.ToString()] = item.StartDay.ToString();
+                    //    }
+                    //}
                 }
+                    
+
                 return _groupbyMonth;
             }
         }
