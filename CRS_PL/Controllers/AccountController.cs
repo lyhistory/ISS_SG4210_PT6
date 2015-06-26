@@ -84,6 +84,11 @@ namespace nus.iss.crs.pl.Controllers
             return Json(new { Code = -1 });
         }
 
+        public ActionResult Center()
+        {
+            return Content("account center");
+        }
+
         public ActionResult LogOff()
         {
             //Session.Abandon();

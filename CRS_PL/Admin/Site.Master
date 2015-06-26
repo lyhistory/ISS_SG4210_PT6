@@ -46,7 +46,7 @@
 <body class="standard">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <div id="PublicWrapper" class="width900 float-center  line-height-normal font-size-medium">
+        <div id="PublicWrapper" class="width900 float-center  line-height-normal font-size-medium" style="BACKGROUND-COLOR: #9D9898;">
             <div runat="server" id="placeholder_Header1" class="sf_cols placeholder_1">
                 <div runat="server" style="float: left; width: 100%; margin: 0;" class="sf_colsOut">
                     <div runat="server" style="padding: 7px;" class="sf_colsIn">
@@ -54,21 +54,23 @@
                     </div>
                 </div>
             </div>
-            <div runat="server" id="placeholder_Header2" class="sf_cols placeholder_11">
+            <div runat="server" id="placeholder_Header2" class="container">
                 <div runat="server" style="float: left; width: 100%; margin: 0;" class="sf_colsOut">
-                    <div runat="server" style="padding: 7px;" class="sf_colsIn">
-                        <asp:ContentPlaceHolder ID="placeholder_HeadContent2" runat="server" />
+                    <div runat="server" style="float:right;padding: 7px;" class="sf_colsIn">
+                        <asp:ContentPlaceHolder ID="placeholder_HeadContent2" runat="server" >
+                            <asp:HyperLink ID="AccountCenter" runat="server" NavigateUrl="/Account/Center" class="btn btn-primary btn-lg active">Account Center</asp:HyperLink>
+                        </asp:ContentPlaceHolder>
                     </div>
                 </div>
             </div>
-            <div runat="server" id="placeholder_Cententer" class="sf_cols placeholder_8">
-                <div runat="server" style="float: left; width: 32%; margin: 0;" class="sf_colsOut">
-                    <div runat="server" style="padding: 7px;" class="sf_colsIn">
+            <div runat="server" id="placeholder_Cententer" class="">
+                <div runat="server" style="float: left; width: 25%; margin: 0;min-height:900px;  background-color: #C5B5B5;">
+                    <div runat="server" style="padding: 7px;" class="">
 
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="well">
+                        <div class="">
+                            <div class="">
+                                <div class="">
+                                    <div class="">
                                         <div id="tree">
                                             <ul id="treeData" style="display: none;">
                                                 <li class="folder expanded">Course Admin
@@ -129,7 +131,7 @@
                     </div>
 
                 </div>
-                <div runat="server" style="float: left; width: 66%; margin: 0;" class="sf_colsOut">
+                <div runat="server" style="float: left; width: auto; margin: 0;min-height:900px;background-color: #F9EDED;" >
                     <div runat="server" style="padding: 7px;" class="sf_colsIn">
                         <asp:ContentPlaceHolder ID="placeholder_MainContent" runat="server" />
                     </div>
