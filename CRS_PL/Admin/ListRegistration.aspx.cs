@@ -34,7 +34,10 @@ namespace nus.iss.crs.pl.Admin
                 manager = BLSession.CreateCourseRegistrationManager();
             }
 
-            foreach (Registration registration in manager.GetRegistrationList())
+            List<Registration> regs = manager.GetRegistrationList();
+            if (regs == null)
+                return;
+            foreach (Registration registration in regs)
             {
                 if (registration.CourseClassObj != null)
                 {

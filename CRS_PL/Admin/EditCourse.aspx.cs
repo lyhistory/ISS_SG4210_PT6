@@ -39,7 +39,7 @@ namespace nus.iss.crs.pl.Admin
             {
                 if (selectedInstructor == null)
                     selectedInstructor = instructor;
-                ListItem item = new ListItem(instructor.Name);
+                ListItem item = new ListItem(instructor.Name, instructor.ID);
                 instructorList.Items.Add(item);
             }
 
