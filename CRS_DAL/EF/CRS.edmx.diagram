@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="09ca5501b9d44f9fb85cc073f0b1a178" Name="Diagram1">
-        <EntityTypeShape EntityType="CRSModel.Attendance" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.Company" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.CompanyHR" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.Course" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.CourseCategory" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.CourseClass" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.Participant" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.Registration" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.Staff" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.User" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRSModel.Instructor" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+      <Diagram DiagramId="17676b62e80b43c99580b87e8179d7d6" Name="Diagram1">
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.Attendance" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.Company" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.CompanyHR" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.Course" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.CourseCategory" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.CourseClass" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.Participant" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.Registration" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.Staff" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.User" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISS_SG4210_PT6Model.Instructor" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
