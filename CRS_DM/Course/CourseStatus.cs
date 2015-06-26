@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace nus.iss.crs.dm.Course
 {
     public enum CourseStatus
-    {
-        Enabled,
-        Disabled
+    {    
+        Disabled,
+        Enabled
     }
 }
