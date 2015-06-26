@@ -625,7 +625,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CRS_WF.CourseConfirmationFlow_1" sap:VirtualizedContainerService.HintSize="526,1017" />
+      <sap2010:ViewStateData Id="CRS_WF.CourseConfirmationFlow" sap:VirtualizedContainerService.HintSize="526,1017" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
