@@ -55,6 +55,7 @@
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>CRS_BDL</AssemblyReference>
+      <AssemblyReference>CRS_COMMON</AssemblyReference>
       <AssemblyReference>CRS_DM</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>CRS_WF</AssemblyReference>
@@ -115,17 +116,17 @@
     </Sequence.Variables>
     <Flowchart sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <Flowchart.StartNode>
-        <FlowDecision x:Name="__ReferenceID1" DisplayName="No Intervention" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+        <FlowDecision x:Name="__ReferenceID0" DisplayName="No Intervention" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
           <FlowDecision.Condition>
             <mca:CSharpValue x:TypeArguments="x:Boolean">ArgCourseClass.NoOfRegedParticipant &lt; 5 || ArgCourseClass.NoOfRegedParticipant &gt; 10</mca:CSharpValue>
           </FlowDecision.Condition>
           <FlowDecision.True>
-            <FlowDecision x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+            <FlowDecision x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
               <FlowDecision.Condition>
                 <mca:CSharpValue x:TypeArguments="x:Boolean">ArgCourseClass.NoOfRegedParticipant &gt; 10</mca:CSharpValue>
               </FlowDecision.Condition>
               <FlowDecision.True>
-                <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+                <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_6">
                   <local:UpdateConfirmStatus Text="{x:Null}" classCode="{x:Null}" classSize="{x:Null}" message="{x:Null}" status="{x:Null}" sap2010:WorkflowViewState.IdRef="UpdateConfirmStatus_1">
                     <local:UpdateConfirmStatus.courseClass>
                       <InArgument x:TypeArguments="nicdc:CourseClass">
@@ -139,7 +140,7 @@
                     </local:UpdateConfirmStatus.manager>
                   </local:UpdateConfirmStatus>
                   <FlowStep.Next>
-                    <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_9">
+                    <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_9">
                       <local:CourseFeeCalculationActivity Text="{x:Null}" sap2010:WorkflowViewState.IdRef="CourseFeeCalculationActivity_1">
                         <local:CourseFeeCalculationActivity.courseClass>
                           <InArgument x:TypeArguments="nicdc:CourseClass">
@@ -153,7 +154,7 @@
                         </local:CourseFeeCalculationActivity.manager>
                       </local:CourseFeeCalculationActivity>
                       <FlowStep.Next>
-                        <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_10">
+                        <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_10">
                           <local:NotifyByEmail Text="{x:Null}" sap2010:WorkflowViewState.IdRef="NotifyByEmail_1">
                             <local:NotifyByEmail.courseClass>
                               <InArgument x:TypeArguments="nicdc:CourseClass">
@@ -173,7 +174,7 @@
                 </FlowStep>
               </FlowDecision.True>
               <FlowDecision.False>
-                <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+                <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_7">
                   <local:UpadateCancelStatus Text="{x:Null}" classCode="{x:Null}" classSize="{x:Null}" message="{x:Null}" status="{x:Null}" sap2010:WorkflowViewState.IdRef="UpadateCancelStatus_1">
                     <local:UpadateCancelStatus.courseClass>
                       <InArgument x:TypeArguments="nicdc:CourseClass">
@@ -187,14 +188,29 @@
                     </local:UpadateCancelStatus.manager>
                   </local:UpadateCancelStatus>
                   <FlowStep.Next>
-                    <x:Reference>__ReferenceID0</x:Reference>
+                    <FlowStep x:Name="__ReferenceID7">
+                      <local:NotifyByEmail Text="{x:Null}">
+                        <local:NotifyByEmail.courseClass>
+                          <InArgument x:TypeArguments="nicdc:CourseClass">
+                            <mca:CSharpValue x:TypeArguments="nicdc:CourseClass">ArgCourseClass</mca:CSharpValue>
+                          </InArgument>
+                        </local:NotifyByEmail.courseClass>
+                        <local:NotifyByEmail.manager>
+                          <InArgument x:TypeArguments="nicb:ClassManager">
+                            <mca:CSharpValue x:TypeArguments="nicb:ClassManager">ArgManager</mca:CSharpValue>
+                          </InArgument>
+                        </local:NotifyByEmail.manager>
+                        <sap2010:WorkflowViewState.IdRef>NotifyByEmail_2</sap2010:WorkflowViewState.IdRef>
+                      </local:NotifyByEmail>
+                      <sap2010:WorkflowViewState.IdRef>FlowStep_11</sap2010:WorkflowViewState.IdRef>
+                    </FlowStep>
                   </FlowStep.Next>
                 </FlowStep>
               </FlowDecision.False>
             </FlowDecision>
           </FlowDecision.True>
           <FlowDecision.False>
-            <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+            <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_8">
               <local:UpdateInventStatus sap2010:WorkflowViewState.IdRef="UpdateInventStatus_1">
                 <local:UpdateInventStatus.courseClass>
                   <InArgument x:TypeArguments="nicdc:CourseClass">
@@ -211,15 +227,16 @@
           </FlowDecision.False>
         </FlowDecision>
       </Flowchart.StartNode>
+      <x:Reference>__ReferenceID0</x:Reference>
       <x:Reference>__ReferenceID1</x:Reference>
       <x:Reference>__ReferenceID2</x:Reference>
       <x:Reference>__ReferenceID3</x:Reference>
       <x:Reference>__ReferenceID4</x:Reference>
       <x:Reference>__ReferenceID5</x:Reference>
       <x:Reference>__ReferenceID6</x:Reference>
-      <x:Reference>__ReferenceID0</x:Reference>
+      <x:Reference>__ReferenceID7</x:Reference>
     </Flowchart>
-    <sads:DebugSymbol.Symbol>d05FOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDb3Vyc2VDb25maXJtYXRpb25GbG93LnhhbWwVPwPfAQ4CAQFxNXE7AgEDcjVyPAIBAnQF3QERAgEEeA14pQEDAZkBxgEP0QEqAgF+fRF9ewIBcbEBE7wBLwIBVp0BG6gBMQIBO4EBE4wBLwIBII8BF5oBPAIBBckBFckBagMBjAHOARXOAWYCAX+0ARm0AW4CAWS5ARm5AWoCAVegASGgAXYCAUmlASGlAXICATyEARmEAW4CAS6JARmJAWoCASGSAR2SAXICAROXAR2XAW4CAQY=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d05FOlx2bXNoYXJlZGRpc2tcUGVyc29uYWxcTlVTXGFzc2lnbm1lbnRcQ1JTXENSU19TTFxDb3Vyc2VDb25maXJtYXRpb25GbG93LnhhbWwYQAPwAQ4CAQFyNXI7AgEDczVzPAIBAnUF7gERAgEEeQ15pQEDAbQB1gEP4QEqAwGZAX4RfnsDAYwBsgETvQEvAgFxwAEXzAEtAgFWggETjQEvAgE7kAEXmwE8AgEgngEbqQExAgEF2QEV2QFqAwGnAd4BFd4BZgMBmgG1ARm1AW4CAX+6ARm6AWoCAXLDAR3DAXICAWTIAR3IAW4CAVeFARmFAW4CAUmKARmKAWoCATyTAR2TAXICAS6YAR2YAW4CASGhASGhAXYCAROmASGmAXICAQY=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -247,7 +264,7 @@
       <sap2010:ViewStateData Id="FlowStep_10">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">170,519</av:Point>
+            <av:Point x:Key="ShapeLocation">90,549</av:Point>
             <av:Size x:Key="ShapeSize">200,22</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -257,7 +274,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">0,459</av:Point>
             <av:Size x:Key="ShapeSize">200,22</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">100,481 100,511 270,511 270,519</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">100,481 100,511 190,511 190,549</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -277,12 +294,27 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="NotifyByEmail_2" sap:VirtualizedContainerService.HintSize="200,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_11">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">240,469</av:Point>
+            <av:Size x:Key="ShapeSize">200,22</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_7">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">240,399</av:Point>
             <av:Size x:Key="ShapeSize">200,22</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">340,421 340,451 270,451 270,519</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">340,421 340,469</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -323,7 +355,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="686,636">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>

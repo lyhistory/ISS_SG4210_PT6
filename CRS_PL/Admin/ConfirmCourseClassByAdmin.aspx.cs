@@ -50,30 +50,30 @@ namespace nus.iss.crs.pl.Admin
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            manager = BLSession.CreateCourseRegistrationManager();
+            //manager = BLSession.CreateCourseRegistrationManager();
 
-            List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.ToConfirm);
-            CourseClass cls = courseClasses[0];
+            //List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.ToConfirm);
+            //CourseClass cls = courseClasses[0];
 
-            ClassManager clsManager = BLSession.CreateClassManager();
-            test wf = new test();
-            wf.ArgCourseClass = new InOutArgument<CourseClass>(ctx => cls);
-            wf.ArgManager = new InArgument<ClassManager>(ctx => clsManager);
-            WorkflowInvoker.Invoke(wf); 
+            //ClassManager clsManager = BLSession.CreateClassManager();
+            //test wf = new test();
+            //wf.ArgCourseClass = new InOutArgument<CourseClass>(ctx => cls);
+            //wf.ArgManager = new InArgument<ClassManager>(ctx => clsManager);
+            //WorkflowInvoker.Invoke(wf); 
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            manager = BLSession.CreateCourseRegistrationManager();
+            //manager = BLSession.CreateCourseRegistrationManager();
 
-            List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.ToConfirm);
-            CourseClass cls = courseClasses[0];
+            //List<CourseClass> courseClasses = manager.GetCourseClassWithRegisterCount(DateTime.Now, ClassStatus.ToConfirm);
+            //CourseClass cls = courseClasses[0];
 
-            ClassManager clsManager = BLSession.CreateClassManager();
-            test wf = new test();
-            wf.ArgCourseClass = new InOutArgument<CourseClass>(ctx => cls);
-            wf.ArgManager = new InArgument<ClassManager>(ctx => clsManager);
-            WorkflowInvoker.Invoke(wf);
+            //ClassManager clsManager = BLSession.CreateClassManager();
+            //test wf = new test();
+            //wf.ArgCourseClass = new InOutArgument<CourseClass>(ctx => cls);
+            //wf.ArgManager = new InArgument<ClassManager>(ctx => clsManager);
+            //WorkflowInvoker.Invoke(wf);
         }
     }
 }
