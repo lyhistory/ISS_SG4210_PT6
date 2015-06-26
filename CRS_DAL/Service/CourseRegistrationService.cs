@@ -134,6 +134,36 @@ namespace CRS_DAL.Service
             return null;
         }
 
+        public dm.Registration.Participant GetParticipantByParticipantID(string participantID)
+        {
+            Participant _participant = string.IsNullOrEmpty(participantID) ? null:this.ParticipantRepository.GetFirstOrDefault(x => x.ParticipantID.Equals(participantID));
+            if (_participant != null)
+            {
+                return new dm.Registration.Participant()
+                {
+                    ParticipantID = _participant.ParticipantID,
+                    IDNumber = _participant.IDNumber,
+                    EmploymentStatus = _participant.EmploymentStatus,
+                    CompanyID = _participant.CompanyID,
+                    CompanyName = _participant.CompanyName,
+                    Salutation = _participant.Salutation,
+                    JobTitle = _participant.JobTitle,
+                    Department = _participant.Department,
+                    FullName = _participant.FullName,
+                    OrganizationSize = _participant.OrganizationSize,
+                    Gender = _participant.Gender == 1 ? "Male" : "Female",
+                    SalaryRange = _participant.SalaryRange,
+                    Nationality = _participant.Nationality,
+                    DOB = _participant.DateOfBirth,
+                    EMail = _participant.Email,
+                    ContactNumber = _participant.ContactNumber,
+                    DietaryRequirement = _participant.DietaryRequirement,
+                    IsLocal = _participant.IsLocal.HasValue ? _participant.IsLocal.Value : 0
+                };
+            }
+            return null;
+        }
+
         public dm.Registration.Participant UpdateParticipant(dm.Registration.Participant participant, string companyID = "")
         {
             try

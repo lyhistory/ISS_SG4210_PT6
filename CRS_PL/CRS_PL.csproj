@@ -213,6 +213,13 @@
     <Compile Include="Admin\CourseConfirmWF.aspx.designer.cs">
       <DependentUpon>CourseConfirmWF.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\CourseDetail.aspx.cs">
+      <DependentUpon>CourseDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CourseDetail.aspx.designer.cs">
+      <DependentUpon>CourseDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CreateClass.aspx.cs">
       <DependentUpon>CreateClass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -389,6 +396,7 @@
     <Content Include="Admin\ConfirmCourseClassByAdmin.aspx" />
     <Content Include="Admin\ConfirmedCourseClass.aspx" />
     <Content Include="Admin\CourseConfirmWF.aspx" />
+    <Content Include="Admin\CourseDetail.aspx" />
     <Content Include="Admin\CreateClass.aspx" />
     <Content Include="Admin\css\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />
     <Content Include="Admin\css\bootstrap-3.3.4-dist\css\bootstrap-theme.min.css" />

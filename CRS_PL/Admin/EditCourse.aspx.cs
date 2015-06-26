@@ -14,6 +14,7 @@ namespace nus.iss.crs.pl.Admin
     public partial class EditCourse : CrsPageController
     {
         private CourseInstructor selectedInstructor = null;
+        private CourseManager manager = null;
 
         protected override void Page_Load(object sender, EventArgs e)
         {
@@ -22,13 +23,14 @@ namespace nus.iss.crs.pl.Admin
             if (this.IsPostBack)
                 return;
             PopulateCouseDetail();
+            manager = BLSession.CreateCourseManager();
         }
 
         void PopulateCouseDetail()
         {
             //retrieve parameter from request
             //retrieve data by parameter from BL
-            CourseManager manager = BLSession.CreateCourseManager();
+           
             foreach (CourseCategory category in manager.GetCourseCategoryList())
             {
                 ListItem item = new ListItem(category.Name, category.ID);

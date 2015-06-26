@@ -8,9 +8,10 @@
 //------------------------------------------------------------------------------
 
 namespace nus.iss.crs.pl.Admin {
-    
-    
-    public partial class ListCourseInCalendar {
+
+
+    public partial class ListClassInCalendar
+    {
         
         /// <summary>
         /// courseListID control.

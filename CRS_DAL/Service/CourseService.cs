@@ -33,6 +33,7 @@ namespace CRS_DAL.Service
             try
             {
                 List<dm.Course.CourseClass> list = new List<dm.Course.CourseClass>();
+
                 List<CourseClass> _list = this.CourseClassRepository.GetWhere(x => x.CourseCode.Equals(courseCode) 
                     && (x.StartDate==null||x.EndDate==null||x.StartDate >= dateFrom && x.EndDate <= dateTo)
                     && (status<0||x.Status==status)).ToList();

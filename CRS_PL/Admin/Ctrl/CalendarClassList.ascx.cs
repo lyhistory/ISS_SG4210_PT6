@@ -51,30 +51,30 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             courseRow.Cells.Add(editID);
 
             TableCell closeID = new TableCell();
-            LinkButton lb = new LinkButton();
-            lb.Text = "Close";
-            lb.CommandName = "Close";
-            lb.CommandArgument = cls.ClassCode;
-            lb.Click += new EventHandler(lb_Command);
-            closeID.Controls.Add(lb);
+            LinkButton lbClose = new LinkButton();
+            lbClose.Text = "Close";
+            lbClose.CommandName = "Close";
+            lbClose.CommandArgument = cls.ClassCode;
+            lbClose.Click += lbClose_Click;
+            closeID.Controls.Add(lbClose);
             courseRow.Cells.Add(closeID);
 
             TableCell confirmID = new TableCell();
-            lb = new LinkButton();
-            lb.Text = "Confirm";
-            lb.CommandName = "Confirm";
-            lb.CommandArgument = cls.ClassCode;
-            lb.Click += new EventHandler(lb_Command);
-            confirmID.Controls.Add(lb);
+            LinkButton lbConfirm = new LinkButton();
+            lbConfirm.Text = "Confirm";
+            lbConfirm.CommandName = "Confirm";
+            lbConfirm.CommandArgument = cls.ClassCode;
+            lbConfirm.Click += lbConfirm_Click;
+            confirmID.Controls.Add(lbConfirm);
             courseRow.Cells.Add(confirmID);
 
             TableCell cancelID = new TableCell();
-            lb = new LinkButton();
-            lb.Text = "Cancel";
-            lb.CommandName = "Cancel";
-            lb.CommandArgument = cls.ClassCode;
-            lb.Click += new EventHandler(lb_Command);
-            cancelID.Controls.Add(lb);
+            LinkButton lbCancel = new LinkButton();
+            lbCancel.Text = "Cancel";
+            lbCancel.CommandName = "Cancel";
+            lbCancel.CommandArgument = cls.ClassCode;
+            lbCancel.Click += lbCancel_Click;
+            cancelID.Controls.Add(lbCancel);
             courseRow.Cells.Add(cancelID);
 
             TableCell view = new TableCell();
@@ -86,13 +86,35 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             return courseRow;
         }
 
+        void lbClose_Click(object sender, EventArgs e)
+        {
+            LinkButton lb = (LinkButton)sender;
+
+            classManager.CloseCourseClass(classManager.GetCourseClassByCode(lb.CommandArgument));
+            Response.Redirect("~/Admin/ListClassInCalendar.aspx");
+        }
+        void lbConfirm_Click(object sender, EventArgs e)
+        {
+            LinkButton lb = (LinkButton)sender;
+
+            classManager.ConfirmCourseClass(classManager.GetCourseClassByCode(lb.CommandArgument));
+            Response.Redirect("~/Admin/ListClassInCalendar.aspx");
+        }
+        void lbCancel_Click(object sender, EventArgs e)
+        {
+            LinkButton lb = (LinkButton)sender;
+
+            classManager.CancelCourseClass(classManager.GetCourseClassByCode(lb.CommandArgument));
+            Response.Redirect("~/Admin/ListClassInCalendar.aspx");
+        }
+
         protected void lb_Command(object sender, EventArgs e)
         {
             LinkButton lb = new LinkButton();
             
             if (lb.CommandName == "Close")
             {
-                classManager.CloseCourseClass(classManager.GetCourseClassByCode(lb.CommandArgument));
+                classManager.CloseCourseClass(classManager.GetCourseClassByCode(lb.CommandArgument));                 
             }
             else if (lb.CommandName == "Confirm")
             {
@@ -102,6 +124,7 @@ namespace nus.iss.crs.pl.Admin.Ctrl
             {
                 classManager.CancelCourseClass(classManager.GetCourseClassByCode(lb.CommandArgument));
             }
+            Response.Redirect("~/Admin/ListClassInCalendar.aspx");
         }
 
         public List<CourseClass> courseClassList { get; set; }
