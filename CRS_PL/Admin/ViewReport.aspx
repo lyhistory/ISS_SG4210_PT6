@@ -29,7 +29,7 @@
         <h2>Attendance Report</h2>
     </blockquote>
         <div id="header">
-            <label for="classCode">Class Code</label>
+            <label for="classCode">Course Code</label>
             <input id="courseCode" type="text"/>
             <label for="classDate">Class Date</label>
             <input id="classDate" type="date" />
