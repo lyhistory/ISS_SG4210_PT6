@@ -54,6 +54,7 @@ namespace CRSClient
               MessageBox.Show("No Student for this course with the date");
               return;
           }
+          lvStudent.Items.Clear();
           foreach (Participant p in students)
           {
               ListViewItem item = new ListViewItem(p.FullName);
